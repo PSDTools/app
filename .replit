@@ -1,4 +1,4 @@
-run = "dart main.dart"
+run = "dart server/bin/server.dart"
 entrypoint = "main.dart"
 
 [packager]
