@@ -1,0 +1,19 @@
+run = "dart main.dart"
+entrypoint = "main.dart"
+
+[packager]
+language = "dart-pub"
+
+[packager.features]
+packageSearch = true
+
+[nix]
+channel = "stable-22_05"
+
+[languages]
+
+[languages.dart]
+pattern = "**/*.dart"
+
+[languages.dart.languageServer]
+start = "dart language-server"
