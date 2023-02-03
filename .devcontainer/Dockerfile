@@ -1,4 +1,6 @@
 FROM debian:stretch
+FROM mcr.microsoft.com/devcontainers/universal:2-linux
+
 
 RUN apt-get update && apt-get -y install git curl unzip
 

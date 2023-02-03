@@ -1,7 +1,60 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/universal
 {
-  "build": {
-    "dockerfile": "Dockerfile" // https://github.com/DanTup/github-codespaces-flutter-web/blob/master/.devcontainer/devcontainer.json
-  },
   "name": "Flutter",
-  "extensions": ["Dart-Code.dart-code", "Dart-Code.flutter"]
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1.0.10": {},
+    "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2.0.3": {}
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": {
+  //   // , "./.devcontainer/install_flutter_sdk_script.sh": []
+  // },
+
+  // Configure tool-specific properties.
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "server/main.dart",
+        "lib/main.dart",
+        "README.md",
+        "web/index.html",
+        "macos/Runner/AppDelegate.swift"
+      ]
+    }
+  },
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
+
+  // "containerEnv": {
+  //   "PUB_CACHE": "/home/codespace/.pub_cache",
+  //   "PATH": "/home/codespace/flutter/bin:$PATH"
+  // },
+
+  "extensions": [
+    "Dart-Code.dart-code",
+    "Dart-Code.flutter",
+    "eamodio.gitlens",
+    "tamasfe.even-better-toml",
+    "ms-vsliveshare.vsliveshare",
+    "ms-vscode-remote.remote-containers",
+    "GitHub.codespaces",
+    "joshbolduc.commitlint",
+    "redhat.vscode-yaml",
+    "DavidAnson.vscode-markdownlint",
+    "streetsidesoftware.code-spell-checker",
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "GitHub.remotehub",
+    "ms-vscode.azure-repos",
+    "esbenp.prettier-vscode"
+  ]
 }
