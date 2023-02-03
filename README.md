@@ -1,4 +1,4 @@
-# pirate_code_3_0
+# pirate-code-3.0
 
 A new Flutter project.
 
