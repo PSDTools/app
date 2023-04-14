@@ -22,7 +22,7 @@ C4Context
   title System Context diagram
   
   Enterprise_Boundary(b0, "Pattonville") {
-    Person(customerA, "Admin", "A school/district admin, one who can can see trends.")
+    Person(customerA, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
     Person(customerB, "Teachers", "A teacher, the one giving tokens.")
     Person_Ext(customerC, "Stuco", "The ones removing tokens.")
     Person_Ext(customerD, "Student", "The ones using tokens.")
