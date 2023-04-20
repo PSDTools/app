@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'No Longer A Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Maybe A Wallet app???'),
+      home: const MyHomePage(title: 'JK... Its a gpa calculator :)'),
     );
   }
 }
@@ -48,7 +48,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var _counter = "";
+  var dropdownValue;
 
   void _incrementCounter() {
     setState(() {
@@ -57,7 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
+      _counter = "No Longer A Flutter Demo";
+    });
+  }
+
+  void dropdownCallback(selectedValue) {
+    setState(() {
+      dropdownValue = selectedValue;
     });
   }
 
@@ -95,16 +102,48 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            DropdownButton(
+              items: const [
+                DropdownMenuItem(
+                  value: 4,
+                  child: Text("A"),
+                ),
+                DropdownMenuItem(
+                  value: 3,
+                  child: Text("B"),
+                ),
+                DropdownMenuItem(
+                  value: 2,
+                  child: Text("C"),
+                ),
+                DropdownMenuItem(
+                  value: 1,
+                  child: Text("D"),
+                ),
+                DropdownMenuItem(
+                  value: 0,
+                  child: Text("F"),
+                )
+              ],
+              value: dropdownValue,
+              onChanged: dropdownCallback,
             ),
+
+            const ElevatedButton(
+              onPressed: null,
+              child: Text('Calculate GPA'),
+            ),
+            // const Text(
+            //   '',
+            // ),
             Text(
-              '$_counter',
+              '',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
