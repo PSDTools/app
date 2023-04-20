@@ -8,6 +8,8 @@ packages = [{include = "server", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aiohttp = "^3.8.4"
+rich = "^13.3.4"
 
 
 [build-system]
