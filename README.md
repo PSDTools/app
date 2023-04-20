@@ -1,5 +1,8 @@
 # pirate-code-3.0
 
+[![Dart](https://github.com/PSDTools/app/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/PSDTools/app/actions/workflows/dart.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/25b0c44e-21b7-423c-a914-32aa4b23b708/deploy-status)](https://app.netlify.com/sites/pattonville-wallet/deploys)
+
 A new Flutter project.
 
 ## Getting Started
