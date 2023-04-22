@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "dart-code.flutter",
+    "circlecodesolution.ccs-flutter-color",
+    "foam.foam-vscode",
+    "eamodio.gitlens",
+    "ms-vsliveshare.vsliveshare",
+    "tyriar.luna-paint",
+    "pkief.material-icon-theme",
+    "bbenoist.nix",
+    "esbenp.prettier-vscode",
+    "redhat.vscode-yaml"
+  ]
+}
