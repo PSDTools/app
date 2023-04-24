@@ -1,0 +1,15 @@
+targets:
+  $default:
+    builders:
+      auto_route_generator:auto_route_generator:
+        # configs for @RoutePage() generator...
+        options:
+          enable_cached_builds: true
+        generate_for:
+          - lib/**.dart
+      auto_route_generator:auto_router_generator:
+        # configs for @AutoRouterConfig() generator...
+        options:
+          enable_cached_builds: true
+        generate_for:
+          - lib/**.dart
