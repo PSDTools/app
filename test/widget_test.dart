@@ -13,10 +13,10 @@ import 'package:pirate_code_3_0/main.dart';
 void main() {
   testWidgets(
     'Counter increments smoke test',
-    skip: true,
+
     (WidgetTester tester) async {
       // Build our app and trigger a frame.
-      await tester.pumpWidget(const MyApp());
+      await tester.pumpWidget(MyApp());
 
       // Verify that our counter starts at 0.
       expect(find.text('0'), findsOneWidget);
@@ -30,5 +30,6 @@ void main() {
       expect(find.text('0'), findsNothing);
       expect(find.text('1'), findsOneWidget);
     },
+    skip: true, // [intended] this is old
   );
 }

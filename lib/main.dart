@@ -2,21 +2,37 @@ import 'package:english_words/english_words.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-// import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 // import 'app_router.dart';
 part 'main.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class NavigationManager extends _$NavigationManager {
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: GeneratorRoute.page),
-        AutoRoute(page: FavoritesRoute.page)
+        AutoRoute(page: GeneratorRoute.page, path: "/"),
+        AutoRoute(page: FavoritesRoute.page, path: "/favorites"),
+        RedirectRoute(path: "*", redirectTo: "/"),
       ];
+
+  // var colorScheme = Theme.of(context).colorScheme;
+
+  // // The container for the current page, with its background color
+  // // and subtle switching animation.
+  // var mainArea = ColoredBox(
+  //   color: colorScheme.surfaceVariant,
+  //   child: AnimatedSwitcher(
+  //     duration: Duration(milliseconds: 200),
+  //     child: widget.child,
+  //   ),
+  // );
 }
 
 void main() {
-  // usePathUrlStrategy();
+  usePathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -24,17 +40,18 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
   // make sure you don't initiate your router
   // inside of the build function.
-  final _appRouter = AppRouter();
+  final _appRouter = NavigationManager();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _appRouter.config(),
-      title: 'Namer App',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+    return ChangeNotifierProvider(
+      create: ((context) => MyAppState()),
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(),
+        title: 'Namer App',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         ),
       ),
     );
@@ -81,18 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
-
-    // The container for the current page, with its background color
-    // and subtle switching animation.
-    var mainArea = ColoredBox(
-      color: colorScheme.surfaceVariant,
-      child: AnimatedSwitcher(
-        duration: Duration(milliseconds: 200),
-        child: widget.child,
-      ),
-    );
-
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -103,93 +108,58 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
             builder: (context, child) {
               final tabsRouter = AutoTabsRouter.of(context);
-
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text(context.topRoute.name),
-                  leading: AutoLeadingButton(),
-                  bottom: TabBar(
-                    tabs: const [
-                      Tab(text: '1', icon: Icon(Icons.abc)),
-                      Tab(text: '2', icon: Icon(Icons.abc)),
-                      Tab(text: '3', icon: Icon(Icons.abc)),
-                    ],
+              if (constraints.maxWidth < 450) {
+                return Scaffold(
+                  appBar: AppBar(
+                    title: Text(context.topRoute.name),
+                    leading: AutoLeadingButton(),
+                    bottom: TabBar(
+                      tabs: const [
+                        Tab(text: '1', icon: Icon(Icons.abc)),
+                        Tab(text: '2', icon: Icon(Icons.abc)),
+                        Tab(text: '3', icon: Icon(Icons.abc)),
+                      ],
+                    ),
                   ),
-                ),
-                body: child,
-                bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: tabsRouter.setActiveIndex,
-                  items: [
-                    BottomNavigationBarItem(
-                        label: 'Home', icon: Icon(Icons.home)),
-                    BottomNavigationBarItem(
-                        label: 'Favorites', icon: Icon(Icons.favorite)),
-                  ],
-                ),
-              );
-            },
-          );
-          if (constraints.maxWidth < 450) {
-            // Use a more mobile-friendly layout with BottomNavigationBar
-            // on narrow screens.
-            return Column(
-              children: [
-                Expanded(child: mainArea),
-                SafeArea(
-                  child: BottomNavigationBar(
+                  body: child,
+                  bottomNavigationBar: BottomNavigationBar(
+                    currentIndex: tabsRouter.activeIndex,
+                    onTap: tabsRouter.setActiveIndex,
                     items: [
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.home),
-                        label: 'Home',
-                      ),
+                          label: 'Home', icon: Icon(Icons.home)),
                       BottomNavigationBarItem(
-                        icon: Icon(Icons.favorite),
-                        label: 'Favorites',
-                      ),
+                          label: 'Favorites', icon: Icon(Icons.favorite)),
                     ],
-                    currentIndex: selectedIndex,
-                    onTap: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                      context.router.pushNamed("");
-                    },
                   ),
-                )
-              ],
-            );
-          } else {
-            return Row(
-              children: [
-                SafeArea(
-                  child: NavigationRail(
-                    extended: constraints.maxWidth >= 600,
-                    destinations: [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.home),
-                        label: Text('Home'),
+                );
+              } else {
+                return Scaffold(
+                    body: Row(
+                  children: [
+                    SafeArea(
+                      child: NavigationRail(
+                        extended: constraints.maxWidth >= 600,
+                        destinations: [
+                          NavigationRailDestination(
+                            icon: Icon(Icons.home),
+                            label: Text('Home'),
+                          ),
+                          NavigationRailDestination(
+                            icon: Icon(Icons.favorite),
+                            label: Text('Favorites'),
+                          ),
+                        ],
+                        selectedIndex: tabsRouter.activeIndex,
+                        onDestinationSelected: tabsRouter.setActiveIndex,
                       ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.favorite),
-                        label: Text('Favorites'),
-                      ),
-                    ],
-                    selectedIndex: selectedIndex,
-                    onDestinationSelected: (value) {
-                      setState(() {
-                        selectedIndex = value;
-                      });
-                      context.router.pushNamed("");
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: mainArea,
-                ),
-              ],
-            );
-          }
+                    ),
+                    Expanded(child: child),
+                  ],
+                ));
+              }
+            },
+          );
         },
       ),
     );
