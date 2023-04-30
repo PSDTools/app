@@ -15,6 +15,12 @@ abstract class _$NavigationManager extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    MyHomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MyHomePage(),
+      );
+    },
     GeneratorRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -28,6 +34,20 @@ abstract class _$NavigationManager extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [MyHomePage]
+class MyHomeRoute extends PageRouteInfo<void> {
+  const MyHomeRoute({List<PageRouteInfo>? children})
+      : super(
+          MyHomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MyHomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -6,29 +6,23 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 // import 'app_router.dart';
 part 'main.gr.dart';
 
-@AutoRouterConfig()
+@AutoRouterConfig(replaceInRouteName: "Page,Route")
 class NavigationManager extends _$NavigationManager {
   @override
   RouteType get defaultRouteType => const RouteType.material();
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: GeneratorRoute.page, path: "/"),
-        AutoRoute(page: FavoritesRoute.page, path: "/favorites"),
+        AutoRoute(
+          path: "/",
+          page: MyHomeRoute.page,
+          children: [
+            AutoRoute(page: GeneratorRoute.page, path: ""),
+            AutoRoute(page: FavoritesRoute.page, path: "favorites"),
+          ],
+        ),
         RedirectRoute(path: "*", redirectTo: "/"),
       ];
-
-  // var colorScheme = Theme.of(context).colorScheme;
-
-  // // The container for the current page, with its background color
-  // // and subtle switching animation.
-  // var mainArea = ColoredBox(
-  //   color: colorScheme.surfaceVariant,
-  //   child: AnimatedSwitcher(
-  //     duration: Duration(milliseconds: 200),
-  //     child: widget.child,
-  //   ),
-  // );
 }
 
 void main() {
@@ -44,6 +38,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final flutterLocale = Locale("en", "US");
+    final theme = ColorScheme.fromSeed(seedColor: Colors.green);
+
     return ChangeNotifierProvider(
       create: ((context) => MyAppState()),
       child: MaterialApp.router(
@@ -51,8 +48,9 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          colorScheme: theme,
         ),
+        locale: flutterLocale,
       ),
     );
   }
@@ -85,29 +83,40 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({required this.child});
-  final Widget child;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
+@RoutePage()
+class MyHomePage extends StatelessWidget {
+  const MyHomePage();
 
   @override
   Widget build(BuildContext context) {
+    var colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
           return AutoTabsRouter(
-            routes: [
+            routes: const [
               GeneratorRoute(),
               FavoritesRoute(),
             ],
+            transitionBuilder: (context, child, animation) => FadeTransition(
+              opacity: animation,
+              // the passed child is technically our animated selected-tab page
+              child: child,
+            ),
             builder: (context, child) {
               final tabsRouter = AutoTabsRouter.of(context);
+
+              // The container for the current page, with its background color
+              // and subtle switching animation.
+              var mainArea = ColoredBox(
+                color: colorScheme.surfaceVariant,
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 200),
+                  child: AutoRouter(),
+                ),
+              );
+
               if (constraints.maxWidth < 450) {
                 return Scaffold(
                   appBar: AppBar(
@@ -121,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
-                  body: child,
+                  body: mainArea,
                   bottomNavigationBar: BottomNavigationBar(
                     currentIndex: tabsRouter.activeIndex,
                     onTap: tabsRouter.setActiveIndex,
@@ -154,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onDestinationSelected: tabsRouter.setActiveIndex,
                       ),
                     ),
-                    Expanded(child: child),
+                    Expanded(child: mainArea),
                   ],
                 ));
               }
