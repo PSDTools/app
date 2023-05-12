@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
-import 'package:provider/provider.dart';
+import "package:flutter/material.dart";
+import "package:english_words/english_words.dart";
+import "package:provider/provider.dart";
 import "../model.dart";
 
 class BigListTile extends StatelessWidget {
@@ -23,7 +23,7 @@ class BigListTile extends StatelessWidget {
       leading: IconButton(
         icon: const Icon(
           Icons.delete_outline,
-          semanticLabel: 'Delete',
+          semanticLabel: "Delete",
         ),
         color: theme.colorScheme.primary,
         onPressed: () {

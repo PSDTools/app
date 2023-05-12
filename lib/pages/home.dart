@@ -1,9 +1,9 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../model.dart';
-import '../widgets/big_card.dart';
-import '../widgets/history.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "../model.dart";
+import "../widgets/big_card.dart";
+import "../widgets/history.dart";
 
 @RoutePage()
 class GeneratorPage extends StatelessWidget {
@@ -40,14 +40,14 @@ class GeneratorPage extends StatelessWidget {
                   appState.toggleFavorite();
                 },
                 icon: Icon(icon),
-                label: const Text('Like'),
+                label: const Text("Like"),
               ),
               const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () {
                   appState.getNext();
                 },
-                child: const Text('Next'),
+                child: const Text("Next"),
               ),
             ],
           ),

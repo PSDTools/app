@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'app_router.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "app_router.dart";
 
 @RoutePage()
 class MyHomePage extends StatelessWidget {
@@ -37,9 +37,9 @@ class MyHomePage extends StatelessWidget {
                   leading: const AutoLeadingButton(),
                   bottom: const TabBar(
                     tabs: [
-                      Tab(text: '1', icon: Icon(Icons.abc)),
-                      Tab(text: '2', icon: Icon(Icons.abc)),
-                      Tab(text: '3', icon: Icon(Icons.abc)),
+                      Tab(text: "1", icon: Icon(Icons.abc)),
+                      Tab(text: "2", icon: Icon(Icons.abc)),
+                      Tab(text: "3", icon: Icon(Icons.abc)),
                     ],
                   ),
                 ),
@@ -49,11 +49,11 @@ class MyHomePage extends StatelessWidget {
                   onTap: tabsRouter.setActiveIndex,
                   items: const [
                     BottomNavigationBarItem(
-                      label: 'Home',
+                      label: "Home",
                       icon: Icon(Icons.home),
                     ),
                     BottomNavigationBarItem(
-                      label: 'Favorites',
+                      label: "Favorites",
                       icon: Icon(Icons.favorite),
                     ),
                   ],
@@ -69,11 +69,11 @@ class MyHomePage extends StatelessWidget {
                         destinations: const [
                           NavigationRailDestination(
                             icon: Icon(Icons.home),
-                            label: Text('Home'),
+                            label: Text("Home"),
                           ),
                           NavigationRailDestination(
                             icon: Icon(Icons.favorite),
-                            label: Text('Favorites'),
+                            label: Text("Favorites"),
                           ),
                         ],
                         selectedIndex: tabsRouter.activeIndex,

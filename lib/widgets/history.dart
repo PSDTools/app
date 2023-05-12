@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../model.dart';
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "../model.dart";
 
 class HistoryListView extends StatefulWidget {
   const HistoryListView({Key? key}) : super(key: key);

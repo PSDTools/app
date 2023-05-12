@@ -1,7 +1,7 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../model.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "../model.dart";
 
 @RoutePage()
 class FavoritesPage extends StatelessWidget {
@@ -15,7 +15,7 @@ class FavoritesPage extends StatelessWidget {
 
     if (favorites.isEmpty) {
       return const Center(
-        child: Text('No favorites yet.'),
+        child: Text("No favorites yet."),
       );
     }
 
@@ -24,8 +24,8 @@ class FavoritesPage extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.all(30),
-          child: Text('You have '
-              '${appState.favorites.length} favorites:'),
+          child: Text("You have "
+              "${appState.favorites.length} favorites:"),
         ),
         Expanded(
           // Make better use of wide windows with a grid.
@@ -40,7 +40,7 @@ class FavoritesPage extends StatelessWidget {
                     leading: IconButton(
                       icon: const Icon(
                         Icons.delete_outline,
-                        semanticLabel: 'Delete',
+                        semanticLabel: "Delete",
                       ),
                       color: theme.colorScheme.primary,
                       onPressed: () {

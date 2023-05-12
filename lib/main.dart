@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_web_plugins/url_strategy.dart';
-import 'model.dart';
-import 'app_router.dart';
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "package:flutter_web_plugins/url_strategy.dart";
+import "model.dart";
+import "app_router.dart";
 
 void main() {
   usePathUrlStrategy();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       create: ((context) => MyAppState()),
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),
-        title: 'Namer App',
+        title: "Namer App",
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: theme,
