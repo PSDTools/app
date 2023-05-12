@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.psdr3.pirate_code_3_0">
+    package="org.psdr3.pirate_code_3">
    <application
-        android:label="pirate_code_3_0"
+        android:label="pirate_code_3"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

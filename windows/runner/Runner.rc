@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "pirate_code_3_0" "\0"
+            VALUE "FileDescription", "pirate_code_3" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "pirate_code_3_0" "\0"
+            VALUE "InternalName", "pirate_code_3" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 org.psdr3. All rights reserved." "\0"
-            VALUE "OriginalFilename", "pirate_code_3_0.exe" "\0"
-            VALUE "ProductName", "pirate_code_3_0" "\0"
+            VALUE "OriginalFilename", "pirate_code_3.exe" "\0"
+            VALUE "ProductName", "pirate_code_3" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
