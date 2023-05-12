@@ -56,9 +56,10 @@ jobs:
       - name: Analyze project source
         run: flutter analyze
       - name: DCM
-        uses: dart-code-checker/dart-code-metrics-action@v2
+        uses: dart-code-checker/dart-code-metrics-action@v3.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_request_comment: true
       - name: Lint Riverpod
         run: dart run custom_lint
 
