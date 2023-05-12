@@ -47,12 +47,12 @@ class MyHomePage extends StatelessWidget {
                 bottomNavigationBar: BottomNavigationBar(
                   currentIndex: tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
-                  items: [
-                    const BottomNavigationBarItem(
+                  items: const [
+                    BottomNavigationBarItem(
                       label: 'Home',
                       icon: Icon(Icons.home),
                     ),
-                    const BottomNavigationBarItem(
+                    BottomNavigationBarItem(
                       label: 'Favorites',
                       icon: Icon(Icons.favorite),
                     ),
@@ -66,12 +66,12 @@ class MyHomePage extends StatelessWidget {
                     SafeArea(
                       child: NavigationRail(
                         extended: constraints.maxWidth >= 600,
-                        destinations: [
-                          const NavigationRailDestination(
+                        destinations: const [
+                          NavigationRailDestination(
                             icon: Icon(Icons.home),
                             label: Text('Home'),
                           ),
-                          const NavigationRailDestination(
+                          NavigationRailDestination(
                             icon: Icon(Icons.favorite),
                             label: Text('Favorites'),
                           ),
