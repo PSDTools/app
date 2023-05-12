@@ -32,7 +32,7 @@ linter:
   # producing the lint.
   rules: # make the rules lax for now
     # prefer_const_constructors: false
-    prefer_final_fields: false
+    # prefer_final_fields: false
     use_key_in_widget_constructors: false
     prefer_const_literals_to_create_immutables: false
     prefer_const_constructors_in_immutables: false
