@@ -2,8 +2,8 @@ import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 
 class MyAppState extends ChangeNotifier {
-  var current = WordPair.random();
-  var history = <WordPair>[];
+  WordPair current = WordPair.random();
+  List<WordPair> history = <WordPair>[];
 
   GlobalKey? historyListKey;
 
@@ -15,7 +15,7 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  var favorites = <WordPair>{};
+  Set<WordPair> favorites = <WordPair>{};
 
   void toggleFavorite([WordPair? pair]) {
     pair = pair ?? current;

@@ -3,7 +3,9 @@ import "package:provider/provider.dart";
 import "../model.dart";
 
 class HistoryListView extends StatefulWidget {
-  const HistoryListView({Key? key}) : super(key: key);
+  const HistoryListView({
+    super.key,
+  });
 
   @override
   State<HistoryListView> createState() => _HistoryListViewState();

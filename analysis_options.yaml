@@ -15,8 +15,9 @@ analyzer:
     strict-casts: true
     strict-inference: true
     strict-raw-types: true
-  # plugins:
-  #   - dart_code_metrics
+  plugins:
+    - custom_lint
+    - dart_code_metrics
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -33,14 +34,45 @@ linter:
   rules:
     # avoid_print: false # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-    - prefer_double_quotes
-    - always_declare_return_types
-    - cancel_subscriptions
-    - close_sinks
-    - comment_references
-    - one_member_abstracts
-    - only_throw_errors
-    - package_api_docs
-    - prefer_final_in_for_each
+    - prefer_double_quotes: true
+    - always_declare_return_types: true
+    - cancel_subscriptions: true
+    - close_sinks: true
+    - comment_references: true
+    - one_member_abstracts: true
+    - only_throw_errors: true
+    - package_api_docs: true
+    - prefer_final_in_for_each: true
+    - await_only_futures: true
+    - always_use_package_imports: true
+    - secure_pubspec_urls: true
+    - sort_pub_dependencies: true
+    - deprecated_consistency: true
+    - directives_ordering: true
+    - avoid_classes_with_only_static_members: true
+    - avoid_double_and_int_checks: true
+    - type_annotate_public_apis: true
+    - use_if_null_to_convert_nulls_to_bools: true
+    - use_super_parameters: true # experimental
+    - use_to_and_as_if_applicable: true
+    - flutter_style_todos: true
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+
+dart_code_metrics:
+  extends: # configures the list of preset configurations
+    - package:dart_code_metrics_presets/all.yaml # be this broken with null-safety?
+  metrics: # configures the list of reported metrics
+    -
+  metrics-exclude: # configures the list of files that should be ignored by metrics
+    -
+  rules: # configures the list of rules
+    -
+  rules-exclude: # configures the list of files that should be ignored by rules
+    -
+  anti-patterns: # configures the list of anti-patterns
+    -
+
+custom_lint:
+  rules: # riverpod_lint
+    -

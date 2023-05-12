@@ -10,6 +10,7 @@
     "pkief.material-icon-theme",
     "bbenoist.nix",
     "esbenp.prettier-vscode",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "robert-brunhage.flutter-riverpod-snippets"
   ]
 }

@@ -29,37 +29,39 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter:
-    sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
-  # flutter_localizations: # Required to enable localization
-  #   sdk: flutter
-
+  auto_route: ^7.1.0
+  english_words: ^4.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   # cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
-
-  auto_route: ^7.1.0
-  english_words: ^4.0.0
-  provider: ^6.0.5 # TODO: replace with riverpod
+  flutter:
+    sdk: flutter
+  # flutter_localizations: # Required to enable localization
+  #   sdk: flutter
   flutter_riverpod: ^2.3.6
+  flutter_web_plugins:
+    sdk: flutter
+  provider: ^6.0.5 # TODO: replace with riverpod
+  riverpod_annotation: ^2.0.1
 
 dev_dependencies:
-  flutter_test: # Required for a Flutter project that includes tests
-    sdk: flutter
-  # integration_test:
-  #   sdk: flutter
-
+  auto_route_generator: ^7.0.0
+  build_runner: ^2.4.2
+  custom_lint: ^0.3.4
+  dart_code_metrics: ^5.7.0
+  dart_code_metrics_presets: ^1.7.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
-  build_runner: ^2.4.2
-  auto_route_generator: ^7.0.0
-  # dart_code_metrics: ^5.7.0
+  flutter_test: # Required for a Flutter project that includes tests
+    sdk: flutter
+  # integration_test:
+  #   sdk: flutter
+  riverpod_lint: ^1.3.1
+  riverpod_generator: ^2.1.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -72,7 +74,8 @@ flutter:
   uses-material-design: true # Required if you use the Material icon font
 
 
-  # Enables generation of localized strings from arb files
+  # Enables generation of localized strings from arb files, see
+  # https://docs.flutter.dev/accessibility-and-localization/
   # generate: true
 
   # To add assets to your application, add an assets section, like this:
