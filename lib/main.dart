@@ -91,60 +91,58 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var colorScheme = Theme.of(context).colorScheme;
 
-    return Scaffold(
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return AutoTabsRouter(
-            routes: const [
-              GeneratorRoute(),
-              FavoritesRoute(),
-            ],
-            transitionBuilder: (context, child, animation) => FadeTransition(
-              opacity: animation,
-              // the passed child is technically our animated selected-tab page
-              child: child,
-            ),
-            builder: (context, child) {
-              final tabsRouter = AutoTabsRouter.of(context);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return AutoTabsRouter(
+          routes: const [
+            GeneratorRoute(),
+            FavoritesRoute(),
+          ],
+          builder: (context, child) {
+            final tabsRouter = AutoTabsRouter.of(context);
 
-              // The container for the current page, with its background color
-              // and subtle switching animation.
-              var mainArea = ColoredBox(
-                color: colorScheme.surfaceVariant,
-                child: AnimatedSwitcher(
-                  duration: Duration(milliseconds: 200),
-                  child: AutoRouter(),
-                ),
-              );
+            // The container for the current page, with its background color
+            // and subtle switching animation.
+            var mainArea = ColoredBox(
+              color: colorScheme.surfaceVariant,
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 200),
+                child: AutoRouter(),
+              ),
+            );
 
-              if (constraints.maxWidth < 450) {
-                return Scaffold(
-                  appBar: AppBar(
-                    title: Text(context.topRoute.name),
-                    leading: AutoLeadingButton(),
-                    bottom: TabBar(
-                      tabs: const [
-                        Tab(text: '1', icon: Icon(Icons.abc)),
-                        Tab(text: '2', icon: Icon(Icons.abc)),
-                        Tab(text: '3', icon: Icon(Icons.abc)),
-                      ],
-                    ),
-                  ),
-                  body: mainArea,
-                  bottomNavigationBar: BottomNavigationBar(
-                    currentIndex: tabsRouter.activeIndex,
-                    onTap: tabsRouter.setActiveIndex,
-                    items: [
-                      BottomNavigationBarItem(
-                          label: 'Home', icon: Icon(Icons.home)),
-                      BottomNavigationBarItem(
-                          label: 'Favorites', icon: Icon(Icons.favorite)),
+            if (constraints.maxWidth < 450) {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text(context.topRoute.name),
+                  leading: AutoLeadingButton(),
+                  bottom: TabBar(
+                    tabs: const [
+                      Tab(text: '1', icon: Icon(Icons.abc)),
+                      Tab(text: '2', icon: Icon(Icons.abc)),
+                      Tab(text: '3', icon: Icon(Icons.abc)),
                     ],
                   ),
-                );
-              } else {
-                return Scaffold(
-                    body: Row(
+                ),
+                body: mainArea,
+                bottomNavigationBar: BottomNavigationBar(
+                  currentIndex: tabsRouter.activeIndex,
+                  onTap: tabsRouter.setActiveIndex,
+                  items: [
+                    BottomNavigationBarItem(
+                      label: 'Home',
+                      icon: Icon(Icons.home),
+                    ),
+                    BottomNavigationBarItem(
+                      label: 'Favorites',
+                      icon: Icon(Icons.favorite),
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Scaffold(
+                body: Row(
                   children: [
                     SafeArea(
                       child: NavigationRail(
@@ -165,12 +163,12 @@ class MyHomePage extends StatelessWidget {
                     ),
                     Expanded(child: mainArea),
                   ],
-                ));
-              }
-            },
-          );
-        },
-      ),
+                ),
+              );
+            }
+          },
+        );
+      },
     );
   }
 }
