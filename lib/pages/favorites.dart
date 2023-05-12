@@ -12,7 +12,7 @@ class FavoritesPage extends StatelessWidget {
     var favorites = appState.favorites;
 
     if (favorites.isEmpty) {
-      return Center(
+      return const Center(
         child: Text('No favorites yet.'),
       );
     }
@@ -28,7 +28,7 @@ class FavoritesPage extends StatelessWidget {
         Expanded(
           // Make better use of wide windows with a grid.
           child: GridView(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 400,
               childAspectRatio: 400 / 80,
             ),
@@ -36,7 +36,7 @@ class FavoritesPage extends StatelessWidget {
                 .map(
                   (pair) => ListTile(
                     leading: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete_outline,
                         semanticLabel: 'Delete',
                       ),

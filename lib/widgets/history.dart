@@ -37,7 +37,7 @@ class _HistoryListViewState extends State<HistoryListView> {
       child: AnimatedList(
         key: _key,
         reverse: true,
-        padding: EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 100),
         initialItemCount: appState.history.length,
         itemBuilder: (context, index, animation) {
           final pair = appState.history[index];
@@ -49,8 +49,8 @@ class _HistoryListViewState extends State<HistoryListView> {
                   appState.toggleFavorite(pair);
                 },
                 icon: appState.favorites.contains(pair)
-                    ? Icon(Icons.favorite, size: 12)
-                    : SizedBox(),
+                    ? const Icon(Icons.favorite, size: 12)
+                    : const SizedBox(),
                 label: Text(
                   pair.asLowerCase,
                   semanticsLabel: pair.asPascalCase,

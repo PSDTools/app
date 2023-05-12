@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flutterLocale = Locale("en", "US");
+    const flutterLocale = Locale("en", "US");
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
 
     return ChangeNotifierProvider(

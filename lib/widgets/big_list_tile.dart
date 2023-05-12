@@ -21,7 +21,7 @@ class BigListTile extends StatelessWidget {
 
     return ListTile(
       leading: IconButton(
-        icon: Icon(
+        icon: const Icon(
           Icons.delete_outline,
           semanticLabel: 'Delete',
         ),

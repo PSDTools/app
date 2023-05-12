@@ -24,7 +24,7 @@ class MyHomePage extends StatelessWidget {
             // and subtle switching animation.
             var mainArea = ColoredBox(
               color: colorScheme.surfaceVariant,
-              child: AnimatedSwitcher(
+              child: const AnimatedSwitcher(
                 duration: Duration(milliseconds: 200),
                 child: AutoRouter(),
               ),
@@ -34,9 +34,9 @@ class MyHomePage extends StatelessWidget {
               return Scaffold(
                 appBar: AppBar(
                   title: Text(context.topRoute.name),
-                  leading: AutoLeadingButton(),
-                  bottom: TabBar(
-                    tabs: const [
+                  leading: const AutoLeadingButton(),
+                  bottom: const TabBar(
+                    tabs: [
                       Tab(text: '1', icon: Icon(Icons.abc)),
                       Tab(text: '2', icon: Icon(Icons.abc)),
                       Tab(text: '3', icon: Icon(Icons.abc)),
@@ -48,11 +48,11 @@ class MyHomePage extends StatelessWidget {
                   currentIndex: tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
                   items: [
-                    BottomNavigationBarItem(
+                    const BottomNavigationBarItem(
                       label: 'Home',
                       icon: Icon(Icons.home),
                     ),
-                    BottomNavigationBarItem(
+                    const BottomNavigationBarItem(
                       label: 'Favorites',
                       icon: Icon(Icons.favorite),
                     ),
@@ -67,11 +67,11 @@ class MyHomePage extends StatelessWidget {
                       child: NavigationRail(
                         extended: constraints.maxWidth >= 600,
                         destinations: [
-                          NavigationRailDestination(
+                          const NavigationRailDestination(
                             icon: Icon(Icons.home),
                             label: Text('Home'),
                           ),
-                          NavigationRailDestination(
+                          const NavigationRailDestination(
                             icon: Icon(Icons.favorite),
                             label: Text('Favorites'),
                           ),

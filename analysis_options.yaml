@@ -31,7 +31,7 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules: # make the rules lax for now
-    prefer_const_constructors: false
+    # prefer_const_constructors: false
     prefer_final_fields: false
     use_key_in_widget_constructors: false
     prefer_const_literals_to_create_immutables: false

@@ -22,7 +22,7 @@ class BigCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: AnimatedSize(
-          duration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 200),
           // Make sure that the compound word wraps correctly when the window
           // is too narrow.
           child: MergeSemantics(
