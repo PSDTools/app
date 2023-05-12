@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.2"
-  ansicolor:
-    dependency: transitive
-    description:
-      name: ansicolor
-      sha256: "607f8fa9786f392043f169898923e6c59b4518242b68b8862eb8a8b7d9c30b4a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   args:
     dependency: transitive
     description:
@@ -257,23 +249,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0"
-  dart_code_metrics:
-    dependency: "direct dev"
-    description:
-      path: "."
-      ref: "dependabot/pub/analyzer-5.12.0"
-      resolved-ref: dfd259575c77bee8b3a23761e89efed3607c3387
-      url: "https://github.com/dart-code-checker/dart-code-metrics.git"
-    source: git
-    version: "5.7.3"
-  dart_code_metrics_presets:
-    dependency: "direct dev"
-    description:
-      name: dart_code_metrics_presets
-      sha256: "22e27f98e8c7d8b11cca43d2656a822935280747050ae65e8cd03c52d09c0d1c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.0"
   dart_style:
     dependency: transitive
     description:
@@ -393,14 +368,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.3"
-  http:
-    dependency: transitive
-    description:
-      name: http
-      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -529,14 +496,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-  platform:
-    dependency: transitive
-    description:
-      name: platform
-      sha256: "4a451831508d7d6ca779f7ac6e212b4023dd5a7d08a27a63da33756410e32b76"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
   pool:
     dependency: transitive
     description:
@@ -545,14 +504,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  process:
-    dependency: transitive
-    description:
-      name: process
-      sha256: "53fd8db9cec1d37b0574e12f07520d582019cb6c44abf5479a01505099a34a09"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.4"
   protobuf:
     dependency: transitive
     description:
@@ -577,14 +528,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  pub_updater:
-    dependency: transitive
-    description:
-      name: pub_updater
-      sha256: "05ae70703e06f7fdeb05f7f02dd680b8aad810e87c756a618f33e1794635115c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.0"
   pubspec_parse:
     dependency: transitive
     description:

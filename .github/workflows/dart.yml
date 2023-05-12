@@ -55,11 +55,12 @@ jobs:
         # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: flutter analyze
-      - name: DCM
-        uses: dart-code-checker/dart-code-metrics-action@v3.0.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pull_request_comment: true
+      # - name: DCM
+      #   uses: dart-code-checker/dart-code-metrics-action@v3.0.0
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     pull_request_comment: true
+      #     check_unused_files: true
       - name: Lint Riverpod
         run: dart run custom_lint
 

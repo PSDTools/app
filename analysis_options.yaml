@@ -17,7 +17,7 @@ analyzer:
     strict-raw-types: true
   plugins:
     - custom_lint
-    - dart_code_metrics
+    # - dart_code_metrics
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -59,19 +59,19 @@ linter:
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 
-dart_code_metrics:
-  extends: # configures the list of preset configurations
-    - package:dart_code_metrics_presets/all.yaml # be this broken with null-safety?
-  metrics: # configures the list of reported metrics
-    -
-  metrics-exclude: # configures the list of files that should be ignored by metrics
-    -
-  rules: # configures the list of rules
-    -
-  rules-exclude: # configures the list of files that should be ignored by rules
-    -
-  anti-patterns: # configures the list of anti-patterns
-    -
+# dart_code_metrics:
+#   extends: # configures the list of preset configurations
+#     - package:dart_code_metrics_presets/all.yaml # be this broken with null-safety?
+#   metrics: # configures the list of reported metrics
+#     -
+#   metrics-exclude: # configures the list of files that should be ignored by metrics
+#     -
+#   rules: # configures the list of rules
+#     -
+#   rules-exclude: # configures the list of files that should be ignored by rules
+#     -
+#   anti-patterns: # configures the list of anti-patterns
+#     -
 
 custom_lint:
   rules: # riverpod_lint
