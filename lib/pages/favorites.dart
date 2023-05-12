@@ -5,6 +5,8 @@ import '../model.dart';
 
 @RoutePage()
 class FavoritesPage extends StatelessWidget {
+  const FavoritesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);

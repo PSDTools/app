@@ -4,7 +4,7 @@ import 'app_router.dart';
 
 @RoutePage()
 class MyHomePage extends StatelessWidget {
-  const MyHomePage();
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
