@@ -13,13 +13,13 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        MaterialRoute(
+        AutoRoute(
           path: "/",
           page: MyHomeRoute.page,
           initial: true,
           children: [
-            MaterialRoute(page: GeneratorRoute.page, path: ""),
-            MaterialRoute(page: FavoritesRoute.page, path: "favorites"),
+            AutoRoute(path: "", page: GeneratorRoute.page),
+            AutoRoute(path: "favorites", page: FavoritesRoute.page),
           ],
         ),
         RedirectRoute(path: "*", redirectTo: "/"),

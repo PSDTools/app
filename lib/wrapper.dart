@@ -21,16 +21,6 @@ class MyHomePage extends StatelessWidget {
           builder: (context, child) {
             final tabsRouter = AutoTabsRouter.of(context);
 
-            // The container for the current page, with its background color
-            // and subtle switching animation.
-            final mainArea = ColoredBox(
-              color: colorScheme.surfaceVariant,
-              child: const AnimatedSwitcher(
-                duration: Duration(milliseconds: 200),
-                child: AutoRouter(),
-              ),
-            );
-
             if (constraints.maxWidth < 450) {
               return Scaffold(
                 appBar: AppBar(
@@ -44,7 +34,7 @@ class MyHomePage extends StatelessWidget {
                     ],
                   ),
                 ),
-                body: mainArea,
+                body: mainArea(colorScheme, child),
                 bottomNavigationBar: BottomNavigationBar(
                   currentIndex: tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
@@ -61,34 +51,58 @@ class MyHomePage extends StatelessWidget {
                 ),
               );
             } else {
-              return Scaffold(
-                body: Row(
-                  children: [
-                    SafeArea(
-                      child: NavigationRail(
-                        extended: constraints.maxWidth >= 600,
-                        destinations: const [
-                          NavigationRailDestination(
-                            icon: Icon(Icons.home),
-                            label: Text("Home"),
+              return WillPopScope(
+                  onWillPop: () async {
+                    bool atHomeTab = tabsRouter.activeIndex == 0;
+                    if (!atHomeTab) {
+                      tabsRouter.setActiveIndex(0);
+                    }
+                    return atHomeTab;
+                  },
+                  child: Scaffold(
+                    body: Row(
+                      children: [
+                        SafeArea(
+                          child: NavigationRail(
+                            extended: constraints.maxWidth >= 600,
+                            destinations: const [
+                              NavigationRailDestination(
+                                icon: Icon(Icons.home),
+                                label: Text("Home"),
+                              ),
+                              NavigationRailDestination(
+                                icon: Icon(Icons.favorite),
+                                label: Text("Favorites"),
+                              ),
+                            ],
+                            selectedIndex: tabsRouter.activeIndex,
+                            onDestinationSelected: tabsRouter.setActiveIndex,
                           ),
-                          NavigationRailDestination(
-                            icon: Icon(Icons.favorite),
-                            label: Text("Favorites"),
-                          ),
-                        ],
-                        selectedIndex: tabsRouter.activeIndex,
-                        onDestinationSelected: tabsRouter.setActiveIndex,
-                      ),
+                        ),
+                        Expanded(child: mainArea(colorScheme, child)),
+                      ],
                     ),
-                    Expanded(child: mainArea),
-                  ],
-                ),
-              );
+                  ));
             }
           },
         );
       },
     );
+  }
+
+  /// The container for the current page, with its background color
+  /// and subtle switching animation.
+  ///
+  /// With lots and lots and lots and lots of thanks to
+  /// [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart)
+  ColoredBox mainArea(ColorScheme colorScheme, Widget child) {
+    final mainArea = ColoredBox(
+      color: colorScheme.surfaceVariant,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 200),
+        child: child,
+      ),
+    );
+    return mainArea;
   }
 }
