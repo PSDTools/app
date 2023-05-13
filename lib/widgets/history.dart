@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "../model.dart";
 
 class HistoryListView extends StatefulWidget {
@@ -28,8 +29,7 @@ class _HistoryListViewState extends State<HistoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
-    appState.historyListKey = _key;
+    final appState = context.watch<MyAppState>()..historyListKey = _key;
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),

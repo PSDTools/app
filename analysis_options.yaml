@@ -44,7 +44,6 @@ linter:
     - package_api_docs: true
     - prefer_final_in_for_each: true
     - await_only_futures: true
-    - always_use_package_imports: true
     - secure_pubspec_urls: true
     - sort_pub_dependencies: true
     - deprecated_consistency: true

@@ -1,6 +1,7 @@
-import "package:flutter/material.dart";
 import "package:english_words/english_words.dart";
+import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "../model.dart";
 
 class BigListTile extends StatelessWidget {
@@ -13,7 +14,7 @@ class BigListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    final appState = context.watch<MyAppState>();
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
@@ -31,7 +32,7 @@ class BigListTile extends StatelessWidget {
         },
       ),
       title: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: Text(
           pair.asLowerCase,
           style: style,

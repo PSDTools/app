@@ -9,7 +9,7 @@ class MyAppState extends ChangeNotifier {
 
   void getNext() {
     history.insert(0, current);
-    var animatedList = historyListKey?.currentState as AnimatedListState?;
+    final animatedList = historyListKey?.currentState as AnimatedListState?;
     animatedList?.insertItem(0);
     current = WordPair.random();
     notifyListeners();

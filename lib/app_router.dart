@@ -1,4 +1,5 @@
 import "package:auto_route/auto_route.dart";
+
 import "pages/favorites.dart";
 import "pages/home.dart";
 import "wrapper.dart";

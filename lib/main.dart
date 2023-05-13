@@ -1,8 +1,9 @@
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
-import "model.dart";
+import "package:provider/provider.dart";
+
 import "app_router.dart";
+import "model.dart";
 
 void main() {
   usePathUrlStrategy();
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
 
     return ChangeNotifierProvider(
-      create: ((context) => MyAppState()),
+      create: (context) => MyAppState(),
       child: MaterialApp.router(
         routerConfig: _appRouter.config(),
         title: "Namer App",

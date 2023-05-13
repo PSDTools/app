@@ -1,6 +1,7 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:provider/provider.dart";
+
 import "../model.dart";
 
 @RoutePage()
@@ -9,9 +10,9 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var appState = context.watch<MyAppState>();
-    var favorites = appState.favorites;
+    final theme = Theme.of(context);
+    final appState = context.watch<MyAppState>();
+    final favorites = appState.favorites;
 
     if (favorites.isEmpty) {
       return const Center(

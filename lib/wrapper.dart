@@ -1,5 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+
 import "app_router.dart";
 
 @RoutePage()
@@ -8,7 +9,7 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -22,7 +23,7 @@ class MyHomePage extends StatelessWidget {
 
             // The container for the current page, with its background color
             // and subtle switching animation.
-            var mainArea = ColoredBox(
+            final mainArea = ColoredBox(
               color: colorScheme.surfaceVariant,
               child: const AnimatedSwitcher(
                 duration: Duration(milliseconds: 200),

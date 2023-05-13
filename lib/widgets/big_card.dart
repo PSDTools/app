@@ -1,5 +1,5 @@
-import "package:flutter/material.dart";
 import "package:english_words/english_words.dart";
+import "package:flutter/material.dart";
 
 class BigCard extends StatelessWidget {
   const BigCard({
@@ -11,16 +11,16 @@ class BigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-    var style = theme.textTheme.displayMedium!.copyWith(
+    final theme = Theme.of(context);
+    final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
     );
 
     return Card(
       color: theme.colorScheme.primary,
-      elevation: 2.0,
+      elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20),
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
           // Make sure that the compound word wraps correctly when the window
