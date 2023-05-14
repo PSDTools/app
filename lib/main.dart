@@ -1,38 +1,41 @@
-// ignore_for_file: missing_provider_scope
 import "package:flutter/material.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "app_router.dart";
 import "model.dart";
 
+final counterProvider =
+    ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
+
 void main() {
   usePathUrlStrategy();
-  runApp(MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   MyApp({super.key});
   // make sure you don't initiate your router
   // inside of the build function.
   final _appRouter = AppRouter();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const flutterLocale = Locale("en", "US");
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
 
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp.router(
-        routerConfig: _appRouter.config(),
-        title: "Namer App",
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: theme,
-        ),
-        locale: flutterLocale,
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
+      title: "Namer App",
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: theme,
       ),
+      locale: flutterLocale,
     );
   }
 }

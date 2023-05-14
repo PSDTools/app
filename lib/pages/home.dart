@@ -1,18 +1,20 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 import "../widgets/big_card.dart";
 import "../widgets/history.dart";
 
+final modelProvider = Provider<MyAppState>();
+
 @RoutePage()
-class GeneratorPage extends StatelessWidget {
+class GeneratorPage extends ConsumerWidget {
   const GeneratorPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch<MyAppState>(modelProvider);
     final pair = appState.current;
 
     IconData icon;

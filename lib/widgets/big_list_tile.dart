@@ -1,10 +1,12 @@
 import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-class BigListTile extends StatelessWidget {
+final modelProvider = Provider<MyAppState>();
+
+class BigListTile extends ConsumerWidget {
   const BigListTile({
     super.key,
     required this.pair,
@@ -13,8 +15,8 @@ class BigListTile extends StatelessWidget {
   final WordPair pair;
 
   @override
-  Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch<MyAppState>(modelProvider);
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,

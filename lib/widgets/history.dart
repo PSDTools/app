@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-class HistoryListView extends StatefulWidget {
+class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({
     super.key,
   });
@@ -28,8 +28,8 @@ class _HistoryListViewState extends State<HistoryListView> {
   );
 
   @override
-  Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>()..historyListKey = _key;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch<MyAppState>()..historyListKey = _key;
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),

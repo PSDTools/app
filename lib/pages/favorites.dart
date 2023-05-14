@@ -1,17 +1,19 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
+final modelProvider = Provider<MyAppState>();
+
 @RoutePage()
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends ConsumerWidget {
   const FavoritesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final appState = context.watch<MyAppState>();
+    final appState = ref.watch<MyAppState>(modelProvider);
     final favorites = appState.favorites;
 
     if (favorites.isEmpty) {
