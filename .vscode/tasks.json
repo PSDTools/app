@@ -4,11 +4,12 @@
     {
       "type": "dart",
       "command": "dart",
-      "args": ["run", "build_runner", "build", "-d"], // todo: update this
+      "cwd": "",
+      "args": ["run", "build_runner", "${input:runtype}", "-d"],
       "problemMatcher": ["$dart-build_runner"],
       "group": "build",
-      "label": "dart run build_runner build",
-      "detail": "Run a build_runner build.",
+      "label": "dart run build_runner",
+      "detail": "Run a build_runner task",
       "icon": {
         "color": "terminal.ansiCyan",
         "id": "gear"
@@ -21,7 +22,7 @@
       "args": ["doc", "."],
       "problemMatcher": [],
       "label": "dart doc .",
-      "detail": "View the documentation.",
+      "detail": "View the documentation",
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
@@ -30,15 +31,14 @@
     {
       "type": "flutter",
       "command": "flutter",
-      "args": ["build", "$target"],
+      "args": ["build", "${input:target}"],
       "group": "build",
       "problemMatcher": [],
       "label": "flutter build",
-      "detail": "Build a flutter app. (broken)",
+      "detail": "Build a flutter app",
       "icon": {
         "color": "terminal.ansiBlue",
-        //"id": "gear"
-        "id": "alert"
+        "id": "gear"
       }
     }
   ],
@@ -58,7 +58,7 @@
         { "label": "Webapp bundle", "value": "web" }
       ],
       "type": "pickString",
-      "description": "The target to target."
+      "description": "The target to target"
     },
     {
       "id": "runtype",
@@ -71,7 +71,7 @@
         { "label": "Clean up from old builds", "value": "clean" }
       ],
       "type": "pickString",
-      "description": "The type of build_runner run."
+      "description": "The type of build_runner run"
     }
   ]
 }
