@@ -1,16 +1,16 @@
 {
   "recommendations": [
-    "streetsidesoftware.code-spell-checker",
     "dart-code.flutter",
     "circlecodesolution.ccs-flutter-color",
-    "foam.foam-vscode",
+    "robert-brunhage.flutter-riverpod-snippets",
     "eamodio.gitlens",
     "ms-vsliveshare.vsliveshare",
-    "tyriar.luna-paint",
-    "pkief.material-icon-theme",
+    "streetsidesoftware.code-spell-checker",
     "bbenoist.nix",
     "esbenp.prettier-vscode",
     "redhat.vscode-yaml",
-    "robert-brunhage.flutter-riverpod-snippets"
+    "foam.foam-vscode",
+    "tyriar.luna-paint",
+    "pkief.material-icon-theme"
   ]
 }
