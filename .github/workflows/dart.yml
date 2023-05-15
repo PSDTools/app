@@ -32,8 +32,18 @@ jobs:
           cache: true
       - name: Install dependencies
         run: flutter pub get
+      - name: Generate files
+        run: dart run build_runner build
       - name: Build
         run: flutter build web
+      - name: Upload generated files
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: generated-files
+          path: |
+            lib/**/*.g.dart
+            lib/**/*.gr.dart
+          if-no-files-found: error
 
   check:
     name: Linting
@@ -52,9 +62,13 @@ jobs:
           cache: true
       - name: Install dependencies
         run: flutter pub get
-        # Consider passing '--fatal-infos' for slightly stricter analysis.
+      - name: Download generated code
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: generated-files
+          path: lib
       - name: Analyze project source
-        run: flutter analyze
+        run: flutter analyze --fatal-infos
       # - name: DCM
       #   uses: dart-code-checker/dart-code-metrics-action@v3.0.0
       #   with:
@@ -81,9 +95,11 @@ jobs:
           cache: true
       - name: Install dependencies
         run: flutter pub get
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
+      - name: Download generated code
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: generated-files
+          path: lib
       - name: Run tests
         run: flutter test
 
