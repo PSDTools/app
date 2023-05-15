@@ -20,7 +20,7 @@ class App extends ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
-      title: "Namer App",
+      title: "PSD Wallet",
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: theme.primary),
         useMaterial3: true,
