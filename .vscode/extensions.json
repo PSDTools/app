@@ -13,6 +13,8 @@
     "redhat.vscode-yaml",
     "foam.foam-vscode",
     "tyriar.luna-paint",
-    "pkief.material-icon-theme"
+    "pkief.material-icon-theme",
+    "google.arb-editor",
+    "lsaudon.l10nization"
   ]
 }
