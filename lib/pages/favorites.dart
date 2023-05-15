@@ -1,10 +1,16 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../model.dart";
 
-final modelProvider = Provider<MyAppState>((ref) => MyAppState());
+part "favorites.g.dart";
+
+@riverpod
+Raw<MyAppState> model(ModelRef ref) {
+  return MyAppState();
+}
 
 @RoutePage()
 class FavoritesPage extends ConsumerWidget {

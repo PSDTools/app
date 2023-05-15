@@ -1,9 +1,15 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../model.dart";
 
-final modelProvider = Provider<MyAppState>((ref) => MyAppState());
+part "history.g.dart";
+
+@riverpod
+Raw<MyAppState> model(ModelRef ref) {
+  return MyAppState();
+}
 
 class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({
