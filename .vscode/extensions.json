@@ -1,6 +1,8 @@
 {
   "recommendations": [
+    "dart-code.dart-code",
     "dart-code.flutter",
+    "felixangelov.bloc",
     "circlecodesolution.ccs-flutter-color",
     "robert-brunhage.flutter-riverpod-snippets",
     "eamodio.gitlens",
