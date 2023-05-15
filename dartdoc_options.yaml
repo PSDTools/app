@@ -1,0 +1,3 @@
+dartdoc:
+  linkToSource:
+    uriTemplate: "https://github.com/psdtools/app/blob/%r%/%f%#L%l%"
