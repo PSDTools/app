@@ -87,6 +87,13 @@ jobs:
       #     check_unused_files: true
       - name: 🕵️ Lint Riverpod
         run: dart run custom_lint
+      - name: 📊 Verify Pana Score
+        run: |
+          flutter pub global activate pana
+          PANA=$(pana . --no-warning); PANA_SCORE=$(echo $PANA | sed -n "s/.*Points: \([0-9]*\)\/\([0-9]*\)./\1\/\2/p")
+          echo "Score: $PANA_SCORE"
+          IFS='/'; read -a SCORE_ARR <<< "$PANA_SCORE"; SCORE=SCORE_ARR[0];
+          if (( $SCORE < 120 )); then echo "The minimum score of 120 was not met!"; exit 1; fi
 
   test:
     name: Testing
@@ -114,7 +121,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🧪 Run tests
-        run: flutter test
+        run: very_good test -j 4 --optimization --coverage --test-randomize-ordering-seed random
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v2.1.0
         with:
