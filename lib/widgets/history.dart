@@ -3,19 +3,28 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
+final modelProvider = Provider<MyAppState>((ref) => MyAppState());
+
 class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({
     super.key,
   });
 
   @override
-  State<HistoryListView> createState() => _HistoryListViewState();
+  HistoryListViewState createState() => HistoryListViewState();
 }
 
-class _HistoryListViewState extends State<HistoryListView> {
+class HistoryListViewState extends ConsumerState<HistoryListView> {
   /// Needed so that [MyAppState] can tell [AnimatedList] below to animate
   /// new items.
   final _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    // "ref" can be used in all life-cycles of a StatefulWidget.
+    ref.read(modelProvider);
+  }
 
   /// Used to "fade out" the history items at the top, to suggest continuation.
   static const Gradient _maskingGradient = LinearGradient(
@@ -28,8 +37,9 @@ class _HistoryListViewState extends State<HistoryListView> {
   );
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch<MyAppState>()..historyListKey = _key;
+  Widget build(BuildContext context) {
+    final appState = ref.watch<MyAppState>(modelProvider)
+      ..historyListKey = _key;
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),

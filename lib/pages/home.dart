@@ -6,7 +6,7 @@ import "../model.dart";
 import "../widgets/big_card.dart";
 import "../widgets/history.dart";
 
-final modelProvider = Provider<MyAppState>();
+final modelProvider = Provider<MyAppState>((ref) => MyAppState());
 
 @RoutePage()
 class GeneratorPage extends ConsumerWidget {

@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-final modelProvider = Provider<MyAppState>();
+final modelProvider = Provider<MyAppState>((ref) => MyAppState());
 
 @RoutePage()
 class FavoritesPage extends ConsumerWidget {
