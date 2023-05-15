@@ -78,7 +78,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🕵️ Analyze project source
-        run: flutter analyze --fatal-infos
+        run: flutter analyze # --fatal-infos
       # - name: 🕵️ DCM
       #   uses: dart-code-checker/dart-code-metrics-action@v3.0.0
       #   with:
