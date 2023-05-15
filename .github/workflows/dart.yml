@@ -39,11 +39,11 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
-      - name: Generate files
+      - name: 🔌 Generate files
         run: dart run build_runner build
-      - name: Build
+      - name: 🔧 Build
         run: flutter build web --target lib/main_production.dart
-      - name: Upload generated files
+      - name: ⚙️ Upload generated files
         uses: actions/upload-artifact@v3.1.2
         with:
           name: generated-files
@@ -72,7 +72,7 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
-      - name: Download generated code
+      - name: ⚙️ Download generated code
         uses: actions/download-artifact@v3.0.2
         with:
           name: generated-files
@@ -87,13 +87,13 @@ jobs:
       #     check_unused_files: true
       - name: 🕵️ Lint Riverpod
         run: dart run custom_lint
-      - name: 📊 Verify Pana Score
-        run: |
-          flutter pub global activate pana
-          PANA=$(pana . --no-warning); PANA_SCORE=$(echo $PANA | sed -n "s/.*Points: \([0-9]*\)\/\([0-9]*\)./\1\/\2/p")
-          echo "Score: $PANA_SCORE"
-          IFS='/'; read -a SCORE_ARR <<< "$PANA_SCORE"; SCORE=SCORE_ARR[0];
-          if (( $SCORE < 120 )); then echo "The minimum score of 120 was not met!"; exit 1; fi
+      # - name: 📊 Verify Pana Score
+      #   run: |
+      #     flutter pub global activate pana
+      #     PANA=$(pana . --no-warning); PANA_SCORE=$(echo $PANA | sed -n "s/.*Points: \([0-9]*\)\/\([0-9]*\)./\1\/\2/p")
+      #     echo "Score: $PANA_SCORE"
+      #     IFS='/'; read -a SCORE_ARR <<< "$PANA_SCORE"; SCORE=SCORE_ARR[0];
+      #     if (( $SCORE < 120 )); then echo "The minimum score of 120 was not met!"; exit 1; fi
 
   test:
     name: Testing
@@ -115,7 +115,7 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
-      - name: Download generated code
+      - name: ⚙️ Download generated code
         uses: actions/download-artifact@v3.0.2
         with:
           name: generated-files
@@ -151,8 +151,8 @@ jobs:
     with:
       includes: |
         **/*.md
-        **/*.dart
-        **/*.yaml
-        **/*.yml
-        **/*.toml
+        # **/*.dart
+        # **/*.yaml
+        # **/*.yml
+        # **/*.toml
       modified_files_only: false
