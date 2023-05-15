@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BigCard extends ConsumerWidget {
   const BigCard({
-    super.key,
     required this.pair,
+    super.key,
   });
 
   final WordPair pair;

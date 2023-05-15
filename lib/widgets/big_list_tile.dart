@@ -14,8 +14,8 @@ Raw<MyAppState> model(ModelRef ref) {
 
 class BigListTile extends ConsumerWidget {
   const BigListTile({
-    super.key,
     required this.pair,
+    super.key,
   });
 
   final WordPair pair;

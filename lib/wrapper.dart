@@ -53,37 +53,38 @@ class MyHomePage extends ConsumerWidget {
               );
             } else {
               return WillPopScope(
-                  onWillPop: () async {
-                    bool atHomeTab = tabsRouter.activeIndex == 0;
-                    if (!atHomeTab) {
-                      tabsRouter.setActiveIndex(0);
-                    }
-                    return atHomeTab;
-                  },
-                  child: Scaffold(
-                    body: Row(
-                      children: [
-                        SafeArea(
-                          child: NavigationRail(
-                            extended: constraints.maxWidth >= 600,
-                            destinations: const [
-                              NavigationRailDestination(
-                                icon: Icon(Icons.home),
-                                label: Text("Home"),
-                              ),
-                              NavigationRailDestination(
-                                icon: Icon(Icons.favorite),
-                                label: Text("Favorites"),
-                              ),
-                            ],
-                            selectedIndex: tabsRouter.activeIndex,
-                            onDestinationSelected: tabsRouter.setActiveIndex,
-                          ),
+                onWillPop: () async {
+                  final atHomeTab = tabsRouter.activeIndex == 0;
+                  if (!atHomeTab) {
+                    tabsRouter.setActiveIndex(0);
+                  }
+                  return atHomeTab;
+                },
+                child: Scaffold(
+                  body: Row(
+                    children: [
+                      SafeArea(
+                        child: NavigationRail(
+                          extended: constraints.maxWidth >= 600,
+                          destinations: const [
+                            NavigationRailDestination(
+                              icon: Icon(Icons.home),
+                              label: Text("Home"),
+                            ),
+                            NavigationRailDestination(
+                              icon: Icon(Icons.favorite),
+                              label: Text("Favorites"),
+                            ),
+                          ],
+                          selectedIndex: tabsRouter.activeIndex,
+                          onDestinationSelected: tabsRouter.setActiveIndex,
                         ),
-                        Expanded(child: mainArea(colorScheme, child)),
-                      ],
-                    ),
-                  ));
+                      ),
+                      Expanded(child: mainArea(colorScheme, child)),
+                    ],
+                  ),
+                ),
+              );
             }
           },
         );
