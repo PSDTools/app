@@ -52,6 +52,5 @@
     ".replit": "replit.nix",
     "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml",
     "README.*": "*.md"
-  },
-  "cSpell.words": ["riverpod"]
+  }
 }

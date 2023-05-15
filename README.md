@@ -180,9 +180,9 @@ C4Context
   Enterprise_Boundary(b0, "Pattonville") {
     Person(customerA, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
     Person(customerB, "Teachers", "A teacher, the one giving tokens.")
-    Person_Ext(customerC, "Stuco", "The ones removing tokens.")
+    Person_Ext(customerC, "Student Council", "The ones removing tokens.")
     Person_Ext(customerD, "Student", "The ones using tokens.")
-    Person_Ext(customerE, "Devs", "@PSDTools")
+    Person_Ext(customerE, "Developers", "@PSDTools")
 
 
     %% System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
@@ -209,7 +209,7 @@ C4Context
 
 
   Enterprise_Boundary(b4, "Instructure") {
-    Person(instructure, "Devs")
+    Person(Instructure, "Developers")
 
     System_Boundary(b5, "Canvas") {
       System(CanvasApp, "Canvas Application")
@@ -218,7 +218,7 @@ C4Context
 
 
   %% BiRel(customerA, SystemAA, "Uses")
-  Rel(instructure, CanvasApp, "Makes")
+  Rel(Instructure, CanvasApp, "Makes")
   %% BiRel(SystemAA, SystemE, "Uses")
   %% Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
   %% Rel(SystemC, customerA, "Sends e-mails to")

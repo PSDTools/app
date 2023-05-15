@@ -15,6 +15,16 @@
     }
   ],
   "useGitignore": true,
-  "words": ["localizable"],
+  "words": [
+    "localizable",
+    "Contador",
+    "Texto",
+    "mostrado",
+    "página",
+    "contador",
+    "Pattonville",
+    "Instructure",
+    "riverpod"
+  ],
   "ignorePaths": ["../lib/l10n/arb"]
 }

@@ -156,3 +156,4 @@ jobs:
         # **/*.yml
         # **/*.toml
       modified_files_only: false
+      config: cspell.json
