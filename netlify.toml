@@ -1,12 +1,22 @@
-collections  = [] # only needed for CMS
+collections  = [] # only needed for DecapCMS
 media_folder = "" # unneeded, but required by the schema
+
 
 [build]
 # The relative path to the directory to be published
 publish = "build/web"
 
 # Our Flutter Web build command
-command = "if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter build web --target lib/main_production.dart --release"
+command = """
+  if cd flutter;
+    then git pull && cd ..;
+    else git clone https://github.com/flutter/flutter.git;
+  fi
+  && flutter/bin/flutter config --enable-web
+  && flutter/bin/cache/dart-sdk/bin/dart pub global activate build_runner
+  && flutter/bin/cache/dart-sdk/bin/dart run build_runner build
+  && flutter/bin/flutter build web --target lib/main_production.dart --release
+  """
 
 
 [backend]

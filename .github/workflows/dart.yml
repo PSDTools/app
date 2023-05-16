@@ -156,6 +156,6 @@ jobs:
         # **/*.dart
         # **/*.yaml
         # **/*.yml
-        # **/*.toml
+        **/*.toml
       modified_files_only: false
       config: cspell.json
