@@ -1,16 +1,12 @@
 import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../model.dart";
 
 part "big_list_tile.g.dart";
 
-@riverpod
-Raw<MyAppState> model(ModelRef ref) {
-  return MyAppState();
-}
+final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 class BigListTile extends ConsumerWidget {
   const BigListTile({

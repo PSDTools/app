@@ -1,7 +1,6 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../model.dart";
 
@@ -10,10 +9,7 @@ import "../widgets/history.dart";
 
 part "home.g.dart";
 
-@riverpod
-Raw<MyAppState> model(ModelRef ref) {
-  return MyAppState();
-}
+final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 @RoutePage()
 class GeneratorPage extends ConsumerWidget {
