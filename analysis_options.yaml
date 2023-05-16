@@ -35,21 +35,19 @@ linter:
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
   rules:
-    - prefer_single_quotes: false
-    - prefer_double_quotes: true
-    - public_member_api_docs: false # temporary
-    - close_sinks: true
-    - discarded_futures: true
-    - lines_longer_than_80_chars: false
-    - avoid_classes_with_only_static_members: true
-    - prefer_relative_imports: true
-    - always_use_package_imports: false
-    - prefer_equal_for_default_values: false # not needed in v5 of vga
-    - enable_null_safety: false # not needed in v5 of vga
-    - use_decorated_box: false # not needed in v5 of vga
-    - implicit_reopen: true # not needed in v5 of vga
-    - unnecessary_breaks: true # not needed in v5 of vga
-    - invalid_case_patterns: true # not needed in v5 of vga
+    prefer_single_quotes: false
+    prefer_double_quotes: true
+    public_member_api_docs: false # temporary
+    close_sinks: true
+    discarded_futures: true
+    lines_longer_than_80_chars: false
+    avoid_classes_with_only_static_members: true
+    prefer_relative_imports: true
+    always_use_package_imports: false
+    use_decorated_box: false # not needed in v5 of vga
+    implicit_reopen: true # not needed in v5 of vga
+    unnecessary_breaks: true # not needed in v5 of vga
+    invalid_case_patterns: true # not needed in v5 of vga
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 

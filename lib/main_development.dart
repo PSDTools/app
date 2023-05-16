@@ -1,6 +1,6 @@
-import 'package:pirate_code_3/app/app.dart';
-import 'package:pirate_code_3/bootstrap.dart';
+import "app/app.dart";
+import "bootstrap.dart";
 
-void main() {
-  bootstrap(App.new);
+Future<void> main() async {
+  await bootstrap(App.new);
 }
