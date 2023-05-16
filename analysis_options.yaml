@@ -41,7 +41,6 @@ linter:
     prefer_single_quotes: false
     prefer_double_quotes: true
     public_member_api_docs: false # temporary
-    close_sinks: true
     discarded_futures: true
     lines_longer_than_80_chars: false
     avoid_classes_with_only_static_members: true

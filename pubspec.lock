@@ -185,8 +185,16 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.0"
-  cli_util:
+  cli_menu:
     dependency: transitive
+    description:
+      name: cli_menu
+      sha256: f02a62768c1d5a3f1f503fc4871f3a95a54aa977e3d1766c4b04dad16fa3cb3d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0-nullsafety.0"
+  cli_util:
+    dependency: "direct overridden"
     description:
       name: cli_util
       sha256: b8db3080e59b2503ca9e7922c3df2072cf13992354d5e944074ffa836fba43b7
@@ -395,6 +403,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.6"
+  flutter_scripts:
+    dependency: "direct dev"
+    description:
+      name: flutter_scripts
+      sha256: "817daf534ed937b0d921c7da38ca1ac1e2274693ee3cccd3f489aa947540974d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -453,6 +469,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.15.3"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -525,6 +549,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  mason_logger:
+    dependency: transitive
+    description:
+      name: mason_logger
+      sha256: f307bade8d2557a11e4e3d6a218093454038d877e5f72a60482c9bb5fe7a9bac
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   matcher:
     dependency: transitive
     description:
@@ -605,6 +637,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      sha256: "4a451831508d7d6ca779f7ac6e212b4023dd5a7d08a27a63da33756410e32b76"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   pointycastle:
     dependency: transitive
     description:
@@ -621,6 +661,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
+  process:
+    dependency: transitive
+    description:
+      name: process
+      sha256: "53fd8db9cec1d37b0574e12f07520d582019cb6c44abf5479a01505099a34a09"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.4"
   protobuf:
     dependency: transitive
     description:
@@ -645,6 +693,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  pub_updater:
+    dependency: transitive
+    description:
+      name: pub_updater
+      sha256: "42890302ab2672adf567dc2b20e55b4ecc29d7e19c63b6b98143ab68dd717d3a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.4"
   pubspec_parse:
     dependency: transitive
     description:

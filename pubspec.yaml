@@ -20,11 +20,14 @@ version: 0.0.1+1
 homepage: https://PSDTools.github.io
 documentation: https://github.com/PSDTools/app
 issue_tracker: https://github.com/PSDTools/app/issues
-repository: https://github.com/psdtools/app.git
+repository: https://github.com/PSDTools/app.git
 
 environment:
   sdk: "^3.0.0"
   flutter: "^3.10.0"
+
+dependency_overrides:
+  cli_util: ^0.4.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -69,6 +72,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
+  flutter_scripts: ^0.0.3
   # integration_test:
   #   sdk: flutter
   mocktail: ^0.3.0
