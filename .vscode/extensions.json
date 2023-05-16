@@ -2,19 +2,22 @@
   "recommendations": [
     "dart-code.dart-code",
     "dart-code.flutter",
+    "robert-brunhage.flutter-riverpod-snippets",
     "felixangelov.bloc",
     "circlecodesolution.ccs-flutter-color",
-    "robert-brunhage.flutter-riverpod-snippets",
-    "eamodio.gitlens",
-    "ms-vsliveshare.vsliveshare",
-    "streetsidesoftware.code-spell-checker",
-    "bbenoist.nix",
-    "esbenp.prettier-vscode",
+    "lsaudon.l10nization",
+    "google.arb-editor",
+    "tamasfe.even-better-toml",
     "redhat.vscode-yaml",
+    "simonsiefke.svg-preview",
+    "ms-vsliveshare.vsliveshare",
+    "eamodio.gitlens",
+    "bbenoist.nix",
+    "streetsidesoftware.code-spell-checker",
+    "esbenp.prettier-vscode",
     "foam.foam-vscode",
     "tyriar.luna-paint",
     "pkief.material-icon-theme",
-    "google.arb-editor",
-    "lsaudon.l10nization"
+    "alefragnani.project-manager"
   ]
 }
