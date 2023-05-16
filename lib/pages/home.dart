@@ -7,8 +7,6 @@ import "../model.dart";
 import "../widgets/big_card.dart";
 import "../widgets/history.dart";
 
-part "home.g.dart";
-
 final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 @RoutePage()

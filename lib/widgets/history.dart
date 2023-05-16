@@ -3,8 +3,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-part "history.g.dart";
-
 final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 class HistoryListView extends ConsumerStatefulWidget {

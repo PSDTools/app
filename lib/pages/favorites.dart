@@ -4,8 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-part "favorites.g.dart";
-
 final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 @RoutePage()
