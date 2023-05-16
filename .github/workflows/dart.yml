@@ -42,7 +42,7 @@ jobs:
       - name: 🔌 Generate files
         run: dart run build_runner build
       - name: 🔧 Build
-        run: flutter build web --target lib/main_production.dart
+        run: flutter build web --target lib/main_production.dart --release
       - name: ⚙️ Upload generated files
         uses: actions/upload-artifact@v3.1.2
         with:

@@ -1,4 +1,4 @@
-collections = []  # only needed for CMS
+collections  = [] # only needed for CMS
 media_folder = "" # unneeded, but required by the schema
 
 [build]
@@ -6,7 +6,7 @@ media_folder = "" # unneeded, but required by the schema
 publish = "build/web"
 
 # Our Flutter Web build command
-command = "if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter/bin/flutter build web"
+command = "if cd flutter; then git pull && cd ..; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter config --enable-web && flutter build web --target lib/main_production.dart --release"
 
 
 [backend]
