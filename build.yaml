@@ -13,3 +13,7 @@ targets:
           enable_cached_builds: true
         generate_for:
           - lib/**.dart
+    sources:
+      include:
+        - pubspec.yaml
+        - lib/**.dart

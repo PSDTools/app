@@ -78,13 +78,13 @@ jobs:
           name: generated-files
           path: lib
       - name: 🕵️ Analyze project source
-        run: flutter analyze # --fatal-infos
-      # - name: 🕵️ DCM
-      #   uses: dart-code-checker/dart-code-metrics-action@v3.0.0
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     pull_request_comment: true
-      #     check_unused_files: true
+        run: flutter analyze --fatal-infos
+      - name: 🕵️ DCM
+        uses: dart-code-checker/dart-code-metrics-action@v4.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pull_request_comment: true
+          check_unused_files: true
       - name: 🕵️ Lint Riverpod
         run: dart run custom_lint
       # - name: 📊 Verify Pana Score

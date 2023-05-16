@@ -18,8 +18,9 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # of the product and file versions while build-number is used as the build suffix.
 version: 0.0.1+1
 homepage: https://PSDTools.github.io
-issue_tracker: https://github.com/psdtools/app/issues/new
-repository: https://github.com/psdtools/app
+documentation: https://github.com/PSDTools/app
+issue_tracker: https://github.com/PSDTools/app/issues
+repository: https://github.com/psdtools/app.git
 
 environment:
   sdk: "^3.0.0"
