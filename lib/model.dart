@@ -41,7 +41,7 @@ class GlobalAppState extends _$GlobalAppState {
 
   FutureOr<void> toggleFavorite([WordPair? pair]) async {
     pair = pair ?? state.current;
-    var favorites = <WordPair>{};
+    Set<WordPair> favorites;
     if (state.favorites.contains(pair)) {
       favorites = {
         for (final favorite in state.favorites)
