@@ -30,13 +30,10 @@ class FavListTile extends ConsumerWidget {
           ref.read(globalAppStateProvider.notifier).toggleFavorite(pair);
         },
       ),
-      title: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Text(
-          pair.asLowerCase,
-          style: style,
-          semanticsLabel: pair.asPascalCase,
-        ),
+      title: Text(
+        pair.asLowerCase,
+        style: style,
+        semanticsLabel: pair.asPascalCase,
       ),
     );
   }
