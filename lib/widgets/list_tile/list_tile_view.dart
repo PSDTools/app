@@ -15,8 +15,8 @@ class FavListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
-      color: theme.colorScheme.onPrimary,
+    final style = theme.textTheme.displaySmall!.copyWith(
+      color: theme.colorScheme.onSurfaceVariant,
     );
 
     return ListTile(
