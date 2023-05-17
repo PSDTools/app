@@ -1,7 +1,7 @@
 import "package:auto_route/auto_route.dart";
 
-import "../pages/favorites.dart";
-import "../pages/home.dart";
+import "../widgets/favorites/favorites.dart";
+import "../widgets/home/home.dart";
 import "../wrapper.dart";
 
 part "app_router.gr.dart";
