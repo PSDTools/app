@@ -37,14 +37,12 @@ dependency_overrides:
 # versions available, run `flutter pub outdated`.
 dependencies:
   auto_route: ^7.1.0
-  bloc: ^8.1.1
   english_words: ^4.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   # cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.2
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_riverpod: ^2.3.6
@@ -57,7 +55,6 @@ dependencies:
 
 dev_dependencies:
   auto_route_generator: ^7.0.0
-  bloc_test: ^9.1.1
   build_runner: ^2.4.4
   build_test: ^2.1.7
   custom_lint: ^0.4.0
