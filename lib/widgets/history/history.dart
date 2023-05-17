@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../model.dart";
+import "../../model.dart";
 
 class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({

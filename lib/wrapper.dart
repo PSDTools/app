@@ -23,32 +23,41 @@ class MyHomePage extends ConsumerWidget {
             final tabsRouter = AutoTabsRouter.of(context);
 
             if (constraints.maxWidth < 450) {
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text(context.topRoute.name),
-                  leading: const AutoLeadingButton(),
-                  bottom: const TabBar(
-                    tabs: [
-                      Tab(text: "1", icon: Icon(Icons.abc)),
-                      Tab(text: "2", icon: Icon(Icons.abc)),
-                      Tab(text: "3", icon: Icon(Icons.abc)),
+              return WillPopScope(
+                onWillPop: () async {
+                  final atHomeTab = tabsRouter.activeIndex == 0;
+                  if (!atHomeTab) {
+                    tabsRouter.setActiveIndex(0);
+                  }
+                  return atHomeTab;
+                },
+                child: Scaffold(
+                  appBar: AppBar(
+                    title: Text(context.topRoute.name),
+                    leading: const AutoLeadingButton(),
+                    bottom: const TabBar(
+                      tabs: [
+                        Tab(text: "1", icon: Icon(Icons.abc)),
+                        Tab(text: "2", icon: Icon(Icons.abc)),
+                        Tab(text: "3", icon: Icon(Icons.abc)),
+                      ],
+                    ),
+                  ),
+                  body: mainArea(colorScheme, child),
+                  bottomNavigationBar: BottomNavigationBar(
+                    currentIndex: tabsRouter.activeIndex,
+                    onTap: tabsRouter.setActiveIndex,
+                    items: const [
+                      BottomNavigationBarItem(
+                        label: "Home",
+                        icon: Icon(Icons.home),
+                      ),
+                      BottomNavigationBarItem(
+                        label: "Favorites",
+                        icon: Icon(Icons.favorite),
+                      ),
                     ],
                   ),
-                ),
-                body: mainArea(colorScheme, child),
-                bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: tabsRouter.setActiveIndex,
-                  items: const [
-                    BottomNavigationBarItem(
-                      label: "Home",
-                      icon: Icon(Icons.home),
-                    ),
-                    BottomNavigationBarItem(
-                      label: "Favorites",
-                      icon: Icon(Icons.favorite),
-                    ),
-                  ],
                 ),
               );
             } else {

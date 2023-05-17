@@ -2,7 +2,8 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../model.dart";
+import "../../model.dart";
+import "../list_tile/list_tile.dart";
 
 @RoutePage()
 class FavoritesPage extends ConsumerWidget {
@@ -10,7 +11,6 @@ class FavoritesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final appState = ref.watch(globalAppStateProvider);
 
     if (appState.favorites.isEmpty) {
@@ -35,25 +35,7 @@ class FavoritesPage extends ConsumerWidget {
               childAspectRatio: 400 / 80,
             ),
             children: [
-              for (final pair in appState.favorites)
-                ListTile(
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.delete_outline,
-                      semanticLabel: "Delete",
-                    ),
-                    color: theme.colorScheme.primary,
-                    onPressed: () async {
-                      ref
-                          .read(globalAppStateProvider.notifier)
-                          .toggleFavorite(pair);
-                    },
-                  ),
-                  title: Text(
-                    pair.asLowerCase,
-                    semanticsLabel: pair.asPascalCase,
-                  ),
-                ),
+              for (final pair in appState.favorites) FavListTile(pair: pair),
             ],
           ),
         ),

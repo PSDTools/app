@@ -2,10 +2,10 @@ import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../model.dart";
+import "../../model.dart";
 
-class BigListTile extends ConsumerWidget {
-  const BigListTile({
+class FavListTile extends ConsumerWidget {
+  const FavListTile({
     required this.pair,
     super.key,
   });
