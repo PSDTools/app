@@ -2,10 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../l10n/l10n.dart";
-import "../../model.dart";
 import "../app_router.dart";
-
-final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
 
 class App extends ConsumerWidget {
   App({super.key});

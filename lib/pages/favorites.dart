@@ -4,8 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
-
 @RoutePage()
 class FavoritesPage extends ConsumerWidget {
   const FavoritesPage({super.key});
@@ -13,10 +11,9 @@ class FavoritesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final appState = ref.watch<MyAppState>(modelProvider);
-    final favorites = appState.favorites;
+    final appState = ref.watch(globalAppStateProvider);
 
-    if (favorites.isEmpty) {
+    if (appState.favorites.isEmpty) {
       return const Center(
         child: Text("No favorites yet."),
       );
@@ -37,26 +34,27 @@ class FavoritesPage extends ConsumerWidget {
               maxCrossAxisExtent: 400,
               childAspectRatio: 400 / 80,
             ),
-            children: favorites
-                .map(
-                  (pair) => ListTile(
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.delete_outline,
-                        semanticLabel: "Delete",
-                      ),
-                      color: theme.colorScheme.primary,
-                      onPressed: () {
-                        appState.toggleFavorite(pair);
-                      },
+            children: [
+              for (final pair in appState.favorites)
+                ListTile(
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.delete_outline,
+                      semanticLabel: "Delete",
                     ),
-                    title: Text(
-                      pair.asLowerCase,
-                      semanticsLabel: pair.asPascalCase,
-                    ),
+                    color: theme.colorScheme.primary,
+                    onPressed: () async {
+                      ref
+                          .read(globalAppStateProvider.notifier)
+                          .toggleFavorite(pair);
+                    },
                   ),
-                )
-                .toList(),
+                  title: Text(
+                    pair.asLowerCase,
+                    semanticsLabel: pair.asPascalCase,
+                  ),
+                ),
+            ],
           ),
         ),
       ],

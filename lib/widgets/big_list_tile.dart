@@ -4,8 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
-
 class BigListTile extends ConsumerWidget {
   const BigListTile({
     required this.pair,
@@ -16,7 +14,6 @@ class BigListTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch<MyAppState>(modelProvider);
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
@@ -29,8 +26,8 @@ class BigListTile extends ConsumerWidget {
           semanticLabel: "Delete",
         ),
         color: theme.colorScheme.primary,
-        onPressed: () {
-          appState.toggleFavorite(pair);
+        onPressed: () async {
+          ref.read(globalAppStateProvider.notifier).toggleFavorite(pair);
         },
       ),
       title: Padding(

@@ -7,15 +7,13 @@ import "../model.dart";
 import "../widgets/big_card.dart";
 import "../widgets/history.dart";
 
-final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
-
 @RoutePage()
 class GeneratorPage extends ConsumerWidget {
   const GeneratorPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch<MyAppState>(modelProvider);
+    final appState = ref.watch(globalAppStateProvider);
     final pair = appState.current;
 
     IconData icon;
@@ -40,13 +38,14 @@ class GeneratorPage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
-                onPressed: appState.toggleFavorite,
+                onPressed:
+                    ref.read(globalAppStateProvider.notifier).toggleFavorite,
                 icon: Icon(icon),
                 label: const Text("Like"),
               ),
               const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: appState.getNext,
+                onPressed: ref.read(globalAppStateProvider.notifier).getNext,
                 child: const Text("Next"),
               ),
             ],

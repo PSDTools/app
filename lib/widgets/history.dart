@@ -3,8 +3,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../model.dart";
 
-final modelProvider = ChangeNotifierProvider<MyAppState>((ref) => MyAppState());
-
 class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({
     super.key,
@@ -15,7 +13,7 @@ class HistoryListView extends ConsumerStatefulWidget {
 }
 
 class HistoryListViewState extends ConsumerState<HistoryListView> {
-  /// Needed so that [MyAppState] can tell [AnimatedList] below to animate
+  /// Needed so that [AppState] can tell [AnimatedList] below to animate
   /// new items.
   final _key = GlobalKey();
 
@@ -23,7 +21,7 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
   void initState() {
     super.initState();
     // "ref" can be used in all life-cycles of a StatefulWidget.
-    ref.read(modelProvider);
+    ref.read(globalAppStateProvider);
   }
 
   /// Used to "fade out" the history items at the top, to suggest continuation.
@@ -38,8 +36,10 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = ref.watch<MyAppState>(modelProvider)
-      ..historyListKey = _key;
+    final appState = ref.watch(globalAppStateProvider);
+    Future(() {
+      ref.read(globalAppStateProvider.notifier).setKey(_key);
+    });
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
@@ -57,8 +57,10 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
             sizeFactor: animation,
             child: Center(
               child: TextButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite(pair);
+                onPressed: () async {
+                  ref
+                      .read(globalAppStateProvider.notifier)
+                      .toggleFavorite(pair);
                 },
                 icon: appState.favorites.contains(pair)
                     ? const Icon(Icons.favorite, size: 12)
