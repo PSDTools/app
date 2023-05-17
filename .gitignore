@@ -1,3 +1,9 @@
+coverage/
+lib/gen/
+**/*.g.dart
+**/*.gr.dart
+**/*.freezed.dart
+
 # Miscellaneous
 *.class
 *.log
@@ -31,9 +37,6 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-**/*.g.dart
-**/*.gr.dart
-**/*.freezed.dart
 
 # Symbolication related
 app.*.symbols
