@@ -6,6 +6,7 @@ import "../app_router.dart";
 
 class App extends ConsumerWidget {
   App({super.key});
+
   // make sure you don't initiate your router
   // inside of the build function.
   final _appRouter = AppRouter();
