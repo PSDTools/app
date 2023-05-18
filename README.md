@@ -184,7 +184,7 @@ C4Context
         Person_Ext(customerE, "Developers", "@PSDTools")
     Enterprise_Boundary(b6, "Pirate Wallet") {
       Enterprise_Boundary(b3, "Pirate Coin") {
-        System(SystemAA, "THingy", "Alows thingys to thingy")
+        System(SystemAA, "Thingy", "Allows thingies to thingy")
       }
       System_Boundary(b2, "Server") {
         System(SystemF, "Blockchain")
