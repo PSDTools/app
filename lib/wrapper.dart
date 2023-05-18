@@ -4,9 +4,14 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "app/app_router.dart";
 
-@RoutePage()
-class MyHomePage extends ConsumerWidget {
-  const MyHomePage({super.key});
+class Wrapper extends ConsumerWidget {
+  const Wrapper({super.key});
+
+  static const tabs = [
+    Tab(text: "1", icon: Icon(Icons.abc)),
+    Tab(text: "2", icon: Icon(Icons.abc)),
+    Tab(text: "3", icon: Icon(Icons.abc)),
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,80 +26,65 @@ class MyHomePage extends ConsumerWidget {
           transitionBuilder: (context, child, animation) {
             final tabsRouter = AutoTabsRouter.of(context);
 
-            Widget page;
-            if (constraints.maxWidth < 450) {
-              page = Scaffold(
-                appBar: AppBar(
-                  title: Text(context.topRoute.name),
-                  leading: const AutoLeadingButton(),
-                  bottom: const TabBar(
-                    tabs: [
-                      Tab(text: "1", icon: Icon(Icons.abc)),
-                      Tab(text: "2", icon: Icon(Icons.abc)),
-                      Tab(text: "3", icon: Icon(Icons.abc)),
-                    ],
-                  ),
-                ),
-                body: MainArea(
-                  child: child,
-                ),
-                bottomNavigationBar: BottomNavigationBar(
-                  currentIndex: tabsRouter.activeIndex,
-                  onTap: tabsRouter.setActiveIndex,
-                  items: const [
-                    BottomNavigationBarItem(
-                      label: "Home",
-                      icon: Icon(Icons.home),
+            final page = constraints.maxWidth < 450
+                ? Scaffold(
+                    appBar: AppBar(
+                      leading: const AutoLeadingButton(),
+                      title: Text(context.topRoute.name),
+                      bottom: const TabBar(tabs: tabs),
                     ),
-                    BottomNavigationBarItem(
-                      label: "Favorites",
-                      icon: Icon(Icons.favorite),
+                    body: _MainArea(
+                      child: child,
                     ),
-                  ],
-                ),
-              );
-            } else {
-              page = Scaffold(
-                body: Row(
-                  children: [
-                    NavigationRail(
-                      selectedIndex: tabsRouter.activeIndex,
-                      onDestinationSelected: tabsRouter.setActiveIndex,
-                      extended: constraints.maxWidth >= 600,
-                      destinations: const [
-                        NavigationRailDestination(
+                    bottomNavigationBar: BottomNavigationBar(
+                      items: const [
+                        BottomNavigationBarItem(
                           icon: Icon(Icons.home),
-                          label: Text("Home"),
+                          label: "Home",
                         ),
-                        NavigationRailDestination(
+                        BottomNavigationBarItem(
                           icon: Icon(Icons.favorite),
-                          label: Text("Favorites"),
+                          label: "Favorites",
+                        ),
+                      ],
+                      onTap: tabsRouter.setActiveIndex,
+                      currentIndex: tabsRouter.activeIndex,
+                    ),
+                  )
+                : Scaffold(
+                    body: Row(
+                      children: [
+                        NavigationRail(
+                          extended: constraints.maxWidth >= 600,
+                          destinations: const [
+                            NavigationRailDestination(
+                              icon: Icon(Icons.home),
+                              label: Text("Home"),
+                            ),
+                            NavigationRailDestination(
+                              icon: Icon(Icons.favorite),
+                              label: Text("Favorites"),
+                            ),
+                          ],
+                          selectedIndex: tabsRouter.activeIndex,
+                          onDestinationSelected: tabsRouter.setActiveIndex,
+                        ),
+                        Expanded(
+                          child: _MainArea(
+                            child: child,
+                          ),
                         ),
                       ],
                     ),
-                    Expanded(
-                      child: MainArea(
-                        child: child,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }
+                  );
 
             return WillPopScope(
-              onWillPop: () async {
-                final atHomeTab = tabsRouter.activeIndex == 0;
-                if (!atHomeTab) {
-                  tabsRouter.setActiveIndex(0);
-                }
-                return atHomeTab;
-              },
+              onWillPop: onWillPop(tabsRouter),
               child: SafeArea(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
                   child: DefaultTabController(
-                    length: 3,
+                    length: tabs.length,
                     child: page,
                   ),
                 ),
@@ -105,17 +95,42 @@ class MyHomePage extends ConsumerWidget {
       },
     );
   }
+
+  Future<bool> Function() onWillPop(TabsRouter tabsRouter) {
+    Future<bool> onWillPopFunc() async {
+      final atHomeTab = tabsRouter.activeIndex == 0;
+      if (!atHomeTab) {
+        tabsRouter.setActiveIndex(0);
+      }
+
+      return atHomeTab;
+    }
+
+    return onWillPopFunc;
+  }
 }
 
-/// The container for the current page, with its background color
-/// and subtle switching animation.
+/// (Not) generated route for [Wrapper].
+class WrapperRoute extends PageRouteInfo<void> {
+  const WrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          WrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = "Wrapper";
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// The container for the current page, with its background color and subtle switching animation.
 ///
-/// With lots and lots and lots and lots of thanks to
+/// With lots and lots and lots and lots of thanks to many.
+///
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
 /// - [StackOverflow](https://stackoverflow.com/a/62163655), and
 /// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
-class MainArea extends ConsumerWidget {
-  const MainArea({
+class _MainArea extends ConsumerWidget {
+  const _MainArea({
     required this.child,
     super.key,
   });

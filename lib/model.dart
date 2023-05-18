@@ -8,27 +8,27 @@ part "model.g.dart";
 part "model.freezed.dart";
 
 @freezed
-class AppState with _$AppState {
-  factory AppState({
+class Model with _$Model {
+  factory Model({
     required WordPair current,
     required List<WordPair> history,
     required Set<WordPair> favorites,
     GlobalKey? historyListKey,
-  }) = _AppState;
+  }) = _Model;
 }
 
 @riverpod
-class GlobalAppState extends _$GlobalAppState {
+class AppState extends _$AppState {
   @override
-  AppState build() {
-    return AppState(
+  Model build() {
+    return Model(
       current: WordPair.random(),
       history: [],
       favorites: {},
     );
   }
 
-  FutureOr<void> getNext() async {
+  FutureOr<void> getNext() {
     final newCurrent = WordPair.random();
     final animatedList =
         state.historyListKey?.currentState as AnimatedListState?;
@@ -39,17 +39,14 @@ class GlobalAppState extends _$GlobalAppState {
     );
   }
 
-  FutureOr<void> toggleFavorite([WordPair? pair]) async {
+  FutureOr<void> toggleFavorite([WordPair? pair]) {
     pair = pair ?? state.current;
-    Set<WordPair> favorites;
-    if (state.favorites.contains(pair)) {
-      favorites = {
-        for (final favorite in state.favorites)
-          if (favorite != pair) favorite,
-      };
-    } else {
-      favorites = {...state.favorites, pair};
-    }
+    final favorites = state.favorites.contains(pair)
+        ? {
+            for (final favorite in state.favorites)
+              if (favorite != pair) favorite,
+          }
+        : {...state.favorites, pair};
 
     state = state.copyWith(favorites: favorites);
   }

@@ -13,15 +13,13 @@ class GeneratorPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(globalAppStateProvider);
+    final appState = ref.watch(appStateProvider);
     final pair = appState.current;
+    final appStateNotifier = ref.read(appStateProvider.notifier);
 
-    IconData icon;
-    if (appState.favorites.contains(pair)) {
-      icon = Icons.favorite;
-    } else {
-      icon = Icons.favorite_border;
-    }
+    final icon = appState.favorites.contains(pair)
+        ? Icons.favorite
+        : Icons.favorite_border;
 
     return Center(
       child: Column(
@@ -38,14 +36,13 @@ class GeneratorPage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
-                onPressed:
-                    ref.read(globalAppStateProvider.notifier).toggleFavorite,
+                onPressed: appStateNotifier.toggleFavorite,
                 icon: Icon(icon),
                 label: const Text("Like"),
               ),
               const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: ref.read(globalAppStateProvider.notifier).getNext,
+                onPressed: appStateNotifier.getNext,
                 child: const Text("Next"),
               ),
             ],

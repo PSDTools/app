@@ -15,20 +15,24 @@ class FavListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displaySmall!.copyWith(
+    final style = theme.textTheme.displaySmall?.copyWith(
       color: theme.colorScheme.onSurfaceVariant,
     );
 
+    Future<void> Function() onPressed() {
+      return () async {
+        await ref.read(appStateProvider.notifier).toggleFavorite(pair);
+      };
+    }
+
     return ListTile(
       leading: IconButton(
+        color: theme.colorScheme.primary,
+        onPressed: onPressed,
         icon: const Icon(
           Icons.delete_outline,
           semanticLabel: "Delete",
         ),
-        color: theme.colorScheme.primary,
-        onPressed: () async {
-          ref.read(globalAppStateProvider.notifier).toggleFavorite(pair);
-        },
       ),
       title: Text(
         pair.asLowerCase,
