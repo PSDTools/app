@@ -182,8 +182,15 @@ C4Context
     Person_Ext(customerC, "Student Council", "The ones removing tokens.")
     Person_Ext(customerD, "Student", "The ones using tokens.")
     Person_Ext(customerE, "Developers", "@PSDTools")
-
-
+    
+    Enterprise_Boundary(b6, "Pirate Wallet") {
+      Enterprise_Boundary(b3, "Pirate Coin") {
+        System(SystemAA, "Thingy", "Allows thingies to thingy")
+      }
+      System_Boundary(b2, "Server") {
+        System(SystemF, "Blockchain")
+      }
+    }
     %% System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
     %% Enterprise_Boundary(b1, "BankBoundary") {
