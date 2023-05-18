@@ -10,6 +10,8 @@
 
 <!-- Describe your changes in detail -->
 
+_Closes: #_
+
 ## Type of Change
 
 <!-- Delete the non-applicable categories-->
