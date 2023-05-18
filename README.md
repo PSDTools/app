@@ -177,13 +177,18 @@ C4Context
   title System Context diagram
 
   Enterprise_Boundary(b0, "Pattonville") {
-    Person(customerA, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
-    Person(customerB, "Teachers", "A teacher, the one giving tokens.")
-    Person_Ext(customerC, "Student Council", "The ones removing tokens.")
-    Person_Ext(customerD, "Student", "The ones using tokens.")
-    Person_Ext(customerE, "Developers", "@PSDTools")
-
-
+    Enterprise_Boundary(b6, "Pirate Wallet") {
+      Enterprise_Boundary(b3, "Pirate Coin") {
+        Person(customerA, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
+        Person(customerB, "Teachers", "A teacher, the one giving tokens.")
+        Person_Ext(customerC, "Student Council", "The ones removing tokens.")
+        Person_Ext(customerD, "Student", "The ones using tokens.")
+        Person_Ext(customerE, "Developers", "@PSDTools")
+      }
+      System_Boundary(b2, "Server") {
+        System(SystemF, "Blockchain")
+      }
+    }
     %% System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
     %% Enterprise_Boundary(b1, "BankBoundary") {
