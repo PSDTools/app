@@ -111,7 +111,9 @@ class MyHomePage extends ConsumerWidget {
 /// and subtle switching animation.
 ///
 /// With lots and lots and lots and lots of thanks to
-/// [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart)
+/// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
+/// - [StackOverflow](https://stackoverflow.com/a/62163655), and
+/// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
 class MainArea extends ConsumerWidget {
   const MainArea({
     required this.child,
