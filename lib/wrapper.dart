@@ -12,8 +12,6 @@ class MyHomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final colorScheme = Theme.of(context).colorScheme;
-
         return AutoTabsRouter(
           routes: const [
             GeneratorRoute(),
@@ -38,7 +36,6 @@ class MyHomePage extends ConsumerWidget {
                   ),
                 ),
                 body: MainArea(
-                  colorScheme: colorScheme,
                   child: child,
                 ),
                 bottomNavigationBar: BottomNavigationBar(
@@ -78,7 +75,6 @@ class MyHomePage extends ConsumerWidget {
                     ),
                     Expanded(
                       child: MainArea(
-                        colorScheme: colorScheme,
                         child: child,
                       ),
                     ),
@@ -119,16 +115,16 @@ class MyHomePage extends ConsumerWidget {
 /// [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart)
 class MainArea extends ConsumerWidget {
   const MainArea({
-    required this.colorScheme,
     required this.child,
     super.key,
   });
 
-  final ColorScheme colorScheme;
   final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return ColoredBox(
       color: colorScheme.surfaceVariant,
       child: child,
