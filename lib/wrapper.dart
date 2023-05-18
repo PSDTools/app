@@ -23,7 +23,7 @@ class MyHomePage extends ConsumerWidget {
 
             Widget page;
             if (constraints.maxWidth < 450) {
-              final scaffold = Scaffold(
+              page = Scaffold(
                 appBar: AppBar(
                   title: Text(context.topRoute.name),
                   leading: const AutoLeadingButton(),
@@ -53,7 +53,6 @@ class MyHomePage extends ConsumerWidget {
                   ],
                 ),
               );
-              page = scaffold;
             } else {
               page = Scaffold(
                 body: Row(
