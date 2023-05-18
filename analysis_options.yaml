@@ -21,7 +21,6 @@ analyzer:
     strict-raw-types: true
   errors:
     close_sinks: error
-    record_literal_one_positional_no_trailing_comma: error # not needed in v5 of vga
   plugins:
     - custom_lint
     # - dart_code_metrics
@@ -47,10 +46,6 @@ linter:
     avoid_classes_with_only_static_members: true
     prefer_relative_imports: true
     always_use_package_imports: false
-    use_decorated_box: false # not needed in v5 of vga
-    implicit_reopen: true # not needed in v5 of vga
-    unnecessary_breaks: true # not needed in v5 of vga
-    invalid_case_patterns: true # not needed in v5 of vga
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 
