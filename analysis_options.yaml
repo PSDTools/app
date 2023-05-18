@@ -11,6 +11,7 @@ include: package:very_good_analysis/analysis_options.4.0.0.yaml
 
 analyzer:
   exclude:
+    - "lib/gen/**"
     - "build/**"
     - "**/*.g.dart"
     - "**/*.gr.dart"
@@ -22,8 +23,8 @@ analyzer:
   errors:
     close_sinks: error
   plugins:
-    - custom_lint
-    # - dart_code_metrics
+    # - custom_lint
+    - dart_code_metrics
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -49,20 +50,41 @@ linter:
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 
-# dart_code_metrics:
-#   extends: # configures the list of preset configurations
-#     - package:dart_code_metrics_presets/all.yaml # be this broken with null-safety?
-#   metrics: # configures the list of reported metrics
-#     -
-#   metrics-exclude: # configures the list of files that should be ignored by metrics
-#     -
-#   rules: # configures the list of rules
-#     -
-#   rules-exclude: # configures the list of files that should be ignored by rules
-#     -
-#   anti-patterns: # configures the list of anti-patterns
-#     -
-
-custom_lint:
-  rules: # riverpod_lint
-    -
+dart_code_metrics:
+  extends:
+    - package:dart_code_metrics_presets/all.yaml
+    - package:dart_code_metrics_presets/pub.yaml
+    - package:dart_code_metrics_presets/intl.yaml
+    - package:dart_code_metrics_presets/pub.yaml
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics:
+    cyclomatic-complexity: 20
+    halstead-volume: 150
+    lines_of_code: 100
+    maintainability-index: 50
+    maximum-nesting-level: 5
+    number-of-methods: 10
+    number-of-parameters: 4
+    source-lines-of-code: 50
+    technical-debt:
+      threshold: 1
+      todo-cost: 161
+      ignore-cost: 320
+      ignore-for-file-cost: 396
+      as-dynamic-cost: 322
+      deprecated-annotations-cost: 37
+      file-nullsafety-migration-cost: 41
+      unit-type: "USD"
+    weight-of-class: 0.33
+  metrics-exclude:
+    - "test/**"
+    - "lib/gen/**"
+    - "build/**"
+    - "**/*.g.dart"
+    - "**/*.gr.dart"
+    - "**/*.freezed.dart"
+  rules:
+    - arguments-ordering:
+        child-last: true
