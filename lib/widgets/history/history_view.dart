@@ -1,21 +1,28 @@
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../model.dart";
+import "../../model.dart";
 
-class HistoryListView extends StatefulWidget {
+class HistoryListView extends ConsumerStatefulWidget {
   const HistoryListView({
     super.key,
   });
 
   @override
-  State<HistoryListView> createState() => _HistoryListViewState();
+  HistoryListViewState createState() => HistoryListViewState();
 }
 
-class _HistoryListViewState extends State<HistoryListView> {
-  /// Needed so that [MyAppState] can tell [AnimatedList] below to animate
+class HistoryListViewState extends ConsumerState<HistoryListView> {
+  /// Needed so that [AppState] can tell [AnimatedList] below to animate
   /// new items.
   final _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    // "ref" can be used in all life-cycles of a StatefulWidget.
+    ref.read(globalAppStateProvider);
+  }
 
   /// Used to "fade out" the history items at the top, to suggest continuation.
   static const Gradient _maskingGradient = LinearGradient(
@@ -29,7 +36,10 @@ class _HistoryListViewState extends State<HistoryListView> {
 
   @override
   Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>()..historyListKey = _key;
+    final appState = ref.watch(globalAppStateProvider);
+    Future(() {
+      ref.read(globalAppStateProvider.notifier).setKey(_key);
+    });
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
@@ -47,8 +57,10 @@ class _HistoryListViewState extends State<HistoryListView> {
             sizeFactor: animation,
             child: Center(
               child: TextButton.icon(
-                onPressed: () {
-                  appState.toggleFavorite(pair);
+                onPressed: () async {
+                  ref
+                      .read(globalAppStateProvider.notifier)
+                      .toggleFavorite(pair);
                 },
                 icon: appState.favorites.contains(pair)
                     ? const Icon(Icons.favorite, size: 12)

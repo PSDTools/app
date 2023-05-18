@@ -1,3 +1,9 @@
+coverage/
+lib/gen/
+**/*.g.dart
+**/*.gr.dart
+**/*.freezed.dart
+
 # Miscellaneous
 *.class
 *.log

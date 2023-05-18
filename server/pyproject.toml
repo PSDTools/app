@@ -1,17 +1,22 @@
 [tool.poetry]
-name = "server"
-version = "0.1.0"
+authors = [
+  "Eli <88557639+lishaduck@users.noreply.github.com>",
+]
 description = ""
-authors = ["Eli <88557639+lishaduck@users.noreply.github.com>"]
+name = "server"
+packages = [{ include = "server", from = "src" }]
 readme = "README.md"
-packages = [{include = "server", from = "src"}]
+version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-aiohttp = "^3.8.4"
-rich = "^13.3.5"
+fastapi = "^0.95.1"
+python  = "^3.10"
+rich    = "^13.3.5"
 
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.267"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires      = ["poetry-core"]

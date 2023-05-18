@@ -1,18 +1,19 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:provider/provider.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../model.dart";
-import "../widgets/big_card.dart";
-import "../widgets/history.dart";
+import "../../model.dart";
+
+import "../big_card/big_card.dart";
+import "../history/history.dart";
 
 @RoutePage()
-class GeneratorPage extends StatelessWidget {
+class GeneratorPage extends ConsumerWidget {
   const GeneratorPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final appState = context.watch<MyAppState>();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch(globalAppStateProvider);
     final pair = appState.current;
 
     IconData icon;
@@ -37,13 +38,14 @@ class GeneratorPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
-                onPressed: appState.toggleFavorite,
+                onPressed:
+                    ref.read(globalAppStateProvider.notifier).toggleFavorite,
                 icon: Icon(icon),
                 label: const Text("Like"),
               ),
               const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: appState.getNext,
+                onPressed: ref.read(globalAppStateProvider.notifier).getNext,
                 child: const Text("Next"),
               ),
             ],

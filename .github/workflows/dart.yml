@@ -4,36 +4,56 @@ name: Dart
 env:
   CI: true
 
+concurrency:
+  group: $-$
+  cancel-in-progress: true
+
 on:
   push:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types:
+      - opened
+      - synchronize
+      - reopened
     branches:
       - main
 
 jobs:
   build:
     name: Build
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     needs: []
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo
+      - name: 📚 Git Checkout
         uses: actions/checkout@v3.5.2
         with:
           submodules: true
-      - name: Set up Flutter
+      - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@v2.10.0
         with:
           channel: "stable"
           cache: true
-      - name: Install dependencies
-        run: flutter pub get
-      - name: Build
-        run: flutter build web
+      - name: 📦 Install dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good --analytics false
+          very_good packages get --recursive
+      - name: 🔌 Generate files
+        run: dart run build_runner build
+      - name: 🔧 Build
+        run: flutter build web --target lib/main_production.dart --release
+      - name: ⚙️ Upload generated files
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: generated-files
+          path: |
+            lib/**/*.g.dart
+            lib/**/*.gr.dart
+            lib/**/*.freezed.dart
+          if-no-files-found: error
 
   check:
     name: Linting
@@ -41,27 +61,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo
+      - name: 📚 Git Checkout
         uses: actions/checkout@v3.5.2
         with:
           submodules: true
-      - name: Set up Flutter
+      - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@v2.10.0
         with:
           channel: "stable"
           cache: true
-      - name: Install dependencies
-        run: flutter pub get
-        # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: flutter analyze
-      # - name: DCM
-      #   uses: dart-code-checker/dart-code-metrics-action@v3.0.0
+      - name: 📦 Install dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good --analytics false
+          very_good packages get --recursive
+      - name: ⚙️ Download generated code
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: generated-files
+          path: lib
+      - name: 🕵️ Analyze project source
+        run: flutter analyze --fatal-infos
+      # - name: 🕵️ DCM
+      #   uses: dart-code-checker/dart-code-metrics-action@v4.0.0
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
       #     pull_request_comment: true
       #     check_unused_files: true
-      - name: Lint Riverpod
+      - name: 🕵️ Lint Riverpod
         run: dart run custom_lint
 
   test:
@@ -70,37 +97,59 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo
+      - name: 📚 Git Checkout
         uses: actions/checkout@v3.5.2
         with:
           submodules: true
-      - name: Set up Flutter
+      - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@v2.10.0
         with:
           channel: "stable"
           cache: true
-      - name: Install dependencies
-        run: flutter pub get
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      - name: Run tests
-        run: flutter test
+      - name: 📦 Install dependencies
+        run: |
+          flutter pub global activate very_good_cli
+          very_good --analytics false
+          very_good packages get --recursive
+      - name: ⚙️ Download generated code
+        uses: actions/download-artifact@v3.0.2
+        with:
+          name: generated-files
+          path: lib
+      - name: 🧪 Run tests
+        run: very_good test -j 4 --optimization --coverage --test-randomize-ordering-seed random
+      - name: 📊 Check Code Coverage
+        uses: VeryGoodOpenSource/very_good_coverage@v2.1.0
+        with:
+          path: coverage/lcov.info
+          min_coverage: 10 # 100
 
-  formst:
+  format:
     name: Formatting
     needs: ["build"]
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the repo
+      - name: 📚 Git Checkout
         uses: actions/checkout@v3.5.2
         with:
           submodules: true
-      - name: Set up Flutter
+      - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@v2.10.0
         with:
           channel: "stable"
           cache: true
-      - name: Verify formatting
+      - name: ✨ Verify formatting
         run: dart format --output=none --set-exit-if-changed .
+
+  spell-check:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      includes: |
+        **/*.md
+        # **/*.dart
+        # **/*.yaml
+        # **/*.yml
+        **/*.toml
+      modified_files_only: false
+      config: cspell.json

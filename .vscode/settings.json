@@ -50,7 +50,9 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     ".replit": "replit.nix",
-    "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml",
-    "README.*": "*.md"
+    "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml, l10n.yaml, flutter_launcher_icons*.yaml",
+    "README.*": "*.md",
+    "*.dart": "${capture}.*.dart, ${capture}_view.dart, ${capture}_logic.dart",
+    "main.dart": "main_*.dart"
   }
 }

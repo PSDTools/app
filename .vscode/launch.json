@@ -5,20 +5,37 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "psdtools-app",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "psdtools-app (profile mode)",
+      "name": "Launch development",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main_development.dart",
+      "args": [
+        "--flavor",
+        "development",
+        "--target",
+        "lib/main_development.dart"
+      ],
+      "flutterMode": "debug"
+    },
+    {
+      "name": "Launch staging",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main_staging.dart",
+      "args": ["--flavor", "staging", "--target", "lib/main_staging.dart"],
       "flutterMode": "profile"
     },
     {
-      "name": "psdtools-app (release mode)",
+      "name": "Launch production",
       "request": "launch",
       "type": "dart",
+      "program": "lib/main_production.dart",
+      "args": [
+        "--flavor",
+        "production",
+        "--target",
+        "lib/main_production.dart"
+      ],
       "flutterMode": "release"
     }
   ]
