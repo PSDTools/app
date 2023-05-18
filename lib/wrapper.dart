@@ -97,11 +97,12 @@ class MyHomePage extends ConsumerWidget {
               },
               child: SafeArea(
                 child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 200),
-                    child: DefaultTabController(
-                      length: 3,
-                      child: page,
-                    )),
+                  duration: const Duration(milliseconds: 200),
+                  child: DefaultTabController(
+                    length: 3,
+                    child: page,
+                  ),
+                ),
               ),
             );
           },
