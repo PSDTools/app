@@ -67,8 +67,14 @@ class MyHomePage extends ConsumerWidget {
                           label: Text("Home"),
                         ),
                         NavigationRailDestination(
-                          icon: Icon(Icons.favorite),
-                          label: Text("Favorites"),
+                          icon: Icon(Icons.favorite,
+                              color: Color.fromARGB(255, 161, 0, 0)),
+                          label: Text(
+                            "Favorites",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 161, 0, 0),
+                            ),
+                          ),
                         ),
                       ],
                     ),
