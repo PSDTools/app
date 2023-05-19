@@ -12,13 +12,23 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "!**.md"
+      - "!replit.nix"
+      - "!.replit"
+      - "!.editorconfig"
   pull_request:
+    branches:
+      - main
     types:
       - opened
       - synchronize
       - reopened
-    branches:
-      - main
+    paths:
+      - "!**.md"
+      - "!replit.nix"
+      - "!.replit"
+      - "!.editorconfig"
   merge_group:
 
 jobs:
