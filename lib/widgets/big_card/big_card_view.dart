@@ -34,7 +34,7 @@ class BigCard extends ConsumerWidget {
                 Text(
                   pair.second,
                   style: style?.copyWith(fontWeight: FontWeight.bold),
-                )
+                ),
               ],
             ),
           ),
