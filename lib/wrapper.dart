@@ -100,8 +100,8 @@ class WrapperPage extends ConsumerWidget {
             return WillPopScope(
               onWillPop: onWillPop,
               child: SafeArea(
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
+                child: FadeTransition(
+                  opacity: animation,
                   child: DefaultTabController(
                     length: tabs.length,
                     child: page,
