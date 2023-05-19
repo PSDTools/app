@@ -4,6 +4,11 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "app/app_router.dart";
 
+// With lots and lots and lots and lots of thanks to many.
+///
+/// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
+/// - [StackOverflow](https://stackoverflow.com/a/62163655), and
+/// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
 class Wrapper extends ConsumerWidget {
   const Wrapper({super.key});
 
@@ -24,7 +29,24 @@ class Wrapper extends ConsumerWidget {
           ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
+            final colorScheme = Theme.of(context).colorScheme;
             final tabsRouter = AutoTabsRouter.of(context);
+
+            /// The container for the current page, with its background color and subtle switching animation.
+
+            final mainArea = ColoredBox(
+              color: colorScheme.surfaceVariant,
+              child: child,
+            );
+
+            Future<bool> onWillPop() async {
+              final atHomeTab = tabsRouter.activeIndex == 0;
+              if (!atHomeTab) {
+                tabsRouter.setActiveIndex(0);
+              }
+
+              return atHomeTab;
+            }
 
             final page = constraints.maxWidth < 450
                 ? Scaffold(
@@ -33,9 +55,7 @@ class Wrapper extends ConsumerWidget {
                       title: Text(context.topRoute.name),
                       bottom: const TabBar(tabs: tabs),
                     ),
-                    body: _MainArea(
-                      child: child,
-                    ),
+                    body: mainArea,
                     bottomNavigationBar: BottomNavigationBar(
                       items: const [
                         BottomNavigationBarItem(
@@ -70,16 +90,14 @@ class Wrapper extends ConsumerWidget {
                           onDestinationSelected: tabsRouter.setActiveIndex,
                         ),
                         Expanded(
-                          child: _MainArea(
-                            child: child,
-                          ),
+                          child: mainArea,
                         ),
                       ],
                     ),
                   );
 
             return WillPopScope(
-              onWillPop: onWillPop(tabsRouter),
+              onWillPop: onWillPop,
               child: SafeArea(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
@@ -95,19 +113,6 @@ class Wrapper extends ConsumerWidget {
       },
     );
   }
-
-  Future<bool> Function() onWillPop(TabsRouter tabsRouter) {
-    Future<bool> onWillPopFunc() async {
-      final atHomeTab = tabsRouter.activeIndex == 0;
-      if (!atHomeTab) {
-        tabsRouter.setActiveIndex(0);
-      }
-
-      return atHomeTab;
-    }
-
-    return onWillPopFunc;
-  }
 }
 
 /// (Not) generated route for [Wrapper].
@@ -120,30 +125,4 @@ class WrapperRoute extends PageRouteInfo<void> {
 
   static const String name = "Wrapper";
   static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// The container for the current page, with its background color and subtle switching animation.
-///
-/// With lots and lots and lots and lots of thanks to many.
-///
-/// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
-/// - [StackOverflow](https://stackoverflow.com/a/62163655), and
-/// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
-class _MainArea extends ConsumerWidget {
-  const _MainArea({
-    required this.child,
-    super.key,
-  });
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return ColoredBox(
-      color: colorScheme.surfaceVariant,
-      child: child,
-    );
-  }
 }
