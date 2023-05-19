@@ -222,11 +222,19 @@ C4Context
       System(CanvasApp, "Canvas Application")
     }
   }
-
+%% Person(customerB, "Teachers", "A teacher, the one giving tokens.")
+    %%Person_Ext(customerC, "Student Council", "The ones removing tokens.")
+    %%Person_Ext(customerD, "Student", "The ones using tokens.")
+    %%Person_Ext(customerE, "Developers", "@PSDTools")
 
   %% BiRel(customerA, SystemAA, "Uses")
   Rel(Instructure, CanvasApp, "Makes")
   Rel(SystemAB, SystemF, "Reads")
+  Rel(customerA, SystemAA, "Add, Remove, View trends")
+  Rel(customerB, SystemAA, "Add")
+  Rel(customerC, SystemAA, "Remove with Student permission")
+  Rel(customerD, SystemAA, "See Tokens")
+  Rel(customerE, SystemAA, "View trends")
   BiRel(SystemAA, SystemAB, "Updates")
   %% BiRel(SystemAA, SystemE, "Uses")
   %% Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
