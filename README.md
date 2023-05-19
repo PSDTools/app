@@ -185,7 +185,8 @@ C4Context
     
     Enterprise_Boundary(b6, "Pirate Wallet") {
       Enterprise_Boundary(b3, "Pirate Coin") {
-        System(SystemAA, "Thingy", "Allows thingies to thingy")
+        System(SystemAA, "UI", "The Prettiness")
+        System(SystemAB, "Logic", "The Magic")
       }
       System_Boundary(b2, "Server") {
         System(SystemF, "Blockchain")
@@ -225,6 +226,8 @@ C4Context
 
   %% BiRel(customerA, SystemAA, "Uses")
   Rel(Instructure, CanvasApp, "Makes")
+  Rel(SystemAB, SystemF, "Reads")
+  BiRel(SystemAA, SystemAB, "Updates")
   %% BiRel(SystemAA, SystemE, "Uses")
   %% Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
   %% Rel(SystemC, customerA, "Sends e-mails to")
