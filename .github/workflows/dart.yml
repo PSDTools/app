@@ -154,6 +154,7 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
 
   spell-check:
+    name: Check Spelling
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
     with:
       includes: |
@@ -164,3 +165,16 @@ jobs:
         **/*.toml
       modified_files_only: false
       config: cspell.json
+
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+    needs: ["spell-check"]
+
+    steps:
+      - name: 🪄 Spell Check
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'yes'
+          base-branch: 'main'
