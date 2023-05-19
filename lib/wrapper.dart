@@ -64,16 +64,8 @@ class WrapperPage extends ConsumerWidget {
                           label: "Home",
                         ),
                         BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.favorite,
-                            color: Color.fromARGB(255, 161, 0, 0),
-                          ),
-                          label: Text(
-                            "Favorites",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 161, 0, 0),
-                            ),
-                          ),
+                          icon: Icon(Icons.favorite),
+                          label: "Favorites",
                         ),
                       ],
                       onTap: tabsRouter.setActiveIndex,
