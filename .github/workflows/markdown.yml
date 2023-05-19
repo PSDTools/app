@@ -1,0 +1,58 @@
+---
+name: Markdown
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "!**.md"
+      - "!replit.nix"
+      - "!.replit"
+      - "!.editorconfig"
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "**.md"
+      - "**.toml"
+  merge_group:
+  schedule:
+    - cron: "0 14 * * *" # every day at 9 in the morning CST
+
+env:
+  CI: true
+
+jobs:
+  spell-check:
+    name: Check Spelling
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    with:
+      includes: |
+        **/*.md
+        # **/*.dart
+        # **/*.yaml
+        # **/*.yml
+        **/*.toml
+      modified_files_only: false
+      config: cspell.json
+
+  link-check:
+    name: Check Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🪄 Spell Check
+        uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
+        with:
+          use-quiet-mode: "yes"
+          use-verbose-mode: "yes"
+          base-branch: "main"
