@@ -9,8 +9,9 @@ import "app/app_router.dart";
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
 /// - [StackOverflow](https://stackoverflow.com/a/62163655), and
 /// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
-class Wrapper extends ConsumerWidget {
-  const Wrapper({super.key});
+@RoutePage()
+class WrapperPage extends ConsumerWidget {
+  const WrapperPage({super.key});
 
   static const tabs = [
     Tab(text: "1", icon: Icon(Icons.abc)),
@@ -113,16 +114,4 @@ class Wrapper extends ConsumerWidget {
       },
     );
   }
-}
-
-/// (Not) generated route for [Wrapper].
-class WrapperRoute extends PageRouteInfo<void> {
-  const WrapperRoute({List<PageRouteInfo>? children})
-      : super(
-          WrapperRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = "Wrapper";
-  static const PageInfo<void> page = PageInfo<void>(name);
 }
