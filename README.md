@@ -182,7 +182,7 @@ C4Context
     Person_Ext(customerC, "Student Council", "The ones removing tokens.")
     Person_Ext(customerD, "Student", "The ones using tokens.")
     Person_Ext(customerE, "Developers", "@PSDTools")
-    
+
     Enterprise_Boundary(b6, "Pirate Wallet") {
       Enterprise_Boundary(b3, "Pirate Coin") {
         System(SystemAA, "UI", "The Prettiness")
@@ -257,7 +257,7 @@ C4Context
 
 [ci_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yml/badge.svg?branch=main
 [ci_link]: https://github.com/PSDTools/app/actions/workflows/dart.yml
-[coverage_badge]: https://img.shields.io/badge/coverage-100%25-44cc11.svg
+[coverage_badge]: https://img.shields.io/badge/coverage-11%25-CB2431.svg
 [deploys_badge]: https://api.netlify.com/api/v1/badges/25b0c44e-21b7-423c-a914-32aa4b23b708/deploy-status
 [deploys_link]: https://app.netlify.com/sites/pattonville-wallet/deploys
 [flutter_codelab]: https://docs.flutter.dev/get-started/codelab
