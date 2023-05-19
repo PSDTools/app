@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🪄 Spell Check
+      - name: 🪄 Link Check
         uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
         with:
           use-quiet-mode: "yes"
