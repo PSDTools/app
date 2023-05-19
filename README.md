@@ -236,6 +236,12 @@ C4Context
   Rel(customerD, SystemAA, "See Tokens")
   Rel(customerE, SystemAA, "View trends")
   BiRel(SystemAA, SystemAB, "Updates")
+
+  UpdateRelStyle(customerA, SystemAA, $textColor="red", $lineColor="red", $offsetX="30",$offsetY="-350")
+  UpdateRelStyle(customerB, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
+  UpdateRelStyle(customerC, SystemAA, $textColor="green", $lineColor="green", $offsetY="-230",$offsetX="100")
+  UpdateRelStyle(customerD, SystemAA, $textColor="purple", $lineColor="purple", $offsetX="-80")
+  UpdateRelStyle(customerE, SystemAA, $textColor="yellow", $lineColor="yellow", $offsetX="90",$offsetY="-120")
   %% BiRel(SystemAA, SystemE, "Uses")
   %% Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
   %% Rel(SystemC, customerA, "Sends e-mails to")
