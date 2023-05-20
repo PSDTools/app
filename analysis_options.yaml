@@ -87,18 +87,18 @@ dart_code_metrics:
     - "**/*.freezed.dart"
   rules:
     - arguments-ordering:
-      child-last: true
+        child-last: true
     - member-ordering:
-      alphabetize: true
-      order:
-        - constructors
-        - public-fields
-        - private-fields
-        - public-getters
-        - private-getters
-        - public-setters
-        - private-setters
-        - public-methods
-        - private-methods
+        alphabetize: true
+        order:
+          - constructors
+          - public-fields
+          - private-fields
+          - public-getters
+          - private-getters
+          - public-setters
+          - private-setters
+          - public-methods
+          - private-methods
     - prefer-single-widget-per-file:
-      ignore-private-widgets: true
+        ignore-private-widgets: true
