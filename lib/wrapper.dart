@@ -33,8 +33,7 @@ class WrapperPage extends ConsumerWidget {
             final colorScheme = Theme.of(context).colorScheme;
             final tabsRouter = AutoTabsRouter.of(context);
 
-            /// The container for the current page, with its background color and subtle switching animation.
-
+            // The container for the current page, with its background color and subtle switching animation.
             final mainArea = ColoredBox(
               color: colorScheme.surfaceVariant,
               child: child,
