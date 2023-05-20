@@ -4,11 +4,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "app/app_router.dart";
 
-// With lots and lots and lots and lots of thanks to many.
-///
+/// With lots and lots and lots and lots of thanks to many, including:
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
 /// - [StackOverflow](https://stackoverflow.com/a/62163655), and
-/// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart)
+/// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart).
 @RoutePage()
 class WrapperPage extends ConsumerWidget {
   const WrapperPage({super.key});
@@ -30,14 +29,7 @@ class WrapperPage extends ConsumerWidget {
           ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
-            final colorScheme = Theme.of(context).colorScheme;
             final tabsRouter = AutoTabsRouter.of(context);
-
-            // The container for the current page, with its background color and subtle switching animation.
-            final mainArea = ColoredBox(
-              color: colorScheme.surfaceVariant,
-              child: child,
-            );
 
             Future<bool> onWillPop() async {
               final atHomeTab = tabsRouter.activeIndex == 0;
@@ -55,7 +47,7 @@ class WrapperPage extends ConsumerWidget {
                       title: Text(context.topRoute.name),
                       bottom: const TabBar(tabs: tabs),
                     ),
-                    body: mainArea,
+                    body: _MainArea(child: child),
                     bottomNavigationBar: BottomNavigationBar(
                       items: const [
                         BottomNavigationBarItem(
@@ -90,7 +82,9 @@ class WrapperPage extends ConsumerWidget {
                           onDestinationSelected: tabsRouter.setActiveIndex,
                         ),
                         Expanded(
-                          child: mainArea,
+                          child: _MainArea(
+                            child: child,
+                          ),
                         ),
                       ],
                     ),
@@ -111,6 +105,28 @@ class WrapperPage extends ConsumerWidget {
           },
         );
       },
+    );
+  }
+}
+
+// The container for the current page, with its background color and subtle switching animation.
+class _MainArea extends StatelessWidget {
+  const _MainArea({
+    required this.child,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return ColoredBox(
+      color: colorScheme.surfaceVariant,
+      child: child,
     );
   }
 }

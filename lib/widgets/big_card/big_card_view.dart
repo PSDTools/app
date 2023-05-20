@@ -16,10 +16,11 @@ class BigCard extends ConsumerWidget {
     final style = theme.textTheme.displayMedium?.copyWith(
       color: theme.colorScheme.onPrimary,
     );
+    const elevation = 2.0;
 
     return Card(
       color: theme.colorScheme.primary,
-      elevation: 2,
+      elevation: elevation,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: AnimatedSize(

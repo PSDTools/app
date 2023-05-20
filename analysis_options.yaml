@@ -92,13 +92,10 @@ dart_code_metrics:
         alphabetize: true
         order:
           - constructors
-          - public-fields
-          - private-fields
-          - public-getters
-          - private-getters
-          - public-setters
-          - private-setters
-          - public-methods
-          - private-methods
     - prefer-single-widget-per-file:
         ignore-private-widgets: true
+    - prefer-match-file-name:
+        include:
+          - "lib/widgets/**/*_page.dart"
+    - avoid-ignoring-return-values:
+        severity: style

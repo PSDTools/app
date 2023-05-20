@@ -1,7 +1,7 @@
 import "package:auto_route/auto_route.dart";
 
 import "../widgets/favorites/favorites.dart";
-import "../widgets/home/home.dart";
+import "../widgets/generator/generator.dart";
 import "../wrapper.dart";
 
 part "app_router.gr.dart";
@@ -16,17 +16,11 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: WrapperRoute.page,
           path: "/",
-          children: [
-            AutoRoute(
-              page: GeneratorRoute.page,
-              path: "",
-            ),
-            AutoRoute(
-              page: FavoritesRoute.page,
-              path: "favorites",
-            ),
-          ],
           initial: true,
+          children: [
+            AutoRoute(page: GeneratorRoute.page, path: ""),
+            AutoRoute(page: FavoritesRoute.page, path: "favorites"),
+          ],
         ),
         RedirectRoute(path: "*", redirectTo: "/"),
       ];
