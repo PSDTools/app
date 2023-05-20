@@ -4,9 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../l10n/l10n.dart";
 import "../app_router.dart";
 
-class App extends ConsumerWidget {
-  App({super.key});
-
+mixin AppView on ConsumerWidget {
   // Make sure you don't initiate your router inside of the build function.
   final _appRouter = AppRouter();
 
