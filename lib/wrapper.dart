@@ -93,8 +93,8 @@ class WrapperPage extends ConsumerWidget {
             return WillPopScope(
               onWillPop: onWillPop,
               child: SafeArea(
-                child: FadeTransition(
-                  opacity: animation,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
                   child: DefaultTabController(
                     length: tabs.length,
                     child: page,
@@ -110,7 +110,7 @@ class WrapperPage extends ConsumerWidget {
 }
 
 // The container for the current page, with its background color and subtle switching animation.
-class _MainArea extends StatelessWidget {
+class _MainArea extends ConsumerWidget {
   const _MainArea({
     required this.child,
     // Temporary ignore, see <dart-lang/sdk#49025>.
@@ -121,7 +121,7 @@ class _MainArea extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return ColoredBox(

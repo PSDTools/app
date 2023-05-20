@@ -36,9 +36,7 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
   }
 
   FutureOr<void> Function() onToggle(WordPair pair) {
-    return () async {
-      await ref.read(appStateProvider.notifier).toggleFavorite(pair);
-    };
+    return () => ref.read(appStateProvider.notifier).toggleFavorite(pair);
   }
 
   FutureOr<void> setKey() {

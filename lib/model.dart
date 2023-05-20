@@ -39,7 +39,7 @@ class AppState extends _$AppState {
     );
   }
 
-  FutureOr<void> toggleFavorite([WordPair? pair]) {
+  void toggleFavorite([WordPair? pair]) {
     pair = pair ?? state.current;
     final favorites = state.favorites.contains(pair)
         ? {

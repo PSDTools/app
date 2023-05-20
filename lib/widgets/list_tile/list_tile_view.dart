@@ -19,16 +19,11 @@ class FavListTile extends ConsumerWidget {
       color: theme.colorScheme.onSurfaceVariant,
     );
 
-    Future<void> Function() onPressed() {
-      return () async {
-        await ref.read(appStateProvider.notifier).toggleFavorite(pair);
-      };
-    }
-
     return ListTile(
       leading: IconButton(
         color: theme.colorScheme.primary,
-        onPressed: onPressed,
+        onPressed: () =>
+            ref.read(appStateProvider.notifier).toggleFavorite(pair),
         icon: const Icon(
           Icons.delete_outline,
           semanticLabel: "Delete",
