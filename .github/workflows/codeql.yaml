@@ -46,11 +46,12 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3.5.2
+        with:
+          submodules: true
       # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
+      - name: ⚙️ Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
@@ -60,7 +61,6 @@ jobs:
 
           # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
-
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@v2.10.0
         with:
@@ -71,16 +71,11 @@ jobs:
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
-      - name: ⚙️ Download generated code
-        uses: dawidd6/action-download-artifact@v2.27.0
-        with:
-          name: generated-files
-          path: lib
-          workflow: dart.yaml
-          branch: ${{ github.head_ref || 'main' }}
+      - name: 🔌 Generate files
+        run: dart run build_runner build
       - name: 🔧 Build
         run: flutter build apk --target lib/main_production.dart --release
-      - name: Perform CodeQL Analysis
+      - name: 🕵️ Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
