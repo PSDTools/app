@@ -3,14 +3,17 @@ import "dart:developer";
 
 import "package:flutter/widgets.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_web_plugins/flutter_web_plugins.dart";
+import "package:flutter_web_plugins/url_strategy.dart";
 
 Future<void> bootstrap(FutureOr<ConsumerWidget> Function() builder) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  usePathUrlStrategy();
+  // if (flutter)
+  {
+    usePathUrlStrategy();
+  }
 
   await runZonedGuarded(
     () async => runApp(

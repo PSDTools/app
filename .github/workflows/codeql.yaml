@@ -74,7 +74,7 @@ jobs:
       - name: 🔌 Generate files
         run: dart run build_runner build
       - name: 🔧 Build
-        run: flutter build apk --target lib/main_production.dart --release
+        run: flutter build apk --target lib/main_production.dart --debug
       - name: 🕵️ Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
