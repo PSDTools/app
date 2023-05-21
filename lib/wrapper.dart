@@ -41,6 +41,12 @@ class MyHomePage extends ConsumerWidget {
                 bottomNavigationBar: BottomNavigationBar(
                   currentIndex: tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
+                  unselectedIconTheme: const IconThemeData(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                  selectedIconTheme: const IconThemeData(
+                    color: Color.fromARGB(255, 39, 131, 0),
+                  ),
                   items: const [
                     BottomNavigationBarItem(
                       label: "Home",
