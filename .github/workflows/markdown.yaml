@@ -78,7 +78,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5.0.1
         with:
           commit-message: "chore: apply markdownlint fxes"
-          branch: fixes/${{ github.ref_name }}
+          branch: fixes/${{ github.head_ref }}
           base: ${{ github.head_ref }}
           title: "Apply markdownlint fixes for ${{ github.event.pull_request.title }}"
           body: "*This is an automated pull request because markdownlint found problems that could be fixed automatically.*"
