@@ -72,14 +72,14 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: ⚙️ Download generated code
-        uses: actions/download-artifact@v3.0.2
+        uses: dawidd6/action-download-artifact@v2.27.0
         with:
           name: generated-files
           path: lib
+          workflow: dart.yaml
+          branch: ${{ github.head_ref || 'main' }}
       - name: 🔧 Build
-        run: | # TODO: what's arr? is it linux or windows?
-          flutter build apk --target lib/main_production.dart --release
-          flutter build aar --target lib/main_production.dart --release
+        run: flutter build apk --target lib/main_production.dart --release
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
