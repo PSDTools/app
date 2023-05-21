@@ -58,20 +58,20 @@
         { "label": "Webapp bundle", "value": "web" }
       ],
       "type": "pickString",
-      "description": "The target to target"
+      "description": "the target to target"
     },
     {
       "id": "runtype",
       "options": [
-        { "label": "Run a build", "value": "build" },
-        { "label": "Watch the filesystem, run many builds", "value": "watch" },
-        { "label": "Make a server", "value": "serve" },
-        { "label": "Run our tests", "value": "test" },
-        { "label": "Run just one build, not all of them", "value": "run" },
-        { "label": "Clean up from old builds", "value": "clean" }
+        { "label": "run a build", "value": "build" },
+        { "label": "watch the filesystem, run many builds", "value": "watch" },
+        { "label": "make a server", "value": "serve" },
+        { "label": "run our tests", "value": "test" },
+        { "label": "run just one build, not all of them", "value": "run" },
+        { "label": "clean up from old builds", "value": "clean" }
       ],
       "type": "pickString",
-      "description": "The type of build_runner run"
+      "description": "the type of build_runner run"
     }
   ]
 }
