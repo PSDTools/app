@@ -35,8 +35,7 @@ jobs:
   spell-check:
     name: Check Spelling
     needs: []
-    timeout-minutes: 1
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1.13.0
 
     with:
       includes: |
