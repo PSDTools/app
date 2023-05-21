@@ -19,6 +19,7 @@ on:
       - opened
       - synchronize
       - reopened
+      - closed
     paths:
       - "**.md"
       - "**.toml"
@@ -34,6 +35,8 @@ jobs:
   spell-check:
     name: Check Spelling
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+    if: ${{!github.event.action == 'closed' || !github.event_name == 'pull_request' }}
+
     with:
       includes: |
         **/*.md
@@ -44,6 +47,7 @@ jobs:
       config: cspell.json
 
   link-check:
+    if: ${{!github.event.action == 'closed' || !github.event_name == 'pull_request' }}
     name: Check Links
     runs-on: ubuntu-latest
 
@@ -60,10 +64,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🪄 Markdown Linting
-        uses: DavidAnson/markdownlint-cli2-action@v10.0.1
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3.5.2
         with:
-          command: config
+          submodules: true
+      - name: ⚙️ Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      - name: 🪄 Markdown Linting
+        if: ${{!github.event.action == 'closed' || !github.event_name == 'pull_request' }}
+        uses: DavidAnson/markdownlint-cli2-action@v10.0.1
+        id: markdownlint
+        with:
+          command: fix
           globs: |
-            .markdownlint-cli2.jsonc
             **/*.md
+        continue-on-error: true
+      - name: ⚙️ Make PR
+        uses: peter-evans/create-pull-request@v5.0.1
+        with:
+          commit-message: "chore: apply markdownlint fxes"
+          branch: fixes/${{ steps.extract_branch.outputs.branch }}
+          title: "Apply markdownlint fixes for ${{ github.event.pull_request.title }}"
+          body: "*This is an automated pull request because markdownlint found problems that could be fixed automatically.*"
+          reviewers: lishaduck
+          assignees: lishaduck
+          signoff: true
+          delete-branch: true
