@@ -79,7 +79,7 @@ jobs:
         with:
           commit-message: "chore: apply markdownlint fxes"
           branch: fixes/${{ github.ref_name }}
-          base: ${{ github.ref_name }}
+          base: ${{ github.ref }}
           title: "Apply markdownlint fixes for ${{ github.event.pull_request.title }}"
           body: "*This is an automated pull request because markdownlint found problems that could be fixed automatically.*"
           reviewers: lishaduck
