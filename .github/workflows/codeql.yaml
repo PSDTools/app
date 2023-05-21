@@ -12,6 +12,10 @@
 #
 name: "CodeQL"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -26,7 +30,7 @@ on:
   workflow_dispatch:
   # For Branch-Protection check. Only the default branch is supported. See
   # https://github.com/ossf/scorecard/blob/main/docs/checks.md#branch-protection
-  branch_protection_rule:
+  # branch_protection_rule:
 
 permissions:
   # Needed to upload the results to code-scanning dashboard.
