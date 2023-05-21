@@ -10,10 +10,8 @@ on:
     branches:
       - main
     paths:
-      - "!**.md"
-      - "!replit.nix"
-      - "!.replit"
-      - "!.editorconfig"
+      - "**.md"
+      - "**.toml"
   pull_request:
     branches:
       - main
@@ -56,3 +54,16 @@ jobs:
           use-quiet-mode: "yes"
           use-verbose-mode: "yes"
           base-branch: "main"
+
+  markdownlint:
+    name: Lint Markdown
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🪄 Markdown Linting
+        uses: DavidAnson/markdownlint-cli2-action@v10.0.1
+        with:
+          command: config
+          globs: |
+            .markdownlint-cli2.jsonc
+            **/*.md
