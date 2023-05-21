@@ -38,12 +38,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: 📚 Git Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           submodules: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@v2.10.0
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
           channel: "stable"
           cache: true
@@ -57,7 +62,7 @@ jobs:
       - name: 🔧 Build
         run: flutter build web --target lib/main_production.dart --release
       - name: ⚙️ Upload generated files
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
           name: generated-files
           path: |
@@ -73,12 +78,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: 📚 Git Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           submodules: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@v2.10.0
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
           channel: "stable"
           cache: true
@@ -88,7 +98,7 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: ⚙️ Download generated code
-        uses: actions/download-artifact@v3.0.2
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
         with:
           name: generated-files
           path: lib
@@ -110,12 +120,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: 📚 Git Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           submodules: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@v2.10.0
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
           channel: "stable"
           cache: true
@@ -125,14 +140,14 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: ⚙️ Download generated code
-        uses: actions/download-artifact@v3.0.2
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
         with:
           name: generated-files
           path: lib
       - name: 🧪 Run tests
         run: very_good test -j 4 --optimization --coverage --test-randomize-ordering-seed random
       - name: 📊 Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v2.1.0
+        uses: VeryGoodOpenSource/very_good_coverage@e5c91bc7ce9843e87c800b3bcafdfb86fbe28491 # v2.1.0
         with:
           path: coverage/lcov.info
           min_coverage: 10 # 100
@@ -144,12 +159,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: 📚 Git Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           submodules: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@v2.10.0
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
           channel: "stable"
           cache: true

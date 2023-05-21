@@ -25,6 +25,9 @@ on:
 env:
   CI: true
 
+permissions: # added using https://github.com/step-security/secure-repo
+  contents: read
+
 jobs:
   lint:
     name: Lint
@@ -33,14 +36,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
       - name: 📚 Git Checkout
-        uses: actions/checkout@v3.5.2
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
           submodules: true
       - name: 📜 Install Poetry
         run: pipx install poetry
       - name: 🐦 Set up Python
-        uses: actions/setup-python@v4.6.0
+        uses: actions/setup-python@57ded4d7d5e986d7296eab16560982c6dd7c923b # v4.6.0
         with:
           python-version: ^11.0
           cache: "poetry"
