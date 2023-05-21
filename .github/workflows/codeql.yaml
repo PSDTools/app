@@ -33,8 +33,6 @@ on:
   # branch_protection_rule:
 
 permissions:
-  # Needed to upload the results to code-scanning dashboard.
-  security-events: write
   actions: read
   contents: read
   # Needed to access OIDC token.
@@ -46,6 +44,10 @@ jobs:
     needs: []
     timeout-minutes: 10
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+
+    permissions:
+      # Needed to upload the results to code-scanning dashboard.
+      security-events: write
 
     strategy:
       fail-fast: false
@@ -106,6 +108,10 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
+    permissions:
+      # Needed to upload the results to code-scanning dashboard.
+      security-events: write
+
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
@@ -133,6 +139,10 @@ jobs:
     needs: []
     timeout-minutes: 10
     runs-on: ubuntu-latest
+
+    permissions:
+      # Needed to upload the results to code-scanning dashboard.
+      security-events: write
 
     steps:
       - name: Harden Runner
