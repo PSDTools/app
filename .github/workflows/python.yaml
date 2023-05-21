@@ -1,0 +1,54 @@
+---
+name: Python
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.py"
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+    paths:
+      - "**.py"
+  merge_group:
+  schedule:
+    - cron: "0 14 * * 1" # every monday at 9 in the morning CST
+  workflow_dispatch:
+
+env:
+  CI: true
+
+jobs:
+  lint:
+    name: Lint
+    needs: []
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3.5.2
+        with:
+          submodules: true
+      - name: 📜 Install Poetry
+        run: pipx install poetry
+      - name: 🐦 Set up Python
+        uses: actions/setup-python@v4.6.0
+        with:
+          python-version: ^11.0
+          cache: "poetry"
+      - name: 📦 Install dependencies
+        run: poetry install --sync
+      - name: 🕵️ Lint
+        run: ruff .
