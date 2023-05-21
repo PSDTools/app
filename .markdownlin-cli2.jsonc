@@ -1,0 +1,6 @@
+{
+  "config": {},
+
+  // Disable inline config comments
+  "noInlineConfig": true
+}
