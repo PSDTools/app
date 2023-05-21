@@ -25,7 +25,7 @@ on:
       - "**.toml"
   merge_group:
   schedule:
-    - cron: "0 14 * * *" # every day at 9 in the morning CST
+    - cron: "0 14 * * 1" # every monday at 9 in the morning CST
   workflow_dispatch:
 
 env:
@@ -34,6 +34,8 @@ env:
 jobs:
   spell-check:
     name: Check Spelling
+    needs: []
+    timeout-minutes: 1
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
 
     with:
@@ -47,6 +49,8 @@ jobs:
 
   link-check:
     name: Check Links
+    needs: []
+    timeout-minutes: 2
     runs-on: ubuntu-latest
 
     steps:
@@ -59,6 +63,8 @@ jobs:
 
   markdownlint:
     name: Lint Markdown
+    needs: []
+    timeout-minutes: 4
     runs-on: ubuntu-latest
 
     steps:
