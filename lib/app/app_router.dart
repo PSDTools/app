@@ -1,7 +1,7 @@
 import "package:auto_route/auto_route.dart";
 
 import "../widgets/favorites/favorites.dart";
-import "../widgets/home/home.dart";
+import "../widgets/generator/generator.dart";
 import "../wrapper.dart";
 
 part "app_router.gr.dart";
@@ -14,12 +14,12 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+          page: WrapperRoute.page,
           path: "/",
-          page: MyHomeRoute.page,
           initial: true,
           children: [
-            AutoRoute(path: "", page: GeneratorRoute.page),
-            AutoRoute(path: "favorites", page: FavoritesRoute.page),
+            AutoRoute(page: GeneratorRoute.page, path: ""),
+            AutoRoute(page: FavoritesRoute.page, path: "favorites"),
           ],
         ),
         RedirectRoute(path: "*", redirectTo: "/"),

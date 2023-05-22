@@ -13,30 +13,29 @@ class BigCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.displayMedium!.copyWith(
+    final style = theme.textTheme.displayMedium?.copyWith(
       color: theme.colorScheme.onPrimary,
     );
+    const elevation = 2.0;
 
     return Card(
       color: theme.colorScheme.primary,
-      elevation: 2,
+      elevation: elevation,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
-          // Make sure that the compound word wraps correctly when the window
-          // is too narrow.
           child: MergeSemantics(
             child: Wrap(
               children: [
                 Text(
                   pair.first,
-                  style: style.copyWith(fontWeight: FontWeight.w200),
+                  style: style?.copyWith(fontWeight: FontWeight.w200),
                 ),
                 Text(
                   pair.second,
-                  style: style.copyWith(fontWeight: FontWeight.bold),
-                )
+                  style: style?.copyWith(fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),

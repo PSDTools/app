@@ -28,6 +28,7 @@ environment:
 
 dependency_overrides:
   cli_util: ^0.4.0
+  pub_updater: ^0.3.0
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -58,17 +59,10 @@ dev_dependencies:
   build_runner: ^2.4.4
   build_test: ^2.1.7
   custom_lint: ^0.4.0
-  # dart_code_metrics: ^5.7.0
-  # dart_code_metrics_presets: ^1.7.0
+  dart_code_metrics: ^5.7.4
+  dart_code_metrics_presets: ^1.8.0
   flutter_gen_runner: ^5.3.1
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^2.0.1
   flutter_scripts: ^0.0.3
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter

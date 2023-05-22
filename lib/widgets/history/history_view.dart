@@ -1,3 +1,6 @@
+import "dart:async";
+
+import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -13,6 +16,14 @@ class HistoryListView extends ConsumerStatefulWidget {
 }
 
 class HistoryListViewState extends ConsumerState<HistoryListView> {
+  /// Used to "fade out" the history items at the top, to suggest continuation.
+  static const Gradient _maskingGradient = LinearGradient(
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: [Colors.transparent, Colors.black],
+    stops: [0.0, 0.5],
+  );
+
   /// Needed so that [AppState] can tell [AnimatedList] below to animate
   /// new items.
   final _key = GlobalKey();
@@ -21,49 +32,41 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
   void initState() {
     super.initState();
     // "ref" can be used in all life-cycles of a StatefulWidget.
-    ref.read(globalAppStateProvider);
+    ref.read(appStateProvider);
   }
 
-  /// Used to "fade out" the history items at the top, to suggest continuation.
-  static const Gradient _maskingGradient = LinearGradient(
-    // This gradient goes from fully transparent to fully opaque black...
-    colors: [Colors.transparent, Colors.black],
-    // ... from the top (transparent) to half (0.5) of the way to the bottom.
-    stops: [0.0, 0.5],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
+  FutureOr<void> Function() onToggle(WordPair pair) {
+    return () => ref.read(appStateProvider.notifier).toggleFavorite(pair);
+  }
+
+  FutureOr<void> setKey() {
+    ref.read(appStateProvider.notifier).setKey(_key);
+  }
 
   @override
   Widget build(BuildContext context) {
-    final appState = ref.watch(globalAppStateProvider);
-    Future(() {
-      ref.read(globalAppStateProvider.notifier).setKey(_key);
-    });
+    final appState = ref.watch(appStateProvider);
+    Future(setKey);
 
     return ShaderMask(
       shaderCallback: (bounds) => _maskingGradient.createShader(bounds),
-      // This blend mode takes the opacity of the shader (i.e. our gradient)
-      // and applies it to the destination (i.e. our animated list).
+      // This blend mode takes the opacity of the shader (i.e. our gradient) and applies it to the destination (i.e. our animated list).
       blendMode: BlendMode.dstIn,
       child: AnimatedList(
         key: _key,
-        reverse: true,
-        padding: const EdgeInsets.only(top: 100),
-        initialItemCount: appState.history.length,
         itemBuilder: (context, index, animation) {
           final pair = appState.history[index];
+
           return SizeTransition(
             sizeFactor: animation,
             child: Center(
               child: TextButton.icon(
-                onPressed: () async {
-                  ref
-                      .read(globalAppStateProvider.notifier)
-                      .toggleFavorite(pair);
-                },
+                onPressed: onToggle(pair),
                 icon: appState.favorites.contains(pair)
-                    ? const Icon(Icons.favorite, size: 12)
+                    ? const Icon(
+                        Icons.favorite,
+                        size: 12,
+                      )
                     : const SizedBox(),
                 label: Text(
                   pair.asLowerCase,
@@ -73,6 +76,9 @@ class HistoryListViewState extends ConsumerState<HistoryListView> {
             ),
           );
         },
+        initialItemCount: appState.history.length,
+        reverse: true,
+        padding: const EdgeInsets.only(top: 100),
       ),
     );
   }

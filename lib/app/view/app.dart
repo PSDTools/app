@@ -4,11 +4,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../l10n/l10n.dart";
 import "../app_router.dart";
 
-class App extends ConsumerWidget {
-  App({super.key});
-
-  // make sure you don't initiate your router
-  // inside of the build function.
+mixin AppView on ConsumerWidget {
+  // Make sure you don't initiate your router inside of the build function.
   final _appRouter = AppRouter();
 
   @override
@@ -20,9 +17,9 @@ class App extends ConsumerWidget {
       routerConfig: _appRouter.config(),
       title: "PSD Wallet",
       theme: ThemeData(
-        appBarTheme: AppBarTheme(color: theme.primary),
         useMaterial3: true,
         colorScheme: theme,
+        appBarTheme: AppBarTheme(color: theme.primary),
       ),
       locale: flutterLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

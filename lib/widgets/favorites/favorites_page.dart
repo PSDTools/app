@@ -11,7 +11,7 @@ class FavoritesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appState = ref.watch(globalAppStateProvider);
+    final appState = ref.watch(appStateProvider);
 
     if (appState.favorites.isEmpty) {
       return const Center(
