@@ -62,11 +62,11 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 📚 Git Checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
@@ -84,18 +84,22 @@ jobs:
           # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
       - name: 🐦 Set up Flutter
+        if: ${{ matrix.language != 'python' }}
         uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
           channel: "stable"
           cache: true
       - name: 📦 Install dependencies
+        if: ${{ matrix.language != 'python' }}
         run: |
           flutter pub global activate very_good_cli
           very_good --analytics false
           very_good packages get --recursive
       - name: 🔌 Generate files
+        if: ${{ matrix.language != 'python' }}
         run: dart run build_runner build
       - name: 🔧 Build
+        if: ${{ matrix.language != 'python' }}
         run: flutter build apk --target lib/main_production.dart --debug
       - name: 🕵️ Perform CodeQL Analysis
         uses: github/codeql-action/analyze@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2.3.3
@@ -113,11 +117,11 @@ jobs:
       security-events: write
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 📚 Git Checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
@@ -145,11 +149,11 @@ jobs:
       security-events: write
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 📚 Git Checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
@@ -160,7 +164,7 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          publish_results: true
+          publish_results: ${{ github.event_name != 'pull_request' }}
       - name: ⚙️ Upload SARIF Logs
         uses: github/codeql-action/upload-sarif@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2.3.3
         with:

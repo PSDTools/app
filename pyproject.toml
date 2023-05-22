@@ -4,8 +4,10 @@ authors = [
 ]
 description = ""
 name = "server"
-packages = [{ include = "server", from = "src" }]
-readme = "README.md"
+packages = [
+  { include = "server", from = "server/src" },
+]
+readme = "server/README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]

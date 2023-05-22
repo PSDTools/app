@@ -13,7 +13,7 @@ updates:
       - "lishaduck"
 
   - package-ecosystem: "pip" # See documentation for possible values
-    directory: "/server" # Location of package manifests
+    directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
     assignees:

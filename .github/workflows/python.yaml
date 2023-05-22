@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "**.py"
   pull_request:
     branches:
       - main
@@ -14,9 +12,6 @@ on:
       - opened
       - synchronize
       - reopened
-      - closed
-    paths:
-      - "**.py"
   merge_group:
   schedule:
     - cron: "0 14 * * 1" # every monday at 9 in the morning CST
@@ -36,11 +31,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 📚 Git Checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
@@ -50,7 +45,7 @@ jobs:
       - name: 🐦 Set up Python
         uses: actions/setup-python@57ded4d7d5e986d7296eab16560982c6dd7c923b # v4.6.0
         with:
-          python-version: ^11.0
+          python-version: ^3.11.0
           cache: "poetry"
       - name: 📦 Install dependencies
         run: poetry install --sync

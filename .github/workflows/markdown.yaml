@@ -9,9 +9,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "**.md"
-      - "**.toml"
   pull_request:
     branches:
       - main
@@ -20,9 +17,6 @@ on:
       - synchronize
       - reopened
       - closed
-    paths:
-      - "**.md"
-      - "**.toml"
   merge_group:
   schedule:
     - cron: "0 14 * * 1" # every monday at 9 in the morning CST
@@ -56,11 +50,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 🪄 Link Check
         uses: gaurav-nelson/github-action-markdown-link-check@d53a906aa6b22b8979d33bc86170567e619495ec # 1.0.15
         with:
@@ -75,11 +69,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Harden Runner
+      - name: 🪨 Harden Runner
         uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
         with:
+          disable-sudo: true
           egress-policy: audit
-
       - name: 📚 Git Checkout
         uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
         with:
