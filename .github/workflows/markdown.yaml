@@ -1,0 +1,106 @@
+---
+name: Markdown
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.md"
+      - "**.toml"
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+    paths:
+      - "**.md"
+      - "**.toml"
+  merge_group:
+  schedule:
+    - cron: "0 14 * * 1" # every monday at 9 in the morning CST
+  workflow_dispatch:
+
+env:
+  CI: true
+
+permissions: # added using https://github.com/step-security/secure-repo
+  contents: read
+
+jobs:
+  spell-check:
+    name: Check Spelling
+    needs: []
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@9c12bb5e67b3ce4949750c99e2e27ee137741473 # v1.13.0
+
+    with:
+      includes: |
+        **/*.md
+        # **/*.dart
+        # **/*.yaml
+        **/*.toml
+      modified_files_only: false
+      config: cspell.json
+
+  link-check:
+    name: Check Links
+    needs: []
+    timeout-minutes: 2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
+      - name: 🪄 Link Check
+        uses: gaurav-nelson/github-action-markdown-link-check@d53a906aa6b22b8979d33bc86170567e619495ec # 1.0.15
+        with:
+          use-quiet-mode: "yes"
+          use-verbose-mode: "yes"
+          base-branch: "main"
+
+  markdownlint:
+    name: Lint Markdown
+    needs: []
+    timeout-minutes: 4
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@128a63446a954579617e875aaab7d2978154e969 # v2.4.0
+        with:
+          egress-policy: audit
+
+      - name: 📚 Git Checkout
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3.5.2
+        with:
+          submodules: true
+      - name: 🪄 Markdown Linting
+        uses: DavidAnson/markdownlint-cli2-action@bb4bb94c73936643d73d345b48fead3e96f90a5e # v10.0.1
+        id: markdownlint
+        with:
+          command: fix
+          globs: |
+            **/*.md
+        continue-on-error: true
+      - name: ⚙️ Make PR
+        uses: peter-evans/create-pull-request@284f54f989303d2699d373481a0cfa13ad5a6666 # v5.0.1
+        with:
+          commit-message: "chore: apply markdownlint fxes"
+          branch: fixes/${{ github.head_ref }}
+          base: ${{ github.head_ref }}
+          title: "Apply markdownlint fixes for ${{ github.event.pull_request.title }}"
+          body: "*This is an automated pull request because markdownlint found problems that could be fixed automatically.*"
+          reviewers: lishaduck
+          assignees: lishaduck
+          signoff: true
+          delete-branch: true
