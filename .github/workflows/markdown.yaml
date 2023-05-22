@@ -16,7 +16,6 @@ on:
       - opened
       - synchronize
       - reopened
-      - closed
   merge_group:
   schedule:
     - cron: "0 14 * * 1" # every monday at 9 in the morning CST
@@ -88,6 +87,7 @@ jobs:
         continue-on-error: true
       - name: ⚙️ Make PR
         uses: peter-evans/create-pull-request@284f54f989303d2699d373481a0cfa13ad5a6666 # v5.0.1
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           commit-message: "chore: apply markdownlint fxes"
           branch: fixes/${{ github.head_ref }}

@@ -35,8 +35,6 @@ on:
 permissions:
   actions: read
   contents: read
-  # Needed to access OIDC token.
-  id-token: write
 
 jobs:
   analyze:
@@ -164,7 +162,6 @@ jobs:
         with:
           results_file: results.sarif
           results_format: sarif
-          publish_results: ${{ github.event_name != 'pull_request' }}
       - name: ⚙️ Upload SARIF Logs
         uses: github/codeql-action/upload-sarif@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2.3.3
         with:
