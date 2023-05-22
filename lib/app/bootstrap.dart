@@ -3,7 +3,7 @@ import "dart:developer";
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "package:flutter_web_plugins/flutter_web_plugins.dart";
+import "package:flutter_web_plugins/url_strategy.dart";
 
 mixin Bootstrap on ConsumerWidget {
   Future<void> bootstrap() async {
