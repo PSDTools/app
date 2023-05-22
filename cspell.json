@@ -1,7 +1,10 @@
 {
   "version": "0.2",
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
-  "dictionaries": ["vgv_allowed", "vgv_forbidden"],
+  "dictionaries": [
+    "vgv_allowed",
+    "vgv_forbidden"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "vgv_allowed",
@@ -16,17 +19,20 @@
   ],
   "useGitignore": true,
   "words": [
+    "ARGB",
     "contador",
     "Contador",
     "Decap",
+    "fastapi",
     "Instructure",
     "localizable",
     "mostrado",
     "página",
     "Pattonville",
     "riverpod",
-    "Texto",
-    "fastapi"
+    "Texto"
   ],
-  "ignorePaths": ["lib/l10n/arb"]
+  "ignorePaths": [
+    "lib/l10n/arb"
+  ]
 }
