@@ -24,7 +24,7 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the
 [online documentation][flutter_docs], which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+samples, gUidance on mobile development, and a full API reference.
 
 ### Flavors
 
@@ -73,7 +73,7 @@ $ open coverage/index.html
 
 ## Working with Translations 🌐
 
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization gUide for Flutter][internationalization_link].
 
 ### Adding Strings
 
@@ -111,7 +111,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 import 'package:pirate_code_3/l10n/l10n.dart';
 
 @override
-Widget build(BuildContext context) {
+Widget bUild(BUildContext context) {
   final l10n = context.l10n;
   return Text(l10n.helloWorld);
 }
@@ -176,83 +176,51 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 C4Context
   title System Context diagram
 
-  Enterprise_Boundary(b0, "Pattonville") {
-    Person(customerA, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
-    Person(customerB, "Teachers", "A teacher, the one giving tokens.")
-    Person_Ext(customerC, "Student Council", "The ones removing tokens.")
-    Person_Ext(customerD, "Student", "The ones using tokens.")
-    Person_Ext(customerE, "Developers", "@PSDTools")
-    
-    Enterprise_Boundary(b6, "Pirate Wallet") {
-      Enterprise_Boundary(b3, "Pirate Coin") {
-        System(SystemAA, "UI", "The Prettiness")
-        System(SystemAB, "Logic", "The Magic")
+  Enterprise_Boundary(pattonville, "Pattonville") {
+    Person(admin, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
+    Person(teachers, "Teachers", "A teacher, the one giving tokens.")
+    Person_Ext(council, "Student Council", "The ones removing tokens.")
+    Person_Ext(students, "Student", "The ones using tokens.")
+
+    Enterprise_Boundary(wallet, "Pirate Wallet") {
+      Container_Boundary(Coin, "Pirate Coin") {
+        System(Ui, "UI", "The Prettiness")
+        System(Logic, "Logic", "The Magic")
       }
-      System_Boundary(b2, "Server") {
-        System(SystemF, "Blockchain")
+
+      Container_Boundary(server, "Server") {
+        ContainerQueue(Block, "Blockchain", "Quorum", "Where all transactions are stored.")
+        ContainerDb(Database, "Database", "NoSQL", "Where misc. info is stored.")
       }
+
     }
-    %% System(SystemAA, "Internet Banking System", "Allows customers to view information about their bank accounts, and make payments.")
 
-    %% Enterprise_Boundary(b1, "BankBoundary") {
-
-      %% SystemDb_Ext(SystemE, "Mainframe Banking System", "Stores all of the core banking information about customers, accounts, transactions, etc.")
-
-      %% System_Boundary(b2, "BankBoundary2") {
-        %% System(SystemA, "Banking System A")
-        %% System(SystemB, "Banking System B", "A system of the bank, with personal bank accounts. next line.")
-      %% }
-
-      %% System_Ext(SystemC, "E-mail system", "The internal Microsoft Exchange e-mail system.")
-      %% SystemDb(SystemD, "Banking System D Database", "A system of the bank, with personal bank accounts.")
-
-      %% Boundary(b3, "BankBoundary3", "boundary") {
-        %% SystemQueue(SystemF, "Banking System F Queue", "A system of the bank.")
-        %% SystemQueue_Ext(SystemG, "Banking System G Queue", "A system of the bank, with personal bank accounts.")
-      %% }
-    %% }
+    Person_Ext(developers, "Developers", "@PSDTools")
 
   }
 
 
-  Enterprise_Boundary(b4, "Instructure") {
-    Person(Instructure, "Developers")
+  Enterprise_Boundary(Instructure, "Instructure") {
+    Person_Ext(InstructureDevelopers, "Developers")
 
     System_Boundary(b5, "Canvas") {
       System(CanvasApp, "Canvas Application")
     }
+
   }
-%% Person(customerB, "Teachers", "A teacher, the one giving tokens.")
-    %%Person_Ext(customerC, "Student Council", "The ones removing tokens.")
-    %%Person_Ext(customerD, "Student", "The ones using tokens.")
-    %%Person_Ext(customerE, "Developers", "@PSDTools")
 
-  %% BiRel(customerA, SystemAA, "Uses")
-  Rel(Instructure, CanvasApp, "Makes")
-  Rel(SystemAB, SystemF, "Reads")
-  Rel(customerA, SystemAA, "Add, Remove, View trends")
-  Rel(customerB, SystemAA, "Add")
-  Rel(customerC, SystemAA, "Remove with Student permission")
-  Rel(customerD, SystemAA, "See Tokens")
-  Rel(customerE, SystemAA, "View trends")
-  BiRel(SystemAA, SystemAB, "Updates")
-
-  UpdateRelStyle(customerA, SystemAA, $textColor="red", $lineColor="red", $offsetX="30",$offsetY="-350")
-  UpdateRelStyle(customerB, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="-10",$offsetY="-240")
-  UpdateRelStyle(customerC, SystemAA, $textColor="green", $lineColor="green", $offsetY="-230",$offsetX="100")
-  UpdateRelStyle(customerD, SystemAA, $textColor="purple", $lineColor="purple", $offsetX="-120",$offsetY="-120")
-  UpdateRelStyle(customerE, SystemAA, $textColor="yellow", $lineColor="yellow", $offsetX="90",$offsetY="-120")
-  %% BiRel(SystemAA, SystemE, "Uses")
-  %% Rel(SystemAA, SystemC, "Sends e-mails", "SMTP")
-  %% Rel(SystemC, customerA, "Sends e-mails to")
-
-  %% UpdateElementStyle(customerA, $fontColor="red", $bgColor="grey", $borderColor="red")
-  %% UpdateRelStyle(customerA, SystemAA, $textColor="blue", $lineColor="blue", $offsetX="5")
-  %% UpdateRelStyle(SystemAA, SystemE, $textColor="blue", $lineColor="blue", $offsetY="-10")
-  %% UpdateRelStyle(SystemAA, SystemC, $textColor="blue", $lineColor="blue", $offsetY="-40", $offsetX="-50")
-  %% UpdateRelStyle(SystemC, customerA, $textColor="red", $lineColor="red", $offsetX="-50", $offsetY="20")
-
-  %% UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+  Rel(admin, Ui, "Uses")
+  Rel(InstructureDevelopers, CanvasApp, "Makes")
+  Rel(Logic, Block, "Reads")
+  Rel(admin, Ui, "Add, Remove, View trends")
+  Rel(teachers, Ui, "Add")
+  Rel(council, Ui, "Remove with Student permission")
+  Rel(students, Ui, "See Tokens")
+  Rel(developers, Ui, "Makes")
+  Rel(developers, Database, "Makes")
+  Rel(developers, Block, "Makes")
+  Rel(developers, Logic, "Makes")
+  Rel(Ui, Logic, "Updates", "Calls injected methods.")
 ```
 
 [ci_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yml/badge.svg?branch=main
