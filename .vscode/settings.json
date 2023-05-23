@@ -50,11 +50,12 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     ".replit": "replit.nix",
-    "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml, l10n.yaml, flutter_launcher_icons*.yaml",
+    "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml, l10n.yaml, flutter_launcher_icons*.yaml, custom_lint.log",
     "README.*": "*.md",
     "*.dart": "${capture}.*.dart, ${capture}_view.dart, ${capture}_page.dart, ${capture}_logic.dart",
     "main.dart": "main_*.dart",
-    "pyproject.toml": "poetry.lock"
+    "pyproject.toml": "poetry.lock",
+    ".markdownlint*": "cspell.json, mlc_config.json"
   },
   "python.analysis.typeCheckingMode": "basic"
 }
