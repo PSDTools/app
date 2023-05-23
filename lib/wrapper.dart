@@ -26,6 +26,7 @@ class WrapperPage extends ConsumerWidget {
           routes: const [
             GeneratorRoute(),
             FavoritesRoute(),
+            JimmyRoute(),
           ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
@@ -93,6 +94,10 @@ class _ExpandedWrapper extends ConsumerWidget {
                 icon: Icon(Icons.favorite),
                 label: Text("Favorites"),
               ),
+              NavigationRailDestination(
+                icon: Icon(Icons.face_2_sharp),
+                label: Text("Jimmy"),
+              ),
             ],
             selectedIndex: tabsRouter.activeIndex,
             onDestinationSelected: tabsRouter.setActiveIndex,
@@ -140,6 +145,10 @@ class _MobileWrapper extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
             label: "Favorites",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.face_2_sharp),
+            label: "Jimmy",
           ),
         ],
         onTap: tabsRouter.setActiveIndex,
