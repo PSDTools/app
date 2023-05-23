@@ -11,13 +11,30 @@ readme = "server/README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-fastapi = "^0.95.2"
-python  = "^3.10"
-rich    = "^13.3.5"
+fastapi = { version = "^0.95.2", extras = [
+  "all",
+] }
+python = "^3.10"
+rich = "^13.3.5"
+strawberry-graphql = { version = "^0.178.0", extras = [
+  "fastapi",
+] }
+typing-extensions = "^4.5.0"
 
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.269"
+
+[tool.ruff]
+ignore = ["D203", "D213", "D400", "E501"]
+select = ["ALL"]
+
+respect-gitignore = true
+src               = ["./server/src"]
+
+
+[tool.ruff.isort]
+
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

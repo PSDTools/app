@@ -53,6 +53,8 @@
     "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml, l10n.yaml, flutter_launcher_icons*.yaml",
     "README.*": "*.md",
     "*.dart": "${capture}.*.dart, ${capture}_view.dart, ${capture}_page.dart, ${capture}_logic.dart",
-    "main.dart": "main_*.dart"
-  }
+    "main.dart": "main_*.dart",
+    "pyproject.toml": "poetry.lock"
+  },
+  "python.analysis.typeCheckingMode": "basic"
 }
