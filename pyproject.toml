@@ -25,15 +25,13 @@ typing-extensions = "^4.5.0"
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.269"
 
+
 [tool.ruff]
 ignore = ["D203", "D213", "D400", "E501"]
 select = ["ALL"]
 
 respect-gitignore = true
 src               = ["./server/src"]
-
-
-[tool.ruff.isort]
 
 
 [build-system]
