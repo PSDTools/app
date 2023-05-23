@@ -12,12 +12,6 @@ import "app/app_router.dart";
 class WrapperPage extends ConsumerWidget {
   const WrapperPage({super.key});
 
-  static const mobileTabs = [
-    Tab(text: "1", icon: Icon(Icons.abc)),
-    Tab(text: "2", icon: Icon(Icons.abc)),
-    Tab(text: "3", icon: Icon(Icons.abc)),
-  ];
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return LayoutBuilder(
@@ -42,7 +36,7 @@ class WrapperPage extends ConsumerWidget {
             }
 
             final page = constraints.maxWidth < 450
-                ? _MobileWrapper(mobileTabs: mobileTabs, child: child)
+                ? _MobileWrapper(child: child)
                 : _ExpandedWrapper(constraints: constraints, child: child);
 
             return WillPopScope(
@@ -50,10 +44,7 @@ class WrapperPage extends ConsumerWidget {
               child: SafeArea(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: DefaultTabController(
-                    length: mobileTabs.length,
-                    child: page,
-                  ),
+                  child: page,
                 ),
               ),
             );
@@ -116,14 +107,12 @@ class _ExpandedWrapper extends ConsumerWidget {
 class _MobileWrapper extends ConsumerWidget {
   const _MobileWrapper({
     required this.child,
-    required this.mobileTabs,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
   final Widget child;
-  final List<Tab> mobileTabs;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -133,7 +122,6 @@ class _MobileWrapper extends ConsumerWidget {
       appBar: AppBar(
         leading: const AutoLeadingButton(),
         title: Text(context.topRoute.name),
-        bottom: TabBar(tabs: mobileTabs),
       ),
       body: _MainArea(child: child),
       bottomNavigationBar: BottomNavigationBar(

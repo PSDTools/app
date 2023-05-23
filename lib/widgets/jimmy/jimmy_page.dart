@@ -2,6 +2,8 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../gen/assets.gen.dart";
+
 @RoutePage()
 class JimmyPage extends ConsumerWidget {
   const JimmyPage({super.key});
@@ -13,38 +15,114 @@ class JimmyPage extends ConsumerWidget {
         primary: false,
         padding: const EdgeInsets.all(20),
         crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.teal[100],
-            child: const Text("He'd have you all unravel at the"),
+            padding: const EdgeInsets.all(16),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 253, 255, 178),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: Column(
+              children: <Widget>[
+                const FittedBox(
+                  fit: BoxFit.cover,
+                  child: Text(
+                    "Pirate Coins",
+                    style: TextStyle(fontSize: 80),
+                  ),
+                ),
+                FittedBox(
+                  fit: BoxFit.fitHeight,
+                  child: Image.asset(
+                    Assets.images.treasure.path,
+                  ),
+                ),
+              ],
+            ),
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.teal[200],
-            child: const Text("Heed not the rabble"),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 242, 184, 184),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: const Text(" "),
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.teal[300],
-            child: const Text("Sound of screams but the"),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 178, 254, 186),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: const Text(" "),
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.teal[400],
-            child: const Text("Who scream"),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 249, 183, 255),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: const Text(" "),
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.teal[500],
-            child: const Text("Revolution is coming..."),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 187, 198, 255),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: const Text(" "),
           ),
           Container(
             padding: const EdgeInsets.all(8),
-            color: Colors.teal[600],
-            child: const Text("Revolution, they..."),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 255, 205, 130),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(59, 0, 0, 0),
+                  offset: Offset.zero,
+                  blurRadius: 10,
+                ),
+              ],
+            ),
+            child: const Text(" "),
           ),
         ],
       ),
