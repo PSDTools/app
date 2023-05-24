@@ -11,13 +11,15 @@ class JimmyPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
-      child: GridView.count(
+      child: GridView(
         primary: false,
         padding: const EdgeInsets.all(20),
-        crossAxisCount: 2,
-        mainAxisSpacing: 20,
-        crossAxisSpacing: 20,
-        children: <Widget>[
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 400,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 20,
+        ),
+        children: [
           Container(
             padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
@@ -26,7 +28,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
@@ -35,16 +36,11 @@ class JimmyPage extends ConsumerWidget {
               children: <Widget>[
                 const FittedBox(
                   fit: BoxFit.cover,
-                  child: Text(
-                    "Pirate Coins",
-                    style: TextStyle(fontSize: 80),
-                  ),
+                  child: Text("Pirate Coins", style: TextStyle(fontSize: 80)),
                 ),
                 FittedBox(
                   fit: BoxFit.fitHeight,
-                  child: Image.asset(
-                    Assets.images.treasure.path,
-                  ),
+                  child: Image.asset(Assets.images.treasure.path),
                 ),
               ],
             ),
@@ -57,7 +53,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
@@ -72,7 +67,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
@@ -87,7 +81,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
@@ -102,7 +95,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
@@ -117,7 +109,6 @@ class JimmyPage extends ConsumerWidget {
               boxShadow: [
                 BoxShadow(
                   color: Color.fromARGB(59, 0, 0, 0),
-                  offset: Offset.zero,
                   blurRadius: 10,
                 ),
               ],
