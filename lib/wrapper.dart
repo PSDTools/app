@@ -75,7 +75,7 @@ class _ExpandedWrapper extends ConsumerWidget {
       body: Row(
         children: [
           NavigationRail(
-            extended: constraints.maxWidth >= 600,
+            extended: constraints.maxWidth >= 100000,
             destinations: const [
               NavigationRailDestination(
                 icon: Icon(Icons.home),
