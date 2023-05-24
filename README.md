@@ -3,6 +3,8 @@
 [![Netlify Status][deploys_badge]][deploys_link]
 [![Dart][ci_dart_badge]][ci_dart_link]
 [![coverage][coverage_badge]][ci_dart_link]
+[![Python][ci_python_badge]][ci_python_link]
+[![CodeQL][ci_sec_badge]][ci_sec_link]
 [![spelling][ci_spell_badge]][ci_spell_link]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 
@@ -226,9 +228,13 @@ C4Context
 
 [ci_dart_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yaml/badge.svg?branch=main
 [ci_dart_link]: https://github.com/PSDTools/app/actions/workflows/dart.yaml
+[ci_python_badge]: https://github.com/PSDTools/app/actions/workflows/python.yaml/badge.svg?branch=main
+[ci_python_link]: https://github.com/PSDTools/app/actions/workflows/python.yaml
+[ci_sec_badge]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml/badge.svg?branch=main
+[ci_sec_link]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml
 [ci_spell_badge]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml/badge.svg?branch=main
 [ci_spell_link]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml
-[coverage_badge]: https://img.shields.io/badge/coverage-11%25-CB2431.svg
+[coverage_badge]: https://img.shields.io/badge/dart%20coverage-11%25-CB2431.svg
 [deploys_badge]: https://api.netlify.com/api/v1/badges/25b0c44e-21b7-423c-a914-32aa4b23b708/deploy-status
 [deploys_link]: https://app.netlify.com/sites/pattonville-wallet/deploys
 [flutter_codelab]: https://docs.flutter.dev/get-started/codelab
