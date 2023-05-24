@@ -59,6 +59,7 @@ jobs:
             lib/**/*.g.dart
             lib/**/*.gr.dart
             lib/**/*.freezed.dart
+            lib/gen/**/*.dart
           if-no-files-found: error
 
   check:
