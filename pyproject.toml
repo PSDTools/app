@@ -23,7 +23,7 @@ typing-extensions = "^4.6.1"
 
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.269"
+ruff = "^0.0.270"
 
 
 [tool.ruff]
