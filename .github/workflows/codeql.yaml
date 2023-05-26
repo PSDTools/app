@@ -67,7 +67,7 @@ jobs:
           persist-credentials: false
       # Initializes the CodeQL tools for scanning.
       - name: ⚙️ Initialize CodeQL
-        uses: github/codeql-action/init@f0e3dfb30302f8a0881bb509b044e0de4f6ef589 # v2.3.4
+        uses: github/codeql-action/init@0225834cc549ee0ca93cb085b92954821a145866 # v2.3.4
         with:
           languages: ${{ matrix.language }}
           # If you wish to specify custom queries, you can do so here or in a config file.
@@ -95,7 +95,7 @@ jobs:
         if: ${{ matrix.language != 'python' }}
         run: flutter build apk --target lib/main_production.dart --debug
       - name: 🕵️ Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@f0e3dfb30302f8a0881bb509b044e0de4f6ef589 # v2.3.4
+        uses: github/codeql-action/analyze@0225834cc549ee0ca93cb085b92954821a145866 # v2.3.4
         with:
           category: "/language:${{matrix.language}}"
 
@@ -122,7 +122,7 @@ jobs:
           output-filename: devskim-results.sarif
           ignore-globs: "**/.git/**,*.txt"
       - name: ⚙️ Upload SARIF Logs
-        uses: github/codeql-action/upload-sarif@f0e3dfb30302f8a0881bb509b044e0de4f6ef589 # v2.3.4
+        uses: github/codeql-action/upload-sarif@0225834cc549ee0ca93cb085b92954821a145866 # v2.3.4
         with:
           sarif_file: devskim-results.sarif
 
@@ -148,6 +148,6 @@ jobs:
           results_file: results.sarif
           results_format: sarif
       - name: ⚙️ Upload SARIF Logs
-        uses: github/codeql-action/upload-sarif@29b1f65c5e92e24fe6b6647da1eaabe529cec70f # v2.3.3
+        uses: github/codeql-action/upload-sarif@0225834cc549ee0ca93cb085b92954821a145866 # v2.3.5
         with:
           sarif_file: results.sarif
