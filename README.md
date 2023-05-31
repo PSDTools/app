@@ -114,7 +114,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 import 'package:pirate_code_3/l10n/l10n.dart';
 
 @override
-Widget bUild(BUildContext context) {
+Widget build(BUildContext context) {
   final l10n = context.l10n;
   return Text(l10n.helloWorld);
 }
