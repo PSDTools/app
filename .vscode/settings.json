@@ -57,5 +57,6 @@
     "pyproject.toml": "poetry.lock",
     ".markdownlint*": "cspell.json, mlc_config.json"
   },
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "sarif-viewer.connectToGithubCodeScanning": "on"
 }
