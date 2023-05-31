@@ -1,4 +1,4 @@
-package org.psdr3.pirate_code_3
+package org.psdr3.pirate_code
 
 import io.flutter.embedding.android.FlutterActivity
 

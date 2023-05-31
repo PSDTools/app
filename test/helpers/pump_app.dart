@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:pirate_code_3/l10n/l10n.dart";
+import "package:pirate_code/l10n/l10n.dart";
 
 // This isn't a test.
 // ignore: avoid-top-level-members-in-tests

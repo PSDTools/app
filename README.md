@@ -111,7 +111,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 1. Use the new string
 
 ```dart
-import 'package:pirate_code_3/l10n/l10n.dart';
+import 'package:pirate_code/l10n/l10n.dart';
 
 @override
 Widget build(BUildContext context) {
