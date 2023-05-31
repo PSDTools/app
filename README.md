@@ -27,7 +27,7 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter development, view the
 [online documentation][flutter_docs], which offers tutorials,
-samples, gUidance on mobile development, and a full API reference.
+samples, guidance on mobile development, and a full API reference.
 
 ### Flavors
 
@@ -76,7 +76,7 @@ $ open coverage/index.html
 
 ## Working with Translations 🌐
 
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization gUide for Flutter][internationalization_link].
+This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
 ### Adding Strings
 
