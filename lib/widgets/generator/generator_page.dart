@@ -4,7 +4,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../model.dart";
 
-// import "../big_card/big_card.dart";
+import "../big_card/big_card.dart";
 import "../history/history.dart";
 
 @RoutePage()
@@ -30,7 +30,7 @@ class GeneratorPage extends ConsumerWidget {
             child: HistoryListView(),
           ),
           const SizedBox(height: 10),
-          // BigCard(text: null, pair: pair,),
+          BigCard(pair: pair),
           const SizedBox(height: 10),
           Row(
             mainAxisSize: MainAxisSize.min,
