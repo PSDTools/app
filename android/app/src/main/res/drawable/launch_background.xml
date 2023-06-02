@@ -9,5 +9,4 @@
             android:gravity="center"
             android:src="@mipmap/launch_image" />
     </item> -->
-    <item android:gravity="center" android:drawable="@drawable/ic_launch_image" />
 </layer-list>
