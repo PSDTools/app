@@ -1,3 +1,9 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -21,15 +27,11 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+// def keystoreProperties = new Properties()
+// def keystorePropertiesFile = rootProject.file('key.properties')
+// if (keystorePropertiesFile.exists()) {
+//     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+// }
 
 android {
     namespace "org.psdr3.pirate_code"
@@ -60,52 +62,54 @@ android {
         versionName flutterVersionName
     }
 
-    signingConfigs {
-        if (System.getenv("ANDROID_KEYSTORE_PATH")) {
-            release {
-                storeFile file(System.getenv("ANDROID_KEYSTORE_PATH"))
-                keyAlias System.getenv("ANDROID_KEYSTORE_ALIAS")
-                keyPassword System.getenv("ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-                storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
-            }
-        } else {
-            release {
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-                storePassword keystoreProperties['storePassword']
-            }
-        }
-    }
+    // signingConfigs {
+    //     if (System.getenv("ANDROID_KEYSTORE_PATH")) {
+    //         release {
+    //             storeFile file(System.getenv("ANDROID_KEYSTORE_PATH"))
+    //             keyAlias System.getenv("ANDROID_KEYSTORE_ALIAS")
+    //             keyPassword System.getenv("ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+    //             storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+    //         }
+    //     } else {
+    //         release {
+    //             keyAlias keystoreProperties['keyAlias']
+    //             keyPassword keystoreProperties['keyPassword']
+    //             storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+    //             storePassword keystoreProperties['storePassword']
+    //         }
+    //     }
+    // }
 
-    flavorDimensions "default"
-    productFlavors { 
-        production {
-            dimension "default"
-            applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Pirate Code 3.0"]
-        }
-        staging {
-            dimension "default"
-            applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Pirate Code 3.0"]
-        }
-        development {
-            dimension "default"
-            applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Pirate Code 3.0"]
-        }
-    }
+    // flavorDimensions "default"
+    // productFlavors {
+    //     production {
+    //         dimension "default"
+    //         applicationIdSuffix ""
+    //         manifestPlaceholders = [appName: "Pirate Code 3.0"]
+    //     }
+    //     staging {
+    //         dimension "default"
+    //         applicationIdSuffix ".stg"
+    //         manifestPlaceholders = [appName: "[STG] Pirate Code 3.0"]
+    //     }
+    //     development {
+    //         dimension "default"
+    //         applicationIdSuffix ".dev"
+    //         manifestPlaceholders = [appName: "[DEV] Pirate Code 3.0"]
+    //     }
+    // }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            signingConfig signingConfigs.release
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt')
+            // // TODO: Add your own signing config for the release build.
+            // signingConfig signingConfigs.release
+            // minifyEnabled true
+            // proguardFiles getDefaultProguardFile('proguard-android.txt')
+
+            // Signing with the debug keys for now, so `flutter run --release` works.
+            signingConfig signingConfigs.debug
         }
         debug {
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
     }
@@ -115,6 +119,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
+dependencies {}
