@@ -1,1 +1,1 @@
-export 'pirate_coins_page.dart';
+export "pirate_coins_page.dart";
