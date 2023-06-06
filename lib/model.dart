@@ -13,6 +13,7 @@ class Model with _$Model {
     required WordPair current,
     required List<WordPair> history,
     required Set<WordPair> favorites,
+    required int coins,
     GlobalKey? historyListKey,
   }) = _Model;
 }
@@ -25,6 +26,7 @@ class AppState extends _$AppState {
       current: WordPair.random(),
       history: [],
       favorites: {},
+      coins: 0,
     );
   }
 

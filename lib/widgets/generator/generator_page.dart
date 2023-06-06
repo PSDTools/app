@@ -30,7 +30,7 @@ class GeneratorPage extends ConsumerWidget {
             child: HistoryListView(),
           ),
           const SizedBox(height: 10),
-          BigCard(pair: pair),
+          BigCard("", pair: pair),
           const SizedBox(height: 10),
           Row(
             mainAxisSize: MainAxisSize.min,

@@ -2,7 +2,8 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-// import '../../model.dart';
+import "../../model.dart";
+import "../big_card/big_card.dart";
 
 @RoutePage()
 class PirateCoinsPage extends ConsumerWidget {
@@ -10,21 +11,16 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final appState = ref.watch(appStateProvider);
-    const data = "All of them coins!";
+    final appState = ref.watch(appStateProvider);
+    final data = appState.coins;
 
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: const Padding(
-              padding: EdgeInsets.all(500),
-              child: Text(data),
-            ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: BigCard(data.toString()),
           ),
         ],
       ),
