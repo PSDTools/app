@@ -55,7 +55,6 @@ dart_code_metrics:
     - package:dart_code_metrics_presets/all.yaml
     - package:dart_code_metrics_presets/pub.yaml
     - package:dart_code_metrics_presets/intl.yaml
-    - package:dart_code_metrics_presets/pub.yaml
   anti-patterns:
     - long-method
     - long-parameter-list
