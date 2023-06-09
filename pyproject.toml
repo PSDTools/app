@@ -11,7 +11,7 @@ readme = "server/README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-fastapi = { version = "^0.95.2", extras = [
+fastapi = { version = "^0.96.0", extras = [
   "all",
 ] }
 python = "^3.10"
