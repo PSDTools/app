@@ -19,8 +19,10 @@ class _BootstrapMixed extends ConsumerWidget with Bootstrap {
 }
 
 void main() {
-  group("Bootstrappin' Tests", () {
-    testWidgets("Test the boots", (tester) async {
+  group("Bootstrappin' Tests!", () {
+    testWidgets("Test the boots...", (tester) async {
+      const tested = _BootstrapMixed();
+      await tested.bootstrap(); // No exception, we hope.
       await tester.pumpApp(const _BootstrapMixed());
       expect(find.text(""), findsOneWidget);
     });
