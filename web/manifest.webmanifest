@@ -1,6 +1,6 @@
 {
-  "name": "pirate_code",
-  "short_name": "pirate_code",
+  "name": "Pirate Code 3.0",
+  "short_name": "Pirate Code",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#0175C2",
