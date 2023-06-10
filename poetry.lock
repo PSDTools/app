@@ -93,13 +93,13 @@ idna = ">=2.0.0"
 
 [[package]]
 name = "fastapi"
-version = "0.95.2"
+version = "0.96.1"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "fastapi-0.95.2-py3-none-any.whl", hash = "sha256:d374dbc4ef2ad9b803899bd3360d34c534adc574546e25314ab72c0c4411749f"},
-    {file = "fastapi-0.95.2.tar.gz", hash = "sha256:4d9d3e8c71c73f11874bcf5e33626258d143252e329a01002f767306c64fb982"},
+    {file = "fastapi-0.96.1-py3-none-any.whl", hash = "sha256:22d773ce95f14f04f8f37a0c8998fc163e67af83b65510d2879de6cbaaa10215"},
+    {file = "fastapi-0.96.1.tar.gz", hash = "sha256:5c1d243030e63089ccfc0aec69c2da6d619943917727e8e82ee502358d5119bf"},
 ]
 
 [package.dependencies]
@@ -108,7 +108,7 @@ httpx = {version = ">=0.23.0", optional = true, markers = "extra == \"all\""}
 itsdangerous = {version = ">=1.1.0", optional = true, markers = "extra == \"all\""}
 jinja2 = {version = ">=2.11.2", optional = true, markers = "extra == \"all\""}
 orjson = {version = ">=3.2.1", optional = true, markers = "extra == \"all\""}
-pydantic = ">=1.6.2,<1.7 || >1.7,<1.7.1 || >1.7.1,<1.7.2 || >1.7.2,<1.7.3 || >1.7.3,<1.8 || >1.8,<1.8.1 || >1.8.1,<2.0.0"
+pydantic = ">=1.7.4,<1.8 || >1.8,<1.8.1 || >1.8.1,<2.0.0"
 python-multipart = {version = ">=0.0.5", optional = true, markers = "extra == \"all\""}
 pyyaml = {version = ">=5.3.1", optional = true, markers = "extra == \"all\""}
 starlette = ">=0.27.0,<0.28.0"
@@ -973,4 +973,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "aa981bf1b6678b436bcaf344a720a2021336a103ea787f1a63122054740dfc50"
+content-hash = "8b395163df98f51327be8153e71c3db929c303cc5b6ceae4867b0aca80534013"
