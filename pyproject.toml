@@ -19,7 +19,7 @@ rich = "^13.4.1"
 strawberry-graphql = { version = "^0.183.6", extras = [
   "fastapi",
 ] }
-typing-extensions = "^4.6.2"
+typing-extensions = "^4.6.3"
 
 
 [tool.poetry.group.dev.dependencies]
