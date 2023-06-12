@@ -6,6 +6,8 @@ It might be made with [FastAPI](https://fastapi.tiangolo.com/) and possibly [Str
 
 from __future__ import annotations
 
+import asyncio
+
 import uvicorn
 from fastapi import FastAPI
 from rich import traceback
@@ -14,16 +16,18 @@ app: FastAPI = FastAPI()
 
 
 @app.get("/")
-def read_root() -> dict[str, str]:
+async def read_root() -> dict[str, str]:
     """Say hello to the world."""
     return {"Hello": "World"}
 
 
-def main() -> None:
+async def main() -> None:
     """Run the program."""
-    uvicorn.run(app, host="localhost", port=8000)
+    config = uvicorn.Config(app, port=8080, host="127.0.0.1", log_level="info")
+    server = uvicorn.Server(config)
+    await server.serve()
 
 
 if __name__ == "__main__":
     traceback.install()
-    main()
+    asyncio.run(main())
