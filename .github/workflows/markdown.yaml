@@ -39,6 +39,7 @@ jobs:
         # **/*.dart
         # **/*.yaml
         **/*.toml
+        **/*.py
       modified_files_only: false
       config: cspell.json
 
