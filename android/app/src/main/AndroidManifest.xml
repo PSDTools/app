@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.psdr3.pirate_code">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.psdr3.pirate_code"> <!-- DevSkim: ignore DS137138 -->
    <application
         android:label="pirate_code"
         android:name="${applicationName}"
