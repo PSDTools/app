@@ -30,7 +30,8 @@
     "página",
     "Pattonville",
     "riverpod",
-    "Texto"
+    "Texto",
+    "uvicorn"
   ],
   "ignorePaths": [
     "lib/l10n/arb"
