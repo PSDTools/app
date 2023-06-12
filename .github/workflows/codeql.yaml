@@ -44,8 +44,6 @@ jobs:
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
 
     permissions:
-      actions: read
-      contents: read
       # Needed to upload the results to code-scanning dashboard.
       security-events: write
 
@@ -56,7 +54,7 @@ jobs:
           # - "cpp" # broken right now
           - "java"
           - "python"
-          - "swift"
+          # - "swift"
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
         # Use only 'java' to analyze code written in Java, Kotlin or both
         # Use only 'javascript' to analyze code written in JavaScript, TypeScript or both
