@@ -23,7 +23,7 @@ async def read_root() -> dict[str, str]:
 
 async def main() -> None:
     """Run the program."""
-    config = uvicorn.Config(app, port=8080, host="127.0.0.1", log_level="info")
+    config = uvicorn.Config(app, port=8080, log_level="info")
     server = uvicorn.Server(config)
     await server.serve()
 
