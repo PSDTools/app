@@ -15,7 +15,7 @@ fastapi = { version = "^0.97.0", extras = [
   "all",
 ] }
 python = "^3.10"
-rich = "^13.4.1"
+rich = "^13.4.2"
 strawberry-graphql = { version = "^0.183.6", extras = [
   "fastapi",
 ] }
