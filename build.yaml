@@ -1,15 +1,32 @@
 targets:
   $default:
+    sources:
+      include:
+        - lib/**.dart
+        # required
+        - pubspec.*
+        ## synthetic files
+        - $package$
+        - lib/$lib$
     builders:
       auto_route_generator:auto_route_generator:
         # configs for @RoutePage() generator...
         options:
           enable_cached_builds: true
         generate_for:
-          - lib/**.dart
+          - lib/widgets/**.dart
       auto_route_generator:auto_router_generator:
         # configs for @AutoRouterConfig() generator...
         options:
           enable_cached_builds: true
         generate_for:
-          - lib/**.dart
+          - lib/app/app_router.dart
+      freezed:freezed:
+        generate_for:
+          - lib/providers/**.dart
+      riverpod_generator:riverpod_generator:
+        generate_for:
+          - lib/providers/**.dart
+      flutter_gen_runner:flutter_gen_runner:
+        generate_for:
+          - pubspec.yaml
