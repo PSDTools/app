@@ -18,8 +18,6 @@ class WrapperPage extends ConsumerWidget {
       builder: (context, constraints) {
         return AutoTabsRouter(
           routes: const [
-            GeneratorRoute(),
-            FavoritesRoute(),
             PirateCoinsRoute(),
           ],
           duration: const Duration(milliseconds: 200),
@@ -82,14 +80,6 @@ class _ExpandedWrapper extends ConsumerWidget {
             extended: large,
             destinations: const [
               NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text("Home"),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.favorite),
-                label: Text("Favorites"),
-              ),
-              NavigationRailDestination(
                 icon: Icon(Icons.currency_bitcoin_outlined),
                 label: Text("Pirate Coins!"),
               ),
@@ -130,14 +120,6 @@ class _MobileWrapper extends ConsumerWidget {
       body: _MainArea(child: child),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorites",
-          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.currency_bitcoin_outlined),
             label: "Pirate Coins!",

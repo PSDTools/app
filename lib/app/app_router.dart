@@ -1,7 +1,5 @@
 import "package:auto_route/auto_route.dart";
 
-import "../widgets/favorites/favorites.dart";
-import "../widgets/generator/generator.dart";
 import "../widgets/pirate_coins/pirate_coins.dart";
 import "../widgets/wrapper/wrapper.dart";
 
@@ -19,9 +17,7 @@ class AppRouter extends _$AppRouter {
           path: "/",
           initial: true,
           children: [
-            AutoRoute(page: GeneratorRoute.page, path: ""),
-            AutoRoute(page: FavoritesRoute.page, path: "favorites"),
-            AutoRoute(page: PirateCoinsRoute.page, path: "pirate_coins"),
+            AutoRoute(page: PirateCoinsRoute.page, path: ""),
           ],
         ),
         RedirectRoute(path: "*", redirectTo: "/"),
