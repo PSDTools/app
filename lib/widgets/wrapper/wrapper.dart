@@ -2,7 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "app/app_router.dart";
+import "../../app/app_router.dart";
 
 /// With lots and lots and lots and lots of thanks to many, including:
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),

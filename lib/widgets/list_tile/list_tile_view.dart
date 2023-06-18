@@ -2,7 +2,7 @@ import "package:english_words/english_words.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../model.dart";
+import "../../providers/model.dart";
 
 class FavListTile extends ConsumerWidget {
   const FavListTile({

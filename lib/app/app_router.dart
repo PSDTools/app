@@ -3,7 +3,7 @@ import "package:auto_route/auto_route.dart";
 import "../widgets/favorites/favorites.dart";
 import "../widgets/generator/generator.dart";
 import "../widgets/pirate_coins/pirate_coins.dart";
-import "../wrapper.dart";
+import "../widgets/wrapper/wrapper.dart";
 
 part "app_router.gr.dart";
 

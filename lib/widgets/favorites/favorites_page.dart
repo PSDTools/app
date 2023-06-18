@@ -2,7 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../model.dart";
+import "../../providers/model.dart";
 import "../list_tile/list_tile.dart";
 
 @RoutePage()
