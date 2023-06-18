@@ -35,7 +35,9 @@ class WrapperPage extends ConsumerWidget {
               return atHomeTab;
             }
 
-            final page = constraints.maxWidth < 450
+            final small = constraints.maxWidth < 450;
+
+            final page = small
                 ? _MobileWrapper(child: child)
                 : _ExpandedWrapper(constraints: constraints, child: child);
 
@@ -71,11 +73,13 @@ class _ExpandedWrapper extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final tabsRouter = AutoTabsRouter.of(context);
 
+    final large = constraints.maxWidth >= 600;
+
     return Scaffold(
       body: Row(
         children: [
           NavigationRail(
-            extended: constraints.maxWidth >= 600,
+            extended: large,
             destinations: const [
               NavigationRailDestination(
                 icon: Icon(Icons.home),
