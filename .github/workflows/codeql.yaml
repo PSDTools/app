@@ -40,6 +40,7 @@ jobs:
   analyze:
     name: Analyze
     needs: []
+    if: ${{ github.event_name != 'merge_group' }}
     runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
 
@@ -110,6 +111,7 @@ jobs:
   devskim:
     name: DevSkim
     needs: []
+    if: ${{ github.event_name != 'merge_group' }}
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
