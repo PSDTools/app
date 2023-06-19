@@ -84,6 +84,7 @@ dart_code_metrics:
     - "**/*.g.dart"
     - "**/*.gr.dart"
     - "**/*.freezed.dart"
+    - "**/*.gen.dart"
   rules:
     - arguments-ordering:
         child-last: true

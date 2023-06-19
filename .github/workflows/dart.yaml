@@ -46,9 +46,11 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: 🔌 Generate files
-        run: dart run build_runner build
+        run: |
+          dart run dart_define generate --FLAVOR=production
+          dart run build_runner build
       - name: 🔧 Build
-        run: flutter build web --target lib/main_production.dart --release
+        run: flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
       - name: ⚙️ Upload generated files
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:

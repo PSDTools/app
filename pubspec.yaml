@@ -38,6 +38,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
+  dart_define: ^1.0.4
   english_words: ^4.0.0
   flutter:
     sdk: flutter
@@ -113,3 +114,18 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+dart_define:
+  variables:
+    - name: PROJECT_ID
+      description: Appwrite project ID
+      default: 648b3836d14e06cddc4e
+      required: false
+
+  flavors:
+    - name: production
+      description: The production flavor
+    - name: staging
+      description: The staging flavor
+    - name: development
+      description: The development flavor

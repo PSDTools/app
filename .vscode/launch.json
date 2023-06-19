@@ -13,7 +13,8 @@
         "--flavor",
         "development",
         "--target",
-        "lib/main_development.dart"
+        "lib/main_development.dart",
+        "--dart-define-from-file=dart_define.json"
       ],
       "flutterMode": "debug"
     },
@@ -22,7 +23,13 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main_staging.dart",
-      "args": ["--flavor", "staging", "--target", "lib/main_staging.dart"],
+      "args": [
+        "--flavor",
+        "staging",
+        "--target",
+        "lib/main_staging.dart",
+        "--dart-define-from-file=dart_define.json"
+      ],
       "flutterMode": "profile"
     },
     {
@@ -34,7 +41,8 @@
         "--flavor",
         "production",
         "--target",
-        "lib/main_production.dart"
+        "lib/main_production.dart",
+        "--dart-define-from-file=dart_define.json"
       ],
       "flutterMode": "release"
     }

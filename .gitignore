@@ -1,3 +1,7 @@
+# Env managment
+lib/dart_define.gen.dart
+dart_define.json
+
 # Miscellaneous
 *.class
 *.log

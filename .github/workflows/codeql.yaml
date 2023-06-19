@@ -96,10 +96,12 @@ jobs:
           very_good packages get --recursive
       - name: 🔌 Generate files
         if: ${{ matrix.language != 'python' }}
-        run: dart run build_runner build
+        run: |
+          dart run dart_define generate --FLAVOR=production
+          dart run build_runner build
       - name: 🔧 Build
         if: ${{ matrix.language != 'python' && matrix.language != 'swift' }}
-        run: flutter build apk --target lib/main_production.dart --debug
+        run: flutter build apk --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json
       - name: 🔧 Build iOS
         if: ${{ matrix.language == 'swift' }}
         run: flutter build ios --target lib/main_production.dart --debug

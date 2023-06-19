@@ -19,6 +19,19 @@
       "type": "dart",
       "command": "dart",
       "cwd": "",
+      "args": ["run", "dart_define", "generate", "--FLAVOR=${input:flavor}"],
+      "group": "build",
+      "label": "dart run dart_define",
+      "detail": "Run a dart_define task",
+      "icon": {
+        "color": "terminal.ansiMagenta",
+        "id": "gear"
+      }
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "cwd": "",
       "args": ["doc", "."],
       "problemMatcher": [],
       "label": "dart doc .",
@@ -31,7 +44,12 @@
     {
       "type": "flutter",
       "command": "flutter",
-      "args": ["build", "${input:target}"],
+      "args": [
+        "build",
+        "${input:target}",
+        "--release",
+        "--dart-define-from-file=dart_define.json"
+      ],
       "group": "build",
       "problemMatcher": [],
       "label": "flutter build",
@@ -46,19 +64,21 @@
     {
       "id": "target",
       "options": [
-        { "value": "arr" },
+        { "label": "Repository", "value": "arr" },
         { "label": "Android APK", "value": "apk" },
         { "label": "Android App Bundle", "value": "appbundle" },
         { "label": "Flutter assets directory", "value": "bundle" },
         { "label": "iOS", "value": "ios" },
         { "label": ".xcframework (iOS)", "value": "ios-framework" },
-        { "value": "ipa" },
+        { "label": "App Store Bundle", "value": "ipa" },
         { "label": "macOS", "value": "macos" },
         { "label": ".xcframework (macOS)", "value": "macos-framework" },
-        { "label": "Webapp bundle", "value": "web" }
+        { "label": "Webapp bundle", "value": "web" },
+        { "label": "Windows", "value": "windows" }
       ],
       "type": "pickString",
-      "description": "the target to target"
+      "description": "the target to target",
+      "default": "web"
     },
     {
       "id": "runtype",
@@ -71,7 +91,19 @@
         { "label": "clean up from old builds", "value": "clean" }
       ],
       "type": "pickString",
-      "description": "the type of build_runner run"
+      "description": "the type of build_runner run",
+      "default": "watch"
+    },
+    {
+      "id": "flavor",
+      "options": [
+        { "value": "production" },
+        { "value": "staging" },
+        { "value": "development" }
+      ],
+      "type": "pickString",
+      "description": "The flavor to generate.",
+      "default": "production"
     }
   ]
 }
