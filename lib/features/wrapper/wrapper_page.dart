@@ -18,9 +18,8 @@ class WrapperPage extends ConsumerWidget {
       builder: (context, constraints) {
         return AutoTabsRouter(
           routes: const [
-            GeneratorRoute(),
-            FavoritesRoute(),
             PirateCoinsRoute(),
+            StatsRoute(),
           ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
@@ -82,16 +81,12 @@ class _ExpandedWrapper extends ConsumerWidget {
             extended: large,
             destinations: const [
               NavigationRailDestination(
-                icon: Icon(Icons.home),
-                label: Text("Home"),
-              ),
-              NavigationRailDestination(
-                icon: Icon(Icons.favorite),
-                label: Text("Favorites"),
-              ),
-              NavigationRailDestination(
                 icon: Icon(Icons.currency_bitcoin_outlined),
                 label: Text("Pirate Coins!"),
+              ),
+              NavigationRailDestination(
+                icon: Icon(Icons.stacked_bar_chart),
+                label: Text("Stats"),
               ),
             ],
             selectedIndex: tabsRouter.activeIndex,
@@ -131,16 +126,12 @@ class _MobileWrapper extends ConsumerWidget {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: "Favorites",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.currency_bitcoin_outlined),
             label: "Pirate Coins!",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.stacked_bar_chart),
+            label: "Stats",
           ),
         ],
         onTap: tabsRouter.setActiveIndex,

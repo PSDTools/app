@@ -14,7 +14,7 @@ targets:
         options:
           enable_cached_builds: true
         generate_for:
-          - lib/widgets/**.dart
+          - lib/features/**/*_page.dart
       auto_route_generator:auto_router_generator:
         # configs for @AutoRouterConfig() generator...
         options:
@@ -23,10 +23,10 @@ targets:
           - lib/app/app_router.dart
       freezed:freezed:
         generate_for:
-          - lib/providers/**.dart
+          - lib/utils/client.dart
       riverpod_generator:riverpod_generator:
         generate_for:
-          - lib/providers/**.dart
+          - lib/utils/client.dart
       flutter_gen_runner:flutter_gen_runner:
         generate_for:
           - pubspec.yaml
