@@ -35,10 +35,10 @@ environment:
 dependencies:
   appwrite: ^8.1.0
   auto_route: ^7.3.2
-  english_words: ^4.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
+  english_words: ^4.0.0
   flutter:
     sdk: flutter
   flutter_localizations: # Required to enable localization
