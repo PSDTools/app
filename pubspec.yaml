@@ -61,7 +61,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
-  freezed: ^2.3.4
+  freezed: ^2.3.5
   # integration_test:
   #   sdk: flutter
   # mocktail: ^0.3.0
