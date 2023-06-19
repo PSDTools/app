@@ -137,6 +137,7 @@ jobs:
   scorcards:
     name: OpenSSF Scorecards
     needs: []
+    if: ${{ github.event_name != 'merge_group' }}
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
