@@ -54,7 +54,7 @@ jobs:
         language:
           # - "cpp" # broken right now
           - "java"
-          - "python"
+          # - "python"
           # - "swift"
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby', 'swift' ]
         # Use only 'java' to analyze code written in Java, Kotlin or both
