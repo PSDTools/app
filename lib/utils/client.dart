@@ -1,13 +1,16 @@
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
+
 import "../utils/api.dart";
 
 part "client.g.dart";
 
 @riverpod
-Client clientProvider() {
+Client client(ClientRef ref) {
+  final apiInfo = ref.watch(apiInfoProvider);
+
   return Client()
-      .setEndpoint(ApiInfo.url)
-      .setProject(ApiInfo.projectId)
+      .setEndpoint(apiInfo.url)
+      .setProject(apiInfo.projectId)
       .setSelfSigned();
 }

@@ -99,3 +99,9 @@ dart_code_metrics:
           - "lib/widgets/**/*_page.dart"
     - avoid-ignoring-return-values:
         severity: style
+    - no-equal-arguments:
+        ignored-parameters:
+          - height
+          - width
+          - layoutDirection
+          - textDirection

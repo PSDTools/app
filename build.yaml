@@ -26,7 +26,10 @@ targets:
           - lib/utils/client.dart
       riverpod_generator:riverpod_generator:
         generate_for:
+          - lib/utils/api.dart
           - lib/utils/client.dart
+          - lib/utils/secrets.dart
+          - lib/utils/config/flavor.dart
       flutter_gen_runner:flutter_gen_runner:
         generate_for:
           - pubspec.yaml

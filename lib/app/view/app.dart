@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../l10n/l10n.dart";
+import "../../utils/config/flavor_banner.dart";
 import "../app_router.dart";
 
 mixin AppView on ConsumerWidget {
@@ -15,6 +16,7 @@ mixin AppView on ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
+      builder: (context, child) => FlavorBanner(child: child),
       title: "PSD Wallet",
       theme: ThemeData(
         useMaterial3: true,
