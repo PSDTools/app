@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/l10n/l10n.dart";
 
@@ -7,10 +8,12 @@ import "package:pirate_code/l10n/l10n.dart";
 extension PumpApp on WidgetTester {
   Future<void> pumpApp(Widget widget) {
     return pumpWidget(
-      MaterialApp(
-        home: widget,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+      ProviderScope(
+        child: MaterialApp(
+          home: widget,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+        ),
       ),
     );
   }
