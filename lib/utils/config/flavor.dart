@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../dart_define.gen.dart";
@@ -31,7 +30,7 @@ class FlavorConfig {
 }
 
 @riverpod
-FlavorConfig flavorConfig(FlavorRef ref) {
+FlavorConfig flavorConfig(FlavorConfigRef ref) {
   final flavor = ref.watch(flavorProvider);
 
   return FlavorConfig(

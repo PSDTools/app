@@ -1,15 +1,24 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../dart_define.gen.dart";
+import "secrets.dart";
 
 part "api.g.dart";
 
 class ApiInfos implements Api {
-  @override
-  String get url => "https://cloud.appwrite.io/v1";
+  ApiInfos({
+    required String projectId,
+    required String url,
+  })  : _url = url,
+        _projectId = projectId;
+
+  final String _url;
+  final String _projectId;
 
   @override
-  String get projectId => DartDefine.projectId;
+  String get url => _url;
+
+  @override
+  String get projectId => _projectId;
 }
 
 abstract class Api {
@@ -21,6 +30,11 @@ abstract class Api {
 class ApiInfo extends _$ApiInfo {
   @override
   Api build() {
-    return ApiInfos();
+    final projectId = ref.watch(projectIdProvider);
+
+    return ApiInfos(
+      projectId: projectId,
+      url: "https://cloud.appwrite.io/v1",
+    );
   }
 }

@@ -8,3 +8,8 @@ part "secrets.g.dart";
 Flavor flavor() {
   return DartDefine.flavor;
 }
+
+@riverpod
+String projectId() {
+  return DartDefine.projectId;
+}
