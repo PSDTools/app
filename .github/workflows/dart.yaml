@@ -58,6 +58,8 @@ jobs:
           path: |
             lib/**/*.g.dart
             lib/**/*.gr.dart
+            lib/**/*.gm.dart
+            lib/**/*.gen.dart
             lib/**/*.freezed.dart
           if-no-files-found: error
 

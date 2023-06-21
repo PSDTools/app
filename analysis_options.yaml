@@ -15,6 +15,7 @@ analyzer:
     - "build/**"
     - "**/*.g.dart"
     - "**/*.gr.dart"
+    - "**/*.gen.dart"
     - "**/*.freezed.dart"
   language:
     strict-casts: true
@@ -83,8 +84,8 @@ dart_code_metrics:
     - "build/**"
     - "**/*.g.dart"
     - "**/*.gr.dart"
-    - "**/*.freezed.dart"
     - "**/*.gen.dart"
+    - "**/*.freezed.dart"
   rules:
     - arguments-ordering:
         child-last: true
