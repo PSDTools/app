@@ -330,7 +330,7 @@ packages:
     source: hosted
     version: "1.8.0"
   dart_define:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: dart_define
       sha256: "62008fedeb4f518daccae1f40dbef9728cbd2c69d6953d0a96356baf99ae2e63"

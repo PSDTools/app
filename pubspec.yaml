@@ -38,7 +38,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
-  dart_define: ^1.0.4
   flutter:
     sdk: flutter
   flutter_localizations: # Required to enable localization
@@ -57,6 +56,7 @@ dev_dependencies:
   custom_lint: ^0.4.0
   dart_code_metrics: ^5.7.5
   dart_code_metrics_presets: ^1.8.0
+  dart_define: ^1.0.4
   flutter_gen_runner: ^5.3.1
   flutter_launcher_icons: ^0.13.1
   flutter_test: # Required for a Flutter project that includes tests
