@@ -39,7 +39,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
   dart_define: ^1.0.4
-  english_words: ^4.0.0
   flutter:
     sdk: flutter
   flutter_localizations: # Required to enable localization
