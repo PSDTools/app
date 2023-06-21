@@ -127,7 +127,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🧪 Run tests
-        run: very_good test -j 4 --optimization --coverage --test-randomize-ordering-seed random
+        run: very_good test -j 4 --optimization --coverage --test-randomize-ordering-seed random --dart-define-from-file=dart_define.json
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@e5c91bc7ce9843e87c800b3bcafdfb86fbe28491 # v2.1.0
         with:

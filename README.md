@@ -52,7 +52,7 @@ _\*Pirate Code works on iOS, Android, Web, and Windows._
 To run all unit and widget tests use the following command:
 
 ```sh
-flutter test --coverage --test-randomize-ordering-seed random
+flutter test --coverage --test-randomize-ordering-seed random --dart-define-from-file=dart_define.json
 ```
 
 To view the generated coverage report you can use [lcov][lcov].
