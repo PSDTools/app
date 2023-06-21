@@ -3,7 +3,6 @@
 [![Netlify Status][deploys_badge]][deploys_link]
 [![Dart][ci_dart_badge]][ci_dart_link]
 [![coverage][coverage_badge]][ci_dart_link]
-[![Python][ci_python_badge]][ci_python_link]
 [![CodeQL][ci_sec_badge]][ci_sec_link]
 [![spelling][ci_spell_badge]][ci_spell_link]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
@@ -222,8 +221,6 @@ C4Context
 
 [ci_dart_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yaml/badge.svg?branch=main
 [ci_dart_link]: https://github.com/PSDTools/app/actions/workflows/dart.yaml
-[ci_python_badge]: https://github.com/PSDTools/app/actions/workflows/python.yaml/badge.svg?branch=main
-[ci_python_link]: https://github.com/PSDTools/app/actions/workflows/python.yaml
 [ci_sec_badge]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml/badge.svg?branch=main
 [ci_sec_link]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml
 [ci_spell_badge]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml/badge.svg?branch=main
