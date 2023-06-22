@@ -74,18 +74,19 @@ class _IOSContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavorConfig = ref.watch(flavorConfigProvider);
+    final deviceUtils = ref.watch(deviceUtilsProvider);
 
     return FutureBuilder(
       // Actually, this takes a future.
       // ignore: discarded_futures
-      future: DeviceUtils.iosDeviceInfo(),
+      future: deviceUtils.iosDeviceInfo(),
       builder: (context, AsyncSnapshot<IosDeviceInfo> snapshot) {
         if (!snapshot.hasData) return Container();
 
         final device = snapshot.data;
 
         final buildMode =
-            StringUtils.enumName(DeviceUtils.currentBuildMode().toString());
+            StringUtils.enumName(deviceUtils.currentBuildMode().toString());
 
         return ListView(
           children: [
@@ -108,11 +109,12 @@ class _AndroidContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavorConfig = ref.watch(flavorConfigProvider);
+    final deviceUtils = ref.watch(deviceUtilsProvider);
 
     return FutureBuilder(
       // Actually, this takes a future.
       // ignore: discarded_futures
-      future: DeviceUtils.androidDeviceInfo(),
+      future: deviceUtils.androidDeviceInfo(),
       builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
         if (!snapshot.hasData) return Container();
 
@@ -120,7 +122,7 @@ class _AndroidContent extends ConsumerWidget {
         final version = device?.version;
 
         final buildMode =
-            StringUtils.enumName(DeviceUtils.currentBuildMode().toString());
+            StringUtils.enumName(deviceUtils.currentBuildMode().toString());
 
         return ListView(
           children: [
