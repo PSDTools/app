@@ -16,7 +16,8 @@
         "lib/main_development.dart",
         "--dart-define-from-file=dart_define.json"
       ],
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "preLaunchTask": "${defaultBuildTask}"
     },
     {
       "name": "Launch staging",
@@ -30,7 +31,8 @@
         "lib/main_staging.dart",
         "--dart-define-from-file=dart_define.json"
       ],
-      "flutterMode": "profile"
+      "flutterMode": "profile",
+      "preLaunchTask": "${defaultBuildTask}"
     },
     {
       "name": "Launch production",
@@ -44,7 +46,8 @@
         "lib/main_production.dart",
         "--dart-define-from-file=dart_define.json"
       ],
-      "flutterMode": "release"
+      "flutterMode": "release",
+      "preLaunchTask": "${defaultBuildTask}"
     }
   ]
 }

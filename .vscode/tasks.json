@@ -7,9 +7,15 @@
       "cwd": "",
       "args": ["run", "build_runner", "${input:runtype}"],
       "problemMatcher": ["$dart-build_runner"],
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "label": "dart run build_runner",
       "detail": "Run a build_runner task",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
       "icon": {
         "color": "terminal.ansiCyan",
         "id": "gear"
@@ -23,6 +29,9 @@
       "group": "build",
       "label": "dart run dart_define",
       "detail": "Run a dart_define task",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
       "icon": {
         "color": "terminal.ansiMagenta",
         "id": "gear"
