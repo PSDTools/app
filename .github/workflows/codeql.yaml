@@ -90,10 +90,7 @@ jobs:
           cache: true
       - name: 📦 Install dependencies
         if: ${{ matrix.language != 'python' }}
-        run: |
-          flutter pub global activate very_good_cli
-          very_good --analytics false
-          very_good packages get --recursive
+        run: flutter pub get
       - name: 🔌 Generate files
         if: ${{ matrix.language != 'python' }}
         run: |
