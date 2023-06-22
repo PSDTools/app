@@ -2,7 +2,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 part "string.g.dart";
 
-@Riverpod()
+@riverpod
 class StringUtils extends _$StringUtils {
   String enumName(String enumToString) {
     final paths = enumToString.split(".");

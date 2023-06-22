@@ -109,3 +109,4 @@ dart_code_metrics:
     - prefer-static-class:
         ignore-annotations:
           - "Riverpod"
+          - "riverpod"
