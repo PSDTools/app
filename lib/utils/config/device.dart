@@ -7,7 +7,13 @@ part "device.g.dart";
 
 enum BuildMode { debug, profile, release }
 
-class DeviceUtils {
+@riverpod
+class DeviceUtils extends _$DeviceUtils {
+  @override
+  DeviceUtils build() {
+    return DeviceUtils();
+  }
+
   BuildMode currentBuildMode() {
     if (const bool.fromEnvironment("dart.vm.product")) {
       return BuildMode.release;
@@ -38,11 +44,4 @@ class DeviceUtils {
 
     return plugin.iosInfo;
   }
-}
-
-@riverpod
-// Required for riverpod.
-// ignore: avoid-unused-parameters
-DeviceUtils deviceUtils(DeviceUtilsRef ref) {
-  return DeviceUtils();
 }

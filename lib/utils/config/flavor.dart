@@ -12,12 +12,23 @@ class FlavorValues {
   // Add flavor-specific values that aren't secrets.
 }
 
-class FlavorConfig {
+@riverpod
+class FlavorConfig extends _$FlavorConfig {
   FlavorConfig({
     required this.flavor,
     required this.values,
     this.color = Colors.blue,
   });
+
+  @override
+  FlavorConfig build() {
+    final flavor = ref.watch(flavorProvider);
+
+    return FlavorConfig(
+      flavor: flavor,
+      values: FlavorValues(),
+    );
+  }
 
   final Flavor flavor;
   final Color color;
@@ -27,14 +38,4 @@ class FlavorConfig {
   bool get isDevelopment => flavor == Flavor.development;
   bool get isStaging => flavor == Flavor.staging;
   String get name => StringUtils.enumName(flavor.toString());
-}
-
-@riverpod
-FlavorConfig flavorConfig(FlavorConfigRef ref) {
-  final flavor = ref.watch(flavorProvider);
-
-  return FlavorConfig(
-    flavor: flavor,
-    values: FlavorValues(),
-  );
 }
