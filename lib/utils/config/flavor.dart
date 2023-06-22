@@ -12,7 +12,7 @@ class FlavorValues {
   // Add flavor-specific values that aren't secrets.
 }
 
-@riverpod
+@Riverpod(dependencies: [flavor, StringUtils])
 class FlavorConfig extends _$FlavorConfig {
   FlavorConfig({
     required this.flavor,
@@ -37,5 +37,9 @@ class FlavorConfig extends _$FlavorConfig {
   bool get isProduction => flavor == Flavor.production;
   bool get isDevelopment => flavor == Flavor.development;
   bool get isStaging => flavor == Flavor.staging;
-  String get name => StringUtils.enumName(flavor.toString());
+  String get name {
+    final stringUtils = ref.watch(stringUtilsProvider);
+
+    return stringUtils.enumName(flavor.toString());
+  }
 }

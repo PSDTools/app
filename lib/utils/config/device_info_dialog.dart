@@ -84,9 +84,9 @@ class _IOSContent extends ConsumerWidget {
         if (!snapshot.hasData) return Container();
 
         final device = snapshot.data;
-
+        final stringUtils = ref.watch(stringUtilsProvider);
         final buildMode =
-            StringUtils.enumName(deviceUtils.currentBuildMode().toString());
+            stringUtils.enumName(deviceUtils.currentBuildMode().toString());
 
         return ListView(
           children: [
@@ -120,9 +120,9 @@ class _AndroidContent extends ConsumerWidget {
 
         final device = snapshot.data;
         final version = device?.version;
-
+        final stringUtils = ref.watch(stringUtilsProvider);
         final buildMode =
-            StringUtils.enumName(deviceUtils.currentBuildMode().toString());
+            stringUtils.enumName(deviceUtils.currentBuildMode().toString());
 
         return ListView(
           children: [

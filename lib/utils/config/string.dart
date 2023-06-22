@@ -1,9 +1,17 @@
-// ignore_for_file: avoid_classes_with_only_static_members
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
-class StringUtils {
-  static String enumName(String enumToString) {
+part "string.g.dart";
+
+@Riverpod()
+class StringUtils extends _$StringUtils {
+  String enumName(String enumToString) {
     final paths = enumToString.split(".");
 
     return paths.last;
+  }
+
+  @override
+  StringUtils build() {
+    return StringUtils();
   }
 }

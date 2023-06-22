@@ -106,3 +106,6 @@ dart_code_metrics:
           - width
           - layoutDirection
           - textDirection
+    - prefer-static-class:
+        ignore-annotations:
+          - "Riverpod"

@@ -7,7 +7,7 @@ part "device.g.dart";
 
 enum BuildMode { debug, profile, release }
 
-@riverpod
+@Riverpod()
 class DeviceUtils extends _$DeviceUtils {
   @override
   DeviceUtils build() {

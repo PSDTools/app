@@ -5,12 +5,9 @@ import "../utils/api.dart";
 
 part "client.g.dart";
 
-@riverpod
+@Riverpod(dependencies: [ApiInfo])
 Client client(ClientRef ref) {
   final apiInfo = ref.watch(apiInfoProvider);
 
-  return Client()
-      .setEndpoint(apiInfo.url)
-      .setProject(apiInfo.projectId)
-      .setSelfSigned();
+  return Client().setEndpoint(apiInfo.url).setProject(apiInfo.projectId);
 }

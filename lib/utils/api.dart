@@ -26,7 +26,7 @@ abstract class Api {
   String get projectId;
 }
 
-@riverpod
+@Riverpod(dependencies: [projectId])
 class ApiInfo extends _$ApiInfo {
   @override
   Api build() {

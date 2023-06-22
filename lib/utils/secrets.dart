@@ -4,14 +4,14 @@ import "../dart_define.gen.dart";
 
 part "secrets.g.dart";
 
-@riverpod
+@Riverpod()
 // Required for riverpod.
 // ignore: avoid-unused-parameters
 Flavor flavor(FlavorRef ref) {
   return DartDefine.flavor;
 }
 
-@riverpod
+@Riverpod()
 // Required for riverpod.
 // ignore: avoid-unused-parameters
 String projectId(ProjectIdRef ref) {
