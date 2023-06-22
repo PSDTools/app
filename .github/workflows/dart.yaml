@@ -43,9 +43,9 @@ jobs:
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: 🔌 Generate files
-        run: |
-          dart run dart_define generate --FLAVOR=production
-          dart run build_runner build
+        run: dart run build_runner build
+      - name: 🔌 Generate Dart Defines
+        run: dart run dart_define generate --FLAVOR=production
       - name: 🔧 Build
         run: flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
       - name: ⚙️ Upload generated files
@@ -83,6 +83,8 @@ jobs:
         with:
           name: generated-files
           path: lib
+      - name: 🔌 Generate Dart Defines
+        run: dart run dart_define generate --FLAVOR=production
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
       - name: 🕵️ Lint Riverpod
@@ -117,6 +119,8 @@ jobs:
         with:
           name: generated-files
           path: lib
+      - name: 🔌 Generate Dart Defines
+        run: dart run dart_define generate --FLAVOR=production
       - name: 🧪 Run tests
         run: flutter test -j 4 --coverage --test-randomize-ordering-seed random --dart-define-from-file=dart_define.json
       - name: 📊 Check Code Coverage
