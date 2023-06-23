@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../features/utils/presentation/flavor_banner.dart";
 import "../../l10n/l10n.dart";
-import "../../utils/config/flavor_banner.dart";
 import "../app_router.dart";
 
 mixin AppView on ConsumerWidget {

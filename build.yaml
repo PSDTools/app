@@ -23,10 +23,11 @@ targets:
           - lib/app/app_router.dart
       freezed:freezed:
         generate_for:
-          - lib/utils/client.dart
+          - lib/utils/api.dart
       riverpod_generator:riverpod_generator:
         generate_for:
           - lib/utils/**.dart
+          - lib/features/**/data/**.dart
       flutter_gen_runner:flutter_gen_runner:
         generate_for:
           - pubspec.yaml

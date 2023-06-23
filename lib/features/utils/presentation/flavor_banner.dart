@@ -3,8 +3,8 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../data/flavor.dart";
 import "device_info_dialog.dart";
-import "flavor.dart";
 
 class FlavorBanner extends ConsumerWidget {
   const FlavorBanner({

@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../dart_define.gen.dart";
-import "../secrets.dart";
-import "string.dart";
+import "../../../dart_define.gen.dart";
+import "../../../utils/secrets.dart";
+import "../../../utils/string.dart";
 
 part "flavor.g.dart";
 

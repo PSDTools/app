@@ -1,3 +1,4 @@
+import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "secrets.dart";
@@ -37,4 +38,11 @@ class ApiInfo extends _$ApiInfo {
       url: "https://cloud.appwrite.io/v1",
     );
   }
+}
+
+@Riverpod(dependencies: [ApiInfo])
+Client client(ClientRef ref) {
+  final apiInfo = ref.watch(apiInfoProvider);
+
+  return Client().setEndpoint(apiInfo.url).setProject(apiInfo.projectId);
 }

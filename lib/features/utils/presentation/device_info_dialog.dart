@@ -4,9 +4,9 @@ import "package:device_info/device_info.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "device.dart";
-import "flavor.dart";
-import "string.dart";
+import "../../../utils/string.dart";
+import "../data/device.dart";
+import "../data/flavor.dart";
 
 class DeviceInfoDialog extends ConsumerWidget {
   const DeviceInfoDialog({super.key});
