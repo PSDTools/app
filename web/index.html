@@ -68,10 +68,6 @@
       https://developers.google.com/web/fundamentals/primers/service-workers
     -->
     <script>
-      "use strict";
-      var serviceWorkerVersion = null;
-      var scriptLoaded = false;
-
       function run() {
         const progressBar = document.querySelector("#progress-bar");
         const progressIndicator = document.querySelector("#progress-indicator");
@@ -82,10 +78,6 @@
 
         function injectScript(url) {
           return new Promise(function (resolve) {
-            if (scriptLoaded) {
-              return;
-            }
-            scriptLoaded = true;
             let scriptTag = document.createElement("script");
             scriptTag.src = url;
             scriptTag.type = "application/javascript";
@@ -147,23 +139,24 @@
             for (let i = 0; i < additionalScripts.length; i++) {
               await injectScript(additionalScripts[i]);
             }
-            injectScript("flutter.js");
+
+            await injectScript("flutter.js");
 
             // Download main.dart.js
             _flutter.loader.loadEntrypoint({
               serviceWorker: {
                 serviceWorkerVersion: serviceWorkerVersion,
               },
-              onEntrypointLoaded: async function (engineInitializer) {
-                await engineInitializer
-                  .initializeEngine({})
+              onEntrypointLoaded: function (engineInitializer) {
+                engineInitializer
+                  .initializeEngine()
                   .then(async function (appRunner) {
                     window.addEventListener("flutter-first-frame", function () {
                       progressBar.remove();
                       document.body.classList.remove("loading-mode");
                     });
 
-                    await appRunner.runApp();
+                    appRunner.runApp();
                   });
               },
             });
