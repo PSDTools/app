@@ -1,13 +1,20 @@
 import "package:device_info/device_info.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../domain/device_data.dart";
+
 part "device.g.dart";
 
 enum BuildMode { debug, profile, release }
 
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
+  Future<DeviceData?> deviceInfo(Device device);
+
+  @Deprecated("Use deviceInfo instead.")
   Future<AndroidDeviceInfo> androidDeviceInfo();
+
+  @Deprecated("Use deviceInfo instead.")
   Future<IosDeviceInfo> iosDeviceInfo();
 }
 
@@ -35,6 +42,26 @@ class DeviceUtilsRepository implements DeviceRepository {
     );
 
     return result;
+  }
+
+  @override
+  Future<DeviceData?> deviceInfo(Device device) async {
+    switch (device) {
+      case Device.android:
+        final androidInfo = await _plugin.androidInfo;
+        final info = DeviceData(name: androidInfo.model);
+
+        return info;
+
+      case Device.ios:
+        final iosInfo = await _plugin.iosInfo;
+        final info = DeviceData(name: iosInfo.name);
+
+        return info;
+
+      case Device.other:
+        return null;
+    }
   }
 
   @override
