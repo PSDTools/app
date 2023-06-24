@@ -19,4 +19,4 @@ $ flutter run --flavor staging --target lib/main_staging.dart --dart-define-from
 $ flutter run --flavor production --target lib/main_production.dart --dart-define-from-file=dart_define.json
 ```
 
-_\*Pirate Code works on iOS, Android, Web, and Windows._
+_\*Pirate Code works on all platforms._
