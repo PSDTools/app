@@ -11,7 +11,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "label": "dart run build_runner",
+      "label": "Dart: run build_runner",
       "detail": "Run a build_runner task",
       "runOptions": {
         "runOn": "folderOpen"
@@ -27,7 +27,7 @@
       "cwd": "",
       "args": ["run", "dart_define", "generate", "--FLAVOR=${input:flavor}"],
       "group": "build",
-      "label": "dart run dart_define",
+      "label": "Dart: run dart_define",
       "detail": "Run a dart_define task",
       "runOptions": {
         "runOn": "folderOpen"
@@ -43,7 +43,7 @@
       "cwd": "",
       "args": ["doc", "."],
       "problemMatcher": [],
-      "label": "dart doc .",
+      "label": "Dart: doc",
       "detail": "View the documentation",
       "icon": {
         "color": "terminal.ansiGreen",
@@ -57,11 +57,13 @@
         "build",
         "${input:target}",
         "--release",
-        "--dart-define-from-file=dart_define.json"
+        "--dart-define-from-file=dart_define.json",
+        "--FLAVOR",
+        "${input:flavor}"
       ],
       "group": "build",
       "problemMatcher": [],
-      "label": "flutter build",
+      "label": "Flutter: build",
       "detail": "Build a flutter app",
       "icon": {
         "color": "terminal.ansiBlue",
