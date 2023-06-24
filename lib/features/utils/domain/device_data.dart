@@ -1,4 +1,3 @@
-import "package:device_info/device_info.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "device_data.freezed.dart";
@@ -12,7 +11,6 @@ class DeviceData with _$DeviceData {
     String? name,
     String? systemName,
     String? systemVersion,
-    AndroidBuildVersion? version,
     String? manufacturer,
     String? release,
     int? sdkInt,

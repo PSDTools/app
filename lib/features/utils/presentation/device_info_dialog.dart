@@ -89,7 +89,6 @@ class _PlatformContent extends ConsumerWidget {
         final buildMode =
             stringUtils.enumName(deviceUtils.currentBuildMode().toString());
         final device = snapshot.data;
-        final version = device?.version;
 
         if (device?.isOther ?? true) {
           return const Text("You're neither on Android nor iOS");
@@ -105,8 +104,8 @@ class _PlatformContent extends ConsumerWidget {
             _BuildTile("Model:", device?.model),
             _BuildTile("System name:", device?.systemName),
             _BuildTile("System version:", device?.systemVersion),
-            _BuildTile("Android version:", version?.release),
-            _BuildTile("Android SDK:", "${version?.sdkInt}"),
+            _BuildTile("Android version:", device?.release),
+            _BuildTile("Android SDK:", "${device?.sdkInt}"),
           ],
         );
       },

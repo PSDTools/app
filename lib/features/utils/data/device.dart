@@ -25,7 +25,7 @@ class DeviceUtilsRepository implements DeviceRepository {
     }
     var result = BuildMode.profile;
 
-    // Little trick, since assert only runs on DEBUG mode.
+    // Little trick, since `assert` only runs on DEBUG mode.
     assert(
       () {
         result = BuildMode.debug;
@@ -48,7 +48,6 @@ class DeviceUtilsRepository implements DeviceRepository {
           device: Device.android,
           isPhysicalDevice: androidInfo.isPhysicalDevice,
           model: androidInfo.model,
-          version: androidInfo.version,
           manufacturer: androidInfo.manufacturer,
           release: version.release,
           sdkInt: version.sdkInt,
