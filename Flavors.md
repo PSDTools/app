@@ -1,4 +1,4 @@
-### Flavors 🍨
+# Flavors 🍨
 
 This project contains 3 flavors:
 
