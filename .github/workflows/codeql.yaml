@@ -98,10 +98,10 @@ jobs:
           dart run build_runner build
       - name: 🔧 Build
         if: ${{ matrix.language != 'python' && matrix.language != 'swift' }}
-        run: flutter build apk --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json
+        run: flutter build apk --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json --flavor production --no-tree-shake-icons
       - name: 🔧 Build iOS
         if: ${{ matrix.language == 'swift' }}
-        run: flutter build ios --target lib/main_production.dart --debug
+        run: flutter build ios --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json --flavor production --no-tree-shake-icons
       - name: 🕵️ Perform CodeQL Analysis
         uses: github/codeql-action/analyze@cdcdbb579706841c47f7063dda365e292e5cad7a # v2.13.4
         with:

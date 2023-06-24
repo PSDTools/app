@@ -58,17 +58,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "{{project_name.titleCase()}}"]
+            manifestPlaceholders = [appName: "Pirate Code"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] {{project_name.titleCase()}}"]
+            manifestPlaceholders = [appName: "[STG] Pirate Code"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] {{project_name.titleCase()}}"]
+            manifestPlaceholders = [appName: "[DEV] Pirate Code"]
         }
     }
 
