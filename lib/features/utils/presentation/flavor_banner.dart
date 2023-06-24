@@ -3,6 +3,7 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../data/banner.dart";
 import "../data/flavor.dart";
 import "device_info_dialog.dart";
 
@@ -16,16 +17,10 @@ class FlavorBanner extends ConsumerWidget {
   final BannerConfig? bannerConfig;
   final Widget? child;
 
-  BannerConfig _getDefaultBanner({required FlavorConfig flavorConfig}) {
-    return BannerConfig(
-      bannerName: flavorConfig.name,
-      bannerColor: flavorConfig.color,
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavorConfig = ref.watch(flavorConfigProvider);
+    final defaultBanner = ref.watch(defaultBannerProvider);
 
     if (flavorConfig.isProduction) return child ?? const Text("");
 
@@ -33,8 +28,7 @@ class FlavorBanner extends ConsumerWidget {
       children: [
         child ?? const Text(""),
         _BuildBanner(
-          bannerConfig:
-              bannerConfig ?? _getDefaultBanner(flavorConfig: flavorConfig),
+          bannerConfig: bannerConfig ?? defaultBanner,
         ),
       ],
     );
@@ -80,14 +74,4 @@ class _BuildBanner extends StatelessWidget {
       ),
     );
   }
-}
-
-class BannerConfig {
-  BannerConfig({
-    required this.bannerName,
-    required this.bannerColor,
-  });
-
-  final String bannerName;
-  final Color bannerColor;
 }
