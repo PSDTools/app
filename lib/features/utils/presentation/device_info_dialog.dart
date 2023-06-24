@@ -1,12 +1,12 @@
 import "dart:io";
 
-import "package:device_info/device_info.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/string.dart";
 import "../data/device.dart";
 import "../data/flavor.dart";
+import "../domain/device_data.dart";
 
 class DeviceInfoDialog extends ConsumerWidget {
   const DeviceInfoDialog({super.key});
@@ -39,15 +39,17 @@ class _BuildTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
-      padding: const EdgeInsets.all(5),
-      child: Row(
-        children: [
-          Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(value ?? ""),
-        ],
-      ),
-    );
+    return value != null
+        ? Padding(
+            padding: const EdgeInsets.all(5),
+            child: Row(
+              children: [
+                Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text(value ?? ""),
+              ],
+            ),
+          )
+        : const Text("");
   }
 }
 
@@ -57,19 +59,19 @@ class _GetContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     if (Platform.isAndroid) {
-      return const _AndroidContent();
+      return const _PlatformContent(Device.android);
+    } else if (Platform.isIOS) {
+      return const _PlatformContent(Device.ios);
+    } else {
+      return const _PlatformContent(Device.other);
     }
-
-    if (Platform.isIOS) {
-      return const _IOSContent();
-    }
-
-    return const Text("You're not on Android neither iOS");
   }
 }
 
-class _IOSContent extends ConsumerWidget {
-  const _IOSContent();
+class _PlatformContent extends ConsumerWidget {
+  const _PlatformContent(Device platform) : _platform = platform;
+
+  final Device _platform;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -79,14 +81,19 @@ class _IOSContent extends ConsumerWidget {
     return FutureBuilder(
       // Actually, this takes a future.
       // ignore: discarded_futures
-      future: deviceUtils.iosDeviceInfo(),
-      builder: (context, AsyncSnapshot<IosDeviceInfo> snapshot) {
+      future: deviceUtils.deviceInfo(_platform),
+      builder: (context, AsyncSnapshot<DeviceData?> snapshot) {
         if (!snapshot.hasData) return Container();
 
-        final device = snapshot.data;
         final stringUtils = ref.watch(stringUtilsProvider);
         final buildMode =
             stringUtils.enumName(deviceUtils.currentBuildMode().toString());
+        final device = snapshot.data;
+        final version = device?.version;
+
+        if (device?.isOther ?? true) {
+          return const Text("You're neither on Android nor iOS");
+        }
 
         return ListView(
           children: [
@@ -94,43 +101,10 @@ class _IOSContent extends ConsumerWidget {
             _BuildTile("Build mode:", buildMode),
             _BuildTile("Physical device?:", "${device?.isPhysicalDevice}"),
             _BuildTile("Device:", device?.name),
+            _BuildTile("Manufacturer:", device?.manufacturer),
             _BuildTile("Model:", device?.model),
             _BuildTile("System name:", device?.systemName),
             _BuildTile("System version:", device?.systemVersion),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _AndroidContent extends ConsumerWidget {
-  const _AndroidContent();
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final flavorConfig = ref.watch(flavorConfigProvider);
-    final deviceUtils = ref.watch(deviceUtilsProvider);
-
-    return FutureBuilder(
-      // Actually, this takes a future.
-      // ignore: discarded_futures
-      future: deviceUtils.androidDeviceInfo(),
-      builder: (context, AsyncSnapshot<AndroidDeviceInfo> snapshot) {
-        if (!snapshot.hasData) return Container();
-
-        final device = snapshot.data;
-        final version = device?.version;
-        final stringUtils = ref.watch(stringUtilsProvider);
-        final buildMode =
-            stringUtils.enumName(deviceUtils.currentBuildMode().toString());
-
-        return ListView(
-          children: [
-            _BuildTile("Flavor:", flavorConfig.name),
-            _BuildTile("Build mode:", buildMode),
-            _BuildTile("Physical device?:", "${device?.isPhysicalDevice}"),
-            _BuildTile("Manufacturer:", device?.manufacturer),
-            _BuildTile("Model:", device?.model),
             _BuildTile("Android version:", version?.release),
             _BuildTile("Android SDK:", "${version?.sdkInt}"),
           ],

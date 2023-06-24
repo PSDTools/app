@@ -9,7 +9,7 @@ enum BuildMode { debug, profile, release }
 
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
-  Future<DeviceData?> deviceInfo(Device device);
+  Future<DeviceData> deviceInfo(Device device);
 
   @Deprecated("Use deviceInfo instead.")
   Future<AndroidDeviceInfo> androidDeviceInfo();
@@ -45,22 +45,42 @@ class DeviceUtilsRepository implements DeviceRepository {
   }
 
   @override
-  Future<DeviceData?> deviceInfo(Device device) async {
+  Future<DeviceData> deviceInfo(Device device) async {
     switch (device) {
       case Device.android:
         final androidInfo = await _plugin.androidInfo;
-        final info = DeviceData(name: androidInfo.model);
+        final version = androidInfo.version;
+        final info = DeviceData(
+          device: Device.android,
+          isPhysicalDevice: androidInfo.isPhysicalDevice,
+          model: androidInfo.model,
+          version: androidInfo.version,
+          manufacturer: androidInfo.manufacturer,
+          release: version.release,
+          sdkInt: version.sdkInt,
+        );
 
         return info;
 
       case Device.ios:
         final iosInfo = await _plugin.iosInfo;
-        final info = DeviceData(name: iosInfo.name);
+        final info = DeviceData(
+          device: Device.ios,
+          isPhysicalDevice: iosInfo.isPhysicalDevice,
+          model: iosInfo.model,
+          name: iosInfo.name,
+          systemName: iosInfo.systemName,
+          systemVersion: iosInfo.systemVersion,
+        );
 
         return info;
 
       case Device.other:
-        return null;
+        return DeviceData(
+          device: Device.other,
+          isPhysicalDevice: false,
+          model: "Unknown",
+        );
     }
   }
 
