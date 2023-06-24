@@ -10,12 +10,6 @@ enum BuildMode { debug, profile, release }
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
   Future<DeviceData> deviceInfo(Device device);
-
-  @Deprecated("Use deviceInfo instead.")
-  Future<AndroidDeviceInfo> androidDeviceInfo();
-
-  @Deprecated("Use deviceInfo instead.")
-  Future<IosDeviceInfo> iosDeviceInfo();
 }
 
 class DeviceUtilsRepository implements DeviceRepository {
@@ -82,16 +76,6 @@ class DeviceUtilsRepository implements DeviceRepository {
           model: "Unknown",
         );
     }
-  }
-
-  @override
-  Future<AndroidDeviceInfo> androidDeviceInfo() {
-    return _plugin.androidInfo;
-  }
-
-  @override
-  Future<IosDeviceInfo> iosDeviceInfo() {
-    return _plugin.iosInfo;
   }
 }
 
