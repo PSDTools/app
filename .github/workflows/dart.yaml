@@ -42,10 +42,10 @@ jobs:
           cache: true
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: 🔌 Generate files
-        run: dart run build_runner build
       - name: 🔌 Generate Dart Defines
         run: dart run dart_define generate --FLAVOR=production
+      - name: 🔌 Generate files
+        run: dart run build_runner build
       - name: 🔧 Build
         run: flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
       - name: ⚙️ Upload generated files
