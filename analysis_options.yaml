@@ -110,3 +110,5 @@ dart_code_metrics:
         ignore-annotations:
           - "Riverpod"
           - "riverpod"
+        exclude:
+          - test/**
