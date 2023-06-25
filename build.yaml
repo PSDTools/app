@@ -29,6 +29,7 @@ targets:
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/data/**.dart
+          - lib/features/*/domain/**.dart
       flutter_gen_runner:flutter_gen_runner:
         generate_for:
           - pubspec.yaml
