@@ -112,3 +112,5 @@ dart_code_metrics:
           - "riverpod"
         exclude:
           - test/**
+    - avoid-nested-conditional-expressions:
+        acceptable-level: 2

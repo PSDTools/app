@@ -1,6 +1,10 @@
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
+
+import "../data/device.dart";
 
 part "device_data.freezed.dart";
+part "device_data.g.dart";
 
 @freezed
 class DeviceData with _$DeviceData {
@@ -18,3 +22,17 @@ class DeviceData with _$DeviceData {
 }
 
 enum Device { android, ios, other }
+
+enum BuildMode { debug, profile, release }
+
+@riverpod
+Future<DeviceData> deviceInfo(DeviceInfoRef ref) async {
+  return await ref
+      .watch(deviceUtilsProvider.select((value) => value.deviceInfo()));
+}
+
+@riverpod
+BuildMode buildMode(BuildModeRef ref) {
+  return ref
+      .watch(deviceUtilsProvider.select((value) => value.currentBuildMode()));
+}

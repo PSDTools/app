@@ -7,7 +7,6 @@ import "../domain/device_data.dart";
 
 part "device.g.dart";
 
-enum BuildMode { debug, profile, release }
 
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
@@ -86,25 +85,22 @@ class DeviceUtilsRepository implements DeviceRepository {
 
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
-  final plugin = ref.watch(pluginProvider);
+  final plugin = ref.watch(_pluginProvider);
   final device = ref.watch(currentDeviceProvider);
 
   return DeviceUtilsRepository(plugin: plugin, platform: device);
 }
 
 @riverpod
-DeviceInfoPlugin plugin(PluginRef _) {
+DeviceInfoPlugin _plugin(_PluginRef _) {
   return DeviceInfoPlugin();
 }
 
 @riverpod
 Device currentDevice(CurrentDeviceRef _) {
-  var device = Device.other;
-  if (Platform.isAndroid) {
-    device = Device.android;
-  } else if (Platform.isIOS) {
-    device = Device.ios;
-  }
-
-  return device;
+  return switch (Platform.operatingSystem) {
+    "android" => Device.android,
+    "ios" => Device.ios,
+    _ => Device.other,
+  };
 }

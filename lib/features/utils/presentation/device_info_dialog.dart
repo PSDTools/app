@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/string.dart";
-import "../data/device.dart";
 import "../data/flavor.dart";
 import "../domain/device_data.dart";
 
@@ -55,26 +54,13 @@ class _GetContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavorConfig = ref.watch(flavorConfigProvider);
-    final deviceUtils = ref.watch(deviceUtilsProvider);
+    final currentBuildMode = ref.watch(buildModeProvider);
+    final deviceInfo = ref.watch(deviceInfoProvider);
 
-    return FutureBuilder(
-      // Actually, this takes a future.
-      // ignore: discarded_futures
-      future: deviceUtils.deviceInfo(),
-      builder: (context, AsyncSnapshot<DeviceData> snapshot) {
-        if (!snapshot.hasData) return Container();
-
+    return deviceInfo.when(
+      data: (device) {
         final stringUtils = ref.watch(stringUtilsProvider);
-        final buildMode =
-            stringUtils.enumName(deviceUtils.currentBuildMode().toString());
-        final device = snapshot.data;
-
-        if (device?.device == Device.other || device == null) {
-          const message =
-              "An issue occurred. Chances are, you're neither on Android nor iOS.";
-
-          return const Text(message);
-        }
+        final buildMode = stringUtils.enumName(currentBuildMode.toString());
 
         final androidView = [
           _BuildTile("Manufacturer:", device.manufacturer),
@@ -91,7 +77,12 @@ class _GetContent extends ConsumerWidget {
         final platformView = switch (device.device) {
           Device.android => androidView,
           Device.ios => iosView,
-          Device.other => <_BuildTile>[],
+          Device.other => const [
+              _BuildTile(
+                "Oops.",
+                "Chances are, you're neither on Android nor iOS.",
+              ),
+            ],
         };
 
         return ListView(
@@ -104,6 +95,19 @@ class _GetContent extends ConsumerWidget {
           ],
         );
       },
+      error: (err, stack) {
+        final message = "An issue occurred: $err, $stack.";
+
+        return Text(message);
+      },
+      loading: () => const Center(
+        child: Column(
+          children: [
+            CircularProgressIndicator(),
+            Text("Loading..."),
+          ],
+        ),
+      ),
     );
   }
 }
