@@ -58,8 +58,14 @@ jobs:
             lib/**/*.gm.dart
             lib/**/*.freezed.dart
           if-no-files-found: error
+      - name: ⚙️ Upload build
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
+        with:
+          name: build-directory
+          path: ./build
+          if-no-files-found: error
 
-  check:
+  lint:
     name: Linting
     needs: ["build"]
     timeout-minutes: 5
@@ -149,3 +155,41 @@ jobs:
           cache: true
       - name: ✨ Verify formatting
         run: dart format --output=none --set-exit-if-changed .
+
+  deploy:
+    name: Deployment
+    needs: ["build", "lint", "test"]
+    timeout-minutes: 3
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Start deployment
+        uses: bobheadxi/deployments@88ce5600046c82542f8246ac287d0a53c461bca3 # v1.4.0
+        id: deployment
+        with:
+          env: production
+          step: start
+      - name: ⚙️ Download the build artifact
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
+        with:
+          name: build-directory
+          path: ./build
+      - name: Deploy to Netlify
+        uses: South-Paw/action-netlify-cli@8e99164b59ca8343c925aacd05a44d3ffa3718fa # v1.0.1
+        id: netlify
+        with:
+          # be sure to escape any double quotes with a backslash and note that the --json
+          # flag has been passed when deploying - if you want the outputs to work you'll need to include it
+          args: deploy --json ${{ github.event_name == 'pull_request' && '--prod'  }}  --dir \"./public\" --message \"${{ (github.event_name == 'pull_request' && 'draft') || 'production'  }} [${{ github.sha }}]\"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Finish deployment
+        uses: bobheadxi/deployments@88ce5600046c82542f8246ac287d0a53c461bca3 # v1.4.0
+        if: always()
+        with:
+          env: ${{ steps.deployment.outputs.env }}
+          step: finish
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env_url: ${{ steps.netlify.outputs.NETLIFY_PROD_URL }}
