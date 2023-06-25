@@ -98,7 +98,7 @@ jobs:
           dart run build_runner build
       - name: 🔧 Build
         if: ${{ matrix.language != 'python' && matrix.language != 'swift' }}
-        run: flutter build apk --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json --flavor production --no-tree-shake-icons
+        run: flutter build apk --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json --flavor production --no-tree-shake-icons --no-shrink
       - name: 🔧 Build iOS
         if: ${{ matrix.language == 'swift' }}
         run: flutter build ios --target lib/main_production.dart --debug --dart-define-from-file=dart_define.json --flavor production --no-tree-shake-icons
