@@ -7,7 +7,6 @@ import "../domain/device_data.dart";
 
 part "device.g.dart";
 
-
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
   Future<DeviceData> deviceInfo();
