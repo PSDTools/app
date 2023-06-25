@@ -1,5 +1,3 @@
-import "dart:io";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -39,39 +37,20 @@ class _BuildTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return value != null
-        ? Padding(
-            padding: const EdgeInsets.all(5),
-            child: Row(
-              children: [
-                Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text(value ?? ""),
-              ],
-            ),
-          )
-        : const Text("");
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Row(
+        children: [
+          Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(value ?? ""),
+        ],
+      ),
+    );
   }
 }
 
 class _GetContent extends ConsumerWidget {
   const _GetContent();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    if (Platform.isAndroid) {
-      return const _PlatformContent(Device.android);
-    } else if (Platform.isIOS) {
-      return const _PlatformContent(Device.ios);
-    } else {
-      return const _PlatformContent(Device.other);
-    }
-  }
-}
-
-class _PlatformContent extends ConsumerWidget {
-  const _PlatformContent(Device platform) : _platform = platform;
-
-  final Device _platform;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -81,8 +60,8 @@ class _PlatformContent extends ConsumerWidget {
     return FutureBuilder(
       // Actually, this takes a future.
       // ignore: discarded_futures
-      future: deviceUtils.deviceInfo(_platform),
-      builder: (context, AsyncSnapshot<DeviceData?> snapshot) {
+      future: deviceUtils.deviceInfo(),
+      builder: (context, AsyncSnapshot<DeviceData> snapshot) {
         if (!snapshot.hasData) return Container();
 
         final stringUtils = ref.watch(stringUtilsProvider);
@@ -90,22 +69,38 @@ class _PlatformContent extends ConsumerWidget {
             stringUtils.enumName(deviceUtils.currentBuildMode().toString());
         final device = snapshot.data;
 
-        if (device?.isOther ?? true) {
-          return const Text("You're neither on Android nor iOS");
+        if (device?.device == Device.other || device == null) {
+          const message =
+              "An issue occurred. Chances are, you're neither on Android nor iOS.";
+
+          return const Text(message);
         }
+
+        final androidView = [
+          _BuildTile("Manufacturer:", device.manufacturer),
+          _BuildTile("Android version:", device.release),
+          _BuildTile("Android SDK:", "${device.sdkInt}"),
+        ];
+
+        final iosView = [
+          _BuildTile("Device:", device.name),
+          _BuildTile("System name:", device.systemName),
+          _BuildTile("System version:", device.systemVersion),
+        ];
+
+        final platformView = switch (device.device) {
+          Device.android => androidView,
+          Device.ios => iosView,
+          Device.other => <_BuildTile>[],
+        };
 
         return ListView(
           children: [
             _BuildTile("Flavor:", flavorConfig.name),
             _BuildTile("Build mode:", buildMode),
-            _BuildTile("Physical device?:", "${device?.isPhysicalDevice}"),
-            _BuildTile("Device:", device?.name),
-            _BuildTile("Manufacturer:", device?.manufacturer),
-            _BuildTile("Model:", device?.model),
-            _BuildTile("System name:", device?.systemName),
-            _BuildTile("System version:", device?.systemVersion),
-            _BuildTile("Android version:", device?.release),
-            _BuildTile("Android SDK:", "${device?.sdkInt}"),
+            _BuildTile("Physical device?:", "${device.isPhysicalDevice}"),
+            _BuildTile("Model:", device.model),
+            ...platformView,
           ],
         );
       },

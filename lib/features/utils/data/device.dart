@@ -1,3 +1,5 @@
+import "dart:io";
+
 import "package:device_info/device_info.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -9,14 +11,18 @@ enum BuildMode { debug, profile, release }
 
 abstract class DeviceRepository {
   BuildMode currentBuildMode();
-  Future<DeviceData> deviceInfo(Device device);
+  Future<DeviceData> deviceInfo();
 }
 
 class DeviceUtilsRepository implements DeviceRepository {
-  const DeviceUtilsRepository({required DeviceInfoPlugin plugin})
-      : _plugin = plugin;
+  const DeviceUtilsRepository({
+    required DeviceInfoPlugin plugin,
+    required Device platform,
+  })  : _plugin = plugin,
+        _platform = platform;
 
   final DeviceInfoPlugin _plugin;
+  final Device _platform;
 
   @override
   BuildMode currentBuildMode() {
@@ -39,8 +45,8 @@ class DeviceUtilsRepository implements DeviceRepository {
   }
 
   @override
-  Future<DeviceData> deviceInfo(Device device) async {
-    switch (device) {
+  Future<DeviceData> deviceInfo() async {
+    switch (_platform) {
       case Device.android:
         final androidInfo = await _plugin.androidInfo;
         final version = androidInfo.version;
@@ -81,11 +87,24 @@ class DeviceUtilsRepository implements DeviceRepository {
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
   final plugin = ref.watch(pluginProvider);
+  final device = ref.watch(currentDeviceProvider);
 
-  return DeviceUtilsRepository(plugin: plugin);
+  return DeviceUtilsRepository(plugin: plugin, platform: device);
 }
 
 @riverpod
 DeviceInfoPlugin plugin(PluginRef _) {
   return DeviceInfoPlugin();
+}
+
+@riverpod
+Device currentDevice(CurrentDeviceRef _) {
+  var device = Device.other;
+  if (Platform.isAndroid) {
+    device = Device.android;
+  } else if (Platform.isIOS) {
+    device = Device.ios;
+  }
+
+  return device;
 }

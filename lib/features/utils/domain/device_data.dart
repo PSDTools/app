@@ -15,10 +15,6 @@ class DeviceData with _$DeviceData {
     String? release,
     int? sdkInt,
   }) = _DeviceData;
-
-  const DeviceData._();
-
-  bool get isOther => device == Device.other;
 }
 
 enum Device { android, ios, other }
