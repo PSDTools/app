@@ -1,6 +1,6 @@
 import "dart:io";
 
-import "package:device_info/device_info.dart";
+import "package:device_info_plus/device_info_plus.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_data.dart";
