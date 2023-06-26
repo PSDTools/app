@@ -153,14 +153,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "8.6.1"
-  change_case:
-    dependency: transitive
-    description:
-      name: change_case
-      sha256: f4e08feaa845e75e4f5ad2b0e15f24813d7ea6c27e7b78252f0c17f752cf1157
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -333,10 +325,10 @@ packages:
     dependency: "direct dev"
     description:
       name: dart_define
-      sha256: "62008fedeb4f518daccae1f40dbef9728cbd2c69d6953d0a96356baf99ae2e63"
+      sha256: b082dcd28bca0612086c2510413350cb0aafae46bd3f3bee8fdfeeb8106131d7
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   dart_style:
     dependency: transitive
     description:
@@ -621,6 +613,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: "7ad7215c15420a102ec687bb320a7312afd449bac63bfb1c60d9787c27b9767f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.0"
   logging:
     dependency: transitive
     description:
@@ -629,6 +629,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  mankeli_core:
+    dependency: transitive
+    description:
+      name: mankeli_core
+      sha256: ac834e86c7d2c66686f1af95cea7d61d516fb56daa8eaec83e4ce31f8df3cbe3
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   mason_logger:
     dependency: transitive
     description:
