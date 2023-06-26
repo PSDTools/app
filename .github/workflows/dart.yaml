@@ -161,13 +161,16 @@ jobs:
     needs: ["build", "lint", "test"]
     timeout-minutes: 3
     runs-on: ubuntu-latest
+    environment: ${{ ( github.event_name == 'pull_request' && 'integration' ) || 'staging' }}
 
     steps:
       - name: Start deployment
+        if: ${{ github.event_name != 'merge_group' }}
         uses: bobheadxi/deployments@88ce5600046c82542f8246ac287d0a53c461bca3 # v1.4.0
         id: deployment
         with:
-          env: production
+          env: ${{ github.event_name == 'pull_request' && 'integration' || 'staging' }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           step: start
       - name: ⚙️ Download the build artifact
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
@@ -180,7 +183,7 @@ jobs:
         with:
           # be sure to escape any double quotes with a backslash and note that the --json
           # flag has been passed when deploying - if you want the outputs to work you'll need to include it
-          args: deploy --json ${{ github.event_name == 'pull_request' && '--prod'  }}  --dir \"./public\" --message \"${{ (github.event_name == 'pull_request' && 'draft') || 'production'  }} [${{ github.sha }}]\"
+          args: deploy --json ${{ github.event_name == 'pull_request' && '--prod'  }}  --dir \"./build/web\" --message \"${{ (github.event_name == 'pull_request' && 'draft') || 'production'  }} [${{ github.sha }}]\"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
