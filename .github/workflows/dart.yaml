@@ -162,10 +162,13 @@ jobs:
     if: ${{ github.event_name != 'merge_group' }}
     timeout-minutes: 3
     runs-on: ubuntu-latest
+
     environment: ${{ ( github.event_name == 'pull_request' && 'integration' ) || 'staging' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
+    permissions:
+      deployments: write
 
     steps:
       - name: 🔌 Start deployment
