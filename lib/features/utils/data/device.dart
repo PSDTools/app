@@ -49,7 +49,7 @@ class DeviceUtilsRepository implements DeviceRepository {
         final androidInfo = await _plugin.androidInfo;
         final version = androidInfo.version;
         final info = DeviceData(
-          device: Device.android,
+          device: _platform,
           isPhysicalDevice: androidInfo.isPhysicalDevice,
           model: androidInfo.model,
           manufacturer: androidInfo.manufacturer,
@@ -62,7 +62,7 @@ class DeviceUtilsRepository implements DeviceRepository {
       case Device.ios:
         final iosInfo = await _plugin.iosInfo;
         final info = DeviceData(
-          device: Device.ios,
+          device: _platform,
           isPhysicalDevice: iosInfo.isPhysicalDevice,
           model: iosInfo.model,
           name: iosInfo.name,
@@ -74,7 +74,7 @@ class DeviceUtilsRepository implements DeviceRepository {
 
       case Device.other:
         return DeviceData(
-          device: Device.other,
+          device: _platform,
           isPhysicalDevice: false,
           model: "Unknown",
         );
