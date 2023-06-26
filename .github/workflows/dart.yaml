@@ -159,13 +159,16 @@ jobs:
   deploy:
     name: Deployment
     needs: ["build", "lint", "test"]
+    if: ${{ github.event_name != 'merge_group' }}
     timeout-minutes: 3
     runs-on: ubuntu-latest
     environment: ${{ ( github.event_name == 'pull_request' && 'integration' ) || 'staging' }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
 
     steps:
-      - name: Start deployment
-        if: ${{ github.event_name != 'merge_group' }}
+      - name: 🔌 Start deployment
         uses: bobheadxi/deployments@88ce5600046c82542f8246ac287d0a53c461bca3 # v1.4.0
         id: deployment
         with:
@@ -177,7 +180,7 @@ jobs:
         with:
           name: build-directory
           path: ./build
-      - name: Deploy to Netlify
+      - name: 🔧 Deploy to Netlify
         uses: South-Paw/action-netlify-cli@8e99164b59ca8343c925aacd05a44d3ffa3718fa # v1.0.1
         id: netlify
         with:
@@ -187,7 +190,7 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Finish deployment
+      - name: 🔌 Finish deployment
         uses: bobheadxi/deployments@88ce5600046c82542f8246ac287d0a53c461bca3 # v1.4.0
         if: always()
         with:
