@@ -6,10 +6,10 @@ part "secrets.g.dart";
 
 @riverpod
 Flavor flavor(FlavorRef _) {
-  return DartDefine.flavor;
+  return Dartdefine.flavor;
 }
 
 @riverpod
 String projectId(ProjectIdRef _) {
-  return DartDefine.projectId;
+  return Dartdefine.projectId;
 }
