@@ -15,13 +15,13 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: WrapperRoute.page,
-          path: "/",
+          path: "/pirate-coins",
           initial: true,
           children: [
             AutoRoute(page: PirateCoinsRoute.page, path: ""),
             AutoRoute(page: StatsRoute.page, path: "stats"),
           ],
         ),
-        RedirectRoute(path: "*", redirectTo: "/"),
+        RedirectRoute(path: "*", redirectTo: "/pirate-coins"),
       ];
 }
