@@ -7,8 +7,6 @@ import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/l10n/l10n.dart";
 
 /// Extension method for [WidgetTester.pumpWidget].
-// This isn't a test.
-// ignore: avoid-top-level-members-in-tests
 extension PumpApp on WidgetTester {
   /// Pump a [Widget] in a [ProviderScope].
   Future<void> pumpApp(Widget widget) => pumpWidget(_Widget(child: widget));
