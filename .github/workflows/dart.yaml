@@ -189,7 +189,7 @@ jobs:
         with:
           # be sure to escape any double quotes with a backslash and note that the --json
           # flag has been passed when deploying - if you want the outputs to work you'll need to include it
-          args: deploy --json ${{ github.event_name == 'pull_request' && '--prod'  }}  --dir \"./build/web\" --message \"${{ (github.event_name == 'pull_request' && 'draft') || 'production'  }} [${{ github.sha }}]\"
+          args: deploy --json ${{ github.ref == 'refs/heads/main' && '--prod'  }}  --dir \"./build/web\" --message \"${{ (github.event_name == 'pull_request' && 'draft') || 'production'  }} [${{ github.sha }}]\"
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
