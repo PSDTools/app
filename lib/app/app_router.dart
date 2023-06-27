@@ -3,9 +3,9 @@ library pirate_code.app.router;
 
 import "package:auto_route/auto_route.dart";
 
-import "../features/pirate_coins/presentation/pirate_coins.dart";
-import "../features/stats/presentation/stats.dart";
-import "../features/wrapper/presentation/wrapper.dart";
+import "../features/pirate_coins/presentation/pirate_coins_page.dart";
+import "../features/stats/presentation/stats_page.dart";
+import "../features/wrapper/presentation/wrapper_page.dart";
 
 part "app_router.gr.dart";
 

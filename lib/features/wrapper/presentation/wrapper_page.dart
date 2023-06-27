@@ -2,7 +2,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../app/app_router.dart";
+import "../../../app/app_router.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.

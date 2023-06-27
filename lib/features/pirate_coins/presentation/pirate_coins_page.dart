@@ -5,8 +5,8 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-// import "../../providers/client.dart";
-import "../../widgets/big_card/big_card.dart";
+// import "../../../utils/data/api.dart";
+import "../../../widgets/big_card/big_card.dart";
 
 /// The page located at `/pirate-coins`.
 @RoutePage()
