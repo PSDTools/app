@@ -1,12 +1,18 @@
+/// A widget for a...um...big card!
+library widgets.big_card.view;
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+/// A, well, big card!
 class BigCard extends ConsumerWidget {
+  /// Create a new instance of [BigCard].
   const BigCard(
     this.text, {
     super.key,
   });
 
+  /// The text to display on the [BigCard].
   final String text;
 
   @override

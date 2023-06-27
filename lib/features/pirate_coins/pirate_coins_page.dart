@@ -1,3 +1,6 @@
+/// The pirate_coins feature.
+library pirate_code.features.pirate_coins.page;
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -5,8 +8,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 // import "../../providers/client.dart";
 import "../../widgets/big_card/big_card.dart";
 
+/// The page located at `/pirate-coins`.
 @RoutePage()
 class PirateCoinsPage extends ConsumerWidget {
+  /// Create a new instance of [PirateCoinsPage].
   const PirateCoinsPage({super.key});
 
   @override

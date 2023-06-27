@@ -1,3 +1,6 @@
+/// The utils feature's flavor presentation.
+library pirate_code.features.utils.presentation.flavor;
+
 import "dart:async";
 
 import "package:flutter/material.dart";
@@ -7,14 +10,19 @@ import "../data/banner.dart";
 import "../data/flavor.dart";
 import "device_info_dialog.dart";
 
+/// A widget that displays a banner at the top of the screen.
 class FlavorBanner extends ConsumerWidget {
+  /// Create a new instance of [FlavorBanner].
   const FlavorBanner({
     required this.child,
     this.bannerConfig,
     super.key,
   });
 
+  /// The configuration for the banner.
   final BannerConfig? bannerConfig;
+
+  /// The content under the banner.
   final Widget? child;
 
   @override
@@ -38,18 +46,23 @@ class FlavorBanner extends ConsumerWidget {
 class _BuildBanner extends StatelessWidget {
   const _BuildBanner({
     required this.bannerConfig,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
   });
 
   final BannerConfig bannerConfig;
 
   @override
   Widget build(BuildContext context) {
-    Future<void> onLongPress() async {
-      return showDialog<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return const DeviceInfoDialog();
-        },
+    void onLongPress() {
+      return unawaited(
+        showDialog<void>(
+          context: context,
+          builder: (BuildContext context) {
+            return const DeviceInfoDialog();
+          },
+        ),
       );
     }
 
@@ -57,7 +70,7 @@ class _BuildBanner extends StatelessWidget {
     const size = 50.0;
 
     return GestureDetector(
-      onLongPress: () => unawaited(onLongPress()),
+      onLongPress: onLongPress,
       behavior: HitTestBehavior.translucent,
       child: SizedBox(
         width: size,

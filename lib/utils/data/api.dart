@@ -1,3 +1,6 @@
+/// The api utilities.
+library pirate_code.utils.data.api;
+
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -5,8 +8,10 @@ import "secrets.dart";
 
 part "api.g.dart";
 
-class ApiInfos implements Api {
-  ApiInfos({
+/// Get API information via passed in environment variables.
+class Api implements ApiRepository {
+  /// Create a new instance of [Api].
+  Api({
     required String projectId,
     required String url,
   })  : _url = url,
@@ -22,25 +27,28 @@ class ApiInfos implements Api {
   String get projectId => _projectId;
 }
 
-abstract class Api {
+/// The API information.
+abstract class ApiRepository {
+  /// The URL of the Appwrite API.
   String get url;
+
+  /// The project ID for the Appwrite API.
   String get projectId;
 }
 
+/// Get the Appwrite API information.
 @Riverpod(dependencies: [projectId])
-class ApiInfo extends _$ApiInfo {
-  @override
-  Api build() {
-    final projectId = ref.watch(projectIdProvider);
+ApiRepository apiInfo(ApiInfoRef ref) {
+  final projectId = ref.watch(projectIdProvider);
 
-    return ApiInfos(
-      projectId: projectId,
-      url: "https://cloud.appwrite.io/v1",
-    );
-  }
+  return Api(
+    projectId: projectId,
+    url: "https://cloud.appwrite.io/v1",
+  );
 }
 
-@Riverpod(dependencies: [ApiInfo])
+/// Get the Appwrite client.
+@Riverpod(dependencies: [apiInfo])
 Client client(ClientRef ref) {
   final apiInfo = ref.watch(apiInfoProvider);
 

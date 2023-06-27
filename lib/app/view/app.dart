@@ -1,3 +1,6 @@
+/// The app widget view.
+library pirate_code.app.view;
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
@@ -5,6 +8,7 @@ import "../../features/utils/presentation/flavor_banner.dart";
 import "../../l10n/l10n.dart";
 import "../app_router.dart";
 
+/// The app widget (as a mixin).
 mixin AppView on ConsumerWidget {
   // Make sure you don't initiate your router inside of the build function.
   final _appRouter = AppRouter();
