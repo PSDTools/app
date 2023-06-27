@@ -53,7 +53,7 @@ class FlavorConfig {
 }
 
 /// Get the flavor, and it's associated configuration, for the app.
-@Riverpod(dependencies: [flavor, StringUtils])
+@riverpod
 FlavorConfig flavorConfig(FlavorConfigRef ref) {
   final flavor = ref.watch(flavorProvider);
   final stringUtils = ref.watch(stringUtilsProvider);

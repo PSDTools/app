@@ -37,7 +37,7 @@ abstract class ApiRepository {
 }
 
 /// Get the Appwrite API information.
-@Riverpod(dependencies: [projectId])
+@riverpod
 ApiRepository apiInfo(ApiInfoRef ref) {
   final projectId = ref.watch(projectIdProvider);
   final apiUrl = ref.watch(apiUrlProvider);
@@ -49,7 +49,7 @@ ApiRepository apiInfo(ApiInfoRef ref) {
 }
 
 /// Get the Appwrite client.
-@Riverpod(dependencies: [apiInfo])
+@riverpod
 Client client(ClientRef ref) {
   final apiInfo = ref.watch(apiInfoProvider);
 
