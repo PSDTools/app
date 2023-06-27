@@ -9,12 +9,12 @@ part "secrets.g.dart";
 
 /// Get the flavor of the application.
 @riverpod
-Flavor flavor(FlavorRef _) {
-  return Dartdefine.flavor;
-}
+Flavor flavor(FlavorRef _) => Dartdefine.flavor;
 
-/// Get the AppWrite project ID.
+/// Get the Appwrite project ID.
 @riverpod
-String projectId(ProjectIdRef _) {
-  return Dartdefine.projectId;
-}
+String projectId(ProjectIdRef _) => Dartdefine.projectId;
+
+/// Get the Appwrite Api Endpoint
+@riverpod
+String apiUrl(ApiUrlRef ref) => Dartdefine.apiEndpoint;

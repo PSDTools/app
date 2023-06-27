@@ -40,10 +40,11 @@ abstract class ApiRepository {
 @Riverpod(dependencies: [projectId])
 ApiRepository apiInfo(ApiInfoRef ref) {
   final projectId = ref.watch(projectIdProvider);
+  final apiUrl = ref.watch(apiUrlProvider);
 
   return Api(
     projectId: projectId,
-    url: "https://cloud.appwrite.io/v1",
+    url: apiUrl,
   );
 }
 

@@ -119,6 +119,10 @@ dart_define:
       description: Appwrite project ID
       default: 648b3836d14e06cddc4e
       required: false
+    - name: API_ENDPOINT
+      description: Appwrite API endpoint
+      default: https://cloud.appwrite.com/v1
+      required: false
 
   flavors:
     - name: production
