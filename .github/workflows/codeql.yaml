@@ -125,7 +125,7 @@ jobs:
           submodules: true
           persist-credentials: false
       - name: 🕵️ Perform DevSkim Analysis
-        uses: microsoft/devskim-action@3235f705386c4d47689dc564d5b0c2cd43340b64 # v1.0.7
+        uses: microsoft/devskim-action@74ddf98618ab84f5417542accf0a24a5f39fb7a9 # v1.0.10
         with:
           should-scan-archives: false
           output-filename: devskim-results.sarif
