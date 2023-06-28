@@ -20,7 +20,6 @@ mixin AppView on ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
-      builder: (context, child) => FlavorBanner(child: child),
       title: "PSD Wallet",
       theme: ThemeData(
         useMaterial3: true,

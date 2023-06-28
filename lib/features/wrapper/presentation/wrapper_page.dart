@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../app/app_router.dart";
+import "../../utils/presentation/flavor_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.
@@ -51,7 +52,7 @@ class WrapperPage extends ConsumerWidget {
               child: SafeArea(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: page,
+                  child: FlavorBanner(child: page),
                 ),
               ),
             );
