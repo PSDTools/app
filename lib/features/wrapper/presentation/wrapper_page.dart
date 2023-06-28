@@ -2,14 +2,20 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../app/app_router.dart";
+import "../../../app/app_router.dart";
 
+/// Wrap the app, providing navigation and routing.
+/// It enforces that the app is under `/pirate-coins`.
+/// It also provides a [Scaffold] with a [BottomNavigationBar] or [NavigationRail].
+///
+///
 /// With lots and lots and lots and lots of thanks to many, including:
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
 /// - [StackOverflow](https://stackoverflow.com/a/62163655), and
 /// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart).
 @RoutePage()
 class WrapperPage extends ConsumerWidget {
+  /// Create a new instance of [WrapperPage].
   const WrapperPage({super.key});
 
   @override

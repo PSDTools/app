@@ -1,11 +1,16 @@
+/// The utils feature's device presentation.
+library pirate_code.features.utils.presentation.device;
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/string.dart";
+import "../../../utils/common/string.dart";
 import "../data/flavor.dart";
 import "../domain/device_data.dart";
 
+/// A dialog that displays information about the device.
 class DeviceInfoDialog extends ConsumerWidget {
+  /// Create a new instance of [DeviceInfoDialog].
   const DeviceInfoDialog({super.key});
 
   @override
@@ -28,8 +33,11 @@ class DeviceInfoDialog extends ConsumerWidget {
 class _BuildTile extends ConsumerWidget {
   const _BuildTile(
     this.text,
-    this.value,
-  );
+    this.value, {
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
 
   final String text;
   final String? value;
@@ -49,7 +57,11 @@ class _BuildTile extends ConsumerWidget {
 }
 
 class _GetContent extends ConsumerWidget {
-  const _GetContent();
+  const _GetContent({
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

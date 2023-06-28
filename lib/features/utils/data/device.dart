@@ -1,3 +1,6 @@
+/// The utils feature's device data.
+library pirate_code.features.utils.data.device;
+
 import "dart:io";
 
 import "package:device_info_plus/device_info_plus.dart";
@@ -7,12 +10,21 @@ import "../domain/device_data.dart";
 
 part "device.g.dart";
 
+/// A repository for device information.
 abstract class DeviceRepository {
+  /// Get the current build mode.
   BuildMode currentBuildMode();
+
+  /// Get information about the [currentDevice].
   Future<DeviceData> deviceInfo();
 }
 
+/// The default implementation of [DeviceRepository], using [DeviceInfoPlugin] from device_info_plus.
+/// This implementation will return the device information for the [currentDevice].
+/// If the platform* is not supported by device_info_plus, it will return a default value.
+/// * AKA Fuchsia.
 class DeviceUtilsRepository implements DeviceRepository {
+  /// Create a new instance of [DeviceUtilsRepository].
   const DeviceUtilsRepository({
     required DeviceInfoPlugin plugin,
     required Device platform,
@@ -82,6 +94,7 @@ class DeviceUtilsRepository implements DeviceRepository {
   }
 }
 
+/// Get information about the [currentDevice] and build mode.
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
   final plugin = ref.watch(_pluginProvider);
@@ -95,6 +108,7 @@ DeviceInfoPlugin _plugin(_PluginRef _) {
   return DeviceInfoPlugin();
 }
 
+/// Get the current device platform.
 @riverpod
 Device currentDevice(CurrentDeviceRef _) {
   return switch (Platform.operatingSystem) {

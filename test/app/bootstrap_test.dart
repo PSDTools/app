@@ -24,7 +24,8 @@ void main() {
       const tested = _BootstrapMixed();
       await tested.bootstrap(); // No exception, we hope.
       await tester.pumpApp(const _BootstrapMixed());
-      expect(find.text(""), findsOneWidget);
+      expect(find.byType(MaterialApp), findsOneWidget);
+      expect(find.byType(ProviderScope), findsOneWidget);
     });
   });
 }
