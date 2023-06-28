@@ -52,7 +52,7 @@ class FlavorConfig {
   String get name => _stringUtils.enumName(flavor.toString());
 }
 
-/// Get the flavor, and it's associated configuration, for the app.
+/// Get the flavor, and its associated configuration, for the app.
 @riverpod
 FlavorConfig flavorConfig(FlavorConfigRef ref) {
   final flavor = ref.watch(flavorProvider);
