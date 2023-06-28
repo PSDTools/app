@@ -4,6 +4,8 @@ library pirate_code.features.pirate_coins.page;
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "./data/coins_data.dart";
+import "./domain/coins_domain.dart";
 
 // import "../../../utils/data/api.dart";
 import "../../../widgets/big_card/big_card.dart";
@@ -18,7 +20,7 @@ class PirateCoinsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // final appState = ref.watch(clientProvider);
     // final data = appState.coins;
-    const data = 0;
+    final data = ref.watch(coinsDomainProvider).number;
 
     return Center(
       child: Column(
