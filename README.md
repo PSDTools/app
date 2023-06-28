@@ -17,7 +17,7 @@ We don't believe that readmes should be a 15 Terabyte[^1] file, so we broke it u
 - For more information about us, check out our [organization readme](https://github.com/PSDTools#welcome-to-the-team-). Finally,
 - For more information about our progress, you could take a peek at our meta-project board.
 
-[^1]: Not that ours was before... but it was getting large.
+[^1]: Not that ours was before... but it was getting on the larger side.
 
 [ci_dart_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yaml/badge.svg?branch=main
 [ci_dart_link]: https://github.com/PSDTools/app/actions/workflows/dart.yaml
@@ -25,7 +25,7 @@ We don't believe that readmes should be a 15 Terabyte[^1] file, so we broke it u
 [ci_sec_link]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml
 [ci_spell_badge]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml/badge.svg?branch=main
 [ci_spell_link]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml
-[coverage_badge]: https://img.shields.io/badge/dart%20coverage-11%25-CB2431.svg
+[coverage_badge]: https://img.shields.io/badge/coverage-30%25-CB2431.svg
 [deploys_badge]: https://api.netlify.com/api/v1/badges/25b0c44e-21b7-423c-a914-32aa4b23b708/deploy-status
 [deploys_link]: https://app.netlify.com/sites/pattonville-wallet/deploys
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
