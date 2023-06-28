@@ -1,14 +1,23 @@
 import "package:freezed_annotation/freezed_annotation.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
-import "../data/coins_data.dart"; // Import the data layer file
-part "coins_domain.freezed.dart";
+import "package:riverpod_annotation/riverpod_annotation.dart";
 
+import "../data/coins_data.dart";
+
+part "coins_domain.freezed.dart";
+part "coins_domain.g.dart";
+
+/// A number.
 @freezed
 abstract class NumberDomain with _$NumberDomain {
-  const factory NumberDomain({required int number}) = _NumberDomain;
+  /// Create a new, immutable instance of [NumberDomain].
+  const factory NumberDomain({
+    required int number,
+  }) = _NumberDomain;
 }
 
-final coinsDomainProvider = Provider<NumberDomain>((ref) {
+/// Get coins data from data layer.
+@riverpod
+NumberDomain coinsDomain(CoinsDomainRef ref) {
   final number = ref.watch(coinsDataProvider);
   return NumberDomain(number: number);
-});
+}
