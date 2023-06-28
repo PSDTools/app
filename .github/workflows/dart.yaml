@@ -130,7 +130,7 @@ jobs:
         with:
           path: coverage/lcov.info
           min_coverage: 10 # 100
-          exclude: "**gen**.dart **/*.freezed.dart **/*.g.dart **/*.gr.dart **/*.gm.dart "
+          exclude: "**/*.gen.dart **/*.freezed.dart **/*.g.dart **/*.gr.dart **/*.gm.dart **/gen/**"
 
   format:
     name: Formatting
