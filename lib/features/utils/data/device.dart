@@ -15,12 +15,12 @@ abstract class DeviceRepository {
   /// Get the current build mode.
   BuildMode currentBuildMode();
 
-  /// Get information about the [currentDevice].
+  /// Get information about the [currentPlatform].
   Future<DeviceData> deviceInfo();
 }
 
 /// The default implementation of [DeviceRepository], using [DeviceInfoPlugin] from device_info_plus.
-/// This implementation will return the device information for the [currentDevice].
+/// This implementation will return the device information for the [currentPlatform].
 /// If the platform* is not supported by device_info_plus, it will return a default value.
 /// * AKA Fuchsia.
 class DeviceUtilsRepository implements DeviceRepository {
@@ -94,11 +94,11 @@ class DeviceUtilsRepository implements DeviceRepository {
   }
 }
 
-/// Get information about the [currentDevice] and build mode.
+/// Get information about the [currentPlatform] and build mode.
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
   final plugin = ref.watch(_pluginProvider);
-  final device = ref.watch(currentDeviceProvider);
+  final device = ref.watch(currentPlatformProvider);
 
   return DeviceUtilsRepository(plugin: plugin, platform: device);
 }
@@ -110,8 +110,14 @@ DeviceInfoPlugin _plugin(_PluginRef _) {
 
 /// Get the current device platform.
 @riverpod
-Device currentDevice(CurrentDeviceRef _) {
-  return switch (Platform.operatingSystem) {
+String _currentDevice(_CurrentDeviceRef _) => Platform.operatingSystem;
+
+/// Get the current device platform, enum-ized.
+@riverpod
+Device currentPlatform(CurrentPlatformRef ref) {
+  final currentDevice = ref.watch(_currentDeviceProvider);
+
+  return switch (currentDevice) {
     "android" => Device.android,
     "ios" => Device.ios,
     _ => Device.other,
