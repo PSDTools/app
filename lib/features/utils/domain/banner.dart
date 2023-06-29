@@ -1,26 +1,28 @@
 /// The utils feature's banner data.
 library pirate_code.features.utils.data.banner;
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "flavor.dart";
 
+part "banner.freezed.dart";
 part "banner.g.dart";
 
 /// The dev banner's associated configuration.
-class BannerConfig {
-  /// Create a new instance of [BannerConfig].
-  BannerConfig({
-    required this.bannerName,
-    required this.bannerColor,
-  });
+@freezed
+@immutable
+class BannerConfig with _$BannerConfig {
+  /// Create a new, immutable instance of [BannerConfig].
+  const factory BannerConfig({
+    /// The name to display on the banner.
+    required String bannerName,
 
-  /// The name to display on the banner.
-  final String bannerName;
-
-  /// The color of the banner.
-  final Color bannerColor;
+    /// The color of the banner.
+    required Color bannerColor,
+  }) = _BannerConfig;
 }
 
 /// Get the default fallback banner.
