@@ -8,9 +8,11 @@ part "coins_domain.g.dart";
 
 /// A number.
 @freezed
-abstract class NumberDomain with _$NumberDomain {
+@immutable
+class NumberDomain with _$NumberDomain {
   /// Create a new, immutable instance of [NumberDomain].
   const factory NumberDomain({
+    /// The number.
     required int number,
   }) = _NumberDomain;
 }
