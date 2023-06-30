@@ -19,7 +19,7 @@ class DeviceInfoDialog extends ConsumerWidget {
 
     return AlertDialog(
       title: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(150),
         color: flavorConfig.color,
         child: const Text("Device Info", style: TextStyle(color: Colors.white)),
       ),
