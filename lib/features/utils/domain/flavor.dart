@@ -1,55 +1,61 @@
 /// The utils feature's flavor data.
 library pirate_code.features.utils.data.flavor;
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../dart_define.gen.dart";
 import "../../../utils/common/string.dart";
 import "../../../utils/data/secrets.dart";
 
+part "flavor.freezed.dart";
 part "flavor.g.dart";
 
 /// This class contains flavor-specific configurations.
-class FlavorValues {
+@freezed
+@immutable
+class FlavorValues with _$FlavorValues {
   /// Create a new instance of [FlavorValues].
-  FlavorValues();
+  const factory FlavorValues() = _FlavorValues;
 
   // Add flavor-specific values that aren't secrets.
 }
 
+@freezed
+@immutable
+
 /// This class contains flavor-specific configurations.
-class FlavorConfig {
+class FlavorConfig with _$FlavorConfig {
   /// Create a new instance of [FlavorConfig].
-  FlavorConfig({
-    required this.flavor,
-    required this.values,
-    required this.color,
+  const factory FlavorConfig({
+    /// The flavor of the app.
+    required Flavor flavor,
+
+    /// The color of the flavor banner.
+    required FlavorValues values,
+
+    /// The flavor-specific values.
+    required Color color,
+
+    /// An instance of [StringUtils].
     required StringUtils stringUtils,
-  }) : _stringUtils = stringUtils;
+  }) = _FlavorConfig;
 
-  /// The flavor of the app.
-  final Flavor flavor;
-
-  /// The color of the flavor banner.
-  final Color color;
-
-  /// The flavor-specific values.
-  final FlavorValues values;
-
-  final StringUtils _stringUtils;
+  const FlavorConfig._();
 
   /// If the app is in production mode.
-  bool get isProduction => flavor == Flavor.production;
+  bool get isProduction => this.flavor == Flavor.production;
 
   /// If the app is in development mode.
-  bool get isDevelopment => flavor == Flavor.development;
+  bool get isDevelopment => this.flavor == Flavor.development;
 
   /// If the app is in staging mode.
-  bool get isStaging => flavor == Flavor.staging;
+  bool get isStaging => this.flavor == Flavor.staging;
 
   /// The name of the flavor.
-  String get name => _stringUtils.enumName(flavor.toString());
+  String get name => stringUtils.enumName(flavor.toString());
 }
 
 /// Get the flavor, and its associated configuration, for the app.
@@ -60,7 +66,7 @@ FlavorConfig flavorConfig(FlavorConfigRef ref) {
 
   return FlavorConfig(
     flavor: flavor,
-    values: FlavorValues(),
+    values: const FlavorValues(),
     color: Colors.blue,
     stringUtils: stringUtils,
   );

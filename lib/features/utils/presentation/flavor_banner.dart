@@ -6,8 +6,8 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../data/banner.dart";
-import "../data/flavor.dart";
+import "../domain/banner.dart";
+import "../domain/flavor.dart";
 import "device_info_dialog.dart";
 
 /// A widget that displays a banner at the top of the screen.

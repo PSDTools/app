@@ -5,8 +5,8 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/common/string.dart";
-import "../data/flavor.dart";
 import "../domain/device_data.dart";
+import "../domain/flavor.dart";
 
 /// A dialog that displays information about the device.
 class DeviceInfoDialog extends ConsumerWidget {

@@ -1,6 +1,7 @@
 /// The utils feature's device model.
 library pirate_code.features.utils.domain.device;
 
+import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -9,19 +10,37 @@ import "../data/device.dart";
 part "device_data.freezed.dart";
 part "device_data.g.dart";
 
-/// Information about the [currentDevice].
+/// Information about the [currentPlatform].
 @freezed
+@immutable
 class DeviceData with _$DeviceData {
   /// Create a new, immutable instance of [DeviceData].
-  factory DeviceData({
+  const factory DeviceData({
+    /// The current [Device].
     required Device device,
+
+    /// If the current [Device] is a physical device.
     required bool isPhysicalDevice,
+
+    /// The current [Device]'s model.
     required String model,
+
+    /// The current [Device]'s name.
     String? name,
+
+    /// The current [Device]'s operating system.
     String? systemName,
+
+    /// The current [Device]'s operating system version.
     String? systemVersion,
+
+    /// The current [Device]'s manufacturer.
     String? manufacturer,
+
+    /// The current [Device]'s release.
     String? release,
+
+    /// The current [Device]'s SDK number.
     int? sdkInt,
   }) = _DeviceData;
 }
@@ -53,7 +72,7 @@ enum BuildMode {
   release
 }
 
-/// Get the [currentDevice]'s information.
+/// Get the [currentPlatform]'s information.
 @riverpod
 Future<DeviceData> deviceInfo(DeviceInfoRef ref) async {
   return await ref
@@ -62,7 +81,5 @@ Future<DeviceData> deviceInfo(DeviceInfoRef ref) async {
 
 /// Get the current build mode.
 @riverpod
-BuildMode buildMode(BuildModeRef ref) {
-  return ref
-      .watch(deviceUtilsProvider.select((value) => value.currentBuildMode()));
-}
+BuildMode buildMode(BuildModeRef ref) =>
+    ref.watch(deviceUtilsProvider.select((value) => value.currentBuildMode()));
