@@ -8,16 +8,21 @@ part "coins_domain.g.dart";
 
 /// A number.
 @freezed
-abstract class NumberDomain with _$NumberDomain {
+@immutable
+class NumberDomain with _$NumberDomain {
   /// Create a new, immutable instance of [NumberDomain].
   const factory NumberDomain({
-    required int number,
+    /// The number.
+    required AsyncValue<int> number,
   }) = _NumberDomain;
 }
 
 /// Get coins data from data layer.
 @riverpod
-NumberDomain coinsDomain(CoinsDomainRef ref) {
-  final number = ref.watch(coinsDataProvider);
-  return NumberDomain(number: number);
+class CoinsDomain extends _$CoinsDomain {
+  @override
+  NumberDomain build() {
+    final number = ref.watch(coinsDataProvider);
+    return NumberDomain(number: number);
+  }
 }
