@@ -4,10 +4,10 @@
 # the repo. Unless a later match takes precedence,
 # the global owners will be requested for
 # review when someone opens a pull request.
-*             @PSDTools/app/builders
+*             @PSDTools/builders
 
-*/.dart       @PSDTools/app/builders
+*/.dart       @PSDTools/builders
 /.github/     @lishaduck
 /assets/      @PSDTools/app
-/tests/       @PSDTools/app/builders
+/tests/       @PSDTools/builders
 pubspec.yaml  @lishaduck
