@@ -4,7 +4,6 @@ library pirate_code.app.view;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../features/utils/presentation/flavor_banner.dart";
 import "../../l10n/l10n.dart";
 import "../app_router.dart";
 
