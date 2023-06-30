@@ -18,3 +18,15 @@ String projectId(ProjectIdRef _) => Dartdefine.projectId;
 /// Get the Appwrite Api Endpoint
 @riverpod
 String apiUrl(ApiUrlRef ref) => Dartdefine.apiEndpoint;
+
+/// Get the Appwrite database ID.
+@riverpod
+String databaseId(DatabaseIdRef _) => Dartdefine.databaseId;
+
+/// Get the Appwrite collection ID.
+@riverpod
+String collectionId(CollectionIdRef _) => Dartdefine.collectionId;
+
+/// Get the Appwrite document ID.
+@riverpod
+String documentId(DocumentIdRef _) => Dartdefine.documentId;

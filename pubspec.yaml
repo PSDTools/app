@@ -123,6 +123,18 @@ dart_define:
       description: Appwrite API endpoint
       default: https://cloud.appwrite.com/v1
       required: false
+    - name: DATABASE_ID
+      description: Appwrite database ID
+      default: 649f3267b89f7b4dfc4b
+      required: false
+    - name: COLLECTION_ID
+      description: Appwrite collection ID
+      default: 649f327c108ef9b8bfb2
+      required: false
+    - name: DOCUMENT_ID
+      description: Appwrite document ID
+      default: 649f337ff27368209bcc
+      required: false
 
   flavors:
     - name: production
