@@ -17,5 +17,5 @@ Future<int> coinsData(CoinsDataRef ref) async {
     documentId: apiInfo.documentId,
   );
 
-  return data.data["coins"] as int;
+  return data.data["Coins"] as int;
 }

@@ -121,7 +121,7 @@ dart_define:
       required: false
     - name: API_ENDPOINT
       description: Appwrite API endpoint
-      default: https://cloud.appwrite.com/v1
+      default: https://cloud.appwrite.io/v1
       required: false
     - name: DATABASE_ID
       description: Appwrite database ID
