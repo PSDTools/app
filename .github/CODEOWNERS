@@ -10,4 +10,4 @@
 /.github/     @lishaduck
 /assets/      @PSDTools/app
 /tests/       @PSDTools/builders
-pubspec.yaml  @lishaduck
+pubspec.*  @lishaduck
