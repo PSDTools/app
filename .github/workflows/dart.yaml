@@ -154,7 +154,7 @@ jobs:
   deploy:
     name: Deployment
     needs: ["build", "lint", "test"]
-    if: ${{ github.event_name != 'merge_group' }}
+    if: ${{ github.event_name != 'merge_group' && !github.event.pull_request.head.repo.fork  }}
     timeout-minutes: 3
     runs-on: ubuntu-latest
 
