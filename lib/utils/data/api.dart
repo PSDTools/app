@@ -2,47 +2,26 @@
 library pirate_code.utils.data.api;
 
 import "package:appwrite/appwrite.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "secrets.dart";
 
 part "api.g.dart";
+part "api.freezed.dart";
 
 /// Get API information via passed in environment variables.
-class Api implements ApiRepository {
-  /// Create a new instance of [Api].
-  Api({
+@freezed
+@immutable
+class Api with _$Api implements ApiRepository {
+  /// Create a new, immutable instance of [Api].
+  const factory Api({
     required String projectId,
     required String url,
     required String databaseId,
     required String collectionId,
     required String documentId,
-  })  : _url = url,
-        _projectId = projectId,
-        _databaseId = databaseId,
-        _collectionId = collectionId,
-        _documentId = documentId;
-
-  final String _url;
-  final String _projectId;
-  final String _databaseId;
-  final String _collectionId;
-  final String _documentId;
-
-  @override
-  String get url => _url;
-
-  @override
-  String get projectId => _projectId;
-
-  @override
-  String get databaseId => _databaseId;
-
-  @override
-  String get collectionId => _collectionId;
-
-  @override
-  String get documentId => _documentId;
+  }) = _Api;
 }
 
 /// The API information.
@@ -87,7 +66,6 @@ Client client(ClientRef ref) {
   final apiInfo = ref.watch(apiInfoProvider);
 
   return Client()
-      .setEndpoint(apiInfo.url)
-      .setProject(apiInfo.projectId)
-      .setSelfSigned();
+    ..setEndpoint(apiInfo.url)
+    ..setProject(apiInfo.projectId);
 }
