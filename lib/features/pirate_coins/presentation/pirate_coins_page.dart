@@ -16,7 +16,7 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(coinsDomainProvider).number;
+    final data = ref.watch(coinsProvider.select((value) => value.coins));
 
     return Center(
       child: Column(
