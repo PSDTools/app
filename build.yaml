@@ -14,8 +14,7 @@ targets:
         options:
           enable_cached_builds: true
         generate_for:
-          - lib/features/*/**_page.dart
-          - lib/features/*/presentation/**.dart
+          - lib/features/*/presentation/**_page.dart
       auto_route_generator:auto_router_generator:
         # configs for @AutoRouterConfig() generator...
         options:
@@ -24,6 +23,7 @@ targets:
           - lib/app/app_router.dart
       freezed:freezed:
         generate_for:
+          - lib/utils/**.dart
           - lib/features/*/domain/**.dart
       riverpod_generator:riverpod_generator:
         generate_for:

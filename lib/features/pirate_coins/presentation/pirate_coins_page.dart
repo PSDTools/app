@@ -5,8 +5,8 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-// import "../../../utils/data/api.dart";
 import "../../../widgets/big_card/big_card.dart";
+import "../domain/coins_domain.dart";
 
 /// The page located at `/pirate-coins`.
 @RoutePage()
@@ -16,9 +16,7 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final appState = ref.watch(clientProvider);
-    // final data = appState.coins;
-    const data = 0;
+    final data = ref.watch(coinsProvider.select((value) => value.coins));
 
     return Center(
       child: Column(
@@ -26,7 +24,13 @@ class PirateCoinsPage extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8),
-            child: BigCard(data.toString()),
+            child: BigCard(
+              data.when(
+                data: (data) => data.toString(),
+                loading: () => "Loading...",
+                error: (error, stackTrace) => "Error: $error",
+              ),
+            ),
           ),
         ],
       ),
