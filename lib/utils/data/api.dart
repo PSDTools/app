@@ -2,13 +2,14 @@
 library pirate_code.utils.data.api;
 
 import "package:appwrite/appwrite.dart";
+import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "secrets.dart";
 
-part "api.g.dart";
 part "api.freezed.dart";
+part "api.g.dart";
 
 /// Get API information via passed in environment variables.
 @freezed
