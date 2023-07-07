@@ -4,7 +4,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/dart_define.gen.dart";
-
 import "package:pirate_code/utils/data/secrets.dart";
 
 void main() {
