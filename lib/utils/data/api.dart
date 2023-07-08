@@ -26,7 +26,7 @@ class Api with _$Api implements ApiRepository {
 }
 
 /// The API information.
-abstract class ApiRepository {
+abstract interface class ApiRepository {
   /// The URL of the Appwrite API.
   String get url;
 

@@ -11,7 +11,7 @@ import "../domain/device_data.dart";
 part "device.g.dart";
 
 /// A repository for device information.
-abstract class DeviceRepository {
+abstract interface class DeviceRepository {
   /// Get the current build mode.
   BuildMode currentBuildMode();
 

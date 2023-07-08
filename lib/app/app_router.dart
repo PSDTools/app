@@ -3,6 +3,7 @@ library pirate_code.app.router;
 
 import "package:auto_route/auto_route.dart";
 
+import "../features/auth/presentation/auth_page.dart";
 import "../features/pirate_coins/presentation/pirate_coins_page.dart";
 import "../features/stats/presentation/stats_page.dart";
 import "../features/wrapper/presentation/wrapper_page.dart";
@@ -26,6 +27,7 @@ class AppRouter extends _$AppRouter {
             AutoRoute(page: StatsRoute.page, path: "stats"),
           ],
         ),
-        RedirectRoute(path: "*", redirectTo: "/pirate-coins"),
+        AutoRoute(page: AuthRoute.page, path: "/login"),
+        RedirectRoute(path: "*", redirectTo: "/login"),
       ];
 }
