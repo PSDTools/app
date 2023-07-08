@@ -1,4 +1,4 @@
-/// The pirate_coins feature.
+/// The auth feature.
 library pirate_code.features.auth.page;
 
 import "package:auto_route/auto_route.dart";
@@ -6,10 +6,10 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../domain/auth_domain.dart";
 
-///
+/// The page located at `/login/`
 @RoutePage()
 class AuthPage extends ConsumerWidget {
-  ///
+  /// Create a new instance of [AuthPage].
   const AuthPage({super.key});
 
   @override

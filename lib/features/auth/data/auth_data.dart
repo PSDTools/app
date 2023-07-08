@@ -1,3 +1,6 @@
+/// The auth feature's data.
+library pirate_code.features.auth.data;
+
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
