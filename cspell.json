@@ -23,7 +23,6 @@
     "contador",
     "Contador",
     "Decap",
-    "fastapi",
     "Instructure",
     "localizable",
     "mostrado",
@@ -31,7 +30,8 @@
     "Pattonville",
     "riverpod",
     "Texto",
-    "uvicorn"
+    "appwrite",
+    "Appwrite"
   ],
   "ignorePaths": [
     "lib/l10n/arb"
