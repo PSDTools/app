@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  pull_request_target:
     branches:
       - main
     types:
@@ -151,7 +151,7 @@ jobs:
   deploy:
     name: Deployment
     needs: ["build", "lint", "test"]
-    if: ${{ github.event_name != 'merge_group' && !github.event.pull_request.head.repo.fork  }}
+    if: ${{ github.event_name != 'merge_group' }}
     timeout-minutes: 3
     runs-on: ubuntu-latest
 
