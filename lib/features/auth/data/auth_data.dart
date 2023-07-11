@@ -28,11 +28,10 @@ class AppwriteAuthRepository implements AuthRepository {
   Future<void> authenticate() async {
     final account = Account(client);
 
-    // Go to OAuth provider login page
-    //log in with google account
+    // Go to Google account login page
     await account.createOAuth2Session(
       provider: "google",
-      success: "http://localhost:65084/pirate-coins",
+      success: "http://localhost:65084/auth.html",
       failure: "http://localhost:65084/login",
     );
   }

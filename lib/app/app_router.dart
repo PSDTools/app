@@ -21,13 +21,12 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: WrapperRoute.page,
           path: "/pirate-coins",
-          initial: true,
           children: [
             AutoRoute(page: PirateCoinsRoute.page, path: ""),
             AutoRoute(page: StatsRoute.page, path: "stats"),
           ],
         ),
-        AutoRoute(page: AuthRoute.page, path: "/login"),
+        AutoRoute(page: AuthRoute.page, path: "/login", initial: true),
         RedirectRoute(path: "*", redirectTo: "/login"),
       ];
 }
