@@ -60,7 +60,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
-  freezed: ^2.3.5
+  freezed: ^2.4.0
   # integration_test:
   #   sdk: flutter
   riverpod_generator: ^2.2.3
