@@ -43,7 +43,6 @@ dependencies:
     sdk: flutter
   flutter_localizations: # Required to enable localization
     sdk: flutter
-  flutter_native_splash: ^2.3.1
   flutter_riverpod: ^2.3.6
   flutter_web_plugins:
     sdk: flutter
@@ -58,6 +57,7 @@ dev_dependencies:
   dart_define: ^1.0.5
   flutter_gen_runner: ^5.3.1
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.1
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
   freezed: ^2.4.0
