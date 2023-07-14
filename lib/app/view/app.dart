@@ -19,6 +19,9 @@ mixin AppView on ConsumerWidget {
 
     return MaterialApp.router(
       routerConfig: _appRouter.config(),
+      builder: (context, child) {
+        return _MainArea(child: child);
+      },
       title: "PSD Wallet",
       theme: ThemeData(
         useMaterial3: true,
@@ -28,6 +31,28 @@ mixin AppView on ConsumerWidget {
       locale: flutterLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+    );
+  }
+}
+
+// The container for the current page, with its background color and subtle switching animation.
+class _MainArea extends ConsumerWidget {
+  const _MainArea({
+    required this.child,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return ColoredBox(
+      color: colorScheme.surfaceVariant,
+      child: child,
     );
   }
 }

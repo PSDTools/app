@@ -99,11 +99,7 @@ class _ExpandedWrapper extends ConsumerWidget {
             selectedIndex: tabsRouter.activeIndex,
             onDestinationSelected: tabsRouter.setActiveIndex,
           ),
-          Expanded(
-            child: _MainArea(
-              child: child,
-            ),
-          ),
+          Expanded(child: child),
         ],
       ),
     );
@@ -129,7 +125,7 @@ class _MobileWrapper extends ConsumerWidget {
         leading: const AutoLeadingButton(),
         title: Text(context.topRoute.name),
       ),
-      body: _MainArea(child: child),
+      body: child,
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
@@ -150,28 +146,6 @@ class _MobileWrapper extends ConsumerWidget {
           color: Color.fromARGB(255, 0, 0, 0),
         ),
       ),
-    );
-  }
-}
-
-// The container for the current page, with its background color and subtle switching animation.
-class _MainArea extends ConsumerWidget {
-  const _MainArea({
-    required this.child,
-    // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
-    super.key,
-  });
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return ColoredBox(
-      color: colorScheme.surfaceVariant,
-      child: child,
     );
   }
 }
