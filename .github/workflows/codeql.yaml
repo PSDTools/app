@@ -94,7 +94,7 @@ jobs:
       - name: 🔌 Generate files
         if: ${{ matrix.language != 'python' }}
         run: |
-          dart run dart_define generate --FLAVOR=production
+          dart run dart_define generate --FLAVOR=production --no-gitignore
           dart run build_runner build
       - name: 🔧 Build
         if: ${{ matrix.language != 'python' && matrix.language != 'swift' }}

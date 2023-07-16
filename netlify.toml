@@ -14,7 +14,7 @@ command = """
   fi \
   && flutter/bin/flutter config --enable-web \
   && flutter/bin/cache/dart-sdk/bin/dart run build_runner build \
-  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate --FLAVOR=production \
+  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate --FLAVOR=production --no-gitignore \
   && flutter/bin/flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
   """
 

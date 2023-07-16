@@ -5,7 +5,7 @@ on:
   push:
     branches:
       - main
-  pull_request_target:
+  pull_request:
     branches:
       - main
     types:
@@ -43,7 +43,7 @@ jobs:
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production
+        run: dart run dart_define generate --FLAVOR=production --no-gitignore
       - name: 🔌 Generate files
         run: dart run build_runner build
       - name: 🔧 Build
@@ -89,7 +89,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production
+        run: dart run dart_define generate --FLAVOR=production --no-gitignore
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
       - name: 🕵️ Lint Riverpod
@@ -119,7 +119,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production
+        run: dart run dart_define generate --FLAVOR=production --no-gitignore
       - name: 🧪 Run tests
         run: flutter test -j 4 --coverage --test-randomize-ordering-seed random --dart-define-from-file=dart_define.json
       - name: 📊 Check Code Coverage
