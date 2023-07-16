@@ -25,7 +25,7 @@
       "type": "dart",
       "command": "dart",
       "cwd": "",
-      "args": ["run", "dart_define", "generate", "--FLAVOR=${input:flavor}"],
+      "args": ["run", "dart_define", "generate", "--FLAVOR=${input:flavor}", "--no-gitignore"],
       "group": "build",
       "label": "Dart: run dart_define",
       "detail": "Run a dart_define task",
