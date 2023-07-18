@@ -1,6 +1,8 @@
 /// The auth feature's data.
 library pirate_code.features.auth.data;
 
+import "dart:developer";
+
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -31,9 +33,10 @@ class AppwriteAuthRepository implements AuthRepository {
     // Go to Google account login page
     await account.createOAuth2Session(
       provider: "google",
-      success: "http://localhost:65084/auth.html",
-      failure: "http://localhost:65084/login",
+      success: "${Uri.base.origin}/auth.html",
+      failure: "${Uri.base}",
     );
+    log("${account.get()}");
   }
 }
 
