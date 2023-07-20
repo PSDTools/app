@@ -14,7 +14,7 @@ part "coins_domain.g.dart";
 @freezed
 @immutable
 class CoinsModel with _$CoinsModel {
-  /// Create a new, immutable instance of [CoinsModel ].
+  /// Create a new, immutable instance of [CoinsModel].
   const factory CoinsModel({
     /// The number.
     required AsyncValue<int> coins,

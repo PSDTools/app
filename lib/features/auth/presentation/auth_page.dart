@@ -21,7 +21,7 @@ class AuthPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ElevatedButton(
-            onPressed: auth.authenticate,
+            onPressed: () async => auth.authenticate(context.router),
             child: const Text("Authenticate with Google!"),
           ),
         ],
