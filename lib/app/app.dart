@@ -9,20 +9,22 @@ import "dart:developer";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
+import "package:meta/meta.dart";
 
 import "../../l10n/l10n.dart";
 import "app_router.dart";
 
+// Make sure you don't initiate your router inside of the build function.
+@internal
+@visibleForTesting
+// Waiting on the next dart minor.
+// ignore: public_member_api_docs
+AppRouter? appRouter;
+
 /// The app widget, with bootstrappin' capabilities.
 class App extends ConsumerWidget {
   /// Create a new instance of [App].
-  App({super.key});
-
-  /// The app's container.
-  final container = ProviderContainer();
-
-  // Make sure you don't initiate your router inside of the build function.
-  late final AppRouter _appRouter;
+  const App({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,7 +32,7 @@ class App extends ConsumerWidget {
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
 
     return MaterialApp.router(
-      routerConfig: _appRouter.config(),
+      routerConfig: appRouter?.config(),
       builder: (context, child) {
         return _MainArea(child: child);
       },
@@ -62,7 +64,10 @@ class App extends ConsumerWidget {
     // Don't use hash style routes.
     usePathUrlStrategy();
 
-    _appRouter = AppRouter(container: container);
+    /// The app's container.
+    final container = ProviderContainer();
+
+    appRouter = AppRouter(container: container);
 
     await runZonedGuarded(
       () async => runApp(
