@@ -14,7 +14,7 @@ part "api.g.dart";
 /// Get API information via passed in environment variables.
 @freezed
 @immutable
-class Api with _$Api implements ApiRepository {
+sealed class Api with _$Api implements ApiRepository {
   /// Create a new, immutable instance of [Api].
   const factory Api({
     required String projectId,

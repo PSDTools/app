@@ -13,7 +13,7 @@ part "coins_domain.g.dart";
 /// A number.
 @freezed
 @immutable
-class CoinsModel with _$CoinsModel {
+sealed class CoinsModel with _$CoinsModel {
   /// Create a new, immutable instance of [CoinsModel].
   const factory CoinsModel({
     /// The number.

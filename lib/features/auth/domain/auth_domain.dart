@@ -15,7 +15,7 @@ part "auth_domain.g.dart";
 /// A pirate user.
 @freezed
 @immutable
-class PirateUser with _$PirateUser {
+sealed class PirateUser with _$PirateUser {
   /// Create a new, immutable instance of [PirateUser].
   const factory PirateUser({
     /// The user's name.
