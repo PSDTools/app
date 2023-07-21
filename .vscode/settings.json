@@ -59,5 +59,8 @@
     ".flutter-plugins": ".flutter-plugins-dependencies"
   },
   "python.analysis.typeCheckingMode": "basic",
-  "sarif-viewer.connectToGithubCodeScanning": "on"
+  "sarif-viewer.connectToGithubCodeScanning": "on",
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-issue-config.json": ".github/ISSUE_TEMPLATE/config.yml"
+  }
 }

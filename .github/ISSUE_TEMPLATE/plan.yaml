@@ -1,0 +1,29 @@
+name: 📝 Enhancement Plan
+description: File an enhancement plan
+labels:
+  - "enhancement"
+assignees:
+  - lishaduck
+body:
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why
+      description: Why do we need this?
+      placeholder: Quick summary of why we need this enhancement and what it will do for us.
+      value: A reason goes here!
+    validations:
+      required: true
+  - type: textarea
+    id: plan
+    attributes:
+      label: The Plan
+      description: Write a plan!
+      placeholder: A plan goes here!
+      value: |
+        ```[tasklist]
+        ## Tasks
+        - [ ] Step 1...
+        ```
+    validations:
+      required: true
