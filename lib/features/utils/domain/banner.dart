@@ -1,5 +1,5 @@
 /// The utils feature's banner data.
-library pirate_code.features.utils.data.banner;
+library pirate_code.features.utils.domain.banner;
 
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";

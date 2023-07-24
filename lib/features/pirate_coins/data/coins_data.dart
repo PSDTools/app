@@ -1,3 +1,6 @@
+/// The pirate_coins feature's data.
+library pirate_code.features.pirate_coins.data;
+
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
