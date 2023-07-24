@@ -7,7 +7,7 @@ enum Test {
   e2e,
   integration,
   golden,
-  benchmark,
+  benchmark;
 }
 
 void main() {

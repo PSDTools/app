@@ -7,7 +7,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../domain/banner.dart";
-import "../domain/flavor.dart";
+import "../domain/device_data.dart";
 import "device_info_dialog.dart";
 
 /// A widget that displays a banner at the top of the screen.
@@ -27,14 +27,15 @@ class FlavorBanner extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavorConfig = ref.watch(flavorConfigProvider);
+    final buildMode = ref.watch(buildModeProvider);
     final defaultBanner = ref.watch(defaultBannerProvider);
+    final defaultChild = child ?? const Text("");
 
-    if (flavorConfig.isProduction) return child ?? const Text("");
+    if (buildMode.isRelease) return defaultChild;
 
     return Stack(
       children: [
-        child ?? const Text(""),
+        defaultChild,
         _BuildBanner(
           bannerConfig: bannerConfig ?? defaultBanner,
         ),

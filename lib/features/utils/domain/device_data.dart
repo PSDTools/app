@@ -54,7 +54,7 @@ enum Device {
   ios,
 
   /// Other platforms.
-  other
+  other;
 }
 
 /// An enum containing the possible build modes.
@@ -64,12 +64,21 @@ enum BuildMode {
   debug,
 
   /// The profile build mode.
-  /// This is a mode that can be used to profile the app.
+  /// This is the mode that can be used to profile the app.
   profile,
 
   /// The release build mode.
-  /// This is the only mode that can be published to the app store.
-  release
+  /// This is the only mode that should be published to the app store.
+  release;
+
+  /// Check if the current build mode is [debug].
+  bool get isDebug => this == BuildMode.debug;
+
+  /// Check if the current build mode is [profile].
+  bool get isProfile => this == BuildMode.profile;
+
+  /// Check if the current build mode is [release].
+  bool get isRelease => this == BuildMode.release;
 }
 
 /// Get the [currentPlatform]'s information.
