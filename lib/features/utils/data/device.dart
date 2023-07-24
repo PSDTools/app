@@ -4,6 +4,7 @@ library pirate_code.features.utils.data.device;
 import "dart:io";
 
 import "package:device_info_plus/device_info_plus.dart";
+import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_data.dart";
@@ -36,22 +37,13 @@ class DeviceUtilsRepository implements DeviceRepository {
 
   @override
   BuildMode currentBuildMode() {
-    if (const bool.fromEnvironment("dart.vm.product")) {
+    if (kReleaseMode) {
       return BuildMode.release;
+    } else if (kProfileMode) {
+      return BuildMode.profile;
+    } else {
+      return BuildMode.debug;
     }
-    var result = BuildMode.profile;
-
-    // Little trick, since `assert` only runs on DEBUG mode.
-    assert(
-      () {
-        result = BuildMode.debug;
-
-        return true;
-      }(),
-      "",
-    );
-
-    return result;
   }
 
   @override
