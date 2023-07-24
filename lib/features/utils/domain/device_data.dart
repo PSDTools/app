@@ -13,7 +13,7 @@ part "device_data.g.dart";
 /// Information about the [currentPlatform].
 @freezed
 @immutable
-class DeviceData with _$DeviceData {
+sealed class DeviceData with _$DeviceData {
   /// Create a new, immutable instance of [DeviceData].
   const factory DeviceData({
     /// The current [Device].

@@ -16,7 +16,7 @@ part "flavor.g.dart";
 /// This class contains flavor-specific configurations.
 @freezed
 @immutable
-class FlavorValues with _$FlavorValues {
+sealed class FlavorValues with _$FlavorValues {
   /// Create a new instance of [FlavorValues].
   const factory FlavorValues() = _FlavorValues;
 

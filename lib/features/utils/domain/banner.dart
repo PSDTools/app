@@ -14,7 +14,7 @@ part "banner.g.dart";
 /// The dev banner's associated configuration.
 @freezed
 @immutable
-class BannerConfig with _$BannerConfig {
+sealed class BannerConfig with _$BannerConfig {
   /// Create a new, immutable instance of [BannerConfig].
   const factory BannerConfig({
     /// The name to display on the banner.
