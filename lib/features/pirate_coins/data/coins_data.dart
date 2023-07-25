@@ -4,7 +4,7 @@ library pirate_code.features.pirate_coins.data;
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../utils/data/api.dart";
+import "../../../utils/api.dart";
 
 part "coins_data.g.dart";
 
@@ -12,7 +12,6 @@ part "coins_data.g.dart";
 @riverpod
 Future<int> coinsData(CoinsDataRef ref) async {
   final client = ref.watch(clientProvider);
-  final apiInfo = ref.watch(apiInfoProvider);
   final database = Databases(client);
   final data = await database.getDocument(
     databaseId: apiInfo.databaseId,
