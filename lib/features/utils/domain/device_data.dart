@@ -87,8 +87,3 @@ Future<DeviceData> deviceInfo(DeviceInfoRef ref) async {
   return await ref
       .watch(deviceUtilsProvider.select((value) => value.deviceInfo()));
 }
-
-/// Get the current build mode.
-@riverpod
-BuildMode buildMode(BuildModeRef ref) =>
-    ref.watch(deviceUtilsProvider.select((value) => value.currentBuildMode()));

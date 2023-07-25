@@ -4,7 +4,7 @@ library pirate_code.features.auth.data;
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../utils/data/api.dart";
+import "../../../utils/api.dart";
 import "../domain/auth_domain.dart";
 
 part "auth_data.g.dart";
@@ -44,7 +44,7 @@ class AppwriteAuthRepository implements AuthRepository {
 
 /// Auth data provider
 @riverpod
-AuthRepository oauth(OauthRef ref) {
+AuthRepository auth(AuthRef ref) {
   final client = ref.watch(clientProvider);
 
   return AppwriteAuthRepository(client);

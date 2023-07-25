@@ -4,7 +4,6 @@ library pirate_code.features.utils.data.device;
 import "dart:io";
 
 import "package:device_info_plus/device_info_plus.dart";
-import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_data.dart";
@@ -12,18 +11,16 @@ import "../domain/device_data.dart";
 part "device.g.dart";
 
 /// A repository for device information.
+// Too bad, so sad.
+// ignore: one_member_abstracts
 abstract interface class DeviceRepository {
-  /// Get the current build mode.
-  BuildMode currentBuildMode();
-
   /// Get information about the [currentPlatform].
   Future<DeviceData> deviceInfo();
 }
 
-/// The default implementation of [DeviceRepository], using [DeviceInfoPlugin] from device_info_plus.
+/// The default implementation of [DeviceRepository], using [DeviceInfoPlugin] from [`device_info_plus`](https://pub.dev/packages/device_info_plus).
 /// This implementation will return the device information for the [currentPlatform].
-/// If the platform* is not supported by device_info_plus, it will return a default value.
-/// * AKA Fuchsia.
+/// If the platform is not supported, it will return a default value.
 class DeviceUtilsRepository implements DeviceRepository {
   /// Create a new instance of [DeviceUtilsRepository].
   const DeviceUtilsRepository({
@@ -34,17 +31,6 @@ class DeviceUtilsRepository implements DeviceRepository {
 
   final DeviceInfoPlugin _plugin;
   final Device _platform;
-
-  @override
-  BuildMode currentBuildMode() {
-    if (kReleaseMode) {
-      return BuildMode.release;
-    } else if (kProfileMode) {
-      return BuildMode.profile;
-    } else {
-      return BuildMode.debug;
-    }
-  }
 
   @override
   Future<DeviceData> deviceInfo() async {
@@ -104,7 +90,7 @@ DeviceInfoPlugin _plugin(_PluginRef _) {
 @riverpod
 String _currentDevice(_CurrentDeviceRef _) => Platform.operatingSystem;
 
-/// Get the current device platform, enum-ized.
+/// Get the current device platform, as an enum.
 @riverpod
 Device currentPlatform(CurrentPlatformRef ref) {
   final currentDevice = ref.watch(_currentDeviceProvider);

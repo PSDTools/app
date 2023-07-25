@@ -6,9 +6,7 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../dart_define.gen.dart";
-import "../../../utils/common/string.dart";
-import "../../../utils/data/secrets.dart";
+import "../../../utils/constants.dart";
 
 part "flavor.freezed.dart";
 part "flavor.g.dart";
@@ -23,10 +21,9 @@ sealed class FlavorValues with _$FlavorValues {
   // Add flavor-specific values that aren't secrets.
 }
 
+/// This class contains flavor-specific configurations.
 @freezed
 @immutable
-
-/// This class contains flavor-specific configurations.
 class FlavorConfig with _$FlavorConfig {
   /// Create a new instance of [FlavorConfig].
   const factory FlavorConfig({
@@ -38,36 +35,29 @@ class FlavorConfig with _$FlavorConfig {
 
     /// The flavor-specific values.
     required Color color,
-
-    /// An instance of [StringUtils].
-    required StringUtils stringUtils,
   }) = _FlavorConfig;
 
   const FlavorConfig._();
 
   /// If the app is in production mode.
-  bool get isProduction => this.flavor == Flavor.production;
+  bool get isProduction => flavor == Flavor.production;
 
   /// If the app is in development mode.
-  bool get isDevelopment => this.flavor == Flavor.development;
+  bool get isDevelopment => flavor == Flavor.development;
 
   /// If the app is in staging mode.
-  bool get isStaging => this.flavor == Flavor.staging;
+  bool get isStaging => flavor == Flavor.staging;
 
   /// The name of the flavor.
-  String get name => stringUtils.enumName(flavor.toString());
+  String get name => flavor.name;
 }
 
 /// Get the flavor, and its associated configuration, for the app.
 @riverpod
 FlavorConfig flavorConfig(FlavorConfigRef ref) {
-  final flavor = ref.watch(flavorProvider);
-  final stringUtils = ref.watch(stringUtilsProvider);
-
   return FlavorConfig(
-    flavor: flavor,
+    flavor: DartDefine.flavor,
     values: const FlavorValues(),
     color: Colors.blue,
-    stringUtils: stringUtils,
   );
 }

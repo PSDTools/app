@@ -1,20 +1,17 @@
-// ignore_for_file: scoped_providers_should_specify_dependencies
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
-import "package:pirate_code/dart_define.gen.dart";
-import "package:pirate_code/utils/data/secrets.dart";
+import "package:pirate_code/features/auth/data/auth_data.dart";
+import "package:pirate_code/features/auth/domain/auth_domain.dart";
 
 void main() {
   group("App", () {
-    testWidgets("renders a Material App", (tester) async {
+    testWidgets("Renders a Material App.", (tester) async {
       final container = ProviderContainer(
         overrides: [
-          flavorProvider.overrideWithValue(Flavor.development),
-          projectIdProvider.overrideWithValue("648b3836d14e06cddc4e"),
-          apiUrlProvider.overrideWithValue("https://cloud.appwrite.io/v1"),
+          authProvider.overrideWithValue(MockAuthRepository()),
         ],
       );
 
@@ -40,4 +37,21 @@ void main() {
       );
     });
   });
+}
+
+class MockAuthRepository implements AuthRepository {
+  // @override
+  Future<PirateUser> anonymous() {
+    return Future.value(
+      const PirateUser(
+        // name: anonymousName,
+        name: "anonymous",
+      ),
+    );
+  }
+
+  @override
+  Future<PirateUser> authenticate() {
+    throw UnimplementedError("This is a mock!");
+  }
 }

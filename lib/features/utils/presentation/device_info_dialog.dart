@@ -4,7 +4,7 @@ library pirate_code.features.utils.presentation.device;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/common/string.dart";
+import "../../../utils/constants.dart";
 import "../domain/device_data.dart";
 import "../domain/flavor.dart";
 
@@ -102,9 +102,6 @@ class _View extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flavorConfig = ref.watch(flavorConfigProvider);
-    final currentBuildMode = ref.watch(buildModeProvider);
-    final stringUtils = ref.watch(stringUtilsProvider);
-    final buildMode = stringUtils.enumName(currentBuildMode.toString());
 
     final platformView = switch (value.device) {
       Device.android => androidView(value),
@@ -115,7 +112,7 @@ class _View extends ConsumerWidget {
     return ListView(
       children: [
         _BuildTile("Flavor:", flavorConfig.name),
-        _BuildTile("Build mode:", buildMode),
+        _BuildTile("Build mode:", buildMode.name),
         _BuildTile("Physical device?:", "${value.isPhysicalDevice}"),
         _BuildTile("Model:", value.model),
         ...platformView,

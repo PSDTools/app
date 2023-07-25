@@ -23,9 +23,9 @@ sealed class PirateUser with _$PirateUser {
   }) = _PirateUser;
 }
 
-///
+/// Get the current user.
 @riverpod
-class Auth extends _$Auth {
+class PirateAuth extends _$PirateAuth {
   @override
   PirateUser? build() {
     return null;
@@ -33,7 +33,7 @@ class Auth extends _$Auth {
 
   /// Authenticate the current user.
   Future<void> authenticate(StackRouter router) async {
-    final auth = ref.watch(oauthProvider);
+    final auth = ref.watch(authProvider);
     final user = await auth.authenticate();
     state = user;
     await router.push(const WrapperRoute());

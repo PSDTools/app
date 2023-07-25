@@ -1,12 +1,12 @@
 /// The api utilities.
-library pirate_code.utils.data.api;
+library pirate_code.utils.api;
 
 import "package:appwrite/appwrite.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "secrets.dart";
+import "constants.dart";
 
 part "api.freezed.dart";
 part "api.g.dart";
@@ -43,29 +43,18 @@ abstract interface class ApiRepository {
   String get documentId;
 }
 
-/// Get the Appwrite API information.
-@riverpod
-ApiRepository apiInfo(ApiInfoRef ref) {
-  final projectId = ref.watch(projectIdProvider);
-  final apiUrl = ref.watch(apiUrlProvider);
-  final databaseId = ref.watch(databaseIdProvider);
-  final collectionId = ref.watch(collectionIdProvider);
-  final documentId = ref.watch(documentIdProvider);
-
-  return Api(
-    projectId: projectId,
-    url: apiUrl,
-    databaseId: databaseId,
-    collectionId: collectionId,
-    documentId: documentId,
-  );
-}
+/// The Appwrite API information.
+const ApiRepository apiInfo = Api(
+  projectId: DartDefine.projectId,
+  url: DartDefine.apiEndpoint,
+  databaseId: DartDefine.databaseId,
+  collectionId: DartDefine.collectionId,
+  documentId: DartDefine.documentId,
+);
 
 /// Get the Appwrite client.
 @riverpod
 Client client(ClientRef ref) {
-  final apiInfo = ref.watch(apiInfoProvider);
-
   return Client()
     ..setEndpoint(apiInfo.url)
     ..setProject(apiInfo.projectId);

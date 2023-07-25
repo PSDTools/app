@@ -14,7 +14,7 @@ class AuthPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(authProvider.notifier);
+    final auth = ref.watch(pirateAuthProvider.notifier);
 
     return Center(
       child: Column(
