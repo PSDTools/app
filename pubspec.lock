@@ -521,10 +521,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
+      sha256: "5895291c13fa8a3bd82e76d5627f69e0d85ca6a30dcac95c4ea19a5d555879c2"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "0.13.6"
   http_multi_server:
     dependency: transitive
     description:
@@ -581,6 +581,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  lcov_parser:
+    dependency: transitive
+    description:
+      name: lcov_parser
+      sha256: b2a4225376e47630dbe71217bcf2296e1d79b50e6c20781c0304094b8be05968
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   logger:
     dependency: transitive
     description:
@@ -605,6 +613,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.5"
+  mason:
+    dependency: transitive
+    description:
+      name: mason
+      sha256: c6c25b83c61c628fc9946be39f01291808342d8e8df75c61fc7b6a671bd0a8f8
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0-dev.49"
   mason_logger:
     dependency: transitive
     description:
@@ -793,10 +809,10 @@ packages:
     dependency: transitive
     description:
       name: pub_updater
-      sha256: b06600619c8c219065a548f8f7c192b3e080beff95488ed692780f48f69c0625
+      sha256: "05ae70703e06f7fdeb05f7f02dd680b8aad810e87c756a618f33e1794635115c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.1"
+    version: "0.3.0"
   pubspec_parse:
     dependency: transitive
     description:
@@ -1050,6 +1066,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
+  usage:
+    dependency: transitive
+    description:
+      name: usage
+      sha256: "0bdbde65a6e710343d02a56552eeaefd20b735e04bfb6b3ee025b6b22e8d0e15"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.1"
   uuid:
     dependency: transitive
     description:
@@ -1074,6 +1098,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0+1"
+  very_good_cli:
+    dependency: "direct dev"
+    description:
+      name: very_good_cli
+      sha256: "795fa14f97c0b2940a43fe9bf9985f51dd22fc914900021f9c2c509dcdc88393"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.0"
+  very_good_test_runner:
+    dependency: transitive
+    description:
+      name: very_good_test_runner
+      sha256: "4d41e5d7677d259b9a1599c78645ac2d36bc2bd6ff7773507bcb0bab41417fe2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   vm_service:
     dependency: transitive
     description:
