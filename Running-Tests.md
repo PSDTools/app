@@ -15,3 +15,5 @@ genhtml coverage/lcov.info -o coverage/
 # Open Coverage Report
 open coverage/index.html
 ```
+
+[lcov]: https://github.com/linux-test-project/lcov
