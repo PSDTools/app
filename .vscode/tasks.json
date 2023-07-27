@@ -67,7 +67,10 @@
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
-      }
+      },
+      "dependsOn": [
+        "Dart: run build_runner"
+      ]
     },
     {
       "type": "flutter",
