@@ -2,6 +2,10 @@
 lib/dart_define.gen.dart
 dart_define.json
 
+# l10n
+lib/l10n/app_localizations*.dart
+untranslated.json
+
 # Miscellaneous
 *.class
 *.log

@@ -82,7 +82,7 @@ flutter:
 
   # Enables generation of localized strings from arb files, see
   # https://docs.flutter.dev/accessibility-and-localization/
-  generate: true
+  generate: false
 
   # To add assets to your application, add an assets section, like this:
   assets: # Lists assets, such as image files
@@ -144,8 +144,6 @@ dart_define:
       description: The staging flavor
     - name: development
       description: The development flavor
-
-
 
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen
