@@ -42,10 +42,11 @@ jobs:
           cache: true
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production --no-gitignore
       - name: 🔌 Generate files
-        run: dart run build_runner build
+        run: |
+          flutter gen-l10n
+          dart run dart_define generate --FLAVOR=production --no-gitignore
+          dart run build_runner build
       - name: 🔧 Build
         run: flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
       - name: ⚙️ Upload generated files
@@ -57,6 +58,7 @@ jobs:
             lib/**/*.gr.dart
             lib/**/*.gm.dart
             lib/**/*.freezed.dart
+            lib/l10n/app_localizations*.dart
           if-no-files-found: error
       - name: ⚙️ Upload build
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
