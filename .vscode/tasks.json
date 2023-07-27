@@ -4,31 +4,47 @@
     {
       "type": "dart",
       "command": "dart",
-      "cwd": "",
-      "args": ["run", "build_runner", "${input:runtype}"],
-      "problemMatcher": ["$dart-build_runner"],
+      "cwd": ".",
+      "args": [
+        "run",
+        "build_runner",
+        "${input:runtype}"
+      ],
+      "problemMatcher": [
+        "$dart-build_runner"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "label": "Dart: run build_runner",
-      "detail": "Run a build_runner task",
+      "detail": "Run a build_runner task.",
       "runOptions": {
         "runOn": "folderOpen"
       },
       "icon": {
         "color": "terminal.ansiCyan",
         "id": "gear"
-      }
+      },
+      "dependsOn": [
+        "Dart: run dart_define",
+        "Flutter: gen-l10n"
+      ]
     },
     {
       "type": "dart",
       "command": "dart",
-      "cwd": "",
-      "args": ["run", "dart_define", "generate", "--FLAVOR=${input:flavor}", "--no-gitignore"],
+      "cwd": ".",
+      "args": [
+        "run",
+        "dart_define",
+        "generate",
+        "--FLAVOR=${input:flavor}",
+        "--no-gitignore"
+      ],
       "group": "build",
       "label": "Dart: run dart_define",
-      "detail": "Run a dart_define task",
+      "detail": "Generate dart-defines.",
       "runOptions": {
         "runOn": "folderOpen"
       },
@@ -40,11 +56,14 @@
     {
       "type": "dart",
       "command": "dart",
-      "cwd": "",
-      "args": ["doc", "."],
+      "cwd": ".",
+      "args": [
+        "doc",
+        "."
+      ],
       "problemMatcher": [],
       "label": "Dart: doc",
-      "detail": "View the documentation",
+      "detail": "View the documentation.",
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
@@ -64,11 +83,52 @@
       "group": "build",
       "problemMatcher": [],
       "label": "Flutter: build",
-      "detail": "Build a flutter app",
+      "detail": "Build a flutter app.",
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "gear"
+      },
+      "dependsOn": [
+        "Dart: run build_runner"
+      ]
+    },
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "gen-l10n"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "label": "Flutter: gen-l10n",
+      "detail": "Generate the localization files.",
+      "icon": {
+        "color": "terminal.ansiYellow",
+        "id": "comment-discussion"
       }
+    },
+    {
+      "type": "flutter",
+      "command": "flutter",
+      "args": [
+        "build",
+        "${input:target}",
+        "--release",
+        "--dart-define-from-file=dart_define.json",
+        "--FLAVOR",
+        "${input:flavor}"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "label": "Flutter: build",
+      "detail": "Build a flutter app.",
+      "icon": {
+        "color": "terminal.ansiBlue",
+        "id": "gear"
+      },
+      "dependsOn": [
+        "Dart: run build_runner"
+      ]
     }
   ],
   "inputs": [
