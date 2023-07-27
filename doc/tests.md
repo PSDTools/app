@@ -3,7 +3,7 @@
 To run tests use the following command:
 
 ```sh
-flutter test --coverage --test-randomize-ordering-seed random --dart-define-from-file=dart_define.json
+dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
 ```
 
 To view the generated coverage report you can use [lcov][lcov].
