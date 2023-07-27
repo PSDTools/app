@@ -6,3 +6,6 @@ output-class: AppLocalizations
 output-dir: lib/l10n
 synthetic-package: false
 untranslated-messages-file: untranslated.json
+header: |
+  /// All localized files.
+  /// {@Category Translations}

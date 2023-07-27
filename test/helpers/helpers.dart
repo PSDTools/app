@@ -1,4 +1,4 @@
-/// {@category Tests}
+/// {@category Testing}
 /// Helpers for testing.
 library test.helpers;
 
