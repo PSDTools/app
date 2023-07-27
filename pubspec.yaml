@@ -145,8 +145,6 @@ dart_define:
     - name: development
       description: The development flavor
 
-
-
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen
   # with background color and splash image.
