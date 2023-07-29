@@ -45,10 +45,10 @@ jobs:
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
-          dart run dart_define generate --FLAVOR=production --no-gitignore
+          dart run dart_define generate --no-gitignore
           dart run build_runner build
       - name: 🔧 Build
-        run: flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
+        run: flutter build web --release --dart-define-from-file=dart_define.json
       - name: ⚙️ Upload generated files
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
@@ -91,7 +91,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production --no-gitignore
+        run: dart run dart_define generate --no-gitignore
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
       - name: 🕵️ Lint Riverpod
@@ -121,7 +121,7 @@ jobs:
           name: generated-files
           path: lib
       - name: 🔌 Generate Dart Defines
-        run: dart run dart_define generate --FLAVOR=production --no-gitignore
+        run: dart run dart_define generate --no-gitignore
       - name: 🧪 Run tests
         run: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
       - name: 📊 Check Code Coverage

@@ -6,7 +6,7 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "flavor.dart";
+import "../../../utils/constants.dart";
 
 part "banner.freezed.dart";
 part "banner.g.dart";
@@ -28,10 +28,8 @@ sealed class BannerConfig with _$BannerConfig {
 /// Get the default fallback banner.
 @riverpod
 BannerConfig defaultBanner(DefaultBannerRef ref) {
-  final flavorConfig = ref.watch(flavorConfigProvider);
-
   return BannerConfig(
-    bannerName: flavorConfig.name,
-    bannerColor: flavorConfig.color,
+    bannerName: buildMode.name,
+    bannerColor: buildMode.color,
   );
 }

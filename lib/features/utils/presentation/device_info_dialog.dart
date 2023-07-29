@@ -6,7 +6,6 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../utils/constants.dart";
 import "../domain/device_data.dart";
-import "../domain/flavor.dart";
 
 /// A dialog that displays information about the device.
 class DeviceInfoDialog extends ConsumerWidget {
@@ -15,13 +14,16 @@ class DeviceInfoDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavorConfig = ref.watch(flavorConfigProvider);
+    final theme = Theme.of(context);
 
     return AlertDialog(
       title: Container(
         padding: const EdgeInsets.all(15),
-        color: flavorConfig.color,
-        child: const Text("Device Info", style: TextStyle(color: Colors.white)),
+        color: buildMode.color,
+        child: Text(
+          "Device Info",
+          style: theme.textTheme.titleMedium,
+        ),
       ),
       titlePadding: EdgeInsets.zero,
       content: const _GetContent(),
@@ -101,8 +103,6 @@ class _View extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flavorConfig = ref.watch(flavorConfigProvider);
-
     final platformView = switch (value.device) {
       Device.android => androidView(value),
       Device.ios => iosView(value),
@@ -111,7 +111,6 @@ class _View extends ConsumerWidget {
 
     return ListView(
       children: [
-        _BuildTile("Flavor:", flavorConfig.name),
         _BuildTile("Build mode:", buildMode.name),
         _BuildTile("Physical device?:", "${value.isPhysicalDevice}"),
         _BuildTile("Model:", value.model),

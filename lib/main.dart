@@ -3,4 +3,10 @@
 /// {@category C4Diagram}
 library;
 
-export "main_production.dart";
+import "app/app.dart";
+
+/// Run the app.
+/// This is the main function used in production.
+Future<void> main() async {
+  await const App().bootstrap();
+}
