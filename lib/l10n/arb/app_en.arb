@@ -1,7 +1,48 @@
 {
   "@@locale": "en",
-  "counterAppBarTitle": "Counter",
-  "@counterAppBarTitle": {
-    "description": "Text shown in the AppBar of the Counter Page"
+  "authenticateText": "Authenticate with Google!",
+  "@authenticateText": {
+    "type": "text",
+    "description": "The text displayed on the button to authenticate with Google."
+  },
+  "emptyReport": "Nothing to report yet!",
+  "@emptyReport": {
+    "type": "text",
+    "description": "The text to display when there is no report data to display."
+  },
+  "error": "Error: {error}",
+  "@error": {
+    "type": "text",
+    "description": "The text displayed after an error.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "type": "text",
+    "description": "The text displayed when something is loading."
+  },
+  "pirateCoinsPageTitle": "Pirate Coins!",
+  "@pirateCoinsPageTitle": {
+    "type": "text",
+    "description": "The title of the Pirate Coins Page."
+  },
+  "psdWalletTitle": "PSD Wallet",
+  "@psdWalletTitle": {
+    "type": "text",
+    "description": "The name to display as the App's title."
+  },
+  "statsPageTitle": "Stats",
+  "@statsPageTitle": {
+    "type": "text",
+    "description": "The title of the Stats Page."
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "type": "text",
+    "description": "The text displayed when something is in an unknown state."
   }
 }

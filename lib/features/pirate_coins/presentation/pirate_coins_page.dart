@@ -5,6 +5,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../l10n/l10n.dart";
 import "../../../widgets/big_card/big_card.dart";
 import "../domain/coins_domain.dart";
 
@@ -17,6 +18,7 @@ class PirateCoinsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final data = ref.watch(coinsProvider.select((value) => value.coins));
+    final l10n = context.l10n;
 
     return Center(
       child: Column(
@@ -27,9 +29,9 @@ class PirateCoinsPage extends ConsumerWidget {
             child: BigCard(
               switch (data) {
                 AsyncData(:final value) => value.toString(),
-                AsyncError(:final error) => "Error: $error",
-                AsyncLoading() => "Loading...",
-                _ => "Unknown",
+                AsyncError(:final error) => l10n.error(error.toString()),
+                AsyncLoading() => l10n.loading,
+                _ => l10n.unknown,
               },
             ),
           ),

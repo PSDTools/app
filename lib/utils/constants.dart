@@ -1,5 +1,5 @@
 /// The constants used in the app.
-library utils.constants;
+library pirate_code.utils.constants;
 
 import "package:flutter/foundation.dart";
 import "../features/utils/domain/device_data.dart";
