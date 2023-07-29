@@ -10,5 +10,5 @@ export "app_localizations.dart";
 /// Extension for [BuildContext] to access l10n via a getter.
 extension AppLocalizationsX on BuildContext {
   /// Get the [AppLocalizations] for this [BuildContext].
-  AppLocalizations? get l10n => AppLocalizations.of(this);
+  AppLocalizations get l10n => AppLocalizations.of(this);
 }

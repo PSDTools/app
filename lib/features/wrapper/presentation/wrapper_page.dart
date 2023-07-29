@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../app/app_router.dart";
+import "../../../l10n/l10n.dart";
 import "../../utils/presentation/flavor_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
@@ -81,7 +82,7 @@ class _ExpandedWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tabsRouter = AutoTabsRouter.of(context);
-
+    final l10n = context.l10n;
     final large = constraints.maxWidth >= 600;
 
     return Scaffold(
@@ -89,14 +90,14 @@ class _ExpandedWrapper extends ConsumerWidget {
         children: [
           NavigationRail(
             extended: large,
-            destinations: const [
+            destinations: [
               NavigationRailDestination(
-                icon: Icon(Icons.currency_bitcoin_outlined),
-                label: Text("Pirate Coins!"),
+                icon: const Icon(Icons.currency_bitcoin_outlined),
+                label: Text(l10n.pirateCoinsPageTitle),
               ),
               NavigationRailDestination(
-                icon: Icon(Icons.stacked_bar_chart),
-                label: Text("Stats"),
+                icon: const Icon(Icons.stacked_bar_chart),
+                label: Text(l10n.statsPageTitle),
               ),
             ],
             selectedIndex: tabsRouter.activeIndex,
@@ -122,6 +123,7 @@ class _MobileWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tabsRouter = AutoTabsRouter.of(context);
+    final l10n = context.l10n;
 
     return Scaffold(
       appBar: AppBar(
@@ -130,14 +132,14 @@ class _MobileWrapper extends ConsumerWidget {
       ),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.currency_bitcoin_outlined),
-            label: "Pirate Coins!",
+            icon: const Icon(Icons.currency_bitcoin_outlined),
+            label: l10n.pirateCoinsPageTitle,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.stacked_bar_chart),
-            label: "Stats",
+            icon: const Icon(Icons.stacked_bar_chart),
+            label: l10n.pirateCoinsPageTitle,
           ),
         ],
         onTap: tabsRouter.setActiveIndex,

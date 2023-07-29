@@ -1,7 +1,48 @@
 {
   "@@locale": "es",
-  "counterAppBarTitle": "Contador",
-  "@counterAppBarTitle": {
-    "description": "Texto mostrado en la AppBar de la página del contador"
+  "authenticateText": "¡Autentícate con Google!",
+  "@authenticateText": {
+    "type": "text",
+    "description": "El texto que se muestra en el botón para autenticarse con Google."
+  },
+  "emptyReport": "¡Nada que informar todavía!",
+  "@emptyReport": {
+    "type": "text",
+    "description": "El texto que se muestra cuando no hay datos de informe que mostrar."
+  },
+  "error": "Error: {error}",
+  "@error": {
+    "type": "text",
+    "description": "El texto que se muestra después de un error.",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loading": "Cargando...",
+  "@loading": {
+    "type": "text",
+    "description": "El texto que se muestra cuando algo se está cargando."
+  },
+  "pirateCoinsPageTitle": "¡Monedas Piratas!",
+  "@pirateCoinsPageTitle": {
+    "type": "text",
+    "description": "El título de la página de Monedas Piratas."
+  },
+  "psdWalletTitle": "DEP Billetera",
+  "@psdWalletTitle": {
+    "type": "text",
+    "description": "El título de la aplicación de DEP Billetera."
+  },
+  "statsPageTitle": "Estadísticas",
+  "@statsPageTitle": {
+    "type": "text",
+    "description": "El título de la página de estadísticas."
+  },
+  "unknown": "Unknown",
+  "@unknown": {
+    "type": "text",
+    "description": "El texto que se muestra cuando algo está en un estado desconocido."
   }
 }
