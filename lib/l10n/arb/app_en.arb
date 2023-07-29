@@ -30,11 +30,6 @@
     "type": "text",
     "description": "The title of the Pirate Coins Page."
   },
-  "psdWalletTitle": "PSD Wallet",
-  "@psdWalletTitle": {
-    "type": "text",
-    "description": "The name to display as the App's title."
-  },
   "statsPageTitle": "Stats",
   "@statsPageTitle": {
     "type": "text",

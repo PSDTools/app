@@ -30,11 +30,6 @@
     "type": "text",
     "description": "El título de la página de Monedas Piratas."
   },
-  "psdWalletTitle": "DEP Billetera",
-  "@psdWalletTitle": {
-    "type": "text",
-    "description": "El título de la aplicación de DEP Billetera."
-  },
   "statsPageTitle": "Estadísticas",
   "@statsPageTitle": {
     "type": "text",

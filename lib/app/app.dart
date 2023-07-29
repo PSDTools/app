@@ -30,14 +30,13 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const flutterLocale = Locale("en", "US");
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
-    final l10n = context.l10n;
 
     return MaterialApp.router(
       routerConfig: appRouter?.config(),
       builder: (context, child) {
         return _MainArea(child: child);
       },
-      title: l10n.psdWalletTitle,
+      title: "PSD Wallet",
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: theme,
