@@ -63,5 +63,7 @@
   "sarif-viewer.connectToGithubCodeScanning": "on",
   "yaml.schemas": {
     "https://json.schemastore.org/github-issue-config.json": ".github/ISSUE_TEMPLATE/config.yml"
-  }
+  },
+  "l10nization.flutterPubGetEnabled": false,
+  "l10nization.haveMetadatas": true
 }
