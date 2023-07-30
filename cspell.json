@@ -24,7 +24,11 @@
     "ARGB",
     "contador",
     "Contador",
+    "Cupertino",
+    "dartdoc",
     "Decap",
+    "dhttpd",
+    "fullscreen",
     "Instructure",
     "localizable",
     "mostrado",
@@ -32,6 +36,7 @@
     "página",
     "Pattonville",
     "riverpod",
+    "Schyler",
     "Texto"
   ],
   "ignorePaths": [

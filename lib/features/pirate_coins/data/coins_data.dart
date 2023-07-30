@@ -23,14 +23,13 @@ abstract interface class CoinsRepository {
 /// The default implementation of [CoinsRepository].
 class AppwriteCoinsRepository implements CoinsRepository {
   /// Create a new instance of [AppwriteCoinsRepository].
-  AppwriteCoinsRepository(this.client);
+  AppwriteCoinsRepository(this.database);
 
-  /// The Appwrite client.
-  final Client client;
+  /// The Appwrite databases.
+  final Databases database;
 
   @override
   Future<int> coinsData() async {
-    final database = Databases(client);
     final data = await database.getDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
@@ -39,10 +38,9 @@ class AppwriteCoinsRepository implements CoinsRepository {
     return data.data["Coins"] as int;
   }
 
-  ///Add coins to the database
+  /// Add coins to the database.
   @override
   Future<int> addCoins() async {
-    final database = Databases(client);
     final data = await database.updateDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
@@ -54,9 +52,9 @@ class AppwriteCoinsRepository implements CoinsRepository {
     return data.data["Coins"] as int;
   }
 
-  /// Remove coins from the database
+  /// Remove coins from the database.
+  @override
   Future<int> removeCoins() async {
-    final database = Databases(client);
     final data = await database.updateDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
@@ -72,7 +70,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
 /// Get coins data.
 @riverpod
 CoinsRepository coinsData(CoinsDataRef ref) {
-  final client = ref.watch(clientProvider);
+  final databases = ref.watch(databasesProvider);
 
-  return AppwriteCoinsRepository(client);
+  return AppwriteCoinsRepository(databases);
 }

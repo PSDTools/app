@@ -10,26 +10,33 @@ targets:
         - lib/$lib$
     builders:
       auto_route_generator:auto_route_generator:
-        # configs for @RoutePage() generator...
+        # configs for the @RoutePage() generator
         options:
           enable_cached_builds: true
         generate_for:
           - lib/features/*/presentation/**_page.dart
       auto_route_generator:auto_router_generator:
-        # configs for @AutoRouterConfig() generator...
+        # configs for the @AutoRouterConfig() generator
         options:
           enable_cached_builds: true
         generate_for:
           - lib/app/app_router.dart
       freezed:freezed:
+        # configs for the @freezed generator
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/domain/**.dart
       riverpod_generator:riverpod_generator:
+        # configs for the @riverpod generator
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/data/**.dart
           - lib/features/*/domain/**.dart
       flutter_gen_runner:flutter_gen_runner:
+        # configs for the flutter.assets generator
         generate_for:
           - pubspec.yaml
+      source_gen:combining_builder:
+        # configs for the source_gen:combining_builder generator
+        generate_for:
+          - lib/**.dart

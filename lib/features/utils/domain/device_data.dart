@@ -2,6 +2,7 @@
 library pirate_code.features.utils.domain.device;
 
 import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -61,15 +62,20 @@ enum Device {
 enum BuildMode {
   /// The debug build mode.
   /// This is the only mode that can run on emulators.
-  debug,
+  debug(Colors.blue),
 
   /// The profile build mode.
   /// This is the mode that can be used to profile the app.
-  profile,
+  profile(Colors.red),
 
   /// The release build mode.
   /// This is the only mode that should be published to the app store.
-  release;
+  release(Colors.green);
+
+  const BuildMode(this.color);
+
+  /// The color associated with the build mode.
+  final Color color;
 
   /// Check if the current build mode is [debug].
   bool get isDebug => this == BuildMode.debug;
