@@ -59,3 +59,19 @@ Client client(ClientRef ref) {
     ..setEndpoint(apiInfo.url)
     ..setProject(apiInfo.projectId);
 }
+
+/// Get the Appwrite session for the current account.
+@riverpod
+Account accounts(AccountsRef ref) {
+  final client = ref.read(clientProvider);
+
+  return Account(client);
+}
+
+/// Get the Appwrite databases.
+@riverpod
+Databases databases(DatabasesRef ref) {
+  final client = ref.read(clientProvider);
+
+  return Databases(client);
+}
