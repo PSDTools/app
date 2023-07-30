@@ -37,4 +37,11 @@ class Coins extends _$Coins {
         ref.watch(coinsDataProvider.select((value) => value.addCoins));
     return coins();
   }
+
+  /// Remove coins from the database.
+  Future<int> removeCoins() {
+    final coins =
+        ref.watch(coinsDataProvider.select((value) => value.removeCoins));
+    return coins();
+  }
 }

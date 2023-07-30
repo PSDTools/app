@@ -40,6 +40,10 @@ class PirateCoinsPage extends ConsumerWidget {
             onPressed: dataNotifier.addCoins,
             child: const Text("ADDD COINSSS"),
           ),
+          ElevatedButton(
+            onPressed: dataNotifier.addCoins,
+            child: const Text("REMOVEEEE COINSSS"),
+          ),
         ],
       ),
     );

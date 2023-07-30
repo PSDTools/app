@@ -139,7 +139,7 @@ class _MobileWrapper extends ConsumerWidget {
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.stacked_bar_chart),
-            label: l10n.pirateCoinsPageTitle,
+            label: l10n.statsPageTitle,
           ),
         ],
         onTap: tabsRouter.setActiveIndex,

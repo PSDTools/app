@@ -15,6 +15,9 @@ abstract interface class CoinsRepository {
 
   /// Add coins to the database.
   Future<int> addCoins();
+
+  /// Remove coins from the database.
+  Future<int> removeCoins();
 }
 
 /// The default implementation of [CoinsRepository].
@@ -46,6 +49,20 @@ class AppwriteCoinsRepository implements CoinsRepository {
       documentId: apiInfo.documentId,
       data: {
         "Coins": 1,
+      },
+    );
+    return data.data["Coins"] as int;
+  }
+
+  /// Remove coins from the database
+  Future<int> removeCoins() async {
+    final database = Databases(client);
+    final data = await database.updateDocument(
+      databaseId: apiInfo.databaseId,
+      collectionId: apiInfo.collectionId,
+      documentId: apiInfo.documentId,
+      data: {
+        "Coins": -1,
       },
     );
     return data.data["Coins"] as int;
