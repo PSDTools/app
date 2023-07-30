@@ -26,6 +26,7 @@ void main() {
       expect(find.byType(MaterialApp), findsOneWidget);
     });
   });
+
   group("Bootstrappin' Tests!", () {
     test("Test the boots...", () async {
       const tested = App();

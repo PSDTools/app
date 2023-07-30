@@ -39,7 +39,6 @@
         "run",
         "dart_define",
         "generate",
-        "--FLAVOR=${input:flavor}",
         "--no-gitignore"
       ],
       "group": "build",
@@ -80,8 +79,6 @@
         "${input:target}",
         "--release",
         "--dart-define-from-file=dart_define.json",
-        "--FLAVOR",
-        "${input:flavor}"
       ],
       "group": "build",
       "problemMatcher": [],
@@ -118,8 +115,6 @@
         "${input:target}",
         "--release",
         "--dart-define-from-file=dart_define.json",
-        "--FLAVOR",
-        "${input:flavor}"
       ],
       "group": "build",
       "problemMatcher": [],
@@ -167,17 +162,6 @@
       "type": "pickString",
       "description": "the type of build_runner run",
       "default": "watch"
-    },
-    {
-      "id": "flavor",
-      "options": [
-        { "value": "production" },
-        { "value": "staging" },
-        { "value": "development" }
-      ],
-      "type": "pickString",
-      "description": "The flavor to generate.",
-      "default": "production"
     }
   ]
 }

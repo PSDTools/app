@@ -16,8 +16,8 @@ command = """
   && flutter/bin/flutter pub get \
   && flutter/bin/flutter gen-l10n \
   && flutter/bin/cache/dart-sdk/bin/dart run build_runner build \
-  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate --FLAVOR=production --no-gitignore \
-  && flutter/bin/flutter build web --target lib/main_production.dart --release --dart-define-from-file=dart_define.json
+  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate --no-gitignore \
+  && flutter/bin/flutter build web --release --dart-define-from-file=dart_define.json
   """
 
 

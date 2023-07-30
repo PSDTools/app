@@ -1,5 +1,5 @@
-/// The utils feature's flavor presentation.
-library pirate_code.features.utils.presentation.flavor;
+/// The utils feature's presentation.
+library pirate_code.features.utils.presentation.device_banner;
 
 import "dart:async";
 
@@ -11,9 +11,9 @@ import "../domain/banner.dart";
 import "device_info_dialog.dart";
 
 /// A widget that displays a banner at the top of the screen.
-class FlavorBanner extends ConsumerWidget {
-  /// Create a new instance of [FlavorBanner].
-  const FlavorBanner({
+class DeviceBanner extends ConsumerWidget {
+  /// Create a new instance of [DeviceBanner].
+  const DeviceBanner({
     required this.child,
     this.bannerConfig,
     super.key,
