@@ -36,6 +36,6 @@ class PirateAuth extends _$PirateAuth {
     final auth = ref.watch(authProvider);
     final user = await auth.authenticate();
     state = user;
-    await router.push(const WrapperRoute());
+    await router.push(const PirateCoinsRoute());
   }
 }
