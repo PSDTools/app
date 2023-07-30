@@ -36,13 +36,22 @@ class PirateCoinsPage extends ConsumerWidget {
               },
             ),
           ),
-          ElevatedButton(
-            onPressed: dataNotifier.addCoins,
-            child: const Text("ADDD COINSSS"),
-          ),
-          ElevatedButton(
-            onPressed: dataNotifier.addCoins,
-            child: const Text("REMOVEEEE COINSSS"),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton.icon(
+                onPressed: dataNotifier.addCoins,
+                icon: const Icon(Icons.add),
+                label: const Text("Add coins"),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton.icon(
+                onPressed: dataNotifier.addCoins,
+                icon: const Icon(Icons.remove),
+                label: const Text("Remove coins"),
+              ),
+            ],
           ),
         ],
       ),
