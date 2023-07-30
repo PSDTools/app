@@ -22,7 +22,7 @@ extension PumpApp on WidgetTester {
   }
 }
 
-class _Widget extends ConsumerWidget {
+class _Widget extends StatelessWidget {
   const _Widget({
     required this.child,
     required this.overrides,
@@ -35,7 +35,7 @@ class _Widget extends ConsumerWidget {
   final List<Override> overrides;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return ProviderScope(
       overrides: [
         ...overrides,

@@ -8,12 +8,12 @@ import "../../../utils/constants.dart";
 import "../domain/device_data.dart";
 
 /// A dialog that displays information about the device.
-class DeviceInfoDialog extends ConsumerWidget {
+class DeviceInfoDialog extends StatelessWidget {
   /// Create a new instance of [DeviceInfoDialog].
   const DeviceInfoDialog({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return AlertDialog(
@@ -32,7 +32,7 @@ class DeviceInfoDialog extends ConsumerWidget {
   }
 }
 
-class _BuildTile extends ConsumerWidget {
+class _BuildTile extends StatelessWidget {
   const _BuildTile(
     this.text,
     this.value, {
@@ -45,7 +45,7 @@ class _BuildTile extends ConsumerWidget {
   final String? value;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Row(
@@ -91,7 +91,7 @@ class _GetContent extends ConsumerWidget {
   }
 }
 
-class _View extends ConsumerWidget {
+class _View extends StatelessWidget {
   const _View({
     required this.value,
     // Temporary ignore, see <dart-lang/sdk#49025>.
@@ -102,7 +102,7 @@ class _View extends ConsumerWidget {
   final DeviceData value;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final platformView = switch (value.device) {
       Device.android => androidView(value),
       Device.ios => iosView(value),

@@ -22,12 +22,12 @@ import "app_router.dart";
 AppRouter? appRouter;
 
 /// The app widget, with bootstrappin' capabilities.
-class App extends ConsumerWidget {
+class App extends StatelessWidget {
   /// Create a new instance of [App].
   const App({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     const flutterLocale = Locale("en", "US");
     final theme = ColorScheme.fromSeed(seedColor: Colors.green);
 
@@ -82,7 +82,7 @@ class App extends ConsumerWidget {
 }
 
 // The container for the current page, with its background color and subtle switching animation.
-class _MainArea extends ConsumerWidget {
+class _MainArea extends StatelessWidget {
   const _MainArea({
     required this.child,
     // Temporary ignore, see <dart-lang/sdk#49025>.
@@ -93,7 +93,7 @@ class _MainArea extends ConsumerWidget {
   final Widget? child;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
     return ColoredBox(

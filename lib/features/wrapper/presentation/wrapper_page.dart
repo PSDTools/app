@@ -3,7 +3,6 @@ library pirate_code.features.wrapper.presentation.wrapper_page;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../app/app_router.dart";
 import "../../../l10n/l10n.dart";
@@ -19,12 +18,12 @@ import "../../utils/presentation/device_banner.dart";
 /// - [StackOverflow](https://stackoverflow.com/a/62163655), and
 /// - [@gbaccetta](https://github.com/gbaccetta/flutter_navigation_tutorial/blob/master/lib/group_screens/group_screen.dart).
 @RoutePage()
-class WrapperPage extends ConsumerWidget {
+class WrapperPage extends StatelessWidget {
   /// Create a new instance of [WrapperPage].
   const WrapperPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         return AutoTabsRouter(
@@ -67,7 +66,7 @@ class WrapperPage extends ConsumerWidget {
   }
 }
 
-class _ExpandedWrapper extends ConsumerWidget {
+class _ExpandedWrapper extends StatelessWidget {
   const _ExpandedWrapper({
     required this.child,
     required this.constraints,
@@ -80,7 +79,7 @@ class _ExpandedWrapper extends ConsumerWidget {
   final BoxConstraints constraints;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final tabsRouter = AutoTabsRouter.of(context);
     final l10n = context.l10n;
     final large = constraints.maxWidth >= 600;
@@ -110,7 +109,7 @@ class _ExpandedWrapper extends ConsumerWidget {
   }
 }
 
-class _MobileWrapper extends ConsumerWidget {
+class _MobileWrapper extends StatelessWidget {
   const _MobileWrapper({
     required this.child,
     // Temporary ignore, see <dart-lang/sdk#49025>.
@@ -121,7 +120,7 @@ class _MobileWrapper extends ConsumerWidget {
   final Widget child;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final tabsRouter = AutoTabsRouter.of(context);
     final l10n = context.l10n;
 
