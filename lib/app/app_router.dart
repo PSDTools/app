@@ -5,9 +5,9 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/auth/domain/auth_domain.dart";
-import "../features/auth/presentation/auth_page.dart";
-import "../features/pirate_coins/presentation/pirate_coins_page.dart";
-import "../features/stats/presentation/stats_page.dart";
+import "../features/auth/presentation/auth_page/auth_page.dart";
+import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
+import "../features/pirate_coins/presentation/stats_page/stats_page.dart";
 import "../features/wrapper/presentation/wrapper_page.dart";
 
 part "app_router.gr.dart";
