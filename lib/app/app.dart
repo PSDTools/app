@@ -21,6 +21,12 @@ import "app_router.dart";
 // ignore: public_member_api_docs
 AppRouter? appRouter;
 
+/// The theme used all over the app.
+final globalTheme = ColorScheme.fromSeed(seedColor: Colors.green);
+
+/// The default locale for the app.
+const flutterLocale = Locale("en", "US");
+
 /// The app widget, with bootstrappin' capabilities.
 class App extends StatelessWidget {
   /// Create a new instance of [App].
@@ -28,9 +34,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const flutterLocale = Locale("en", "US");
-    final theme = ColorScheme.fromSeed(seedColor: Colors.green);
-
     return MaterialApp.router(
       routerConfig: appRouter?.config(),
       builder: (context, child) {
@@ -43,10 +46,9 @@ class App extends StatelessWidget {
       },
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: theme,
-        appBarTheme: AppBarTheme(color: theme.primary),
+        colorScheme: globalTheme,
+        appBarTheme: AppBarTheme(color: globalTheme.primary),
       ),
-      locale: flutterLocale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
     );

@@ -19,7 +19,7 @@
   ],
   "useGitignore": true,
   "words": [
-    "appwrite",
+    "!AppWrite",
     "Appwrite",
     "ARGB",
     "contador",
@@ -38,9 +38,12 @@
     "riverpod",
     "Schyler",
     "Texto",
-    "WCAG"
+    "WCAG",
+    "Widgetbook"
   ],
+  "globRoot": ".",
   "ignorePaths": [
-    "lib/l10n/arb"
-  ]
+    "lib/l10n/arb/*.arb",
+    "cspell.json",
+  ],
 }

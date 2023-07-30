@@ -62,11 +62,12 @@ jobs:
         with:
           name: generated-files
           path: |
-            lib/**/*.g.dart
-            lib/**/*.gr.dart
-            lib/**/*.gm.dart
-            lib/**/*.freezed.dart
+            lib/**.g.dart
+            lib/**.gr.dart
+            lib/**.gm.dart
+            lib/**.freezed.dart
             lib/l10n/app_localizations*.dart
+            lib/widgetbook.generator.*.dart
           if-no-files-found: error
 
   build:
@@ -227,6 +228,7 @@ jobs:
             **/*.gm.dart
             **/gen/**
             lib/l10n/app_localizations*.dart
+            lib/widgetbook.generator.dart
 
   format:
     name: Formatting

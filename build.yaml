@@ -21,6 +21,8 @@ targets:
           enable_cached_builds: true
         generate_for:
           - lib/app/app_router.dart
+      auto_route_generator:auto_router_module_generator:
+        enabled: false
       freezed:
         # configs for the @freezed generator
         generate_for:
@@ -45,3 +47,11 @@ targets:
         # configs for the @JsonSerializable generator
         generate_for:
           - lib/features/*/domain/**_model.dart
+      widgetbook_generator:app_builder:
+        # configs for @App() generator...
+        generate_for:
+          - lib/widgetbook.generator.dart
+      widgetbook_generator:use_case_builder:
+        # configs for @UseCase() generator...
+        generate_for:
+          - lib/widgetbook.generator.dart
