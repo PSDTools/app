@@ -17,7 +17,7 @@ sealed class CoinsModel with _$CoinsModel {
   /// Create a new, immutable instance of [CoinsModel].
   const factory CoinsModel({
     /// The number.
-    required AsyncValue<int> coins,
+    required int coins,
   }) = _CoinsModel;
 }
 
@@ -25,8 +25,16 @@ sealed class CoinsModel with _$CoinsModel {
 @riverpod
 class Coins extends _$Coins {
   @override
-  CoinsModel build() {
-    final coins = ref.watch(coinsDataProvider);
+  Future<CoinsModel> build() async {
+    final coins =
+        await ref.watch(coinsDataProvider.select((value) => value.coinsData()));
     return CoinsModel(coins: coins);
+  }
+
+  /// Add coins to the database.
+  Future<int> addCoins() {
+    final coins =
+        ref.watch(coinsDataProvider.select((value) => value.addCoins));
+    return coins();
   }
 }

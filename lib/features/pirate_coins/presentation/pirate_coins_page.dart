@@ -17,7 +17,8 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(coinsProvider.select((value) => value.coins));
+    final data = ref.watch(coinsProvider);
+    final dataNotifier = ref.watch(coinsProvider.notifier);
     final l10n = context.l10n;
 
     return Center(
@@ -28,12 +29,16 @@ class PirateCoinsPage extends ConsumerWidget {
             padding: const EdgeInsets.all(8),
             child: BigCard(
               switch (data) {
-                AsyncData(:final value) => value.toString(),
+                AsyncData(:final value) => value.coins.toString(),
                 AsyncError(:final error) => l10n.error(error.toString()),
                 AsyncLoading() => l10n.loading,
                 _ => l10n.unknown,
               },
             ),
+          ),
+          ElevatedButton(
+            onPressed: dataNotifier.addCoins,
+            child: const Text("ADDD COINSSS"),
           ),
         ],
       ),
