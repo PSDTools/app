@@ -29,10 +29,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           page: WrapperRoute.page,
           path: "/pirate-coins",
-          children: [
-            AutoRoute(page: PirateCoinsRoute.page, path: ""),
-            AutoRoute(page: StatsRoute.page, path: "stats"),
-          ],
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
@@ -42,8 +38,26 @@ class AppRouter extends _$AppRouter {
               },
             ),
           ],
+          children: [
+            AutoRoute(
+              page: PirateCoinsRoute.page,
+              path: "",
+              title: (context, route) => "Pirate Coins",
+            ),
+            AutoRoute(
+              page: StatsRoute.page,
+              path: "stats",
+              title: (context, route) => "Stats",
+            ),
+          ],
+          title: (context, data) => "Pirate Code",
         ),
-        AutoRoute(page: AuthRoute.page, path: "/login", initial: true),
+        AutoRoute(
+          page: AuthRoute.page,
+          path: "/login",
+          title: (context, data) => "Login",
+          initial: true,
+        ),
         RedirectRoute(path: "*", redirectTo: "/login"),
       ];
 }

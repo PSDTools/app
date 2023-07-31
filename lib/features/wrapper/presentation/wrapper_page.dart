@@ -127,7 +127,7 @@ class _MobileWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AutoLeadingButton(),
-        title: Text(context.topRoute.name),
+        title: Text(context.topRoute.title(context)),
       ),
       body: child,
       bottomNavigationBar: BottomNavigationBar(
