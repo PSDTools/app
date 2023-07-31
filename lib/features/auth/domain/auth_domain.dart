@@ -1,12 +1,10 @@
 /// The auth feature's domain.
 library pirate_code.features.auth.domain;
 
-import "package:auto_route/auto_route.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../app/app_router.dart";
 import "../data/auth_data.dart";
 
 part "auth_domain.freezed.dart";
@@ -32,10 +30,9 @@ class PirateAuth extends _$PirateAuth {
   }
 
   /// Authenticate the current user.
-  Future<void> authenticate(StackRouter router) async {
+  Future<void> authenticate() async {
     final auth = ref.watch(authProvider);
     final user = await auth.authenticate();
     state = user;
-    await router.push(const PirateCoinsRoute());
   }
 }
