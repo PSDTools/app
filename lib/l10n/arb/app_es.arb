@@ -44,10 +44,5 @@
   "@statsPageTitle": {
     "type": "text",
     "description": "El título de la página de estadísticas."
-  },
-  "unknown": "Unknown",
-  "@unknown": {
-    "type": "text",
-    "description": "El texto que se muestra cuando algo está en un estado desconocido."
   }
 }

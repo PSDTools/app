@@ -32,7 +32,7 @@ class PirateCoinsPage extends ConsumerWidget {
                 AsyncData(:final value) => value.coins.toString(),
                 AsyncError(:final error) => l10n.error(error.toString()),
                 AsyncLoading() => l10n.loading,
-                _ => l10n.unknown,
+                _ => l10n.error("Unknown state"),
               },
             ),
           ),

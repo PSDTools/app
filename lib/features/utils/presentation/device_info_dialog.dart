@@ -4,6 +4,7 @@ library pirate_code.features.utils.presentation.device;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../l10n/l10n.dart";
 import "../../../utils/constants.dart";
 import "../domain/device_data.dart";
 
@@ -68,6 +69,7 @@ class _GetContent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final deviceInfo = ref.watch(deviceInfoProvider);
+    final l10n = context.l10n;
 
     switch (deviceInfo) {
       case AsyncData(:final value):
@@ -85,8 +87,8 @@ class _GetContent extends ConsumerWidget {
         final message = "An issue occurred: $error, $stackTrace.";
 
         return Text(message);
-      default:
-        return const Text("Unknown");
+      case _:
+        return Text(l10n.error("Unknown state"));
     }
   }
 }
