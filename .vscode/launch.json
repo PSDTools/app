@@ -12,7 +12,7 @@
       "args": [
         "--dart-define-from-file=dart_define.json"
       ],
-      "flutterMode": "release"
+      "flutterMode": "debug",
     }
   ]
 }
