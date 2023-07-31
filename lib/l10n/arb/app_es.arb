@@ -1,5 +1,10 @@
 {
   "@@locale": "es",
+  "addCoins": "Añadir monedas",
+  "@addCoins": {
+    "type": "text",
+    "description": "El texto que se muestra en el botón para incrementar el número de monedas."
+  },
   "authenticateText": "¡Autentícate con Google!",
   "@authenticateText": {
     "type": "text",
@@ -29,6 +34,11 @@
   "@pirateCoinsPageTitle": {
     "type": "text",
     "description": "El título de la página de Monedas Piratas."
+  },
+  "removeCoins": "Eliminar Monedas",
+  "@removeCoins": {
+    "type": "text",
+    "description": "El texto que se muestra en el botón para disminuir el número de monedas."
   },
   "statsPageTitle": "Estadísticas",
   "@statsPageTitle": {

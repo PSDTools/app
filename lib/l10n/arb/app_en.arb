@@ -1,5 +1,10 @@
 {
   "@@locale": "en",
+  "addCoins": "Add coins",
+  "@addCoins": {
+    "type": "text",
+    "description": "The text displayed on the button to increment the number of coins."
+  },
   "authenticateText": "Authenticate with Google!",
   "@authenticateText": {
     "type": "text",
@@ -29,6 +34,11 @@
   "@pirateCoinsPageTitle": {
     "type": "text",
     "description": "The title of the Pirate Coins Page."
+  },
+  "removeCoins": "Remove coins",
+  "@removeCoins": {
+    "type": "text",
+    "description": "The text displayed on the button to decrement the number of coins."
   },
   "statsPageTitle": "Stats",
   "@statsPageTitle": {

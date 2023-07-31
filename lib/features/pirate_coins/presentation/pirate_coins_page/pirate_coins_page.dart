@@ -43,13 +43,13 @@ class PirateCoinsPage extends ConsumerWidget {
               ElevatedButton.icon(
                 onPressed: dataNotifier.addCoins,
                 icon: const Icon(Icons.add),
-                label: const Text("Add coins"),
+                label: Text(l10n.addCoins),
               ),
               const SizedBox(width: 10),
               ElevatedButton.icon(
                 onPressed: dataNotifier.addCoins,
                 icon: const Icon(Icons.remove),
-                label: const Text("Remove coins"),
+                label: Text(l10n.removeCoins),
               ),
             ],
           ),
