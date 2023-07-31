@@ -5,6 +5,11 @@
     "type": "text",
     "description": "The text displayed on the button to increment the number of coins."
   },
+  "appTitle": "PSD Wallet",
+  "@appTitle": {
+    "type": "text",
+    "description": "The name to display as the App's title."
+  },
   "authenticateText": "Authenticate with Google!",
   "@authenticateText": {
     "type": "text",

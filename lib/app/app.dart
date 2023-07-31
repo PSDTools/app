@@ -36,7 +36,11 @@ class App extends StatelessWidget {
       builder: (context, child) {
         return _MainArea(child: child);
       },
-      title: "PSD Wallet",
+      onGenerateTitle: (context) {
+        final l10n = context.l10n;
+
+        return l10n.appTitle;
+      },
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: theme,

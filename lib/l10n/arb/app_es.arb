@@ -5,6 +5,11 @@
     "type": "text",
     "description": "El texto que se muestra en el botón para incrementar el número de monedas."
   },
+  "appTitle": "PSD Billetera",
+  "@appTitle": {
+    "type": "text",
+    "description": "El nombre que se mostrará como título de la aplicación."
+  },
   "authenticateText": "¡Autentícate con Google!",
   "@authenticateText": {
     "type": "text",
