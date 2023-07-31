@@ -41,6 +41,7 @@
         "generate",
         "--no-gitignore"
       ],
+      "problemMatcher": [],
       "group": "build",
       "label": "Dart: run dart_define",
       "detail": "Generate dart-defines.",
@@ -61,6 +62,7 @@
         "."
       ],
       "problemMatcher": [],
+      "group": "none",
       "label": "Dart: doc",
       "detail": "View the documentation.",
       "icon": {
@@ -80,8 +82,8 @@
         "--release",
         "--dart-define-from-file=dart_define.json",
       ],
-      "group": "build",
       "problemMatcher": [],
+      "group": "build",
       "label": "Flutter: build",
       "detail": "Build a flutter app.",
       "icon": {
@@ -98,8 +100,8 @@
       "args": [
         "gen-l10n"
       ],
-      "group": "build",
       "problemMatcher": [],
+      "group": "build",
       "label": "Flutter: gen-l10n",
       "detail": "Generate the localization files.",
       "icon": {
@@ -116,13 +118,39 @@
         "--release",
         "--dart-define-from-file=dart_define.json",
       ],
-      "group": "build",
       "problemMatcher": [],
+      "group": "build",
       "label": "Flutter: build",
       "detail": "Build a flutter app.",
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "gear"
+      },
+      "dependsOn": [
+        "Dart: run build_runner"
+      ]
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "cwd": ".",
+      "args": [
+        "run",
+        "very_good_cli:very_good",
+        "test",
+        "--coverage",
+        "--test-randomize-ordering-seed",
+        "random"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "label": "Very Good Test",
+      "detail": "Run tests with the very_good_cli.",
+      "icon": {
+        "color": "terminal.ansiWhite",
+        "id": "beaker"
       },
       "dependsOn": [
         "Dart: run build_runner"

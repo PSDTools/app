@@ -37,7 +37,8 @@
     "Pattonville",
     "riverpod",
     "Schyler",
-    "Texto"
+    "Texto",
+    "WCAG"
   ],
   "ignorePaths": [
     "lib/l10n/arb"
