@@ -78,5 +78,7 @@
     "**/.dart_tool": true
   },
   "l10nization.flutterPubGetEnabled": false,
-  "l10nization.haveMetadatas": true
+  "l10nization.haveMetadatas": true,
+  "dart.renameFilesWithClasses": "prompt",
+  "dart.previewFlutterUiGuides": true
 }
