@@ -25,23 +25,43 @@ sealed class CoinsModel with _$CoinsModel {
 @riverpod
 class Coins extends _$Coins {
   @override
-  Future<CoinsModel> build() async {
-    final coins =
-        await ref.watch(coinsDataProvider.select((value) => value.coinsData()));
+  FutureOr<CoinsModel> build() async {
+    return _fetchCoins();
+  }
+
+  Future<CoinsModel> _fetchCoins() async {
+    final getCoins =
+        ref.watch(coinsDataProvider.select((value) => value.coinsData));
+    final coins = await getCoins();
+
     return CoinsModel(coins: coins);
   }
 
   /// Add coins to the database.
-  Future<int> addCoins() {
-    final coins =
-        ref.watch(coinsDataProvider.select((value) => value.addCoins));
-    return coins();
+  Future<CoinsModel> _updateCoins(int num) async {
+    final updateCoins =
+        ref.watch(coinsDataProvider.select((value) => value.updateCoins));
+
+    switch (state) {
+      case AsyncData(:final value):
+        final coins = value.coins + num;
+
+        await updateCoins(coins);
+      case _:
+        break;
+    }
+    return _fetchCoins();
+  }
+
+  /// Add coins to the database.
+  Future<void> addCoins(int num) async {
+    state = await AsyncValue.guard(() async {
+      return _updateCoins(num);
+    });
   }
 
   /// Remove coins from the database.
-  Future<int> removeCoins() {
-    final coins =
-        ref.watch(coinsDataProvider.select((value) => value.removeCoins));
-    return coins();
+  Future<void> removeCoins(int num) async {
+    state = await AsyncValue.guard(() async => _updateCoins(-num));
   }
 }
