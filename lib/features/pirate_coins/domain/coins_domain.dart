@@ -42,14 +42,11 @@ class Coins extends _$Coins {
     final updateCoins =
         ref.watch(coinsDataProvider.select((value) => value.updateCoins));
 
-    switch (state) {
-      case AsyncData(:final value):
-        final coins = value.coins + num;
+    final currentCoins = await _fetchCoins();
+    final coins = currentCoins.coins + num;
 
-        await updateCoins(coins);
-      case _:
-        break;
-    }
+    await updateCoins(coins);
+
     return _fetchCoins();
   }
 
