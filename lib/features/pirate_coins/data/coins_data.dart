@@ -36,7 +36,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
       final data = await database.getDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
-        documentId: user.email,
+        documentId: user.$id,
       );
       return data.data["Coins"] as int;
     } catch (e) {
@@ -44,7 +44,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
       final data = await database.getDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
-        documentId: user.email,
+        documentId: user.$id,
       );
       return data.data["Coins"] as int;
     }
@@ -56,7 +56,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
     await database.createDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
-      documentId: user.email,
+      documentId: user.$id,
       data: {
         "Coins": 0,
       },
@@ -72,7 +72,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
       await database.updateDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
-        documentId: user.email,
+        documentId: user.$id,
         data: {
           "Coins": coins,
         },
@@ -82,7 +82,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
       await database.updateDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
-        documentId: user.email,
+        documentId: user.$id,
         data: {
           "Coins": coins,
         },
