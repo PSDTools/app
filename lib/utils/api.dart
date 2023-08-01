@@ -21,7 +21,6 @@ sealed class Api with _$Api implements ApiRepository {
     required String url,
     required String databaseId,
     required String collectionId,
-    required String documentId,
   }) = _Api;
 }
 
@@ -38,9 +37,6 @@ abstract interface class ApiRepository {
 
   /// The collection ID for the Appwrite API.
   String get collectionId;
-
-  /// The document ID for the Appwrite API.
-  String get documentId;
 }
 
 /// The Appwrite API information.
@@ -49,7 +45,6 @@ const ApiRepository apiInfo = Api(
   url: DartDefine.apiEndpoint,
   databaseId: DartDefine.databaseId,
   collectionId: DartDefine.collectionId,
-  documentId: DartDefine.documentId,
 );
 
 /// Get the Appwrite client.

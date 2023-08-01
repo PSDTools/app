@@ -20,7 +20,7 @@ abstract interface class AuthRepository {
 /// The default implementation of [AuthRepository].
 class AppwriteAuthRepository implements AuthRepository {
   /// Create a new instance of [AppwriteAuthRepository].
-  AppwriteAuthRepository(this.session);
+  const AppwriteAuthRepository(this.session);
 
   /// The Appwrite account.
   final Account session;

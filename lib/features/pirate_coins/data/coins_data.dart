@@ -20,32 +20,74 @@ abstract interface class CoinsRepository {
 /// The default implementation of [CoinsRepository].
 class AppwriteCoinsRepository implements CoinsRepository {
   /// Create a new instance of [AppwriteCoinsRepository].
-  AppwriteCoinsRepository(this.database);
+  const AppwriteCoinsRepository(this.database, this.session);
 
   /// The Appwrite databases.
   final Databases database;
 
+  /// The Appwrite user.
+  final Account session;
+
   @override
   Future<int> coinsData() async {
-    final data = await database.getDocument(
+    final user = await session.get();
+
+    try {
+      final data = await database.getDocument(
+        databaseId: apiInfo.databaseId,
+        collectionId: apiInfo.collectionId,
+        documentId: user.$id,
+      );
+      return data.data["Coins"] as int;
+    } catch (e) {
+      await _newDocument();
+      final data = await database.getDocument(
+        databaseId: apiInfo.databaseId,
+        collectionId: apiInfo.collectionId,
+        documentId: user.$id,
+      );
+      return data.data["Coins"] as int;
+    }
+  }
+
+  Future<void> _newDocument() async {
+    final user = await session.get();
+
+    await database.createDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
-      documentId: apiInfo.documentId,
+      documentId: user.$id,
+      data: {
+        "Coins": 0,
+      },
     );
-    return data.data["Coins"] as int;
   }
 
   /// Add coins to the database.
   @override
   Future<void> updateCoins(int coins) async {
-    await database.updateDocument(
-      databaseId: apiInfo.databaseId,
-      collectionId: apiInfo.collectionId,
-      documentId: apiInfo.documentId,
-      data: {
-        "Coins": coins,
-      },
-    );
+    final user = await session.get();
+
+    try {
+      await database.updateDocument(
+        databaseId: apiInfo.databaseId,
+        collectionId: apiInfo.collectionId,
+        documentId: user.$id,
+        data: {
+          "Coins": coins,
+        },
+      );
+    } catch (e) {
+      await _newDocument();
+      await database.updateDocument(
+        databaseId: apiInfo.databaseId,
+        collectionId: apiInfo.collectionId,
+        documentId: user.$id,
+        data: {
+          "Coins": coins,
+        },
+      );
+    }
   }
 }
 
@@ -53,6 +95,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
 @riverpod
 CoinsRepository coinsData(CoinsDataRef ref) {
   final databases = ref.watch(databasesProvider);
+  final account = ref.watch(accountsProvider);
 
-  return AppwriteCoinsRepository(databases);
+  return AppwriteCoinsRepository(databases, account);
 }

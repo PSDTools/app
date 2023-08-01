@@ -135,10 +135,6 @@ dart_define:
       description: Appwrite collection ID
       default: 649f327c108ef9b8bfb2
       required: false
-    - name: DOCUMENT_ID
-      description: Appwrite document ID
-      default: 649f337ff27368209bcc
-      required: false
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:
