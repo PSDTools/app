@@ -1,5 +1,5 @@
 import "package:flutter_test/flutter_test.dart";
-import "package:pirate_code/features/wrapper/presentation/wrapper_page.dart";
+import 'package:pirate_code/features/dashboard/presentation/wrapper_page/wrapper_page.dart';
 
 import "../../../helpers/helpers.dart";
 

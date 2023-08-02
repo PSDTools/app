@@ -1,12 +1,12 @@
 /// This file contains the [WrapperPage] widget, which wraps the pages.
-library;
+library pirate_code.features.wrapper.presentation.wrapper_page;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
-import "../../../app/app_router.dart";
-import "../../../l10n/l10n.dart";
-import "../../utils/presentation/device_info/device_banner.dart";
+import "../../../../app/app_router.dart";
+import "../../../../l10n/l10n.dart";
+import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.
@@ -27,10 +27,7 @@ class WrapperPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return AutoTabsRouter(
-          routes: const [
-            PirateCoinsRoute(),
-            StatsRoute(),
-          ],
+          routes: const [PirateCoinsRoute(), StatsRoute(), DashboardRoute()],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
             final tabsRouter = AutoTabsRouter.of(context);
@@ -77,7 +74,6 @@ class _ExpandedWrapper extends StatelessWidget {
 
   final Widget child;
   final BoxConstraints constraints;
-
   @override
   Widget build(BuildContext context) {
     final tabsRouter = AutoTabsRouter.of(context);
@@ -85,24 +81,62 @@ class _ExpandedWrapper extends StatelessWidget {
     final large = constraints.maxWidth >= 600;
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 43, 188, 75),
+        title: IconButton(
+          onPressed: () async {
+            print("Nothing to see here, move along.");
+          },
+          icon: Icon(Icons.home),
+          color: Colors.black,
+        ),
+      ),
+      backgroundColor: const Color.fromARGB(255, 43, 188, 75),
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          NavigationRail(
-            extended: large,
-            destinations: [
-              NavigationRailDestination(
-                icon: const Icon(Icons.currency_bitcoin_outlined),
-                label: Text(l10n.pirateCoinsPageTitle),
+          Container(
+            width: 80,
+            color: const Color.fromARGB(255, 43, 188, 75),
+            child: RotatedBox(
+              quarterTurns: 1,
+              child: Text(
+                "Pattonville Pirates",
+                style: TextStyle(
+                  fontFamily: "MrDafoe",
+                  color: Color.fromARGB(255, 11, 70, 24),
+                  shadows: [
+                    Shadow(
+                      color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
+                      offset: Offset(0, 0),
+                      blurRadius: 1,
+                    ),
+                  ],
+                ),
+                textScaleFactor: 4,
+                textAlign: TextAlign.center,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.stacked_bar_chart),
-                label: Text(l10n.statsPageTitle),
-              ),
-            ],
-            selectedIndex: tabsRouter.activeIndex,
-            onDestinationSelected: tabsRouter.setActiveIndex,
+            ),
           ),
-          Expanded(child: child),
+          Expanded(
+            child: ColoredBox(
+              color: Color.fromARGB(255, 43, 188, 75),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(
+                      255, 255, 255, 255), //background color
+                  border: Border.all(
+                    color: Colors.transparent, // border color
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                  ),
+                ),
+                child: child,
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -125,31 +159,10 @@ class _MobileWrapper extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-      appBar: AppBar(
-        leading: const AutoLeadingButton(),
-        title: Text(context.topRoute.title(context)),
-      ),
-      body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.currency_bitcoin_outlined),
-            label: l10n.pirateCoinsPageTitle,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.stacked_bar_chart),
-            label: l10n.statsPageTitle,
-          ),
-        ],
-        onTap: tabsRouter.setActiveIndex,
-        currentIndex: tabsRouter.activeIndex,
-        selectedIconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 39, 131, 0),
+        appBar: AppBar(
+          title: Text('Green Home Page'),
+          backgroundColor: Colors.green,
         ),
-        unselectedIconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 0, 0, 0),
-        ),
-      ),
-    );
+        body: child);
   }
 }
