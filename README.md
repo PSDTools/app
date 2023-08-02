@@ -3,7 +3,6 @@
 [![Netlify Status][deploys_badge]][deploys_link]
 [![Dart][ci_dart_badge]][ci_dart_link]
 [![coverage][coverage_badge]][ci_dart_link]
-[![CodeQL][ci_sec_badge]][ci_sec_link]
 [![spelling][ci_spell_badge]][ci_spell_link]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 
@@ -21,8 +20,6 @@ We don't believe that READMEs should be a 15 Terabyte[^1] file, so we broke it u
 
 [ci_dart_badge]: https://github.com/PSDTools/app/actions/workflows/dart.yaml/badge.svg?branch=main
 [ci_dart_link]: https://github.com/PSDTools/app/actions/workflows/dart.yaml
-[ci_sec_badge]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml/badge.svg?branch=main
-[ci_sec_link]: https://github.com/PSDTools/app/actions/workflows/codeql.yaml
 [ci_spell_badge]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml/badge.svg?branch=main
 [ci_spell_link]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml
 [coverage_badge]: https://img.shields.io/badge/coverage-30%25-CB2431.svg
