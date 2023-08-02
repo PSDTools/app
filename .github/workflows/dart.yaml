@@ -62,11 +62,12 @@ jobs:
         with:
           name: generated-files
           path: |
-            lib/**.g.dart
-            lib/**.gr.dart
-            lib/**.gm.dart
-            lib/**.freezed.dart
-            lib/l10n/app_localizations*.dart
+            lib/**/*.g.dart
+            lib/**/*.gr.dart
+            lib/**/*.gm.dart
+            lib/**/*.freezed.dart
+            lib/l10n/app_localizations.dart
+            lib/l10n/app_localizations_*.dart
             lib/widgetbook.generator.*.dart
           if-no-files-found: error
 
@@ -220,15 +221,7 @@ jobs:
         with:
           path: coverage/lcov.info
           min_coverage: 10 # 100
-          exclude: |
-            **/*.gen.dart
-            **/*.freezed.dart
-            **/*.g.dart
-            **/*.gr.dart
-            **/*.gm.dart
-            **/gen/**
-            lib/l10n/app_localizations*.dart
-            lib/widgetbook.generator.dart
+          exclude: lib/**/*.g.dart lib/**/*.gr.dart lib/**/*.gm.dart lib/**/*.freezed.dart lib/l10n/app_localizations.dart lib/l10n/app_localizations_*.dart lib/widgetbook.generator.*.dart
 
   format:
     name: Formatting
