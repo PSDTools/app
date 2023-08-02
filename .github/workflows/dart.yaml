@@ -27,29 +27,68 @@ jobs:
   build:
     name: Build
     needs: []
-    timeout-minutes: 5
-    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        flutter:
+          - stable
+        target:
+          - web
+          - appbundle
+          # - ios
+          # - macos
+          # - windows
+        include:
+          - target: web
+            os: ubuntu-latest
+            flutter-flags: --release
+          - target: appbundle
+            os: ubuntu-latest
+            flutter-flags: --debug --no-tree-shake-icons --no-shrink
+          # - target: ios
+          #   os: macos-latest
+          #   flutter-flags: --debug --no-tree-shake-icons
+          # - target: macos
+          #   os: macos-latest
+          #   flutter-flags: --debug --no-tree-shake-icons
+          # - target: windows
+          #   os: windows-latest
+          #   flutter-flags: --debug --no-tree-shake-icons
 
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
-          submodules: true
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
-          channel: "stable"
+          channel: ${{ matrix.flutter }}
           cache: true
+      - name: 🌐 Disable Telemetry
+        run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
+      - name: ⚙️ Cache `.dart_tool`
+        uses: actions/cache@88522ab9f39a2ea568f7027eddc7d8d8bc9d59c8 # v3.3.1
+        with:
+          path: ".dart_tool/"
+          key: ${{ runner.os }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
           dart run dart_define generate --no-gitignore
-          dart run build_runner build
+          dart run build_runner build -d
       - name: 🔧 Build
-        run: flutter build web --release --dart-define-from-file=dart_define.json
-      - name: ⚙️ Upload generated files
+        run: |
+          flutter build ${{ matrix.target }} ${{ matrix.flutter-flags }} --dart-define-from-file=dart_define.json
+      - name: ⚙️ Upload generated files # cache .dart_tool
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
           name: generated-files
@@ -63,7 +102,7 @@ jobs:
       - name: ⚙️ Upload build
         uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # v3.1.2
         with:
-          name: build-directory
+          name: build-directory-${{ matrix.target }}
           path: ./build
           if-no-files-found: error
 
@@ -73,16 +112,25 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        flutter: ["stable"]
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
-          submodules: true
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
-          channel: "stable"
+          channel: ${{ matrix.flutter }}
           cache: true
+      - name: 🌐 Disable Telemetry
+        run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Download generated code
@@ -103,16 +151,25 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        flutter: ["stable"]
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
-          submodules: true
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
-          channel: "stable"
+          channel: ${{ matrix.flutter }}
           cache: true
+      - name: 🌐 Disable Telemetry
+        run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Download generated code
@@ -123,13 +180,22 @@ jobs:
       - name: 🔌 Generate Dart Defines
         run: dart run dart_define generate --no-gitignore
       - name: 🧪 Run tests
-        run: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
+        run: |
+          dart run very_good_cli:very_good --analytics false
+          dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@e5c91bc7ce9843e87c800b3bcafdfb86fbe28491 # v2.1.0
         with:
           path: coverage/lcov.info
           min_coverage: 10 # 100
-          exclude: "**/*.gen.dart **/*.freezed.dart **/*.g.dart **/*.gr.dart **/*.gm.dart **/gen/** lib/l10n/app_localizations*.dart"
+          exclude: |
+            **/*.gen.dart
+            **/*.freezed.dart
+            **/*.g.dart
+            **/*.gr.dart
+            **/*.gm.dart
+            **/gen/**
+            lib/l10n/app_localizations*.dart
 
   format:
     name: Formatting
@@ -137,16 +203,25 @@ jobs:
     timeout-minutes: 3
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        flutter: ["stable"]
+
     steps:
       - name: 📚 Git Checkout
         uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
         with:
-          submodules: true
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa # v2.10.0
         with:
-          channel: "stable"
+          channel: ${{ matrix.flutter }}
           cache: true
+      - name: 🌐 Disable Telemetry
+        run: flutter --disable-telemetry
       - name: ✨ Verify formatting
         run: dart format --output=none --set-exit-if-changed .
 
@@ -157,7 +232,7 @@ jobs:
     timeout-minutes: 3
     runs-on: ubuntu-latest
 
-    environment: ${{ ( github.event_name == 'pull_request' && 'integration' ) || 'staging' }}
+    environment: ${{ ( github.event_name == 'push' && github.ref_name == 'main' && 'staging' ) || 'integration' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
@@ -175,7 +250,7 @@ jobs:
       - name: ⚙️ Download the build artifact
         uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3.0.2
         with:
-          name: build-directory
+          name: build-directory-web
           path: ./build
       - name: 🔧 Deploy to Netlify
         uses: South-Paw/action-netlify-cli@8e99164b59ca8343c925aacd05a44d3ffa3718fa # v1.0.1
