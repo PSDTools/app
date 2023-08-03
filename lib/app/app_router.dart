@@ -29,7 +29,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: WrapperRoute.page,
-          path: "/pirate-coins",
+          path: "/dashboard",
           guards: [
             // AutoRouteGuard.redirect(
             //   (resolver) {
@@ -42,12 +42,12 @@ class AppRouter extends _$AppRouter {
           children: [
             AutoRoute(
               page: PirateCoinsRoute.page,
-              path: "",
+              path: "pirate-coins",
               title: (context, route) => "Pirate Coins",
             ),
             AutoRoute(
               page: DashboardRoute.page,
-              path: "dashboard",
+              path: "",
               title: (context, route) => "Dashboard",
             ),
             AutoRoute(
