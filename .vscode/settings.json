@@ -57,7 +57,7 @@
     ".flutter-plugins": ".flutter-plugins-dependencies",
     "dart_define.json": "custom_lint.log, untranslated.json"
   },
-  "sarif-viewer.connectToGithubCodeScanning": "on",
+  "sarif-viewer.connectToGithubCodeScanning": "off",
   "yaml.schemas": {
     "https://json.schemastore.org/github-issue-config.json": [
       ".github/ISSUE_TEMPLATE/config.yml"
@@ -77,7 +77,6 @@
     "**/Thumbs.db": true,
     "**/.dart_tool": true
   },
-  "l10nization.flutterPubGetEnabled": false,
   "l10nization.haveMetadatas": true,
   "dart.renameFilesWithClasses": "prompt",
   "dart.previewFlutterUiGuides": true
