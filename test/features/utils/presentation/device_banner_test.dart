@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:pirate_code/features/utils/presentation/device_banner.dart";
+import "package:pirate_code/features/utils/presentation/device_info/device_banner.dart";
 
 import "../../../helpers/helpers.dart";
 

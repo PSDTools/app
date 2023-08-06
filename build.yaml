@@ -9,7 +9,7 @@ targets:
         - $package$
         - lib/$lib$
     builders:
-      auto_route_generator:auto_route_generator:
+      auto_route_generator:
         # configs for the @RoutePage() generator
         options:
           enable_cached_builds: true
@@ -21,18 +21,18 @@ targets:
           enable_cached_builds: true
         generate_for:
           - lib/app/app_router.dart
-      freezed:freezed:
+      freezed:
         # configs for the @freezed generator
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/domain/**.dart
-      riverpod_generator:riverpod_generator:
+      riverpod_generator:
         # configs for the @riverpod generator
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/data/**.dart
           - lib/features/*/domain/**.dart
-      flutter_gen_runner:flutter_gen_runner:
+      flutter_gen_runner:
         # configs for the flutter.assets generator
         generate_for:
           - pubspec.yaml
@@ -40,3 +40,7 @@ targets:
         # configs for the source_gen:combining_builder generator
         generate_for:
           - lib/**.dart
+      json_serializable:
+        # configs for the @JsonSerializable generator
+        generate_for:
+          - lib/features/*/domain/**_model.dart

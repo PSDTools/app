@@ -1,7 +1,7 @@
 /// The app widget.
 ///
 /// Including the app's initiation code.
-library pirate_code.app;
+library;
 
 import "dart:async";
 import "dart:developer";

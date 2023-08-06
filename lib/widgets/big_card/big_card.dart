@@ -1,5 +1,5 @@
 /// A widget for a...um...big card!
-library pirate_code.widgets.big_card.view;
+library;
 
 import "package:flutter/material.dart";
 

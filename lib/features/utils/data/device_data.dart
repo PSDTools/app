@@ -1,14 +1,14 @@
 /// The utils feature's device data.
-library pirate_code.features.utils.data.device;
+library;
 
 import "dart:io";
 
 import "package:device_info_plus/device_info_plus.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../domain/device_data.dart";
+import "../domain/device_model.dart";
 
-part "device.g.dart";
+part "device_data.g.dart";
 
 /// A repository for device information.
 // Too bad, so sad.

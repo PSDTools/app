@@ -1,5 +1,5 @@
 /// {@category Testing}
 /// Helpers for testing.
-library test.helpers;
+library;
 
 export "pump_app.dart";

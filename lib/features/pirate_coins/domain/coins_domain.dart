@@ -1,25 +1,12 @@
 /// The pirate_coins feature's domain.
-library pirate_code.features.pirate_coins.domain;
+library;
 
-import "package:flutter/foundation.dart";
-import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../data/coins_data.dart";
+import "coins_model.dart";
 
-part "coins_domain.freezed.dart";
 part "coins_domain.g.dart";
-
-/// A number.
-@freezed
-@immutable
-sealed class CoinsModel with _$CoinsModel {
-  /// Create a new, immutable instance of [CoinsModel].
-  const factory CoinsModel({
-    /// The number.
-    required int coins,
-  }) = _CoinsModel;
-}
 
 /// Get coins data from data layer.
 @riverpod
@@ -43,7 +30,8 @@ class Coins extends _$Coins {
         ref.watch(coinsDataProvider.select((value) => value.updateCoins));
 
     final currentCoins = await _fetchCoins();
-    final coins = currentCoins.coins + num;
+    final coins =
+        currentCoins.coins.copyWith(coins: currentCoins.coins.coins + num);
 
     await updateCoins(coins);
 

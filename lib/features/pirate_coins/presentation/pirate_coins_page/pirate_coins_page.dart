@@ -1,5 +1,5 @@
-/// The pirate_coins feature.
-library pirate_code.features.pirate_coins.pages.pirate_coins;
+/// The Pirate Coins feature's main presentation.
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";

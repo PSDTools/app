@@ -1,5 +1,5 @@
-/// The stats feature.
-library pirate_code.features.pirate_coins.pages.stats;
+/// The Pirate Coins feature's statistic presentation.
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";

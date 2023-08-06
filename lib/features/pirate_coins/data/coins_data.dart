@@ -1,20 +1,21 @@
 /// The pirate_coins feature's data.
-library pirate_code.features.pirate_coins.data;
+library;
 
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
+import "../domain/coins_model.dart";
 
 part "coins_data.g.dart";
 
 /// A repository for coin manipulation.
 abstract interface class CoinsRepository {
   /// Get coins data from the [databases].
-  Future<int> coinsData();
+  Future<Coin> coinsData();
 
   /// Modify the coins in the [databases].
-  Future<void> updateCoins(int coins);
+  Future<void> updateCoins(Coin coin);
 }
 
 /// The default implementation of [CoinsRepository].
@@ -29,24 +30,28 @@ class AppwriteCoinsRepository implements CoinsRepository {
   final Account session;
 
   @override
-  Future<int> coinsData() async {
+  Future<Coin> coinsData() async {
     final user = await session.get();
 
     try {
-      final data = await database.getDocument(
+      final json = await database.getDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
         documentId: user.$id,
       );
-      return data.data["Coins"] as int;
+      final data = Coin.fromJson(json.data);
+
+      return data;
     } catch (e) {
       await _newDocument();
-      final data = await database.getDocument(
+      final json = await database.getDocument(
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
         documentId: user.$id,
       );
-      return data.data["Coins"] as int;
+      final data = Coin.fromJson(json.data);
+
+      return data;
     }
   }
 
@@ -57,15 +62,15 @@ class AppwriteCoinsRepository implements CoinsRepository {
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
       documentId: user.$id,
-      data: {
-        "Coins": 0,
-      },
+      data: const Coin(
+        coins: 0,
+      ).toJson(),
     );
   }
 
   /// Add coins to the database.
   @override
-  Future<void> updateCoins(int coins) async {
+  Future<void> updateCoins(Coin coin) async {
     final user = await session.get();
 
     try {
@@ -73,9 +78,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
         documentId: user.$id,
-        data: {
-          "Coins": coins,
-        },
+        data: coin.toJson(),
       );
     } catch (e) {
       await _newDocument();
@@ -83,9 +86,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
         databaseId: apiInfo.databaseId,
         collectionId: apiInfo.collectionId,
         documentId: user.$id,
-        data: {
-          "Coins": coins,
-        },
+        data: coin.toJson(),
       );
     }
   }

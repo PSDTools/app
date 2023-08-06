@@ -1,5 +1,5 @@
 /// The api utilities.
-library pirate_code.utils.api;
+library;
 
 import "package:appwrite/appwrite.dart";
 import "package:flutter/foundation.dart";

@@ -1,6 +1,6 @@
 /// {@category Translations}
 /// The l10n utilities.
-library pirate_code.l10n;
+library;
 
 import "package:flutter/widgets.dart";
 import "app_localizations.dart";

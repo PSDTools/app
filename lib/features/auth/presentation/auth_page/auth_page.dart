@@ -1,5 +1,5 @@
 /// The auth feature.
-library pirate_code.features.auth.page;
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";

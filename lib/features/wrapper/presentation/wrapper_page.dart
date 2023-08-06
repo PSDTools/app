@@ -1,12 +1,12 @@
 /// This file contains the [WrapperPage] widget, which wraps the pages.
-library pirate_code.features.wrapper.presentation.wrapper_page;
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 
 import "../../../app/app_router.dart";
 import "../../../l10n/l10n.dart";
-import "../../utils/presentation/device_banner.dart";
+import "../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.

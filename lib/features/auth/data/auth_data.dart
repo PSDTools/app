@@ -1,11 +1,11 @@
-/// The auth feature's data.
-library pirate_code.features.auth.data;
+/// The auth feature's main presentation.
+library;
 
 import "package:appwrite/appwrite.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
-import "../domain/auth_domain.dart";
+import "../domain/auth_model.dart";
 
 part "auth_data.g.dart";
 

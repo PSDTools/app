@@ -1,5 +1,5 @@
 /// Extension method for configuring [WidgetTester].
-library pirate_code.test.helpers.pump_app;
+library;
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -7,7 +7,7 @@ import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/features/auth/data/auth_data.dart";
-import "package:pirate_code/features/auth/domain/auth_domain.dart";
+import "package:pirate_code/features/auth/domain/auth_model.dart";
 import "package:pirate_code/l10n/l10n.dart";
 
 /// Extension method for [WidgetTester.pumpWidget].

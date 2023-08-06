@@ -1,13 +1,14 @@
-/// The utils feature's presentation.
-library pirate_code.features.utils.presentation.device_banner;
+/// The utils feature's banner presentation.
+library;
 
 import "dart:async";
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/constants.dart";
-import "../domain/banner.dart";
+import "../../../../utils/constants.dart";
+import "../../domain/banner_domain.dart";
+import "../../domain/banner_model.dart";
 import "device_info_dialog.dart";
 
 /// A widget that displays a banner at the top of the screen.

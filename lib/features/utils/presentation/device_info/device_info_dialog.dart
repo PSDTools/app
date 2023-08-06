@@ -1,12 +1,13 @@
-/// The utils feature's device presentation.
-library pirate_code.features.utils.presentation.device;
+/// The utils feature's dialog presentation.
+library;
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../l10n/l10n.dart";
-import "../../../utils/constants.dart";
-import "../domain/device_data.dart";
+import "../../../../l10n/l10n.dart";
+import "../../../../utils/constants.dart";
+import "../../domain/device_domain.dart";
+import "../../domain/device_model.dart";
 
 /// A dialog that displays information about the device.
 class DeviceInfoDialog extends StatelessWidget {
