@@ -3,51 +3,66 @@
   "addCoins": "Add coins",
   "@addCoins": {
     "type": "text",
-    "description": "The text displayed on the button to increment the number of coins."
+    "description": "The text which is displayed on the button to increment the number of coins."
   },
   "appTitle": "PSD Wallet",
   "@appTitle": {
     "type": "text",
-    "description": "The name to display as the App's title."
+    "description": "The text which is displayed as the application's title."
   },
   "authenticateText": "Authenticate with Google!",
   "@authenticateText": {
     "type": "text",
-    "description": "The text displayed on the button to authenticate with Google."
+    "description": "The text which is displayed on the button to authenticate with Google."
   },
   "emptyReport": "Nothing to report yet!",
   "@emptyReport": {
     "type": "text",
-    "description": "The text to display when there is no report data to display."
+    "description": "The text which is displayed when there is no report data to show."
   },
   "error": "Error: {error}",
   "@error": {
     "type": "text",
-    "description": "The text displayed after an error.",
+    "description": "The text which is displayed after an error.",
     "placeholders": {
       "error": {
         "type": "String"
       }
     }
   },
+  "howManyCoins": "You currently have {coins} coins.",
+  "@howManyCoins": {
+    "type": "text",
+    "description": "The text which is displayed to show the number of coins on the stats page.",
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
   "loading": "Loading...",
   "@loading": {
     "type": "text",
-    "description": "The text displayed when something is loading."
+    "description": "The text which is displayed when something is loading."
   },
   "pirateCoinsPageTitle": "Pirate Coins!",
   "@pirateCoinsPageTitle": {
     "type": "text",
-    "description": "The title of the Pirate Coins Page."
+    "description": "The text which is displayed as the title of the Pirate Coins Page."
   },
   "removeCoins": "Remove coins",
   "@removeCoins": {
     "type": "text",
-    "description": "The text displayed on the button to decrement the number of coins."
+    "description": "The text which is displayed on the button to decrement the number of coins."
   },
   "statsPageTitle": "Stats",
   "@statsPageTitle": {
     "type": "text",
-    "description": "The title of the Stats Page."
+    "description": "The text which is displayed as the title of the Stats Page."
+  },
+  "unknownState": "Unknown state",
+  "@unknownState": {
+    "type": "text",
+    "description": "The text which is displayed when something is in an unknown state."
   }
 }

@@ -89,7 +89,7 @@ class _GetContent extends ConsumerWidget {
 
         return Text(message);
       case _:
-        return Text(l10n.error("Unknown state"));
+        return Text(l10n.error(l10n.unknownState));
     }
   }
 }

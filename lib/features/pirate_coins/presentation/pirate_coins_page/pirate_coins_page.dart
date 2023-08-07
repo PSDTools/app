@@ -7,7 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../widgets/big_card/big_card.dart";
-import "../../domain/coins_domain.dart";
+import "pirate_coins_page_controller.dart";
 
 /// The page located at `/pirate-coins`.
 @RoutePage()
@@ -17,8 +17,8 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final data = ref.watch(coinsProvider);
-    final dataNotifier = ref.watch(coinsProvider.notifier);
+    final (data, addCoins, removeCoins) =
+        ref.watch(pirateCoinsPageControllerProvider);
     final l10n = context.l10n;
 
     return Center(
@@ -29,10 +29,10 @@ class PirateCoinsPage extends ConsumerWidget {
             padding: const EdgeInsets.all(8),
             child: BigCard(
               switch (data) {
-                AsyncData(:final value) => value.coins.toString(),
-                AsyncError(:final error) => l10n.error(error.toString()),
+                AsyncData(:final value) => "${value.coins}",
+                AsyncError(:final error) => l10n.error("$error"),
                 AsyncLoading() => l10n.loading,
-                _ => l10n.error("Unknown state"),
+                _ => l10n.error(l10n.unknownState),
               },
             ),
           ),
@@ -41,13 +41,13 @@ class PirateCoinsPage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
-                onPressed: () async => dataNotifier.addCoins(1),
+                onPressed: () async => addCoins(1),
                 icon: const Icon(Icons.add),
                 label: Text(l10n.addCoins),
               ),
               const SizedBox(width: 10),
               ElevatedButton.icon(
-                onPressed: () async => dataNotifier.removeCoins(1),
+                onPressed: () async => removeCoins(1),
                 icon: const Icon(Icons.remove),
                 label: Text(l10n.removeCoins),
               ),

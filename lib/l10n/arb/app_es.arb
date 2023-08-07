@@ -8,7 +8,7 @@
   "appTitle": "PSD Billetera",
   "@appTitle": {
     "type": "text",
-    "description": "El nombre que se mostrará como título de la aplicación."
+    "description": "El texto que se muestra como título de la aplicación."
   },
   "authenticateText": "¡Autentícate con Google!",
   "@authenticateText": {
@@ -18,7 +18,7 @@
   "emptyReport": "¡Nada que informar todavía!",
   "@emptyReport": {
     "type": "text",
-    "description": "El texto que se muestra cuando no hay datos de informe que mostrar."
+    "description": "El texto que se muestra cuando no hay datos de informe para mostrar."
   },
   "error": "Error: {error}",
   "@error": {
@@ -30,6 +30,16 @@
       }
     }
   },
+  "howManyCoins": "You have {coins} coins.",
+  "@howManyCoins": {
+    "type": "text",
+    "description": "El texto que se muestra para mostrar el número de monedas en la página de estadísticas.",
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
   "loading": "Cargando...",
   "@loading": {
     "type": "text",
@@ -38,7 +48,7 @@
   "pirateCoinsPageTitle": "¡Monedas Piratas!",
   "@pirateCoinsPageTitle": {
     "type": "text",
-    "description": "El título de la página de Monedas Piratas."
+    "description": "El texto que se muestra como título de la página de monedas piratas."
   },
   "removeCoins": "Eliminar Monedas",
   "@removeCoins": {
@@ -48,6 +58,11 @@
   "statsPageTitle": "Estadísticas",
   "@statsPageTitle": {
     "type": "text",
-    "description": "El título de la página de estadísticas."
+    "description": "El texto que se muestra como título de la página de estadísticas."
+  },
+  "unknownState": "Unknown state",
+  "@unknownState": {
+    "type": "text",
+    "description": "El texto que se muestra cuando algo está en un estado desconocido."
   }
 }

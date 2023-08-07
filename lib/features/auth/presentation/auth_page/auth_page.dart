@@ -6,7 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "../../../../app/app_router.dart";
 import "../../../../l10n/l10n.dart";
-import "../../domain/auth_domain.dart";
+import "auth_page_controller.dart";
 
 /// The page located at `/login/`
 @RoutePage()
@@ -16,7 +16,7 @@ class AuthPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final auth = ref.watch(pirateAuthProvider.notifier);
+    final (authenticate,) = (ref.watch(authPageControllerProvider),);
     final l10n = context.l10n;
     final router = context.router;
 
@@ -26,7 +26,7 @@ class AuthPage extends ConsumerWidget {
         children: [
           ElevatedButton(
             onPressed: () async {
-              await auth.authenticate();
+              await authenticate();
               await router.push(const PirateCoinsRoute());
             },
             child: Text(l10n.authenticateText),
