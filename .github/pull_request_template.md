@@ -10,6 +10,8 @@
 
 <!-- Describe your changes. -->
 
+This PR...
+
 _Closes: #issue_
 
 ## Type of Change
@@ -29,8 +31,12 @@ _Closes: #issue_
 - ⏪ Revert
 - 🗑️ Chore
 
+<!--
+
 ## Poem
 
-<!-- Because, well, why not? -->
+<!- Because, well, why not? ->
 
 copilot:poem
+
+-->
