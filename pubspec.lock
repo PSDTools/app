@@ -69,10 +69,10 @@ packages:
     dependency: "direct dev"
     description:
       name: auto_route_generator
-      sha256: e9245cc56f04a4473c281346d194efa2c89a0f8e4f1c02a5b3b43e242c3e1c75
+      sha256: "7e6da60fa96fac055cd1d342d61e9e07d04f28bca2ebdc27ea81756e0e98bc48"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.0"
+    version: "7.3.0"
   bazel_worker:
     dependency: transitive
     description:
