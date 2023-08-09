@@ -4,11 +4,12 @@ library pirate_code.features.dashboard.page;
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
-import "../../../../../app/app_router.dart";
-import "../../../../../l10n/l10n.dart";
-import "../../domain/dashboard_domain.dart";
 
-/// The page located at `/login/`
+import "../../../../app/app_router.dart";
+import "../../../../gen/assets.gen.dart";
+import "../../domain/dashboard_model.dart";
+
+/// The page located at `/login/`.
 @RoutePage()
 class DashboardPage extends ConsumerWidget {
   /// Create a new instance of [DashboardPage].
@@ -16,123 +17,33 @@ class DashboardPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final gridItemHeight = MediaQuery.of(context).size.height / 3;
-    const appletsFolder = "../../../../../../assets/applets/";
-    final buttonsData = <Map<String, dynamic>>[
-      {
-        "imagePath": appletsFolder + "pirate-coins.png",
-        "backgroundColor": const Color.fromARGB(255, 122, 194, 129),
-        "title": "Pirate Coins",
-        "destination": "/pirate-coins",
-      },
-      {
-        "imagePath": appletsFolder + "gpa-calculator.png",
-        "backgroundColor": const Color.fromARGB(255, 242, 184, 184),
-        "title": "GPA Calculator",
-        "destination": "/gpa-calculator",
-      },
-      {
-        "imagePath": appletsFolder + "phs-map.png",
-        "backgroundColor": const Color.fromARGB(255, 178, 254, 186),
-        "title": "PHS Map",
-        "destination": "/phs-map",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": const Color.fromARGB(255, 249, 183, 255),
-        "title": "Temp",
-        "destination": "/email",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": const Color.fromARGB(255, 187, 198, 255),
-        "title": "Temp",
-        "destination": "/favorite",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": const Color.fromARGB(255, 255, 205, 130),
-        "title": "Temp",
-        "destination": "/cart",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.blue,
-        "title": "Temp",
-        "destination": "/camera",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.green,
-        "title": "Temp",
-        "destination": "/phone",
-      },
-      // Add more buttons data here
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.purple,
-        "title": "Temp",
-        "destination": "/music",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.orange,
-        "title": "Temp",
-        "destination": "/inbox",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.red,
-        "title": "Temp",
-        "destination": "/notifications",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.blue,
-        "title": "Temp",
-        "destination": "/calendar",
-      },
-      // Add more buttons data here
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.green,
-        "title": "Temp",
-        "destination": "/coffee",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.yellow,
-        "title": "Temp",
-        "destination": "/pizza",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.blue,
-        "title": "Temp",
-        "destination": "/movies",
-      },
-      {
-        "imagePath": appletsFolder + "temp-image.png",
-        "backgroundColor": Colors.purple,
-        "title": "Temp",
-        "destination": "/book",
-      },
-      // Add more buttons data here
-    ];
-    final itemsData = <Map<String, dynamic>>[
-      {
-        "read": true,
-        "title": "First Item",
-      },
-      {
-        "read": false,
-        "title": "Second Item",
-      },
-      // Add more items data here
-      {
-        "read": true,
-        "title": "Nth Item",
-      },
+    const appletsFolder = Assets.applets;
+    final buttonsData = [
+      Applet(
+        name: "Pirate Coins",
+        image: appletsFolder.pirateCoins,
+        color: const Color.fromARGB(255, 122, 194, 129),
+        location: const PirateCoinsRoute(),
+      ),
+      // Applet(
+      //   image: appletsFolder.gpaCalculator,
+      //   color: const Color.fromARGB(255, 242, 184, 184),
+      //   name: "GPA Calculator",
+      //   location: const GpaCalculatorRoute(),
+      // ),
+      // Applet(
+      //   image: appletsFolder.phsMap,
+      //   color: const Color.fromARGB(255, 178, 254, 186),
+      //   name: "PHS Map",
+      //   location: const PhsMapRoute(),
+      // ),
+
+      // Add more buttons here
+      // Ideas:
+      //
+      // Email inbox
+      // Notifications
+      // Calendar
     ];
 
     return Center(
@@ -141,7 +52,7 @@ class DashboardPage extends ConsumerWidget {
         children: [
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   // Replace this with your other widgets if needed
@@ -150,13 +61,13 @@ class DashboardPage extends ConsumerWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 16.0,
-                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
                       ),
                       itemCount: buttonsData.length,
                       itemBuilder: (BuildContext context, int index) {
                         final buttonData = buttonsData[index];
-                        return buildButton(context, buttonData);
+                        return _AppletButton(buttonData: buttonData);
                       },
                     ),
                   ),
@@ -166,18 +77,18 @@ class DashboardPage extends ConsumerWidget {
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20),
               child: Container(
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 243, 243, 243),
                   borderRadius: BorderRadius.all(
-                    Radius.circular(35.0),
+                    Radius.circular(35),
                   ),
                 ),
                 child: ListView(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -186,7 +97,7 @@ class DashboardPage extends ConsumerWidget {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 252, 154, 255),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(35.0),
+                              Radius.circular(35),
                             ),
                           ),
                           child: const Center(
@@ -199,7 +110,7 @@ class DashboardPage extends ConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -208,11 +119,11 @@ class DashboardPage extends ConsumerWidget {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 255, 115, 115),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(35.0),
+                              Radius.circular(35),
                             ),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                            padding: EdgeInsets.only(left: 20, top: 10),
                             child: Text(
                               "Gmail",
                               style: TextStyle(fontSize: 16),
@@ -222,7 +133,7 @@ class DashboardPage extends ConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -231,11 +142,11 @@ class DashboardPage extends ConsumerWidget {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 115, 169, 255),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(35.0),
+                              Radius.circular(35),
                             ),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                            padding: EdgeInsets.only(left: 20, top: 10),
                             child: Text(
                               "Announcements",
                               style: TextStyle(fontSize: 16),
@@ -245,7 +156,7 @@ class DashboardPage extends ConsumerWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
+                      padding: const EdgeInsets.only(top: 20),
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Container(
@@ -254,11 +165,11 @@ class DashboardPage extends ConsumerWidget {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(255, 115, 255, 117),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(35.0),
+                              Radius.circular(35),
                             ),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                            padding: EdgeInsets.only(left: 20, top: 10),
                             child: Text(
                               "Pirate Calendar",
                               style: TextStyle(fontSize: 16),
@@ -278,43 +189,61 @@ class DashboardPage extends ConsumerWidget {
   }
 }
 
-Widget buildButton(BuildContext context, Map<String, dynamic> buttonData) {
-  final imagePath = buttonData["imagePath"] as String;
-  final backgroundColor = buttonData["backgroundColor"] as Color;
-  final title = buttonData["title"] as String;
-  final destination = buttonData["destination"] as String;
+/// A button widget that navigates to a specified applet.
+class _AppletButton extends StatelessWidget {
+  /// Create a new instance of [_AppletButton].
+  const _AppletButton({
+    required this.buttonData,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
 
-  return GestureDetector(
-    onTap: () async {
-      // Handle button tap here, e.g., navigate to the specified destination
-      await Navigator.pushNamed(context, destination);
-    },
-    child: Card(
-      color: backgroundColor,
-      elevation: 8.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(35.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 8.0),
-          Text(
-            title,
-            style: const TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0), fontSize: 16.0),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
+  /// The list of
+  final Applet buttonData;
+
+  @override
+  Widget build(BuildContext context) {
+    final imagePath = buttonData.image.path;
+    final backgroundColor = buttonData.color;
+    final title = buttonData.name;
+    final destination = buttonData.location;
+
+    return GestureDetector(
+      onTap: () async {
+        // Handle button tap here to navigate to the specified destination.
+        final router = context.router;
+        await router.push(destination);
+      },
+      child: Card(
+        color: backgroundColor,
+        elevation: 8,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(35),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 0, 0, 0),
+                fontSize: 16,
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

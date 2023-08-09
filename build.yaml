@@ -36,7 +36,7 @@ targets:
       flutter_gen_runner:
         # configs for the flutter.assets generator
         generate_for:
-          - pubspec.yaml
+          - $package$
       source_gen:combining_builder:
         # configs for the source_gen:combining_builder generator
         generate_for:
