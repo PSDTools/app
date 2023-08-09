@@ -3,6 +3,7 @@ library pirate_code.features.wrapper.presentation.wrapper_page;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:google_fonts/google_fonts.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../../l10n/l10n.dart";
@@ -103,13 +104,11 @@ class _ExpandedWrapper extends StatelessWidget {
               quarterTurns: 1,
               child: Text(
                 "Pattonville Pirates",
-                style: TextStyle(
-                  fontFamily: "MrDafoe",
-                  color: Color.fromARGB(255, 11, 70, 24),
+                style: GoogleFonts.mrDafoe(
+                  color: const Color.fromARGB(255, 11, 70, 24),
                   shadows: [
                     Shadow(
-                      color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.5),
-                      offset: Offset(0, 0),
+                      color: theme.colorScheme.shadow.withOpacity(0.5),
                       blurRadius: 1,
                     ),
                   ],
