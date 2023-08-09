@@ -29,15 +29,15 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: WrapperRoute.page,
-          path: "/dashboard",
+          path: "/",
           guards: [
-            // AutoRouteGuard.redirect(
-            //   (resolver) {
-            //     final authState = container.read(pirateAuthProvider);
+            AutoRouteGuard.redirect(
+              (resolver) {
+                final authState = container.read(pirateAuthProvider);
 
-            //     return (authState != null) ? null : const AuthRoute();
-            //   },
-            // ),
+                return (authState.user != null) ? null : const AuthRoute();
+              },
+            ),
           ],
           children: [
             AutoRoute(
@@ -47,7 +47,7 @@ class AppRouter extends _$AppRouter {
             ),
             AutoRoute(
               page: DashboardRoute.page,
-              path: "",
+              path: "dashboard",
               title: (context, route) => "Dashboard",
             ),
             AutoRoute(
@@ -55,6 +55,7 @@ class AppRouter extends _$AppRouter {
               path: "stats",
               title: (context, route) => "Stats",
             ),
+            RedirectRoute(path: "*", redirectTo: "dashboard")
           ],
           title: (context, data) => "Pirate Code",
         ),
@@ -64,6 +65,6 @@ class AppRouter extends _$AppRouter {
           title: (context, data) => "Login",
           initial: true,
         ),
-        RedirectRoute(path: "*", redirectTo: "/login"),
+        RedirectRoute(path: "/*", redirectTo: "/login"),
       ];
 }
