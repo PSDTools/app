@@ -6,7 +6,6 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
 import "../../../../app/app_router.dart";
-import "../../../../l10n/l10n.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
@@ -75,31 +74,28 @@ class _ExpandedWrapper extends StatelessWidget {
 
   final Widget child;
   final BoxConstraints constraints;
+
   @override
   Widget build(BuildContext context) {
-    final tabsRouter = AutoTabsRouter.of(context);
-    final l10n = context.l10n;
-    final large = constraints.maxWidth >= 600;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 43, 188, 75),
         title: IconButton(
           onPressed: () async {
             print("Nothing to see here, move along.");
           },
-          icon: Icon(Icons.home),
+          icon: const Icon(Icons.home),
           color: Colors.black,
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 43, 188, 75),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             width: 80,
-            color: const Color.fromARGB(255, 43, 188, 75),
+            color: theme.appBarTheme.backgroundColor,
             child: RotatedBox(
               quarterTurns: 1,
               child: Text(
@@ -120,16 +116,16 @@ class _ExpandedWrapper extends StatelessWidget {
           ),
           Expanded(
             child: ColoredBox(
-              color: Color.fromARGB(255, 43, 188, 75),
+              color: theme.appBarTheme.backgroundColor ??
+                  const Color.fromARGB(255, 43, 188, 75),
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(
-                      255, 255, 255, 255), //background color
+                  color: theme.colorScheme.surfaceVariant, // background color
                   border: Border.all(
                     color: Colors.transparent, // border color
                   ),
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(25.0),
+                    topLeft: Radius.circular(25),
                   ),
                 ),
                 child: child,
@@ -154,14 +150,11 @@ class _MobileWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabsRouter = AutoTabsRouter.of(context);
-    final l10n = context.l10n;
-
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Green Home Page'),
-          backgroundColor: Colors.green,
-        ),
-        body: child);
+      appBar: AppBar(
+        title: const Text("Green Home Page"),
+      ),
+      body: child,
+    );
   }
 }
