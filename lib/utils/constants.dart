@@ -2,6 +2,7 @@
 library;
 
 import "package:flutter/foundation.dart";
+
 import "../features/utils/domain/device_model.dart";
 
 export "../../dart_define.gen.dart";

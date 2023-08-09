@@ -49,6 +49,8 @@ dependencies:
   freezed_annotation: ^2.2.0
   google_fonts: ^4.0.4
   intl: ^0.18.0
+  io: ^1.0.4
+  logging: ^1.2.0
   meta: ^1.9.1
   riverpod_annotation: ^2.1.1
 

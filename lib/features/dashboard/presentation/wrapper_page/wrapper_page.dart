@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 
 import "../../../../app/app_router.dart";
+import "../../../../utils/log.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
@@ -83,7 +84,7 @@ class _ExpandedWrapper extends StatelessWidget {
       appBar: AppBar(
         title: IconButton(
           onPressed: () async {
-            print("Nothing to see here, move along.");
+            log.info("Nothing to see here, move along.");
           },
           icon: const Icon(Icons.home),
           color: Colors.black,

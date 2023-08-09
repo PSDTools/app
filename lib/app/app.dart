@@ -4,7 +4,6 @@
 library;
 
 import "dart:async";
-import "dart:developer";
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
@@ -12,6 +11,7 @@ import "package:flutter_web_plugins/url_strategy.dart";
 import "package:meta/meta.dart";
 
 import "../../l10n/l10n.dart";
+import "../../utils/log.dart";
 import "app_router.dart";
 
 // Make sure you don't initiate your router inside of the build function.
@@ -21,7 +21,7 @@ import "app_router.dart";
 // ignore: public_member_api_docs
 AppRouter? appRouter;
 
-/// The app widget, with bootstrappin' capabilities.
+/// The app widget, with bootstrapping capabilities.
 class App extends StatelessWidget {
   /// Create a new instance of [App].
   const App({super.key});
@@ -62,14 +62,22 @@ class App extends StatelessWidget {
   /// - [ProviderScope] will be used to wrap the app.
   Future<void> bootstrap() async {
     FlutterError.onError = (details) {
-      log(details.exceptionAsString(), stackTrace: details.stack);
+      log.shout(
+        "Uncaught Flutter error:",
+        details.exceptionAsString(),
+        details.stack,
+      );
     };
 
     // Don't use hash style routes.
     usePathUrlStrategy();
 
-    /// The app's container.
-    final container = ProviderContainer();
+    // The app's container.
+    final container = ProviderContainer(
+      observers: [
+        Logger(),
+      ],
+    );
 
     appRouter = AppRouter(container: container);
 
@@ -80,8 +88,22 @@ class App extends StatelessWidget {
           child: this,
         ),
       ),
-      (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+      (error, stackTrace) =>
+          log.severe("Error was caught by error-zone.", error, stackTrace),
     );
+  }
+}
+
+/// Log provider updates to the console.
+class Logger extends ProviderObserver {
+  @override
+  void didUpdateProvider(
+    ProviderBase<Object?> provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
+    log.info("[${provider.name}] value: $newValue");
   }
 }
 
