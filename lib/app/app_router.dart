@@ -65,6 +65,6 @@ class AppRouter extends _$AppRouter {
           title: (context, data) => "Login",
           initial: true,
         ),
-        RedirectRoute(path: "/*", redirectTo: "/login"),
+        RedirectRoute(path: "/*", redirectTo: "/dashboard"),
       ];
 }

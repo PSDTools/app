@@ -28,7 +28,7 @@ class AuthPage extends ConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               await authenticate();
-              await router.push(const PirateCoinsRoute());
+              await router.push(const DashboardRoute());
             },
             child: Text(l10n.authenticateText),
           ),
