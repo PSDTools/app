@@ -35,7 +35,7 @@ class AppRouter extends _$AppRouter {
               (resolver) {
                 final authState = container.read(pirateAuthProvider);
 
-                return (authState.user != null) ? null : const AuthRoute();
+                return (authState != null) ? null : const AuthRoute();
               },
             ),
           ],

@@ -75,7 +75,7 @@ class App extends StatelessWidget {
     // The app's container.
     final container = ProviderContainer(
       observers: [
-        Logger(),
+        // Logger(),
       ],
     );
 

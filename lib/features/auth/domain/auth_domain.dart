@@ -12,14 +12,14 @@ part "auth_domain.g.dart";
 @riverpod
 class PirateAuth extends _$PirateAuth {
   @override
-  PirateAuthModel build() {
-    return const PirateAuthModel();
+  PirateUser? build() {
+    return null;
   }
 
   /// Authenticate the current user.
   Future<void> authenticate() async {
     final auth = ref.watch(authProvider);
     final user = await auth.authenticate();
-    state = state.copyWith(user: user);
+    state = PirateUser(name: user.name);
   }
 }
