@@ -2,6 +2,7 @@
 library;
 
 import "package:appwrite/appwrite.dart";
+import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
@@ -32,63 +33,56 @@ class AppwriteCoinsRepository implements CoinsRepository {
   @override
   Future<Coin> coinsData() async {
     final user = await session.get();
+    final id = user.email.hashCode;
 
     try {
-      final json = await database.getDocument(
-        databaseId: apiInfo.databaseId,
-        collectionId: apiInfo.collectionId,
-        documentId: user.$id,
-      );
-      final data = Coin.fromJson(json.data);
+      final json = await _getDocument(id);
 
-      return data;
+      return Coin.fromJson(json.data);
     } catch (e) {
-      await _newDocument();
-      final json = await database.getDocument(
-        databaseId: apiInfo.databaseId,
-        collectionId: apiInfo.collectionId,
-        documentId: user.$id,
-      );
-      final data = Coin.fromJson(json.data);
-
-      return data;
+      return _newDocument(id, const Coin(coins: 0));
     }
-  }
-
-  Future<void> _newDocument() async {
-    final user = await session.get();
-
-    await database.createDocument(
-      databaseId: apiInfo.databaseId,
-      collectionId: apiInfo.collectionId,
-      documentId: user.$id,
-      data: const Coin(
-        coins: 0,
-      ).toJson(),
-    );
   }
 
   /// Add coins to the database.
   @override
   Future<void> updateCoins(Coin coin) async {
     final user = await session.get();
+    final id = user.email.hashCode;
 
     try {
-      await database.updateDocument(
-        databaseId: apiInfo.databaseId,
-        collectionId: apiInfo.collectionId,
-        documentId: user.$id,
-        data: coin.toJson(),
-      );
+      await _updateDocument(id, coin);
     } catch (e) {
-      await _newDocument();
-      await database.updateDocument(
-        databaseId: apiInfo.databaseId,
-        collectionId: apiInfo.collectionId,
-        documentId: user.$id,
-        data: coin.toJson(),
-      );
+      await _newDocument(id, coin);
     }
+  }
+
+  Future<Coin> _newDocument(int id, Coin data) async {
+    await database.createDocument(
+      databaseId: apiInfo.databaseId,
+      collectionId: apiInfo.collectionId,
+      documentId: id.toString(),
+      data: data.toJson(),
+    );
+
+    return data;
+  }
+
+  Future<Document> _getDocument(int id) async {
+    return database.getDocument(
+      databaseId: apiInfo.databaseId,
+      collectionId: apiInfo.collectionId,
+      documentId: id.toString(),
+    );
+  }
+
+  Future<void> _updateDocument(int id, Coin coin) async {
+    await database.updateDocument(
+      databaseId: apiInfo.databaseId,
+      collectionId: apiInfo.collectionId,
+      documentId: id.toString(),
+      data: coin.toJson(),
+    );
   }
 }
 
