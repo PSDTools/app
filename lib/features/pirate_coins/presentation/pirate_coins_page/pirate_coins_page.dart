@@ -11,12 +11,19 @@ import "pirate_coins_page_controller.dart";
 
 /// The page located at `/pirate-coins`.
 @RoutePage()
-class PirateCoinsPage extends ConsumerWidget {
+class PirateCoinsPage extends ConsumerStatefulWidget {
   /// Create a new instance of [PirateCoinsPage].
   const PirateCoinsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<PirateCoinsPage> createState() => _PirateCoinsPageState();
+}
+
+class _PirateCoinsPageState extends ConsumerState<PirateCoinsPage> {
+  bool requestIsInflight = false;
+
+  @override
+  Widget build(BuildContext context) {
     final (data, addCoins, removeCoins) =
         ref.watch(pirateCoinsPageControllerProvider);
     final l10n = context.l10n;
@@ -41,14 +48,30 @@ class PirateCoinsPage extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
-                onPressed: () async => addCoins(1),
-                icon: const Icon(Icons.add),
+                onPressed: () async {
+                  if (!requestIsInflight) {
+                    setState(() => requestIsInflight = true);
+                    await addCoins(1);
+                    setState(() => requestIsInflight = false);
+                  }
+                },
+                icon: requestIsInflight
+                    ? const Icon(Icons.rotate_left)
+                    : const Icon(Icons.add),
                 label: Text(l10n.addCoins),
               ),
               const SizedBox(width: 10),
               ElevatedButton.icon(
-                onPressed: () async => removeCoins(1),
-                icon: const Icon(Icons.remove),
+                onPressed: () async {
+                  if (!requestIsInflight) {
+                    setState(() => requestIsInflight = true);
+                    await removeCoins(1);
+                    setState(() => requestIsInflight = false);
+                  }
+                },
+                icon: requestIsInflight
+                    ? const Icon(Icons.rotate_right)
+                    : const Icon(Icons.remove),
                 label: Text(l10n.removeCoins),
               ),
             ],
