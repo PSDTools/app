@@ -56,14 +56,12 @@ class _BuildBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onLongPress() {
-      return unawaited(
-        showDialog<void>(
-          context: context,
-          builder: (BuildContext context) {
-            return const DeviceInfoDialog();
-          },
-        ),
+    Future<void> onLongPress() async {
+      await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return const DeviceInfoDialog();
+        },
       );
     }
 

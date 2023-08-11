@@ -19,7 +19,6 @@ class AuthPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final (authenticate,) = (ref.watch(authPageControllerProvider),);
     final l10n = context.l10n;
-    final router = context.router;
 
     return Center(
       child: Column(
@@ -28,7 +27,10 @@ class AuthPage extends ConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               await authenticate();
-              await router.push(const DashboardRoute());
+
+              if (context.mounted) {
+                await context.router.push(const DashboardRoute());
+              }
             },
             child: Text(l10n.authenticateText),
           ),

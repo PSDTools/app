@@ -19,10 +19,9 @@ class BigCard extends StatelessWidget {
     final theme = Theme.of(context);
     final style = theme.textTheme.displayMedium?.copyWith(
       color: theme.colorScheme.onPrimary,
+      fontWeight: FontWeight.bold,
     );
     const elevation = 2.0;
-
-    final boldStyle = style?.copyWith(fontWeight: FontWeight.bold);
 
     return Card(
       color: theme.colorScheme.primary,
@@ -34,7 +33,7 @@ class BigCard extends StatelessWidget {
           child: MergeSemantics(
             child: Wrap(
               children: [
-                Text(text, style: boldStyle),
+                Text(text, style: style),
               ],
             ),
           ),

@@ -6,12 +6,14 @@ library;
 import "dart:async";
 
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
 import "package:meta/meta.dart";
 
 import "../../l10n/l10n.dart";
 import "../../utils/log.dart";
+import "../utils/design.dart";
 import "app_router.dart";
 
 // Make sure you don't initiate your router inside of the build function.
@@ -20,9 +22,6 @@ import "app_router.dart";
 // Waiting on the next dart minor.
 // ignore: public_member_api_docs
 AppRouter? appRouter;
-
-/// The theme used all over the app.
-final globalTheme = ColorScheme.fromSeed(seedColor: Colors.green);
 
 /// The default locale for the app.
 const flutterLocale = Locale("en", "US");
@@ -35,23 +34,17 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: appRouter?.config(),
-      builder: (context, child) {
-        return _MainArea(child: child);
-      },
-      onGenerateTitle: (context) {
-        final l10n = context.l10n;
+    const flutterLocale = Locale("en", "US");
 
-        return l10n.appTitle;
-      },
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: globalTheme,
-        appBarTheme: AppBarTheme(color: globalTheme.primary),
+    return _MainArea(
+      child: MaterialApp.router(
+        routerConfig: appRouter?.config(),
+        onGenerateTitle: (context) => context.l10n.appTitle,
+        theme: theme,
+        locale: flutterLocale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
     );
   }
 
@@ -85,12 +78,22 @@ class App extends StatelessWidget {
     appRouter = AppRouter(container: container);
 
     await runZonedGuarded(
-      () async => runApp(
-        UncontrolledProviderScope(
-          container: container,
-          child: this,
-        ),
-      ),
+      () async {
+        // Reset notification bar on android
+        WidgetsFlutterBinding.ensureInitialized();
+        await SystemChrome.setEnabledSystemUIMode(
+          SystemUiMode.manual,
+          overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
+        );
+
+        // Run the App, using riverpod
+        runApp(
+          UncontrolledProviderScope(
+            container: container,
+            child: this,
+          ),
+        );
+      },
       (error, stackTrace) =>
           log.severe("Error was caught by error-zone.", error, stackTrace),
     );
@@ -123,10 +126,8 @@ class _MainArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return ColoredBox(
-      color: colorScheme.surfaceVariant,
+      color: theme.colorScheme.surfaceVariant,
       child: child,
     );
   }

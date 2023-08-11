@@ -50,11 +50,14 @@ class _BuildTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(5),
-      child: Row(
-        children: [
-          Text(text, style: const TextStyle(fontWeight: FontWeight.bold)),
-          Text(value ?? ""),
-        ],
+      child: ListTile(
+        leading: Text(
+          text,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          value ?? "",
+        ),
       ),
     );
   }

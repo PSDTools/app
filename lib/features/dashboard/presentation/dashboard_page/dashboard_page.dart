@@ -17,6 +17,27 @@ class DashboardPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    return const Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _Applets(),
+          _NotificationBar(),
+        ],
+      ),
+    );
+  }
+}
+
+class _Applets extends StatelessWidget {
+  const _Applets({
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     const appletsFolder = Assets.applets;
     final buttonsData = [
       Applet(
@@ -46,144 +67,77 @@ class DashboardPage extends ConsumerWidget {
       // Calendar
     ];
 
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  // Replace this with your other widgets if needed
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                      ),
-                      itemCount: buttonsData.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final buttonData = buttonsData[index];
-                        return _AppletButton(buttonData: buttonData);
-                      },
-                    ),
-                  ),
-                ],
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            // Replace this with your other widgets if needed
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemCount: buttonsData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final buttonData = buttonsData[index];
+                  return _AppletButton(buttonData: buttonData);
+                },
               ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 243, 243, 243),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(35),
-                  ),
-                ),
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1 / 3,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 252, 154, 255),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(35),
-                            ),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "Pirate Life At a Glance",
-                              style: TextStyle(fontSize: 24),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1 / 3,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 255, 115, 115),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(35),
-                            ),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 20, top: 10),
-                            child: Text(
-                              "Gmail",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1 / 3,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 115, 169, 255),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(35),
-                            ),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 20, top: 10),
-                            child: Text(
-                              "Announcements",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 1 / 3,
-                          height: 80,
-                          decoration: const BoxDecoration(
-                            color: Color.fromARGB(255, 115, 255, 117),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(35),
-                            ),
-                          ),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 20, top: 10),
-                            child: Text(
-                              "Pirate Calendar",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NotificationBar extends StatelessWidget {
+  const _NotificationBar({
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 243, 243, 243),
+            borderRadius: BorderRadius.all(
+              Radius.circular(35),
             ),
           ),
-        ],
+          child: ListView(
+            children: const [
+              _NotificationBarTitle(
+                title: "Pirate Life At a Glance",
+                color: Color.fromARGB(255, 252, 154, 255),
+              ),
+              _NotificationBarItem(
+                name: "Gmail",
+                color: Color.fromARGB(255, 255, 115, 115),
+              ),
+              _NotificationBarItem(
+                name: "Canvas",
+                color: Color.fromARGB(255, 208, 26, 25),
+              ),
+              _NotificationBarItem(
+                name: "Announcements",
+                color: Color.fromARGB(255, 115, 169, 255),
+              ),
+              _NotificationBarItem(
+                name: "Calendar",
+                color: Color.fromARGB(255, 115, 255, 117),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -242,6 +196,97 @@ class _AppletButton extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _NotificationBarTitle extends StatelessWidget {
+  const _NotificationBarTitle({
+    required this.title,
+    required this.color,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final String title;
+  final Color color;
+
+  @override
+  _NotificationItem build(BuildContext context) {
+    return _NotificationItem(
+      name: Center(
+        child: Text(
+          title,
+          style: const TextStyle(fontSize: 24),
+        ),
+      ),
+      color: color,
+      height: 40,
+    );
+  }
+}
+
+class _NotificationBarItem extends StatelessWidget {
+  const _NotificationBarItem({
+    required this.name,
+    required this.color,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final String name;
+  final Color color;
+
+  @override
+  _NotificationItem build(BuildContext context) {
+    return _NotificationItem(
+      name: Padding(
+        padding: const EdgeInsets.only(left: 20, top: 10),
+        child: Text(
+          name,
+          style: const TextStyle(fontSize: 16),
+        ),
+      ),
+      color: color,
+      height: 80,
+    );
+  }
+}
+
+class _NotificationItem extends StatelessWidget {
+  const _NotificationItem({
+    required this.name,
+    required this.color,
+    required this.height,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final Widget name;
+  final Color color;
+  final double height;
+
+  @override
+  Padding build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: MediaQuery.of(context).size.width * 1 / 3,
+          height: height,
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(35),
+            ),
+          ),
+          child: name,
         ),
       ),
     );
