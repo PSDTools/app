@@ -62,6 +62,7 @@ jobs:
         with:
           name: generated-files
           path: |
+            lib/**/*.gen.dart
             lib/**/*.g.dart
             lib/**/*.gr.dart
             lib/**/*.gm.dart

@@ -6,9 +6,10 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../features/auth/domain/auth_domain.dart";
 import "../features/auth/presentation/auth_page/auth_page.dart";
+import "../features/dashboard/presentation/dashboard_page/dashboard_page.dart";
+import "../features/dashboard/presentation/wrapper_page/wrapper_page.dart";
 import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
 import "../features/pirate_coins/presentation/stats_page/stats_page.dart";
-import "../features/wrapper/presentation/wrapper_page.dart";
 
 part "app_router.gr.dart";
 
@@ -28,7 +29,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(
           page: WrapperRoute.page,
-          path: "/pirate-coins",
+          path: "/",
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
@@ -41,14 +42,20 @@ class AppRouter extends _$AppRouter {
           children: [
             AutoRoute(
               page: PirateCoinsRoute.page,
-              path: "",
+              path: "pirate-coins",
               title: (context, route) => "Pirate Coins",
+            ),
+            AutoRoute(
+              page: DashboardRoute.page,
+              path: "dashboard",
+              title: (context, route) => "Dashboard",
             ),
             AutoRoute(
               page: StatsRoute.page,
               path: "stats",
               title: (context, route) => "Stats",
             ),
+            RedirectRoute(path: "*", redirectTo: "dashboard")
           ],
           title: (context, data) => "Pirate Code",
         ),
@@ -58,6 +65,6 @@ class AppRouter extends _$AppRouter {
           title: (context, data) => "Login",
           initial: true,
         ),
-        RedirectRoute(path: "*", redirectTo: "/login"),
+        RedirectRoute(path: "/*", redirectTo: "/dashboard"),
       ];
 }

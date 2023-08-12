@@ -29,7 +29,7 @@ class PirateCoinsPage extends ConsumerWidget {
             padding: const EdgeInsets.all(8),
             child: BigCard(
               switch (data) {
-                AsyncData(:final value) => "${value.coins}",
+                AsyncData(:final value) => "${value.coins.coins}",
                 AsyncError(:final error) => l10n.error("$error"),
                 AsyncLoading() => l10n.loading,
                 _ => l10n.error(l10n.unknownState),
