@@ -11,8 +11,6 @@ import "../domain/device_model.dart";
 part "device_data.g.dart";
 
 /// A repository for device information.
-// Too bad, so sad.
-// ignore: one_member_abstracts
 abstract interface class DeviceRepository {
   /// Get information about the [currentPlatform].
   Future<DeviceData> deviceInfo();

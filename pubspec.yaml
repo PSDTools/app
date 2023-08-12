@@ -34,7 +34,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   appwrite: ^9.0.1
-  auto_route: ^7.7.1
+  auto_route: ^7.8.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5 # Only required if you use Cupertino (iOS style) icons
@@ -53,9 +53,11 @@ dependencies:
   logging: ^1.2.0
   meta: ^1.9.1
   riverpod_annotation: ^2.1.1
+  widgetbook: ^3.1.0
+  widgetbook_annotation: ^3.0.0
 
 dev_dependencies:
-  auto_route_generator: ^7.2.0
+  auto_route_generator: ^7.3.0
   build_runner: ^2.4.6
   build_web_compilers: ^4.0.5
   custom_lint: ^0.4.0
@@ -77,6 +79,7 @@ dev_dependencies:
   riverpod_lint: ^1.4.0
   very_good_analysis: ^5.0.0+1
   very_good_cli: ^0.15.0
+  widgetbook_generator: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

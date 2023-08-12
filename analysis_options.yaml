@@ -47,5 +47,6 @@ linter:
     discarded_futures: true
     lines_longer_than_80_chars: false
     avoid_classes_with_only_static_members: true
+    one_member_abstracts: false
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
