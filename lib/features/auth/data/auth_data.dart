@@ -10,8 +10,6 @@ import "../domain/auth_model.dart";
 part "auth_data.g.dart";
 
 /// A repository for authentication.
-// Too bad, so sad.
-// ignore: one_member_abstracts
 abstract interface class AuthRepository {
   /// Authenticate the user.
   Future<PirateUser> authenticate();
