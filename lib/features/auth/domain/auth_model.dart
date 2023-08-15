@@ -50,7 +50,16 @@ enum AccountType {
   admin,
 
   /// A development account.
-  dev,
+  dev;
+
+  /// Convert a [String] into an [AccountType].
+  factory AccountType.fromEmail(String email) {
+    return email.endsWith("@student.psdr3.org")
+        ? AccountType.student
+        : email.endsWith("@psdr3.org")
+            ? AccountType.teacher
+            : AccountType.dev;
+  }
 }
 
 /// A model for authentication.

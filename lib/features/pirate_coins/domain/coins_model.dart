@@ -38,7 +38,7 @@ sealed class Coin with _$Coin implements Model {
   factory Coin.fromJson(Map<String, Object?> json) => _$CoinFromJson(json);
 }
 
-/// An enumeration of the stages of the coins page.
+/// An enumeration of the [Stage]s of the coins page.
 sealed class Stage {
   /// Create a new [Stage].
   const Stage();

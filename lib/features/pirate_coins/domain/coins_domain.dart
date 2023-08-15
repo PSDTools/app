@@ -65,6 +65,7 @@ Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
 }
 
 /// Get coins data from data layer.
+// TODO(lishaduck): Make this based on URLs.
 @riverpod
 class CurrentStage extends _$CurrentStage {
   @override

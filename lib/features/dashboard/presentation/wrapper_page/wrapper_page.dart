@@ -29,7 +29,11 @@ class WrapperPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         return AutoTabsRouter(
-          routes: const [PirateCoinsRoute(), StatsRoute(), DashboardRoute()],
+          routes: const [
+            PirateCoinsRoute(),
+            StatsRoute(), // TODO(lishaduck): Make this accessible.
+            DashboardRoute(),
+          ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
             final tabsRouter = AutoTabsRouter.of(context);
@@ -97,6 +101,8 @@ class _ExpandedWrapper extends ConsumerWidget {
               accountName: Text(account?.name ?? "Pirate Coins"),
               accountEmail: Text(account?.email ?? ""),
               currentAccountPicture: const CircleAvatar(
+                // TODO(lishaduck): Use the Appwrite avatars API.
+                // backgroundImage: ,
                 backgroundColor: Colors.white,
                 child: Icon(Icons.person),
               ),
@@ -168,7 +174,8 @@ class _MobileWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Green Home Page"),
+        leading: const AutoLeadingButton(),
+        title: Text(context.topRoute.title(context)),
       ),
       body: child,
     );
