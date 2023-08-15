@@ -241,14 +241,12 @@ class _ViewCoins extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: BigCard(
-        switch (data) {
-          AsyncData(:final value) => "${value.coins.coins}",
-          AsyncError(:final error) => l10n.error("$error"),
-          AsyncLoading() => l10n.loading,
-          _ => l10n.error(l10n.unknownState),
-        },
-      ),
+      child: switch (data) {
+        AsyncData(:final value) => BigCard("${value.coins.coins}"),
+        AsyncError(:final error) => BigCard(l10n.error("$error")),
+        AsyncLoading() => const CircularProgressIndicator(),
+        _ => BigCard(l10n.error(l10n.unknownState)),
+      },
     );
   }
 }

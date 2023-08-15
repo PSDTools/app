@@ -28,9 +28,9 @@ targets:
         generate_for:
           - lib/utils/**.dart
           - lib/features/*/domain/**_model.dart
-        # options:
-        #   map: none
-        #   when: none
+        options:
+          map: false
+          when: false
       riverpod_generator:
         # configs for the @riverpod generator
         generate_for:
