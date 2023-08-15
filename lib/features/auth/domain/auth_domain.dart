@@ -19,7 +19,9 @@ class PirateAuth extends _$PirateAuth {
   /// Authenticate the current user.
   Future<void> authenticate() async {
     final auth = ref.watch(authProvider);
-    final user = await auth.authenticate();
-    state = PirateUser(name: user.name);
+    state = await auth.authenticate();
   }
 }
+
+/// The name of an anonymous user.
+const anonymousName = "anonymous";

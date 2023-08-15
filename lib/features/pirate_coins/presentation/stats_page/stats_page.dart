@@ -7,7 +7,8 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../widgets/big_card/big_card.dart";
-import "stats_page_controller.dart";
+import "../../../auth/domain/auth_domain.dart";
+import "../../domain/coins_domain.dart";
 
 /// The page at `/pirate-coins/stats`.
 @RoutePage()
@@ -17,7 +18,8 @@ class StatsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (data,) = (ref.watch(statsPageControllerProvider),);
+    final user = ref.watch(pirateAuthProvider);
+    final data = (user != null) ? ref.watch(coinsProvider(user.id)) : null;
     final l10n = context.l10n;
 
     return Center(

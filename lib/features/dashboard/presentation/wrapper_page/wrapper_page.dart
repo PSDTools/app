@@ -85,9 +85,7 @@ class _ExpandedWrapper extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: IconButton(
-          onPressed: () async {
-            await context.router.push(const DashboardRoute());
-          },
+          onPressed: () async => context.router.push(const DashboardRoute()),
           icon: const Icon(Icons.home),
           color: Colors.black,
         ),
@@ -97,7 +95,11 @@ class _ExpandedWrapper extends ConsumerWidget {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(account?.name ?? "Pirate Coins"),
-              accountEmail: null,
+              accountEmail: Text(account?.email ?? ""),
+              currentAccountPicture: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.person),
+              ),
             ),
             const AboutListTile(),
           ],

@@ -13,10 +13,10 @@ part "coins_data.g.dart";
 /// A repository for coin manipulation.
 abstract interface class CoinsRepository {
   /// Get coins data from the [databases].
-  Future<Coin> coinsData();
+  Future<Coin> coinsData(int user);
 
   /// Modify the coins in the [databases].
-  Future<void> updateCoins(Coin coin);
+  Future<void> updateCoins(Coin coin, int user);
 }
 
 /// The default implementation of [CoinsRepository].
@@ -31,10 +31,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
   final Account session;
 
   @override
-  Future<Coin> coinsData() async {
-    final user = await session.get();
-    final id = user.email.hashCode;
-
+  Future<Coin> coinsData(int id) async {
     try {
       final json = await _getDocument(id);
 
@@ -46,10 +43,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
 
   /// Add coins to the database.
   @override
-  Future<void> updateCoins(Coin coin) async {
-    final user = await session.get();
-    final id = user.email.hashCode;
-
+  Future<void> updateCoins(Coin coin, int id) async {
     try {
       await _updateDocument(id, coin);
     } catch (e) {
