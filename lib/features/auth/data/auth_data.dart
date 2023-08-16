@@ -31,7 +31,6 @@ class AppwriteAuthRepository implements AuthRepository {
   @override
   Future<PirateUser> authenticate() async {
     // Go to the Google account login page.
-    // TODO(ParkerH27): Fix this.
     switch (platform) {
       // Both Android and iOS need the same behavior, so it reuses it.
       case Device.android:
