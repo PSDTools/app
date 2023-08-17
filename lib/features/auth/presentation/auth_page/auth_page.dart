@@ -7,7 +7,7 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../../l10n/l10n.dart";
-import "auth_page_controller.dart";
+import "../../domain/auth_domain.dart";
 
 /// The page located at `/login/`
 @RoutePage()
@@ -17,9 +17,12 @@ class AuthPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (authenticate,) = (ref.watch(authPageControllerProvider),);
+    final authenticate = ref.watch(
+      pirateAuthProvider.notifier.select(
+        (value) => value.authenticate,
+      ),
+    );
     final l10n = context.l10n;
-    final router = context.router;
 
     return Center(
       child: Column(
@@ -28,7 +31,10 @@ class AuthPage extends ConsumerWidget {
           ElevatedButton(
             onPressed: () async {
               await authenticate();
-              await router.push(const DashboardRoute());
+
+              if (context.mounted) {
+                await context.router.push(const DashboardRoute());
+              }
             },
             child: Text(l10n.authenticateText),
           ),

@@ -3,8 +3,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:widgetbook/widgetbook.dart";
 import "package:widgetbook_annotation/widgetbook_annotation.dart";
 
-import "app/app.dart" show flutterLocale, globalTheme;
+import "app/app.dart" show flutterLocale;
 import "l10n/app_localizations.dart";
+import "utils/design.dart" show scheme;
 import "widgetbook.generator.directories.g.dart";
 import "widgets/big_card/big_card.dart";
 
@@ -43,7 +44,7 @@ class WidgetbookApp extends StatelessWidget {
           themes: [
             WidgetbookTheme(
               name: "Light",
-              data: ThemeData(colorScheme: globalTheme),
+              data: ThemeData(colorScheme: scheme),
             ),
           ],
         ),

@@ -37,3 +37,27 @@ sealed class Coin with _$Coin implements Model {
   /// Convert a JSON [Map] into a new, immutable instance of [Coin].
   factory Coin.fromJson(Map<String, Object?> json) => _$CoinFromJson(json);
 }
+
+/// An enumeration of the stages of the coins page.
+sealed class Stage {
+  /// Create a new [Stage].
+  const Stage();
+}
+
+/// The initial stage of the coins page.
+@freezed
+@immutable
+class PickStudentStage extends Stage with _$PickStudentStage {
+  /// Create a new [PickStudentStage].
+  const factory PickStudentStage() = _PickStudentStage;
+}
+
+/// The stage of the coins page where the teacher can view and add to a student's coins.
+@freezed
+@immutable
+class ViewCoinsStage extends Stage with _$ViewCoinsStage {
+  /// Create a new [ViewCoinsStage].
+  const factory ViewCoinsStage({
+    required int student,
+  }) = _ViewCoinsStage;
+}

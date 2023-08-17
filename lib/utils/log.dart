@@ -24,5 +24,14 @@ Logger _logger({StackTrace? stackTrace}) {
   return Logger("App");
 }
 
+/// Debug logging utilities.
+extension Debug on Logger {
+  /// Debug code, when a value is still needed.
+  T debug<T>(String message, T value) {
+    info(message);
+    return value;
+  }
+}
+
 /// The app's logger.
 final log = _logger();

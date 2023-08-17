@@ -7,6 +7,7 @@ import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/features/auth/data/auth_data.dart";
+import "package:pirate_code/features/auth/domain/auth_domain.dart";
 import "package:pirate_code/features/auth/domain/auth_model.dart";
 import "package:pirate_code/l10n/l10n.dart";
 
@@ -69,8 +70,9 @@ class MockAuthRepository implements AuthRepository {
   Future<PirateUser> anonymous() {
     return Future.value(
       const PirateUser(
-        // name: anonymousName,
-        name: "anonymous",
+        name: anonymousName,
+        email: "redacted@example.com",
+        accountType: AccountType.student,
       ),
     );
   }

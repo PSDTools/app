@@ -3,10 +3,11 @@ library pirate_code.features.wrapper.presentation.wrapper_page;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
+import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:google_fonts/google_fonts.dart";
 
 import "../../../../app/app_router.dart";
-import "../../../../utils/log.dart";
+import "../../../auth/domain/auth_domain.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
@@ -64,7 +65,7 @@ class WrapperPage extends StatelessWidget {
   }
 }
 
-class _ExpandedWrapper extends StatelessWidget {
+class _ExpandedWrapper extends ConsumerWidget {
   const _ExpandedWrapper({
     required this.child,
     required this.constraints,
@@ -77,17 +78,31 @@ class _ExpandedWrapper extends StatelessWidget {
   final BoxConstraints constraints;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final account = ref.watch(pirateAuthProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: IconButton(
-          onPressed: () async {
-            log.info("Nothing to see here, move along.");
-          },
+          onPressed: () async => context.router.push(const DashboardRoute()),
           icon: const Icon(Icons.home),
           color: Colors.black,
+        ),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(account?.name ?? "Pirate Coins"),
+              accountEmail: Text(account?.email ?? ""),
+              currentAccountPicture: const CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.person),
+              ),
+            ),
+            const AboutListTile(),
+          ],
         ),
       ),
       body: Row(

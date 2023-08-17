@@ -7,7 +7,7 @@ import "../features/utils/domain/device_model.dart";
 
 export "../../dart_define.gen.dart";
 
-/// The current platform.
+/// The current build mode.
 const BuildMode buildMode = kReleaseMode
     ? BuildMode.release
     : kProfileMode

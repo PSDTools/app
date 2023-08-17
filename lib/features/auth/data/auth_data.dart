@@ -34,6 +34,12 @@ class AppwriteAuthRepository implements AuthRepository {
     final account = await session.get();
     return PirateUser(
       name: account.name,
+      email: account.email,
+      accountType: account.email.endsWith("@student.psdr3.org")
+          ? AccountType.student
+          : account.email.endsWith("@psdr3.org")
+              ? AccountType.teacher
+              : AccountType.dev,
     );
   }
 }
