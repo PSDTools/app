@@ -4,6 +4,7 @@ library;
 import "dart:io";
 
 import "package:device_info_plus/device_info_plus.dart";
+import "package:flutter/foundation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_model.dart";
@@ -86,7 +87,8 @@ DeviceInfoPlugin _plugin(_PluginRef _) {
 
 /// Get the current device platform.
 @riverpod
-String _currentDevice(_CurrentDeviceRef _) => Platform.operatingSystem;
+String _currentDevice(_CurrentDeviceRef _) =>
+    kIsWeb ? "web" : Platform.operatingSystem;
 
 /// Get the current device platform, as an enum.
 @riverpod

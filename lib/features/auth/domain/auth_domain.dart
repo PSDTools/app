@@ -13,6 +13,7 @@ part "auth_domain.g.dart";
 class PirateAuth extends _$PirateAuth {
   @override
   PirateUser? build() {
+    // TODO(lishaduck): Allow anonymous users.
     return null;
   }
 

@@ -166,8 +166,8 @@ class _AppletButton extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         // Handle button tap here to navigate to the specified destination.
-        final router = context.router;
-        await router.push(destination);
+        // TODO(ParkerH27): Find out why this doesn't change the URL.
+        await context.router.push(destination);
       },
       child: Card(
         color: backgroundColor,

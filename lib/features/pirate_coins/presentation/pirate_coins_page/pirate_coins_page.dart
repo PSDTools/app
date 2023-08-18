@@ -27,10 +27,12 @@ class PirateCoinsPage extends ConsumerWidget {
       ),
     );
 
+    final child = user?.accountType == AccountType.student
+        ? const _StudentView()
+        : const _TeacherView();
+
     return Center(
-      child: user?.accountType == AccountType.student
-          ? const _StudentView()
-          : const _TeacherView(),
+      child: child,
     );
   }
 }
@@ -159,7 +161,7 @@ class _UserForm extends ConsumerStatefulWidget {
 }
 
 class _UserFormState extends ConsumerState<_UserForm> {
-  /// Create a global key that uniquely identifies the Form widget and allows validation of the form.
+  /// Create a [GlobalKey] that uniquely identifies the Form widget and allows validation of the form.
   ///
   /// Note: This is a [GlobalKey]<[FormState]>, not a [GlobalKey]<[_UserFormState]>.
   final _formKey = GlobalKey<FormState>();
@@ -239,14 +241,12 @@ class _ViewCoins extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: BigCard(
-        switch (data) {
-          AsyncData(:final value) => "${value.coins.coins}",
-          AsyncError(:final error) => l10n.error("$error"),
-          AsyncLoading() => l10n.loading,
-          _ => l10n.error(l10n.unknownState),
-        },
-      ),
+      child: switch (data) {
+        AsyncData(:final value) => BigCard("${value.coins.coins}"),
+        AsyncError(:final error) => BigCard(l10n.error("$error")),
+        AsyncLoading() => const CircularProgressIndicator(),
+        _ => BigCard(l10n.error(l10n.unknownState)),
+      },
     );
   }
 }

@@ -6,10 +6,10 @@ import "../../../gen/assets.gen.dart";
 
 part "dashboard_model.freezed.dart";
 
-///
+/// Represent an applet, which is a widget that can be added to the dashboard.
 @freezed
 class Applet with _$Applet {
-  ///
+  /// Create a new, immutable [Applet].
   const factory Applet({
     required String name,
     required AssetGenImage image,
