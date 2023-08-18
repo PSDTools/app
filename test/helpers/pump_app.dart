@@ -1,6 +1,8 @@
 /// Extension method for configuring [WidgetTester].
 library;
 
+import "dart:typed_data";
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -69,10 +71,11 @@ class MockAuthRepository implements AuthRepository {
   // @override
   Future<PirateUser> anonymous() {
     return Future.value(
-      const PirateUser(
+      PirateUser(
         name: anonymousName,
         email: "redacted@example.com",
         accountType: AccountType.student,
+        avatar: Uint8List(0),
       ),
     );
   }

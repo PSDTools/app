@@ -5,8 +5,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../../app/app_router.dart";
-import "../../../../gen/assets.gen.dart";
+import "../../domain/dashboard_domain.dart";
 import "../../domain/dashboard_model.dart";
 
 /// The page located at `/login/`.
@@ -29,7 +28,7 @@ class DashboardPage extends ConsumerWidget {
   }
 }
 
-class _Applets extends StatelessWidget {
+class _Applets extends ConsumerWidget {
   const _Applets({
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
@@ -37,35 +36,8 @@ class _Applets extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    const appletsFolder = Assets.applets;
-    final buttonsData = [
-      Applet(
-        name: "Pirate Coins",
-        image: appletsFolder.pirateCoins,
-        color: const Color.fromARGB(255, 122, 194, 129),
-        location: const PirateCoinsRoute(),
-      ),
-      // Applet(
-      //   image: appletsFolder.gpaCalculator,
-      //   color: const Color.fromARGB(255, 242, 184, 184),
-      //   name: "GPA Calculator",
-      //   location: const GpaCalculatorRoute(),
-      // ),
-      // Applet(
-      //   image: appletsFolder.phsMap,
-      //   color: const Color.fromARGB(255, 178, 254, 186),
-      //   name: "PHS Map",
-      //   location: const PhsMapRoute(),
-      // ),
-
-      // Add more buttons here
-      // Ideas:
-      //
-      // Email inbox
-      // Notifications
-      // Calendar
-    ];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final buttonsData = ref.watch(appletsProvider);
 
     return Expanded(
       child: Container(

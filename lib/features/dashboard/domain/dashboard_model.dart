@@ -3,12 +3,26 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../gen/assets.gen.dart";
+import "../../../utils/models.dart";
+import "../../auth/domain/auth_model.dart";
 
 part "dashboard_model.freezed.dart";
 
+/// The model for the dashboard.
+@freezed
+@immutable
+sealed class DashboardModel with _$DashboardModel implements Model {
+  /// Create a new, immutable [DashboardModel].
+  const factory DashboardModel({
+    required List<Applet> applets,
+    required PirateUser? user,
+  }) = _DashboardModel;
+}
+
 /// Represent an applet, which is a widget that can be added to the dashboard.
 @freezed
-class Applet with _$Applet {
+@immutable
+sealed class Applet with _$Applet implements Model {
   /// Create a new, immutable [Applet].
   const factory Applet({
     required String name,
