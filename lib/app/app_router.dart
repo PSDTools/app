@@ -55,7 +55,7 @@ class AppRouter extends _$AppRouter {
               path: "stats",
               title: (context, route) => "Stats",
             ),
-            RedirectRoute(path: "*", redirectTo: "dashboard")
+            RedirectRoute(path: "*", redirectTo: "dashboard"),
           ],
           title: (context, data) => "Pirate Code",
         ),
