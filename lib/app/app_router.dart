@@ -8,6 +8,7 @@ import "../features/auth/domain/auth_domain.dart";
 import "../features/auth/presentation/auth_page/auth_page.dart";
 import "../features/dashboard/presentation/dashboard_page/dashboard_page.dart";
 import "../features/dashboard/presentation/wrapper_page/wrapper_page.dart";
+import "../features/gpa_calculator/presentation/gpa_page.dart";
 import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
 import "../features/pirate_coins/presentation/stats_page/stats_page.dart";
 
@@ -47,7 +48,7 @@ class AppRouter extends _$AppRouter {
             ),
             AutoRoute(
               page: DashboardRoute.page,
-              path: "dashboard",
+              path: "",
               title: (context, route) => "Dashboard",
             ),
             AutoRoute(
@@ -55,7 +56,11 @@ class AppRouter extends _$AppRouter {
               path: "stats",
               title: (context, route) => "Stats",
             ),
-            RedirectRoute(path: "*", redirectTo: "dashboard"),
+            AutoRoute(
+              page: GpaRoute.page,
+              path: "gpa-calculator",
+              title: (context, route) => "GPA Calculator",
+            ),
           ],
           title: (context, data) => "Pirate Code",
         ),
@@ -65,6 +70,6 @@ class AppRouter extends _$AppRouter {
           title: (context, data) => "Login",
           initial: true,
         ),
-        RedirectRoute(path: "/*", redirectTo: "/dashboard"),
+        RedirectRoute(path: "/*", redirectTo: "/"),
       ];
 }

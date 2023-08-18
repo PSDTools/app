@@ -25,12 +25,12 @@ List<Applet> applets(AppletsRef ref) {
       color: const Color.fromARGB(255, 122, 194, 129),
       location: const PirateCoinsRoute(),
     ),
-    // Applet(
-    //   image: appletsFolder.gpaCalculator,
-    //   color: const Color.fromARGB(255, 242, 184, 184),
-    //   name: "GPA Calculator",
-    //   location: const GpaCalculatorRoute(),
-    // ),
+    Applet(
+      image: appletsFolder.gpaCalculator,
+      color: const Color.fromARGB(255, 242, 184, 184),
+      name: "GPA Calculator",
+      location: const GpaRoute(),
+    ),
     // Applet(
     //   image: appletsFolder.phsMap,
     //   color: const Color.fromARGB(255, 178, 254, 186),
