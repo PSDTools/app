@@ -244,7 +244,12 @@ class _ViewCoins extends ConsumerWidget {
       child: switch (data) {
         AsyncData(:final value) => BigCard("${value.coins.coins}"),
         AsyncError(:final error) => BigCard(l10n.error("$error")),
-        AsyncLoading() => const CircularProgressIndicator(),
+        AsyncLoading() => Column(
+            children: [
+              const CircularProgressIndicator(),
+              Text(l10n.loading),
+            ],
+          ),
         _ => BigCard(l10n.error(l10n.unknownState)),
       },
     );

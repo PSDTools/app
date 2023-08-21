@@ -4,6 +4,7 @@ library;
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
+import "../../../utils/json_converters.dart";
 import "../../../utils/models.dart";
 
 part "auth_model.freezed.dart";
@@ -23,6 +24,9 @@ sealed class PirateUser with _$PirateUser implements Model {
 
     /// The type of the user's account.
     required AccountType accountType,
+
+    /// The user's avatar.
+    @Uint8ListConverter() required Uint8List avatar,
   }) = _PirateUser;
 
   const PirateUser._();

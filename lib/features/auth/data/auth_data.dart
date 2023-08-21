@@ -8,6 +8,7 @@ import "../../../utils/api.dart";
 import "../../utils/data/device_data.dart";
 import "../../utils/domain/device_model.dart";
 import "../domain/auth_model.dart";
+import "avatar_data.dart";
 
 part "auth_data.g.dart";
 
@@ -20,39 +21,51 @@ abstract interface class AuthRepository {
 /// The default implementation of [AuthRepository].
 class AppwriteAuthRepository implements AuthRepository {
   /// Create a new instance of [AppwriteAuthRepository].
-  const AppwriteAuthRepository(this.session, this.platform);
+  const AppwriteAuthRepository(
+    Account session,
+    Device platform,
+    AvatarRepository avatar,
+  )   : _session = session,
+        _platform = platform,
+        _avatarRepo = avatar;
 
-  /// The Appwrite account.
-  final Account session;
+  /// The Appwrite [Account].
+  final Account _session;
 
-  /// The current platform.
-  final Device platform;
+  /// The [currentPlatform].
+  final Device _platform;
+
+  /// The current user's avatar.
+  final AvatarRepository _avatarRepo;
 
   @override
   Future<PirateUser> authenticate() async {
     // Go to the Google account login page.
-    switch (platform) {
+    switch (_platform) {
       // Both Android and iOS need the same behavior, so it reuses it.
       case Device.android:
       case Device.ios:
-        await session.createOAuth2Session(
+        await _session.createOAuth2Session(
           provider: "google",
         );
       // TODO(ParkerH27): The web needs different behavior than that of linux/mac/windows.
       case Device.other:
-        await session.createOAuth2Session(
+        await _session.createOAuth2Session(
           provider: "google",
           success: "${Uri.base.origin}/auth.html",
           failure: "${Uri.base}",
         );
     }
 
-    final account = await session.get();
+    final account = await _session.get();
     final accountType = AccountType.fromEmail(account.email);
+    final avatar = await _avatarRepo.getAvatar();
+
     return PirateUser(
       name: account.name,
       email: account.email,
       accountType: accountType,
+      avatar: avatar,
     );
   }
 }
@@ -62,6 +75,7 @@ class AppwriteAuthRepository implements AuthRepository {
 AuthRepository auth(AuthRef ref) {
   final account = ref.watch(accountsProvider);
   final platform = ref.watch(currentPlatformProvider);
+  final avatar = ref.watch(avatarProvider.select((value) => value));
 
-  return AppwriteAuthRepository(account, platform);
+  return AppwriteAuthRepository(account, platform, avatar);
 }

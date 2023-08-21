@@ -22,13 +22,10 @@ abstract interface class CoinsRepository {
 /// The default implementation of [CoinsRepository].
 class AppwriteCoinsRepository implements CoinsRepository {
   /// Create a new instance of [AppwriteCoinsRepository].
-  const AppwriteCoinsRepository(this.database, this.session);
+  const AppwriteCoinsRepository(Databases databases) : _database = databases;
 
   /// The Appwrite databases.
-  final Databases database;
-
-  /// The Appwrite user.
-  final Account session;
+  final Databases _database;
 
   @override
   Future<Coin> coinsData(int id) async {
@@ -41,7 +38,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
     }
   }
 
-  /// Add coins to the database.
+  /// Add coins to the _database.
   @override
   Future<void> updateCoins(Coin coin, int id) async {
     try {
@@ -52,7 +49,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
   }
 
   Future<Coin> _newDocument(int id, Coin data) async {
-    await database.createDocument(
+    await _database.createDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
       documentId: id.toString(),
@@ -63,7 +60,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
   }
 
   Future<Document> _getDocument(int id) async {
-    return database.getDocument(
+    return _database.getDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
       documentId: id.toString(),
@@ -71,7 +68,7 @@ class AppwriteCoinsRepository implements CoinsRepository {
   }
 
   Future<void> _updateDocument(int id, Coin coin) async {
-    await database.updateDocument(
+    await _database.updateDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
       documentId: id.toString(),
@@ -84,7 +81,6 @@ class AppwriteCoinsRepository implements CoinsRepository {
 @riverpod
 CoinsRepository coinsData(CoinsDataRef ref) {
   final databases = ref.watch(databasesProvider);
-  final account = ref.watch(accountsProvider);
 
-  return AppwriteCoinsRepository(databases, account);
+  return AppwriteCoinsRepository(databases);
 }

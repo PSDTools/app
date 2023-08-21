@@ -70,3 +70,11 @@ Databases databases(DatabasesRef ref) {
 
   return Databases(client);
 }
+
+/// Get the Appwrite avatars.
+@riverpod
+Avatars avatars(AvatarsRef ref) {
+  final client = ref.read(clientProvider);
+
+  return Avatars(client);
+}

@@ -79,16 +79,16 @@ class _GetContent extends ConsumerWidget {
       case AsyncData(:final value):
         return _View(value: value);
       case AsyncLoading():
-        return const Center(
+        return Center(
           child: Column(
             children: [
-              CircularProgressIndicator(),
-              Text("Loading..."),
+              const CircularProgressIndicator(),
+              Text(l10n.loading),
             ],
           ),
         );
       case AsyncError(:final error, :final stackTrace):
-        final message = "An issue occurred: $error, $stackTrace.";
+        final message = l10n.error("$error, $stackTrace.");
 
         return Text(message);
       case _:

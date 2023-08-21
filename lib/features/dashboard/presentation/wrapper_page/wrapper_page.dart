@@ -8,12 +8,12 @@ import "package:google_fonts/google_fonts.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../auth/domain/auth_domain.dart";
+import "../../../auth/domain/auth_model.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.
 /// It also provides a [Scaffold] with a [BottomNavigationBar] or [NavigationRail].
-///
 ///
 /// With lots and lots and lots and lots of thanks to many, including:
 /// - [Immich](https://github.com/immich-app/immich/blob/main/mobile/lib/shared/views/tab_controller_page.dart),
@@ -100,12 +100,15 @@ class _ExpandedWrapper extends ConsumerWidget {
             UserAccountsDrawerHeader(
               accountName: Text(account?.name ?? "Pirate Coins"),
               accountEmail: Text(account?.email ?? ""),
-              currentAccountPicture: const CircleAvatar(
-                // TODO(lishaduck): Use the Appwrite avatars API.
-                // backgroundImage: ,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.person),
-              ),
+              currentAccountPicture: switch (account) {
+                PirateUser(:final avatar) => CircleAvatar(
+                    backgroundImage: MemoryImage(avatar),
+                  ),
+                null => const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Icon(Icons.person),
+                  ),
+              },
             ),
             const AboutListTile(),
           ],
