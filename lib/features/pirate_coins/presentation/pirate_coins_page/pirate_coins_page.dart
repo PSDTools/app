@@ -200,7 +200,7 @@ class _UserFormState extends ConsumerState<_UserForm> {
             ElevatedButton(
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
+                if (_formKey.currentState?.validate.call() ?? false) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -209,9 +209,9 @@ class _UserFormState extends ConsumerState<_UserForm> {
                       behavior: SnackBarBehavior.floating,
                     ),
                   );
-                  ref.read(currentStageProvider.notifier).goToViewCoinsStage(
-                        myController.text.toLowerCase().hashCode,
-                      );
+                  ref
+                      .read(currentStageProvider.notifier)
+                      .goToViewCoinsStage(getId(myController.text));
                 }
               },
               child: const Text("Submit"),

@@ -36,8 +36,11 @@ sealed class PirateUser with _$PirateUser implements Model {
       _$PirateUserFromJson(json);
 
   /// The user's hash.
-  int get id => email.hashCode;
+  int get id => getId(email);
 }
+
+/// Get an id from an email.
+int getId(String email) => email.toLowerCase().hashCode;
 
 /// The type of account.
 enum AccountType {
