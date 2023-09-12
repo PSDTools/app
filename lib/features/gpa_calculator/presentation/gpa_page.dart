@@ -5,6 +5,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../utils/snackbar.dart";
 import "../domain/gpa_domain.dart";
 import "../domain/gpa_model.dart";
 
@@ -53,9 +54,8 @@ class _GpaPageState extends ConsumerState<GpaPage> {
 
                 final gpa = total / _hours;
 
-                // TODO(lishaduck): Add an extension on context.
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Calculated GPA: $gpa")),
+                context.showSnackBar(
+                  content: Text("Calculated GPA: $gpa"),
                 );
               }
             },
@@ -83,7 +83,6 @@ class _DropdownState extends ConsumerState<Dropdown> {
   @override
   Widget build(BuildContext context) {
     final value = ref.watch(gpaProvider(widget.hour));
-    final valueNotifier = ref.watch(gpaProvider(widget.hour).notifier);
 
     return DropdownButtonFormField(
       value: value.grade,
@@ -94,7 +93,7 @@ class _DropdownState extends ConsumerState<Dropdown> {
         DropdownMenuItem(value: LetterGrade.d(), child: Text("D")),
         DropdownMenuItem(value: LetterGrade.f(), child: Text("F")),
       ],
-      onChanged: valueNotifier.updateGrade,
+      onChanged: ref.read(gpaProvider(widget.hour).notifier).updateGrade,
     );
   }
 }

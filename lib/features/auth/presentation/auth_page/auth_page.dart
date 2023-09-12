@@ -17,26 +17,37 @@ class AuthPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authenticate = ref.watch(
-      pirateAuthProvider.notifier.select(
-        (value) => value.authenticate,
-      ),
-    );
     final l10n = context.l10n;
 
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () async {
-              await authenticate();
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  await ref.read(pirateAuthProvider.notifier).authenticate();
 
-              if (context.mounted) {
-                await context.router.push(const DashboardRoute());
-              }
-            },
-            child: Text(l10n.authenticateText),
+                  if (context.mounted) {
+                    await context.router.push(const DashboardRoute());
+                  }
+                },
+                child: Text(l10n.authenticateText),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () async {
+                  await ref.read(pirateAuthProvider.notifier).anonymous();
+
+                  if (context.mounted) {
+                    await context.router.push(const DashboardRoute());
+                  }
+                },
+                child: Text(l10n.anonymousAuthenticateText),
+              ),
+            ],
           ),
         ],
       ),

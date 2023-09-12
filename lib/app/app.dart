@@ -53,10 +53,11 @@ class App extends StatelessWidget {
   /// This function will handle the following:
   /// - [FlutterError.onError] will be set to log errors to the console.
   /// - [usePathUrlStrategy] will be called to use path-style URLs.
-  /// - [runZonedGuarded] will be used to catch errors and log them to the console.
   /// - [runApp] will be called to run the app.
   /// - [ProviderScope] will be used to wrap the app.
   Future<void> bootstrap() async {
+    await initLogging();
+
     FlutterError.onError = (details) {
       log.shout(
         "Uncaught Flutter error:",
@@ -71,37 +72,34 @@ class App extends StatelessWidget {
     // The app's container.
     final container = ProviderContainer(
       observers: [
-        // Logger(),
+        const ProviderLogger(),
       ],
     );
 
     appRouter = AppRouter(container: container);
 
-    await runZonedGuarded(
-      () async {
-        // Reset notification bar on android
-        WidgetsFlutterBinding.ensureInitialized();
-        await SystemChrome.setEnabledSystemUIMode(
-          SystemUiMode.manual,
-          overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
-        );
+    // Reset notification bar on android
+    WidgetsFlutterBinding.ensureInitialized();
+    await SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
+    );
 
-        // Run the App, using riverpod
-        runApp(
-          UncontrolledProviderScope(
-            container: container,
-            child: this,
-          ),
-        );
-      },
-      (error, stackTrace) =>
-          log.severe("Error was caught by error-zone.", error, stackTrace),
+    // Run the App, using riverpod
+    runApp(
+      UncontrolledProviderScope(
+        container: container,
+        child: this,
+      ),
     );
   }
 }
 
 /// Log provider updates to the console.
-class Logger extends ProviderObserver {
+class ProviderLogger extends ProviderObserver {
+  /// Create a new instance of [ProviderLogger].
+  const ProviderLogger();
+
   @override
   void didUpdateProvider(
     ProviderBase<Object?> provider,
@@ -109,7 +107,7 @@ class Logger extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    log.info("[${provider.name}] value: $newValue");
+    log.finer("[${provider.name}] value: $newValue");
   }
 }
 

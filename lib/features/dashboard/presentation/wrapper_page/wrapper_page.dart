@@ -28,39 +28,18 @@ class WrapperPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return AutoTabsRouter(
-          routes: const [
-            PirateCoinsRoute(),
-            StatsRoute(), // TODO(lishaduck): Make this accessible.
-            DashboardRoute(),
-            GpaRoute(),
-          ],
-          duration: const Duration(milliseconds: 200),
-          transitionBuilder: (context, child, animation) {
-            final tabsRouter = AutoTabsRouter.of(context);
-
-            Future<bool> onWillPop() async {
-              final atHomeTab = tabsRouter.activeIndex == 0;
-              if (!atHomeTab) {
-                tabsRouter.setActiveIndex(0);
-              }
-
-              return atHomeTab;
-            }
-
+        return AutoRouter(
+          builder: (context, child) {
             final small = constraints.maxWidth < 450;
 
             final page = small
                 ? _MobileWrapper(child: child)
                 : _ExpandedWrapper(constraints: constraints, child: child);
 
-            return WillPopScope(
-              onWillPop: onWillPop,
-              child: SafeArea(
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: DeviceBanner(child: page),
-                ),
+            return SafeArea(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                child: DeviceBanner(child: page),
               ),
             );
           },
@@ -99,9 +78,9 @@ class _ExpandedWrapper extends ConsumerWidget {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(account?.name ?? "Pirate Coins"),
-              accountEmail: Text(account?.email ?? ""),
-              currentAccountPicture: switch (account) {
+              accountName: Text(account.asData?.value.name ?? "Pirate Coins"),
+              accountEmail: Text(account.asData?.value.email ?? ""),
+              currentAccountPicture: switch (account.asData?.value) {
                 PirateUser(:final avatar) => CircleAvatar(
                     backgroundImage: MemoryImage(avatar),
                   ),

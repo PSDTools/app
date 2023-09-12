@@ -1,10 +1,8 @@
 /// The utils feature's device data.
 library;
 
-import "dart:io";
-
 import "package:device_info_plus/device_info_plus.dart";
-import "package:flutter/foundation.dart";
+import "package:os_detect/os_detect.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_model.dart";
@@ -81,21 +79,12 @@ DeviceRepository deviceUtils(DeviceUtilsRef ref) {
 }
 
 @riverpod
-DeviceInfoPlugin _plugin(_PluginRef _) {
-  return DeviceInfoPlugin();
-}
-
-/// Get the current device platform.
-@riverpod
-String _currentDevice(_CurrentDeviceRef _) =>
-    kIsWeb ? "web" : Platform.operatingSystem;
+DeviceInfoPlugin _plugin(_PluginRef _) => DeviceInfoPlugin();
 
 /// Get the current device platform, as an enum.
-@riverpod
+@Riverpod(keepAlive: true)
 Device currentPlatform(CurrentPlatformRef ref) {
-  final currentDevice = ref.watch(_currentDeviceProvider);
-
-  return switch (currentDevice) {
+  return switch (operatingSystem) {
     "android" => Device.android,
     "ios" => Device.ios,
     _ => Device.other,

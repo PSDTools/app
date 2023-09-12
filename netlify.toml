@@ -1,4 +1,4 @@
-collections  = [] # only needed for DecapCMS
+collections = [] # only needed for DecapCMS
 media_folder = "" # unneeded, but required by the schema
 
 
@@ -16,7 +16,7 @@ command = """
   && flutter/bin/flutter pub get \
   && flutter/bin/flutter gen-l10n \
   && flutter/bin/cache/dart-sdk/bin/dart run build_runner build \
-  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate --no-gitignore \
+  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate \
   && flutter/bin/flutter build web --release --dart-define-from-file=dart_define.json
   """
 
@@ -24,9 +24,9 @@ command = """
 # The following redirect is intended for use with most SPAs
 # that handle routing internally.
 [[redirects]]
-from   = "/*"
+from = "/*"
 status = 200
-to     = "/index.html"
+to = "/index.html"
 
 
 [backend]

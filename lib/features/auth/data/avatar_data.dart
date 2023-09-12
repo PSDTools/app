@@ -25,9 +25,9 @@ class AppwriteAvatarRepository implements AvatarRepository {
 }
 
 /// Get the current user's avatar.
-@riverpod
+@Riverpod(keepAlive: true)
 AvatarRepository avatar(AvatarRef ref) {
-  final avatars = ref.read(avatarsProvider);
+  final avatars = ref.watch(avatarsProvider);
 
   return AppwriteAvatarRepository(avatars);
 }

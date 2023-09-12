@@ -2,9 +2,11 @@
 library;
 
 import "package:appwrite/appwrite.dart";
+import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
+import "../../../utils/log.dart";
 import "../../utils/data/device_data.dart";
 import "../../utils/domain/device_model.dart";
 import "../domain/auth_model.dart";
@@ -15,22 +17,22 @@ part "auth_data.g.dart";
 /// A repository for authentication.
 abstract interface class AuthRepository {
   /// Authenticate the user.
-  Future<PirateUser> authenticate();
+  Future<PirateUser> authenticate({required bool anonymous});
 }
 
 /// The default implementation of [AuthRepository].
 class AppwriteAuthRepository implements AuthRepository {
   /// Create a new instance of [AppwriteAuthRepository].
   const AppwriteAuthRepository(
-    Account session,
+    Account account,
     Device platform,
     AvatarRepository avatar,
-  )   : _session = session,
+  )   : _account = account,
         _platform = platform,
         _avatarRepo = avatar;
 
   /// The Appwrite [Account].
-  final Account _session;
+  final Account _account;
 
   /// The [currentPlatform].
   final Device _platform;
@@ -39,25 +41,43 @@ class AppwriteAuthRepository implements AuthRepository {
   final AvatarRepository _avatarRepo;
 
   @override
-  Future<PirateUser> authenticate() async {
-    // Go to the Google account login page.
-    switch (_platform) {
-      // Both Android and iOS need the same behavior, so it reuses it.
-      case Device.android:
-      case Device.ios:
-        await _session.createOAuth2Session(
-          provider: "google",
-        );
-      // TODO(ParkerH27): The web needs different behavior than that of linux/mac/windows.
-      case Device.other:
-        await _session.createOAuth2Session(
-          provider: "google",
-          success: "${Uri.base.origin}/auth.html",
-          failure: "${Uri.base}",
-        );
-    }
+  Future<PirateUser> authenticate({bool anonymous = false}) async {
+    User account;
+    try {
+      account = await _account.get();
+    } catch (e, s) {
+      log.warning("Failed to fetch session.", e, s);
+      if (anonymous) {
+        try {
+          await _account.createAnonymousSession();
+        } catch (e, s) {
+          log.warning("Failed to create anonymous session.", e, s);
+        }
+      } else {
+        try {
+          // Go to the Google account login page.
+          switch (_platform) {
+            // Both Android and iOS need the same behavior, so it reuses it.
+            case Device.android:
+            case Device.ios:
+              await _account.createOAuth2Session(
+                provider: "google",
+              );
+            // TODO(ParkerH27): The web needs different behavior than that of linux/mac/windows.
+            case Device.other:
+              await _account.createOAuth2Session(
+                provider: "google",
+                success: "${Uri.base.origin}/auth.html",
+                failure: "${Uri.base}",
+              );
+          }
+        } catch (e, s) {
+          log.warning("Failed to create OAuth2 session.", e, s);
+        }
+      }
 
-    final account = await _session.get();
+      account = await _account.get();
+    }
     final accountType = AccountType.fromEmail(account.email);
     final avatar = await _avatarRepo.getAvatar();
 
@@ -71,7 +91,7 @@ class AppwriteAuthRepository implements AuthRepository {
 }
 
 /// Auth data provider
-@riverpod
+@Riverpod(keepAlive: true)
 AuthRepository auth(AuthRef ref) {
   final account = ref.watch(accountsProvider);
   final platform = ref.watch(currentPlatformProvider);
