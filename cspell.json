@@ -2,10 +2,18 @@
   "version": "0.2",
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "dictionaries": [
+    "project",
     "vgv_allowed",
     "vgv_forbidden"
   ],
   "dictionaryDefinitions": [
+    {
+      "name": "project",
+      "path": "./project_words.txt",
+      "description": "Words used in this project.",
+      "addWords": true
+
+    },
     {
       "name": "vgv_allowed",
       "path": "https://raw.githubusercontent.com/verygoodopensource/very_good_dictionaries/main/allowed.txt",
@@ -18,33 +26,21 @@
     }
   ],
   "useGitignore": true,
-  "words": [
-    "!AppWrite",
-    "Appwrite",
-    "ARGB",
-    "contador",
-    "Contador",
-    "Cupertino",
-    "Dafoe",
-    "dartdoc",
-    "Decap",
-    "dhttpd",
-    "fullscreen",
-    "Instructure",
-    "localizable",
-    "mostrado",
-    "nodoc",
-    "página",
-    "Pattonville",
-    "psdr3",
-    "riverpod",
-    "Texto",
-    "WCAG",
-    "Widgetbook"
-  ],
   "globRoot": ".",
   "ignorePaths": [
-    "lib/l10n/arb/*.arb",
-    "cspell.json",
+    "project_words.txt"
   ],
+  "features": {
+    "weighted-suggestions": true
+  },
+  "allowCompoundWords": true,
+  "caseSensitive": true,
+  "language": "en-US",
+  "validateDirectives": true,
+  "overrides": [
+    {
+      "language": "es,en-US",
+      "filename": "lib/l10n/arb/app_es.arb"
+    }
+  ]
 }

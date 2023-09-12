@@ -30,12 +30,23 @@
       }
     }
   },
-  "howManyCoins": "You have {coins} coins.",
+  "howManyCoins": "{coins, plural, other{Actualmente tienes {coins} monedas.} zero{Actualmente no tienes monedas.} one{Actualmente tienes una moneda.} two{Actualmente tienes dos monedas.}}",
   "@howManyCoins": {
     "type": "text",
     "description": "El texto que se muestra para mostrar el número de monedas en la página de estadísticas.",
     "placeholders": {
       "coins": {
+        "type": "int",
+        "example": "1"
+      }
+    }
+  },
+  "newMessages": "test {newMessages, plural, =0{No new messages} =1 {One new message} two{Two new Messages} other {test {newMessages} new messages}}",
+  "@newMessages": {
+    "type": "text",
+    "description": "Number of new messages in inbox.",
+    "placeholders": {
+      "newMessages": {
         "type": "int"
       }
     }

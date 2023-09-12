@@ -9,7 +9,7 @@
     "google.arb-editor",
     "tamasfe.even-better-toml",
     "redhat.vscode-yaml",
-    "simonsiefke.svg-preview",
+    "sndst00m.vscode-native-svg-preview",
     "ms-vsliveshare.vsliveshare",
     "eamodio.gitlens",
     "bbenoist.nix",
@@ -17,7 +17,7 @@
     "esbenp.prettier-vscode",
     "foam.foam-vscode",
     "tyriar.luna-paint",
-    "pkief.material-icon-theme",
-    "alefragnani.project-manager"
+    "pflannery.vscode-versionlens",
+    "streetsidesoftware.code-spell-checker-spanish"
   ]
 }

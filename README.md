@@ -1,4 +1,23 @@
-# Pirate Code 3.0
+<!-- markdownlint-disable -->
+<h1 align="center">
+  <a target="_self" href="https://github.com/PSDTools/app">
+    <img style="width: 60px" src="https://psdr3.org/images/logos/psdr3-450.png" />
+  </a>
+</h1>
+<div align="center">
+  <h2 align="center">
+  Pirate Code 3.0 - An App for the <a href="https://psdr3.org/"><strong>Pattonville School District</strong></a>
+  </h2>
+  <div align="center">
+    <a target="_self" href="https://github.com/PSDTools/app">
+      <img align="center" style="width: 80%; height: auto" src="https://raw.githubusercontent.com/PSDTools/.github/main/metrics/followup/app_followup.svg" />
+    </a>
+    <a target="_self" href="https://github.com/PSDTools">
+      <img align="center" style="width: 80%; height: auto" src="https://raw.githubusercontent.com/PSDTools/.github/main/metrics/metrics.svg" />
+    </a>
+  </div>
+</div>
+<!-- markdownlint-restore -->
 
 [![Netlify Status][deploys_badge]][deploys_link]
 [![Dart][ci_dart_badge]][ci_dart_link]
@@ -22,7 +41,7 @@ We don't believe that READMEs should be a 15 Terabyte[^1] file, so we broke it u
 [ci_dart_link]: https://github.com/PSDTools/app/actions/workflows/dart.yaml
 [ci_spell_badge]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml/badge.svg?branch=main
 [ci_spell_link]: https://github.com/PSDTools/app/actions/workflows/markdown.yaml
-[coverage_badge]: https://img.shields.io/badge/coverage-30%25-CB2431.svg
+[coverage_badge]: https://img.shields.io/badge/coverage-13%25-CB2431.svg
 [deploys_badge]: https://api.netlify.com/api/v1/badges/25b0c44e-21b7-423c-a914-32aa4b23b708/deploy-status
 [deploys_link]: https://app.netlify.com/sites/pattonville-wallet/deploys
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg

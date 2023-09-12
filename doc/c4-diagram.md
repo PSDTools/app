@@ -6,7 +6,7 @@ A diagram of our systems, using [Mermaid.js][mermaid]/[PlantUML][plantuml].
 C4Context
   title Pirate Context Diagram
 
-  Enterprise_Boundary(pattonville, "Pattonville") {
+  Enterprise_Boundary(district, "Pattonville") {
     Person(admin, "Admin", "A school/district admin, one who can can see trends as well as give tokens.")
     Person(teachers, "Teachers", "A teacher, the one giving tokens.")
     Person_Ext(council, "Student Council", "The ones removing tokens.")

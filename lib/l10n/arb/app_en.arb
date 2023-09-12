@@ -30,7 +30,7 @@
       }
     }
   },
-  "howManyCoins": "You currently have {coins} coins.",
+  "howManyCoins": "{coins, plural, other{You have {coins} coins.} zero{You have no coins.} one{You have one coin.} two{You have two coins.}}",
   "@howManyCoins": {
     "type": "text",
     "description": "The text which is displayed to show the number of coins on the stats page.",

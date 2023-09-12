@@ -12,7 +12,15 @@ dartdoc:
     Translations:
       markdown: doc/translations.md
       name: Translations
-  categoryOrder: ["Getting Started", "Testing", "Translations", "C4Diagram"]
+    Server:
+      markdown: doc/docker.md
+      name: Appwrite
+  categoryOrder:
+    - "Getting Started"
+    - "Testing"
+    - "Translations"
+    - "C4Diagram"
+    - "Server"
   showUndocumentedCategories: true
   includeExternal: ["test/helpers/helpers.dart"]
   linkToSource:

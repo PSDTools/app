@@ -1,4 +1,6 @@
 /// The api utilities.
+///
+/// {@Category Server}
 library;
 
 import "package:appwrite/appwrite.dart";

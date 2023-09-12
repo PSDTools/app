@@ -44,5 +44,17 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
    }
    ```
 
+## Generating Translations
+
+To use the latest translations changes, you will need to generate them my using the Flutter CLI to generate the updated localizations:
+
+```sh
+flutter gen-l10n
+```
+
+## L10nization
+
+Alternatively, you can use the [L10nization](https://marketplace.visualstudio.com/items?itemName=lsaudon.l10nization) VS Code extension, which offers quick fixes for non-localized text. To use it, highlight the text from quote-to-shining-quote, and follow the prompts.
+
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
