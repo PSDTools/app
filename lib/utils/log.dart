@@ -1,37 +1,56 @@
 import "dart:developer" as developer;
+
 import "package:io/ansi.dart";
 import "package:logging/logging.dart";
+import "package:os_detect/os_detect.dart";
 
-Logger _logger({StackTrace? stackTrace}) {
-  Logger.root.onRecord.listen((record) {
-    final message = record.message;
-    final error = record.error;
-    stackTrace ??= record.stackTrace;
+export "package:logging/logging.dart" show Logger;
 
-    final color = (record.level < Level.WARNING)
-        ? cyan
-        : (record.level < Level.SEVERE)
-            ? yellow
-            : red;
-
-    developer.log(
-      "[${color.wrap(record.level.name)}]: $message",
-      error: error,
-      stackTrace: stackTrace,
-    );
-  });
-
-  return Logger("App");
-}
-
-/// Debug logging utilities.
-extension Debug on Logger {
-  /// Debug code, when a value is still needed.
+/// Utility methods for logging.
+extension LoggingUtils on Logger {
+  /// Debug code when a value is still needed.
   T debug<T>(String message, T value) {
-    info(message);
+    fine(message);
+
     return value;
   }
 }
 
+/// Initialize the logger.
+Future<void> initLogging([Level level = Level.INFO]) async {
+  Logger.root.level = level;
+  hierarchicalLoggingEnabled = true;
+  Logger.root.onRecord.listen((record) async {
+    // Don't use ansi output in the browser.
+    final prefix = overrideAnsiOutput(
+      !isBrowser && ansiOutputEnabled,
+      () {
+        final color = switch (record.level) {
+          < Level.WARNING => cyan,
+          < Level.SEVERE => yellow,
+          _ => red,
+        };
+        return color.wrap(
+          "[${record.sequenceNumber}: ${record.level.name}@${record.time}]",
+        );
+      },
+    );
+
+    developer.log(
+      "$prefix: ${record.message}",
+      error: record.error,
+      stackTrace: record.stackTrace,
+      level: record.level.value,
+      time: record.time,
+      name: record.loggerName,
+      sequenceNumber: record.sequenceNumber,
+      zone: record.zone,
+    );
+  });
+  Logger.root.onLevelChanged.listen((level) {
+    Logger.root.info("Log level changed to $level");
+  });
+}
+
 /// The app's logger.
-final log = _logger();
+final log = Logger("App");

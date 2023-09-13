@@ -5,14 +5,8 @@
       "type": "dart",
       "command": "dart",
       "cwd": ".",
-      "args": [
-        "run",
-        "build_runner",
-        "${input:runtype}"
-      ],
-      "problemMatcher": [
-        "$dart-build_runner"
-      ],
+      "args": ["run", "build_runner", "${input:runtype}"],
+      "problemMatcher": ["$dart-build_runner"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -26,21 +20,13 @@
         "color": "terminal.ansiCyan",
         "id": "gear"
       },
-      "dependsOn": [
-        "Dart: run dart_define",
-        "Flutter: gen-l10n"
-      ]
+      "dependsOn": ["Dart: run dart_define", "Flutter: gen-l10n"]
     },
     {
       "type": "dart",
       "command": "dart",
       "cwd": ".",
-      "args": [
-        "run",
-        "dart_define",
-        "generate",
-        "--no-gitignore"
-      ],
+      "args": ["run", "dart_define", "generate"],
       "problemMatcher": [],
       "group": "build",
       "label": "Dart: run dart_define",
@@ -57,10 +43,7 @@
       "type": "dart",
       "command": "dart",
       "cwd": ".",
-      "args": [
-        "doc",
-        "."
-      ],
+      "args": ["doc", "."],
       "problemMatcher": [],
       "group": "none",
       "label": "Dart: doc",
@@ -69,9 +52,7 @@
         "color": "terminal.ansiGreen",
         "id": "book"
       },
-      "dependsOn": [
-        "Dart: run build_runner"
-      ]
+      "dependsOn": ["Dart: run build_runner"]
     },
     {
       "type": "flutter",
@@ -80,7 +61,7 @@
         "build",
         "${input:target}",
         "--release",
-        "--dart-define-from-file=dart_define.json",
+        "--dart-define-from-file=dart_define.json"
       ],
       "problemMatcher": [],
       "group": "build",
@@ -90,16 +71,12 @@
         "color": "terminal.ansiBlue",
         "id": "gear"
       },
-      "dependsOn": [
-        "Dart: run build_runner"
-      ]
+      "dependsOn": ["Dart: run build_runner"]
     },
     {
       "type": "flutter",
       "command": "flutter",
-      "args": [
-        "gen-l10n"
-      ],
+      "args": ["gen-l10n"],
       "problemMatcher": [],
       "group": "build",
       "label": "Flutter: gen-l10n",
@@ -116,7 +93,7 @@
         "build",
         "${input:target}",
         "--release",
-        "--dart-define-from-file=dart_define.json",
+        "--dart-define-from-file=dart_define.json"
       ],
       "problemMatcher": [],
       "group": "build",
@@ -126,9 +103,7 @@
         "color": "terminal.ansiBlue",
         "id": "gear"
       },
-      "dependsOn": [
-        "Dart: run build_runner"
-      ]
+      "dependsOn": ["Dart: run build_runner"]
     },
     {
       "type": "dart",
@@ -152,9 +127,7 @@
         "color": "terminal.ansiWhite",
         "id": "beaker"
       },
-      "dependsOn": [
-        "Dart: run build_runner"
-      ]
+      "dependsOn": ["Dart: run build_runner"]
     }
   ],
   "inputs": [

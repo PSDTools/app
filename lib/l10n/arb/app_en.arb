@@ -5,6 +5,10 @@
     "type": "text",
     "description": "The text which is displayed on the button to increment the number of coins."
   },
+  "anonymousAuthenticateText": "Sign in as Anonymous",
+  "@anonymousAuthenticateText": {
+    "description": "The text dispayed on the button to log in as an anonymous user."
+  },
   "appTitle": "PSD Wallet",
   "@appTitle": {
     "type": "text",

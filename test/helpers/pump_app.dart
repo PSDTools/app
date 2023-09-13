@@ -1,16 +1,13 @@
 /// Extension method for configuring [WidgetTester].
 library;
 
-import "dart:typed_data";
-
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:mocktail/mocktail.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/features/auth/data/auth_data.dart";
-import "package:pirate_code/features/auth/domain/auth_domain.dart";
-import "package:pirate_code/features/auth/domain/auth_model.dart";
 import "package:pirate_code/l10n/l10n.dart";
 
 /// Extension method for [WidgetTester.pumpWidget].
@@ -18,11 +15,11 @@ extension PumpApp on WidgetTester {
   /// Pump a [Widget] in a [ProviderScope].
   Future<void> pumpApp(
     Widget widget, {
-    List<Override>? overrides,
+    List<Override> overrides = const [],
   }) async {
     final container = ProviderContainer(
       overrides: [
-        ...?overrides,
+        ...overrides,
         ...defaultOverrides,
       ],
     );
@@ -67,21 +64,4 @@ final List<Override> defaultOverrides = [
   authProvider.overrideWithValue(MockAuthRepository()),
 ];
 
-class MockAuthRepository implements AuthRepository {
-  // @override
-  Future<PirateUser> anonymous() {
-    return Future.value(
-      PirateUser(
-        name: anonymousName,
-        email: "redacted@example.com",
-        accountType: AccountType.student,
-        avatar: Uint8List(0),
-      ),
-    );
-  }
-
-  @override
-  Future<PirateUser> authenticate() {
-    throw UnimplementedError("This is a mock!");
-  }
-}
+class MockAuthRepository extends Mock implements AuthRepository {}

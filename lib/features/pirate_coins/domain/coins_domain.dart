@@ -54,24 +54,23 @@ class Coins extends _$Coins {
 /// Get the coins of the current user.
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
-  final user = ref.watch(pirateAuthProvider);
+  final user =
+      ref.watch(pirateAuthProvider.select((value) => value.asData?.value));
   final fetchCoins = (user != null)
-      ? ref.watch(
-          coinsProvider(user.id).notifier.select((value) => value.fetchCoins),
-        )
+      ? ref.read(coinsProvider(user.id).notifier).fetchCoins
       : null;
 
   return fetchCoins?.call();
 }
 
 /// Get coins data from data layer.
-// TODO(lishaduck): Make this based on URLs.
 @riverpod
 class CurrentStage extends _$CurrentStage {
   @override
   Stage build() => const PickStudentStage();
 
   /// Go to [ViewCoinsStage].
+  // TODO(lishaduck): Make this based on URLs.
   void goToViewCoinsStage(int student) {
     state = ViewCoinsStage(student: student);
   }

@@ -9,18 +9,26 @@ import "auth_model.dart";
 part "auth_domain.g.dart";
 
 /// Get the current user.
-@riverpod
+@Riverpod(keepAlive: true)
 class PirateAuth extends _$PirateAuth {
   @override
-  PirateUser? build() {
-    // TODO(lishaduck): Allow anonymous users.
-    return null;
+  Future<PirateUser> build() async {
+    return _createSession(anonymous: true);
   }
 
   /// Authenticate the current user.
   Future<void> authenticate() async {
+    state = await AsyncValue.guard(_createSession);
+  }
+
+  Future<PirateUser> _createSession({bool anonymous = false}) async {
     final auth = ref.watch(authProvider);
-    state = await auth.authenticate();
+    return auth.authenticate(anonymous: anonymous);
+  }
+
+  /// Create a new anonymous session for the user.
+  Future<void> anonymous() async {
+    state = await AsyncValue.guard(() => _createSession(anonymous: true));
   }
 }
 

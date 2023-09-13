@@ -23,6 +23,7 @@ sealed class Api with _$Api implements ApiRepository {
     required String url,
     required String databaseId,
     required String collectionId,
+    required bool isSelfSigned,
   }) = _Api;
 }
 
@@ -39,6 +40,9 @@ abstract interface class ApiRepository {
 
   /// The collection ID for the Appwrite API.
   String get collectionId;
+
+  /// Wether or not the Appwrite Server uses self-signed certificates.
+  bool get isSelfSigned;
 }
 
 /// The Appwrite API information.
@@ -47,20 +51,22 @@ const ApiRepository apiInfo = Api(
   url: DartDefine.apiEndpoint,
   databaseId: DartDefine.databaseId,
   collectionId: DartDefine.collectionId,
+  isSelfSigned: DartDefine.selfSigned,
 );
 
 /// Get the Appwrite client.
-@riverpod
+@Riverpod(keepAlive: true)
 Client client(ClientRef ref) {
   return Client()
-    ..setEndpoint(apiInfo.url)
-    ..setProject(apiInfo.projectId);
+      .setEndpoint(apiInfo.url)
+      .setProject(apiInfo.projectId)
+      .setSelfSigned(status: apiInfo.isSelfSigned);
 }
 
 /// Get the Appwrite session for the current account.
-@riverpod
+@Riverpod(keepAlive: true)
 Account accounts(AccountsRef ref) {
-  final client = ref.read(clientProvider);
+  final client = ref.watch(clientProvider);
 
   return Account(client);
 }
@@ -68,15 +74,15 @@ Account accounts(AccountsRef ref) {
 /// Get the Appwrite databases.
 @riverpod
 Databases databases(DatabasesRef ref) {
-  final client = ref.read(clientProvider);
+  final client = ref.watch(clientProvider);
 
   return Databases(client);
 }
 
 /// Get the Appwrite avatars.
-@riverpod
+@Riverpod(keepAlive: true)
 Avatars avatars(AvatarsRef ref) {
-  final client = ref.read(clientProvider);
+  final client = ref.watch(clientProvider);
 
   return Avatars(client);
 }

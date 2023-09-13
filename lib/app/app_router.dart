@@ -34,7 +34,11 @@ class AppRouter extends _$AppRouter {
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
-                final authState = container.read(pirateAuthProvider);
+                final authState = container.read(
+                  pirateAuthProvider.select(
+                    (value) => value.asData?.value,
+                  ),
+                );
 
                 return (authState != null) ? null : const AuthRoute();
               },
@@ -50,6 +54,7 @@ class AppRouter extends _$AppRouter {
               page: DashboardRoute.page,
               path: "",
               title: (context, route) => "Dashboard",
+              initial: true,
             ),
             AutoRoute(
               page: StatsRoute.page,
@@ -68,7 +73,6 @@ class AppRouter extends _$AppRouter {
           page: AuthRoute.page,
           path: "/login",
           title: (context, data) => "Login",
-          initial: true,
         ),
         RedirectRoute(path: "/*", redirectTo: "/"),
       ];

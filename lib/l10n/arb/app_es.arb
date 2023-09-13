@@ -5,6 +5,7 @@
     "type": "text",
     "description": "El texto que se muestra en el botón para incrementar el número de monedas."
   },
+  "anonymousAuthenticateText": "Sign in as Anonymous",
   "appTitle": "PSD Billetera",
   "@appTitle": {
     "type": "text",

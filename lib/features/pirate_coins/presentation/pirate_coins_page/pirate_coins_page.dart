@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
+import "../../../../utils/snackbar.dart";
 import "../../../../widgets/big_card/big_card.dart";
 import "../../../../widgets/email_form_field/email_form_field.dart";
 import "../../../auth/domain/auth_domain.dart";
@@ -27,7 +28,7 @@ class PirateCoinsPage extends ConsumerWidget {
       ),
     );
 
-    final child = user?.accountType == AccountType.student
+    final child = user.asData?.value.accountType == AccountType.student
         ? const _StudentView()
         : const _TeacherView();
 
@@ -73,7 +74,8 @@ class _StudentView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final student = ref.watch(pirateAuthProvider.select((value) => value?.id));
+    final student =
+        ref.watch(pirateAuthProvider.select((value) => value.asData?.value.id));
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -103,14 +105,6 @@ class _MutationBarState extends ConsumerState<_MutationBar> {
 
   @override
   Widget build(BuildContext context) {
-    final (addCoins, removeCoins) = ref.watch(
-      coinsProvider(widget.student).notifier.select(
-            (value) => (
-              value.addCoins,
-              value.removeCoins,
-            ),
-          ),
-    );
     final l10n = context.l10n;
 
     return Row(
@@ -120,7 +114,9 @@ class _MutationBarState extends ConsumerState<_MutationBar> {
           onPressed: () async {
             if (!_requestIsInflight) {
               setState(() => _requestIsInflight = true);
-              await addCoins(1);
+              await ref
+                  .read(coinsProvider(widget.student).notifier)
+                  .addCoins(1);
               setState(() => _requestIsInflight = false);
             }
           },
@@ -134,7 +130,9 @@ class _MutationBarState extends ConsumerState<_MutationBar> {
           onPressed: () async {
             if (!_requestIsInflight) {
               setState(() => _requestIsInflight = true);
-              await removeCoins(1);
+              await ref
+                  .read(coinsProvider(widget.student).notifier)
+                  .removeCoins(1);
               setState(() => _requestIsInflight = false);
             }
           },
@@ -201,14 +199,11 @@ class _UserFormState extends ConsumerState<_UserForm> {
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState?.validate.call() ?? false) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Processing Data"),
-                      behavior: SnackBarBehavior.floating,
-                    ),
+                  // If the form is valid, display a snackbar.
+                  context.showSnackBar(
+                    content: const Text("Processing Data"),
                   );
+
                   ref
                       .read(currentStageProvider.notifier)
                       .goToViewCoinsStage(getId(myController.text));
