@@ -5,6 +5,7 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
+import "../../../pirate_coins/domain/coins_domain.dart";
 import "../../domain/dashboard_domain.dart";
 import "../../domain/dashboard_model.dart";
 
@@ -116,7 +117,7 @@ class _NotificationBar extends StatelessWidget {
 }
 
 /// A button widget that navigates to a specified applet.
-class _AppletButton extends StatelessWidget {
+class _AppletButton extends ConsumerWidget {
   /// Create a new instance of [_AppletButton].
   const _AppletButton({
     required this.buttonData,
@@ -129,7 +130,7 @@ class _AppletButton extends StatelessWidget {
   final Applet buttonData;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final imagePath = buttonData.image.path;
     final backgroundColor = buttonData.color;
     final title = buttonData.name;
@@ -137,8 +138,8 @@ class _AppletButton extends StatelessWidget {
 
     return GestureDetector(
       onTap: () async {
+        ref.read(currentStageProvider.notifier).reset();
         // Handle button tap here to navigate to the specified destination.
-        // TODO(ParkerH27): Find out why this doesn't change the URL.
         await context.router.push(destination);
       },
       child: Card(

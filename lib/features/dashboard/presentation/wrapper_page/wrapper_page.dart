@@ -33,6 +33,7 @@ class WrapperPage extends StatelessWidget {
             PirateCoinsRoute(),
             StatsRoute(), // TODO(lishaduck): Make this accessible.
             DashboardRoute(),
+            GpaRoute(),
           ],
           duration: const Duration(milliseconds: 200),
           transitionBuilder: (context, child, animation) {
@@ -126,7 +127,7 @@ class _ExpandedWrapper extends ConsumerWidget {
               child: Text(
                 "Pattonville Pirates",
                 style: GoogleFonts.mrDafoe(
-                  color: const Color.fromARGB(255, 11, 70, 24),
+                  color: const Color.fromARGB(255, 9, 56, 19),
                   shadows: [
                     Shadow(
                       color: theme.colorScheme.shadow.withOpacity(0.5),

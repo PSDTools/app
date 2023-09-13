@@ -75,4 +75,9 @@ class CurrentStage extends _$CurrentStage {
   void goToViewCoinsStage(int student) {
     state = ViewCoinsStage(student: student);
   }
+
+  /// Reset the stage back to the default.
+  void reset() {
+    state = const PickStudentStage();
+  }
 }
