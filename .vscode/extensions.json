@@ -18,6 +18,7 @@
     "foam.foam-vscode",
     "tyriar.luna-paint",
     "pflannery.vscode-versionlens",
-    "streetsidesoftware.code-spell-checker-spanish"
+    "streetsidesoftware.code-spell-checker-spanish",
+    "joshbolduc.commitlint"
   ]
 }

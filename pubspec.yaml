@@ -120,19 +120,19 @@ dart_define:
   variables:
     - name: PROJECT_ID
       description: Appwrite project ID
-      default: 648b3836d14e06cddc4e
+      default: pirate-code
       required: false
     - name: API_ENDPOINT
       description: Appwrite API endpoint
-      default: https://cloud.appwrite.io/v1
+      default: http://localhost:80/v1
       required: false
     - name: DATABASE_ID
       description: Appwrite database ID
-      default: 649f3267b89f7b4dfc4b
+      default: pirate-coins
       required: false
     - name: COLLECTION_ID
       description: Appwrite collection ID
-      default: 649f327c108ef9b8bfb2
+      default: coins
       required: false
 
 # dart run flutter_launcher_icons

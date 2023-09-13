@@ -55,7 +55,8 @@
     "*.dart": "${capture}.*.dart, ${capture}_*.dart",
     ".markdownlint*": "cspell.json, mlc_config.json",
     ".flutter-plugins": ".flutter-plugins-dependencies",
-    "dart_define.json": "custom_lint.log, untranslated.json"
+    "dart_define.json": "custom_lint.log, untranslated.json",
+    ".env": ".env.example"
   },
   "sarif-viewer.connectToGithubCodeScanning": "off",
   "yaml.schemas": {
@@ -77,7 +78,42 @@
     "**/Thumbs.db": true,
     "**/.dart_tool": true
   },
-  "l10nization.haveMetadatas": true,
+  "l10nization.haveDescription": true,
   "dart.renameFilesWithClasses": "prompt",
-  "dart.previewFlutterUiGuides": true
+  "dart.previewFlutterUiGuides": true,
+  "commitlint.config.extend.rules": {
+    "body-leading-blank": [1, "always"],
+    "body-max-line-length": [2, "always", 72],
+    "body-case": [1, "always", ["sentence-case"]],
+    "footer-leading-blank": [1, "always"],
+    "footer-max-line-length": [2, "always", 72],
+    "header-max-length": [2, "always", 50],
+    "scope-case": [2, "always", "lower-case"],
+    "subject-case": [
+      2,
+      "never",
+      ["sentence-case", "start-case", "pascal-case", "upper-case"]
+    ],
+    "subject-empty": [2, "never"],
+    "subject-full-stop": [2, "never", "."],
+    "type-case": [2, "always", "lower-case"],
+    "type-empty": [2, "never"],
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "perf",
+        "refactor",
+        "build",
+        "ci",
+        "revert",
+        "style",
+        "test",
+        "chore"
+      ]
+    ]
+  }
 }
