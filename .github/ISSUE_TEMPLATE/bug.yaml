@@ -54,7 +54,7 @@ body:
     id: date
     attributes:
       label: Date
-      description: When did this bug happen?
+      description: When did this bug happen? (Preferably in ISO-)
     validations:
       required: true
   - type: textarea
@@ -77,7 +77,7 @@ body:
         - Web (Brave)
         - Windows
         - Linux/GNU
-        - MacOS
+        - macOS
         - Fuchsia
         - ChromeOS
     validations:
