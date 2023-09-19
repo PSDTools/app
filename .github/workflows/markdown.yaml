@@ -31,7 +31,7 @@ jobs:
   spell-check:
     name: Check Spelling
     needs: []
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@618f3e0c6fa813565957c17288047161ea32e3a2 # v1.13.0
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@b7d3a7d287a7ed1f996861a73d69eafdfd7ed60e # v1.14.0
 
     with:
       includes: |
