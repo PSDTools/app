@@ -214,9 +214,7 @@ jobs:
       - name: 🔌 Generate Dart Defines
         run: dart run dart_define generate
       - name: 🧪 Run tests
-        run: |
-          dart run very_good_cli:very_good --analytics false
-          dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
+        run: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
       - name: 📊 Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@e5c91bc7ce9843e87c800b3bcafdfb86fbe28491 # v2.1.0
         with:
