@@ -1,7 +1,7 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
 
-import "../../../../helpers/helpers.dart";
+import "../../../../helpers/pump_app.dart";
 
 void main() {
   group("Pirate Coins page is accessible...", () {

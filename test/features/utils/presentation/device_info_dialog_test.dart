@@ -1,7 +1,7 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/features/utils/presentation/device_info/device_info_dialog.dart";
 
-import "../../../helpers/helpers.dart";
+import "../../../helpers/pump_app.dart";
 
 void main() {
   group("Device Info is accessible...", () {

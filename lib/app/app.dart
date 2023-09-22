@@ -9,19 +9,11 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
-import "package:meta/meta.dart";
 
 import "../../l10n/l10n.dart";
 import "../../utils/log.dart";
 import "../utils/design.dart";
 import "app_router.dart";
-
-// Make sure you don't initiate your router inside of the build function.
-@internal
-@visibleForTesting
-// Waiting on the next dart minor.
-// ignore: public_member_api_docs
-AppRouter? appRouter;
 
 /// The default locale for the app.
 const flutterLocale = Locale("en", "US");
@@ -76,7 +68,7 @@ class App extends StatelessWidget {
       ],
     );
 
-    appRouter = AppRouter(container: container);
+    setAppRouter(container);
 
     // Reset notification bar on android
     WidgetsFlutterBinding.ensureInitialized();

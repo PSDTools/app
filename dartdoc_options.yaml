@@ -22,7 +22,7 @@ dartdoc:
     - "C4Diagram"
     - "Server"
   showUndocumentedCategories: true
-  includeExternal: ["test/helpers/helpers.dart"]
+  includeExternal: ["test/helpers/*.dart"]
   linkToSource:
     uriTemplate: "https://github.com/psdtools/app/blob/main/%f%#L%l%"
     root: "."

@@ -77,3 +77,13 @@ class AppRouter extends _$AppRouter {
         RedirectRoute(path: "/*", redirectTo: "/"),
       ];
 }
+
+// Make sure you don't initiate your router inside of the build function.
+AppRouter? _appRouter;
+
+/// The app's router.
+AppRouter? get appRouter => _appRouter;
+
+/// Create the app router.
+void setAppRouter(ProviderContainer container) =>
+    _appRouter ??= AppRouter(container: container);

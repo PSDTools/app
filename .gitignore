@@ -7,6 +7,9 @@ dart_define.json
 # l10n
 lib/l10n/app_localizations*.dart
 
+# Testing
+test/.test_optimizer.dart
+
 # Miscellaneous
 *.class
 *.log

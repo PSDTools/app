@@ -1,14 +1,15 @@
 /// Extension method for configuring [WidgetTester].
+///
+/// {@category Testing}
 library;
 
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:mocktail/mocktail.dart";
-import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
-import "package:pirate_code/features/auth/data/auth_data.dart";
 import "package:pirate_code/l10n/l10n.dart";
+
+import "riverpod.dart";
 
 /// Extension method for [WidgetTester.pumpWidget].
 extension PumpApp on WidgetTester {
@@ -17,14 +18,8 @@ extension PumpApp on WidgetTester {
     Widget widget, {
     List<Override> overrides = const [],
   }) async {
-    final container = ProviderContainer(
-      overrides: [
-        ...overrides,
-        ...defaultOverrides,
-      ],
-    );
-
-    appRouter = AppRouter(container: container);
+    final container = createContainer(overrides);
+    setAppRouter(container);
 
     return pumpWidget(
       _Widget(
@@ -59,9 +54,3 @@ class _Widget extends StatelessWidget {
     );
   }
 }
-
-final List<Override> defaultOverrides = [
-  authProvider.overrideWithValue(MockAuthRepository()),
-];
-
-class MockAuthRepository extends Mock implements AuthRepository {}

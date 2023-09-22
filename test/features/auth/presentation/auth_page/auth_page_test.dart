@@ -1,7 +1,7 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/features/auth/presentation/auth_page/auth_page.dart";
 
-import "../../../../helpers/helpers.dart";
+import "../../../../helpers/pump_app.dart";
 
 void main() {
   group("Auth page is accessible...", () {

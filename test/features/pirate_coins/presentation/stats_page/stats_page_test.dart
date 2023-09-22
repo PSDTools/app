@@ -1,7 +1,7 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:pirate_code/features/pirate_coins/presentation/stats_page/stats_page.dart";
 
-import "../../../../helpers/helpers.dart";
+import "../../../../helpers/pump_app.dart";
 
 void main() {
   group("Stats page is accessible...", () {
