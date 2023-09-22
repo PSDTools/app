@@ -31,6 +31,3 @@ class PirateAuth extends _$PirateAuth {
     state = await AsyncValue.guard(() => _createSession(anonymous: true));
   }
 }
-
-/// The name of an anonymous user.
-const anonymousName = "anonymous";

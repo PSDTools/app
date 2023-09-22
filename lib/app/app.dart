@@ -26,8 +26,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const flutterLocale = Locale("en", "US");
-
     return _MainArea(
       child: MaterialApp.router(
         routerConfig: appRouter?.config(),
