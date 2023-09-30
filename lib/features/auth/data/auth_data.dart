@@ -21,9 +21,9 @@ abstract interface class AuthRepository {
 }
 
 /// The default implementation of [AuthRepository].
-base class AppwriteAuthRepository implements AuthRepository {
-  /// Create a new instance of [AppwriteAuthRepository].
-  const AppwriteAuthRepository(
+base class _AppwriteAuthRepository implements AuthRepository {
+  /// Create a new instance of [_AppwriteAuthRepository].
+  const _AppwriteAuthRepository(
     Account account,
     Device platform,
     AvatarRepository avatar,
@@ -97,5 +97,5 @@ AuthRepository auth(AuthRef ref) {
   final platform = ref.watch(currentPlatformProvider);
   final avatar = ref.watch(avatarProvider.select((value) => value));
 
-  return AppwriteAuthRepository(account, platform, avatar);
+  return _AppwriteAuthRepository(account, platform, avatar);
 }

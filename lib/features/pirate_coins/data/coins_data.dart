@@ -20,9 +20,9 @@ abstract interface class CoinsRepository {
 }
 
 /// The default implementation of [CoinsRepository].
-base class AppwriteCoinsRepository implements CoinsRepository {
-  /// Create a new instance of [AppwriteCoinsRepository].
-  const AppwriteCoinsRepository(Databases databases) : _database = databases;
+base class _AppwriteCoinsRepository implements CoinsRepository {
+  /// Create a new instance of [_AppwriteCoinsRepository].
+  const _AppwriteCoinsRepository(Databases databases) : _database = databases;
 
   /// The Appwrite databases.
   final Databases _database;
@@ -82,5 +82,5 @@ base class AppwriteCoinsRepository implements CoinsRepository {
 CoinsRepository coinsData(CoinsDataRef ref) {
   final databases = ref.watch(databasesProvider);
 
-  return AppwriteCoinsRepository(databases);
+  return _AppwriteCoinsRepository(databases);
 }
