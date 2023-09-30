@@ -18,7 +18,7 @@ abstract interface class DeviceRepository {
 /// The default implementation of [DeviceRepository], using [DeviceInfoPlugin] from [`device_info_plus`](https://pub.dev/packages/device_info_plus).
 /// This implementation will return the device information for the [currentPlatform].
 /// If the platform is not supported, it will return a default value.
-class DeviceUtilsRepository implements DeviceRepository {
+base class DeviceUtilsRepository implements DeviceRepository {
   /// Create a new instance of [DeviceUtilsRepository].
   const DeviceUtilsRepository({
     required DeviceInfoPlugin plugin,

@@ -25,7 +25,7 @@ ProviderContainer createContainer(List<Override> overrides) =>
       ],
     );
 
-class _MockAuthRepository implements AuthRepository {
+base class _MockAuthRepository implements AuthRepository {
   @override
   Future<PirateUser> authenticate({required bool anonymous}) => Future.value(
         PirateUser(

@@ -14,7 +14,7 @@ abstract interface class AvatarRepository {
 }
 
 /// The default implementation of [AvatarRepository].
-class AppwriteAvatarRepository implements AvatarRepository {
+base class AppwriteAvatarRepository implements AvatarRepository {
   /// Create a new instance of [AppwriteAvatarRepository].
   const AppwriteAvatarRepository(Avatars avatars) : _avatars = avatars;
 

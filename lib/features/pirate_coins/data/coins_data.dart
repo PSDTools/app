@@ -20,7 +20,7 @@ abstract interface class CoinsRepository {
 }
 
 /// The default implementation of [CoinsRepository].
-class AppwriteCoinsRepository implements CoinsRepository {
+base class AppwriteCoinsRepository implements CoinsRepository {
   /// Create a new instance of [AppwriteCoinsRepository].
   const AppwriteCoinsRepository(Databases databases) : _database = databases;
 

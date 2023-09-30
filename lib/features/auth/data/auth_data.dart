@@ -21,7 +21,7 @@ abstract interface class AuthRepository {
 }
 
 /// The default implementation of [AuthRepository].
-class AppwriteAuthRepository implements AuthRepository {
+base class AppwriteAuthRepository implements AuthRepository {
   /// Create a new instance of [AppwriteAuthRepository].
   const AppwriteAuthRepository(
     Account account,
