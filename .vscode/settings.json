@@ -53,7 +53,7 @@
     "pubspec.yaml": ".metadata, analysis_options.yaml, pubspec.lock, build.yaml, dartdoc_options.yaml, l10n.yaml, pubspec_overrides.yaml, dart_test.yaml",
     "README.*": "*.md",
     "*.dart": "${capture}.*.dart, ${capture}_*.dart",
-    ".markdownlint*": "cspell.json, mlc_config.json",
+    "*cspell.json": ".markdownlint*, project_words.txt, mlc_config.json",
     ".flutter-plugins": ".flutter-plugins-dependencies",
     "dart_define.json": "custom_lint.log, untranslated.json",
     ".env": ".env.example"
