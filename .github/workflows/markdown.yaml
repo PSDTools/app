@@ -36,9 +36,10 @@ jobs:
     with:
       includes: |
         **/*.md
-        # **/*.dart
+        **/*.dart
         **/*.yaml
         **/*.toml
+        **/*.json
       modified_files_only: false
       config: cspell.json
 
