@@ -1,80 +1,16 @@
 {
   "@@locale": "es",
   "addCoins": "Añadir monedas",
-  "@addCoins": {
-    "type": "text",
-    "description": "El texto que se muestra en el botón para incrementar el número de monedas."
-  },
   "anonymousAuthenticateText": "Sign in as Anonymous",
   "appTitle": "PSD Billetera",
-  "@appTitle": {
-    "type": "text",
-    "description": "El texto que se muestra como título de la aplicación."
-  },
   "authenticateText": "¡Autentícate con Google!",
-  "@authenticateText": {
-    "type": "text",
-    "description": "El texto que se muestra en el botón para autenticarse con Google."
-  },
   "emptyReport": "¡Nada que informar todavía!",
-  "@emptyReport": {
-    "type": "text",
-    "description": "El texto que se muestra cuando no hay datos de informe para mostrar."
-  },
   "error": "Error: {error}",
-  "@error": {
-    "type": "text",
-    "description": "El texto que se muestra después de un error.",
-    "placeholders": {
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "howManyCoins": "{coins, plural, other{Actualmente tienes {coins} monedas.} zero{Actualmente no tienes monedas.} one{Actualmente tienes una moneda.} two{Actualmente tienes dos monedas.}}",
-  "@howManyCoins": {
-    "type": "text",
-    "description": "El texto que se muestra para mostrar el número de monedas en la página de estadísticas.",
-    "placeholders": {
-      "coins": {
-        "type": "int",
-        "example": "1"
-      }
-    }
-  },
   "newMessages": "test {newMessages, plural, =0{No new messages} =1 {One new message} two{Two new Messages} other {test {newMessages} new messages}}",
-  "@newMessages": {
-    "type": "text",
-    "description": "Number of new messages in inbox.",
-    "placeholders": {
-      "newMessages": {
-        "type": "int"
-      }
-    }
-  },
   "loading": "Cargando...",
-  "@loading": {
-    "type": "text",
-    "description": "El texto que se muestra cuando algo se está cargando."
-  },
   "pirateCoinsPageTitle": "¡Monedas Piratas!",
-  "@pirateCoinsPageTitle": {
-    "type": "text",
-    "description": "El texto que se muestra como título de la página de monedas piratas."
-  },
   "removeCoins": "Eliminar Monedas",
-  "@removeCoins": {
-    "type": "text",
-    "description": "El texto que se muestra en el botón para disminuir el número de monedas."
-  },
   "statsPageTitle": "Estadísticas",
-  "@statsPageTitle": {
-    "type": "text",
-    "description": "El texto que se muestra como título de la página de estadísticas."
-  },
-  "unknownState": "Unknown state",
-  "@unknownState": {
-    "type": "text",
-    "description": "El texto que se muestra cuando algo está en un estado desconocido."
-  }
+  "unknownState": "Unknown state"
 }
