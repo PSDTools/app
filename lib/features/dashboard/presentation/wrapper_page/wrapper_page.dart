@@ -3,6 +3,8 @@
 /// This didn't warrant its own feature, so it gets lumped in here.
 library;
 
+import "dart:typed_data";
+
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
@@ -10,7 +12,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../auth/domain/auth_domain.dart";
-import "../../../auth/domain/auth_model.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
@@ -66,7 +67,10 @@ class _ExpandedWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final account = ref.watch(pirateAuthProvider);
+    final (name, email, avatar) = ref.watch(
+      userProvider
+          .select((value) => (value?.name, value?.email, value?.avatar)),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -81,13 +85,13 @@ class _ExpandedWrapper extends ConsumerWidget {
           children: [
             UserAccountsDrawerHeader(
               accountName: Text(
-                account.asData?.value.user?.name ?? "Pirate Coins User",
+                name ?? "Pirate Coins User",
               ),
               accountEmail: Text(
-                account.asData?.value.user?.email ?? "redacted@example.com",
+                email ?? "redacted@example.com",
               ),
-              currentAccountPicture: switch (account.asData?.value.user) {
-                PirateUser(:final avatar) => CircleAvatar(
+              currentAccountPicture: switch (avatar) {
+                Uint8List() => CircleAvatar(
                     backgroundImage: MemoryImage(avatar),
                   ),
                 null => const CircleAvatar(

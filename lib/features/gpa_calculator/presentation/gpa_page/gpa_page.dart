@@ -78,10 +78,10 @@ class _Dropdown extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final value = ref.watch(gpaProvider(hour));
+    final grade = ref.watch(gpaProvider(hour).select((value) => value.grade));
 
     return DropdownButtonFormField(
-      value: value.grade,
+      value: grade,
       items: const [
         DropdownMenuItem(value: LetterGrade.a(), child: Text("A")),
         DropdownMenuItem(value: LetterGrade.b(), child: Text("B")),

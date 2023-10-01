@@ -23,12 +23,12 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(
-      pirateAuthProvider.select((value) => value.asData?.value.user),
+    final (accountType, id) = ref.watch(
+      userProvider.select((value) => (value?.accountType, value?.id)),
     );
 
-    final child = user?.accountType == AccountType.student
-        ? _StudentView(id: user?.id ?? 0)
+    final child = accountType == AccountType.student
+        ? _StudentView(id: id ?? 0)
         : const _TeacherView();
 
     return Center(
@@ -206,9 +206,7 @@ class _ViewCoins extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final data = ref.watch(
-      coinsProvider(student).select((value) => value),
-    );
+    final data = ref.watch(coinsProvider(student));
 
     return Padding(
       padding: const EdgeInsets.all(8),

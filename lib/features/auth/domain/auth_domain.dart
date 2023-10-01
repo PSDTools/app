@@ -35,3 +35,11 @@ class PirateAuth extends _$PirateAuth {
     state = await AsyncValue.guard(() => _createSession(anonymous: true));
   }
 }
+
+/// Get the current user with minimal fuss.
+///
+/// Use [pirateAuthProvider] for more granular output.
+@riverpod
+PirateUser? user(UserRef ref) => ref.watch(
+      pirateAuthProvider.select((value) => value.asData?.value.user),
+    );

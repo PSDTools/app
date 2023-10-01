@@ -34,10 +34,7 @@ class AppRouter extends _$AppRouter {
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
-                final authState = container.read(
-                  pirateAuthProvider
-                      .select((value) => value.asData?.value.user),
-                );
+                final authState = container.read(userProvider);
 
                 return (authState != null) ? null : const AuthRoute();
               },
