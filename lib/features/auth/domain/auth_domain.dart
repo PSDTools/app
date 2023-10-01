@@ -12,7 +12,7 @@ part "auth_domain.g.dart";
 @Riverpod(keepAlive: true)
 class PirateAuth extends _$PirateAuth {
   @override
-  Future<PirateUser> build() async {
+  FutureOr<PirateUser> build() async {
     return _createSession(anonymous: true);
   }
 
