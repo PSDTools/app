@@ -1,9 +1,11 @@
 /// This library contains the GPA calculator feature's models.
 library;
 
+import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "gpa_model.freezed.dart";
+part "gpa_model.g.dart";
 
 /// Represent a course.
 @freezed
@@ -20,100 +22,67 @@ sealed class Course with _$Course {
     /// The name of the course.
     String? name,
   }) = _Course;
+
+  /// Convert a JSON [Map] into a new, immutable instance of [Course].
+  factory Course.fromJson(Map<String, dynamic> json) => _$CourseFromJson(json);
 }
 
-/// A grade.
-sealed class LetterGrade {
-  /// An 'A'.
-  const factory LetterGrade.a({bool isHonors}) = _A;
+/// Represent a letter grade.
+@freezed
+sealed class LetterGrade with _$LetterGrade implements Comparable<LetterGrade> {
+  /// Convert from a percentage grade to a letter grade.
+  factory LetterGrade.fromGrade(double grade, {bool isHonors = false}) {
+    return switch (grade) {
+      >= 90 => LetterGrade.a(isHonors: isHonors),
+      >= 80 => LetterGrade.b(isHonors: isHonors),
+      >= 70 => LetterGrade.c(isHonors: isHonors),
+      >= 60 => LetterGrade.d(isHonors: isHonors),
+      _ => LetterGrade.f(isHonors: isHonors),
+    };
+  }
 
-  /// A 'B'.
-  const factory LetterGrade.b({bool isHonors}) = _B;
+  const LetterGrade._();
 
-  /// A 'C'.
-  const factory LetterGrade.c({bool isHonors}) = _C;
+  /// Convert a JSON [Map] into a new, immutable instance of [LetterGrade].
+  factory LetterGrade.fromJson(Map<String, dynamic> json) =>
+      _$LetterGradeFromJson(json);
 
-  /// A 'D'.
-  const factory LetterGrade.d({bool isHonors}) = _D;
+  /// Represent an 'A'.
+  const factory LetterGrade.a({@Default(false) bool isHonors}) = _A;
 
-  /// An 'F'.
-  const factory LetterGrade.f({bool isHonors}) = _F;
+  /// Represent a 'B'.
+  const factory LetterGrade.b({@Default(false) bool isHonors}) = _B;
+
+  /// Represent a 'C'.
+  const factory LetterGrade.c({@Default(false) bool isHonors}) = _C;
+
+  /// Represent a 'D'.
+  const factory LetterGrade.d({@Default(false) bool isHonors}) = _D;
+
+  /// Represent an 'F'.
+  const factory LetterGrade.f({@Default(false) bool isHonors}) = _F;
 
   /// The GPA value for the letter grade.
-  int get value;
-}
-
-/// An 'A'.
-@freezed
-@immutable
-class _A with _$_A implements LetterGrade {
-  /// Create a new, immutable [LetterGrade.a].
-  const factory _A({
-    @Default(false) bool isHonors,
-  }) = __A;
-
-  const _A._();
+  int get value => switch (this) {
+        _A(:final isHonors) => isHonors ? 5 : 4,
+        _B(:final isHonors) => isHonors ? 4 : 3,
+        _C(:final isHonors) => isHonors ? 3 : 2,
+        _D() => 1,
+        _F() => 0,
+      };
 
   @override
-  int get value => isHonors ? 5 : 4;
-}
+  int compareTo(LetterGrade other) => value.compareTo(other.value);
 
-/// A 'B'.
-@freezed
-@immutable
-class _B with _$_B implements LetterGrade {
-  /// Create a new, immutable [LetterGrade.b].
-  const factory _B({
-    @Default(false) bool isHonors,
-  }) = __B;
+  /// Whether this letter grade's [value] is numerically greater than [other].
+  bool operator >(LetterGrade other) => compareTo(other) > 0;
 
-  const _B._();
+  /// Whether this letter grade's [value] is numerically greater than or equal to [other].
+  bool operator >=(LetterGrade other) => compareTo(other) >= 0;
 
-  @override
-  int get value => isHonors ? 4 : 3;
-}
+  /// Whether this letter grade's [value] is numerically less than [other].
+  bool operator <(LetterGrade other) => compareTo(other) < 0;
 
-/// A 'C'.
-@freezed
-@immutable
-class _C with _$_C implements LetterGrade {
-  /// Create a new, immutable [LetterGrade.c].
-  const factory _C({
-    @Default(false) bool isHonors,
-  }) = __C;
-
-  const _C._();
-
-  @override
-  int get value => isHonors ? 3 : 2;
-}
-
-/// A 'D'.
-@freezed
-@immutable
-class _D with _$_D implements LetterGrade {
-  /// Create a new, immutable [LetterGrade.d].
-  const factory _D({
-    @Default(false) bool isHonors,
-  }) = __D;
-
-  const _D._();
-
-  @override
-  int get value => 1;
-}
-
-/// An 'F'.
-@freezed
-@immutable
-class _F with _$_F implements LetterGrade {
-  /// Create a new, immutable [LetterGrade.f].
-  const factory _F({
-    @Default(false) bool isHonors,
-  }) = __F;
-
-  const _F._();
-
-  @override
-  int get value => 0;
+  /// Whether this letter grade's [value] is numerically less than or equal to [other].
+  bool operator <=(LetterGrade other) => compareTo(other) <= 0;
 }

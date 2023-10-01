@@ -2,11 +2,12 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../gen/assets.gen.dart";
-import "../../auth/domain/auth_model.dart";
+import "../../../utils/models.dart";
 
 part "dashboard_model.freezed.dart";
 
@@ -17,7 +18,6 @@ sealed class DashboardModel with _$DashboardModel {
   /// Create a new, immutable [DashboardModel].
   const factory DashboardModel({
     required List<Applet> applets,
-    required PirateUser? user,
   }) = _DashboardModel;
 }
 

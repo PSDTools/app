@@ -70,16 +70,16 @@ Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
 @riverpod
 class CurrentStage extends _$CurrentStage {
   @override
-  Stage build() => const PickStudentStage();
+  Stage build() => const Stage.pickStudent();
 
-  /// Go to [ViewCoinsStage].
-  // TODO(lishaduck): Make this based on URLs.
+  /// Go to [Stage.viewCoins].
+  // TODO(ParkerH27): Make this based on URLs.
   void goToViewCoinsStage(int student) {
-    state = ViewCoinsStage(student: student);
+    state = Stage.viewCoins(student: student);
   }
 
   /// Reset the stage back to the default.
   void reset() {
-    state = const PickStudentStage();
+    state = const Stage.pickStudent();
   }
 }

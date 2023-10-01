@@ -39,25 +39,15 @@ sealed class Coin with _$Coin implements Model {
 }
 
 /// Represent the [Stage]s of the coins page.
-sealed class Stage {
-  /// Create a new [Stage].
-  const Stage();
-}
-
-/// The initial stage of the coins page.
 @freezed
 @immutable
-class PickStudentStage extends Stage with _$PickStudentStage {
-  /// Create a new [PickStudentStage].
-  const factory PickStudentStage() = _PickStudentStage;
-}
+sealed class Stage with _$Stage {
+  /// Represent the initial stage of the coins page.
+  const factory Stage.pickStudent() = PickStudentStage;
 
-/// The stage of the coins page where the teacher can view and add to a student's coins.
-@freezed
-@immutable
-class ViewCoinsStage extends Stage with _$ViewCoinsStage {
-  /// Create a new [ViewCoinsStage].
-  const factory ViewCoinsStage({
+  /// Represent the stage of the coins page where the teacher can view and add to a student's [Coin]s.
+
+  const factory Stage.viewCoins({
     required int student,
-  }) = _ViewCoinsStage;
+  }) = ViewCoinsStage;
 }
