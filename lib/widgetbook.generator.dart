@@ -6,9 +6,9 @@ import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:widgetbook/widgetbook.dart";
 import "package:widgetbook_annotation/widgetbook_annotation.dart";
 
-import "app/app.dart" show flutterLocale;
+import "app/app.dart" hide App;
 import "l10n/app_localizations.dart";
-import "utils/design.dart" show scheme;
+import "utils/design.dart";
 import "widgetbook.generator.directories.g.dart";
 
 void main() {
