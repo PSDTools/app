@@ -1,15 +1,15 @@
 /// This library contains the dashboard feature's [Model].
 library;
 
-import "package:auto_route/auto_route.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
-import "../../../gen/assets.gen.dart";
+import "../../../utils/json_converters.dart";
 import "../../../utils/models.dart";
 
 part "dashboard_model.freezed.dart";
+part "dashboard_model.g.dart";
 
 /// Represent the model for the dashboard.
 @freezed
@@ -19,6 +19,10 @@ sealed class DashboardModel with _$DashboardModel {
   const factory DashboardModel({
     required List<Applet> applets,
   }) = _DashboardModel;
+
+  /// Convert a JSON [Map] into a new, immutable [DashboardModel].
+  factory DashboardModel.fromJson(Map<String, dynamic> json) =>
+      _$DashboardModelFromJson(json);
 }
 
 /// Represent an applet, which is a widget that can be added to the dashboard.
@@ -31,13 +35,13 @@ sealed class Applet with _$Applet {
     required String name,
 
     /// The image to display on the applet's widget.
-    required AssetGenImage image,
+    required String image,
 
     /// The color to display as the background of the applet's widget.
-    required Color color,
+    @ColorConverter() required Color color,
 
     /// Where the applet's widget should link to.
-    required PageRouteInfo location, // prevents JSON serialization
+    required String location,
     // required String id,
     // required String description,
     // required String type,
@@ -46,4 +50,7 @@ sealed class Applet with _$Applet {
     // required String createdAt,
     // required String updatedAt,
   }) = _Applet;
+
+  /// Convert a JSON [Map] into a new, immutable [Applet].
+  factory Applet.fromJson(Map<String, dynamic> json) => _$AppletFromJson(json);
 }

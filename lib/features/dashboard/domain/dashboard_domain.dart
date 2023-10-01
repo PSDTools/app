@@ -4,7 +4,6 @@ library;
 import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../../app/app_router.dart";
 import "../../../gen/assets.gen.dart";
 import "dashboard_model.dart";
 
@@ -35,15 +34,16 @@ List<Applet> _applets(_AppletsRef ref) {
   return [
     Applet(
       name: "Pirate Coins",
-      image: appletsFolder.pirateCoins,
+      image: appletsFolder.pirateCoins.path,
       color: const Color.fromARGB(255, 122, 194, 129),
-      location: const PirateCoinsRoute(),
+      // TODO(lishaduck): figure out how to use routes to keep this type-safe.
+      location: "/pirate-coins",
     ),
     Applet(
-      image: appletsFolder.gpaCalculator,
+      image: appletsFolder.gpaCalculator.path,
       color: const Color.fromARGB(255, 242, 184, 184),
       name: "GPA Calculator",
-      location: const GpaRoute(),
+      location: "/gpa-calculator",
     ),
     // Applet(
     //   image: appletsFolder.phsMap,

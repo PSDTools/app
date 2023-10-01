@@ -9,12 +9,11 @@ import "../../../utils/models.dart";
 import "../data/device_data.dart";
 
 part "device_model.freezed.dart";
-part "device_model.g.dart";
 
-/// Represent [Model]ed information about the [currentPlatform].
+/// Represent modeled information about the [currentPlatform].
 @freezed
 @immutable
-sealed class DeviceData with _$DeviceData implements Model {
+sealed class DeviceData with _$DeviceData {
   /// Create a new, immutable instance of [DeviceData].
   const factory DeviceData({
     /// The current [Device].
@@ -44,10 +43,6 @@ sealed class DeviceData with _$DeviceData implements Model {
     /// The current [Device]'s SDK number.
     int? sdkInt,
   }) = _DeviceData;
-
-  /// Convert a JSON [Map] into a new, immutable instance of [DeviceData].
-  factory DeviceData.fromJson(Map<String, Object?> json) =>
-      _$DeviceDataFromJson(json);
 }
 
 /// An enum containing the supported devices.

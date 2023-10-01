@@ -55,10 +55,8 @@ class _Applets extends ConsumerWidget {
                   mainAxisSpacing: 16,
                 ),
                 itemCount: buttonsData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final buttonData = buttonsData[index];
-                  return _AppletButton(buttonData: buttonData);
-                },
+                itemBuilder: (BuildContext context, int index) =>
+                    _AppletButton(buttonData: buttonsData[index]),
               ),
             ),
           ],
@@ -132,16 +130,18 @@ class _AppletButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final imagePath = buttonData.image.path;
-    final backgroundColor = buttonData.color;
-    final title = buttonData.name;
-    final destination = buttonData.location;
+    final Applet(
+      image: imagePath,
+      color: backgroundColor,
+      name: title,
+      location: destination,
+    ) = buttonData;
 
     return GestureDetector(
       onTap: () async {
         ref.read(currentStageProvider.notifier).reset();
         // Handle button tap here to navigate to the specified destination.
-        await context.router.push(destination);
+        await context.router.pushNamed(destination);
       },
       child: Card(
         color: backgroundColor,
