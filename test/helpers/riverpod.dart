@@ -5,7 +5,7 @@ library;
 
 import "dart:typed_data";
 
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/features/auth/data/auth_data.dart";
 import "package:pirate_code/features/auth/domain/auth_model.dart";
 

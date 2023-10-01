@@ -4,8 +4,8 @@
 library;
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/l10n/l10n.dart";

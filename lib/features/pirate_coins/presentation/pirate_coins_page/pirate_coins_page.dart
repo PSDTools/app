@@ -3,7 +3,8 @@ library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../utils/snackbar.dart";
@@ -23,11 +24,11 @@ class PirateCoinsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(
-      pirateAuthProvider.select((value) => value),
+      pirateAuthProvider.select((value) => value.asData?.value.user),
     );
 
-    final child = user.asData?.value.user?.accountType == AccountType.student
-        ? const _StudentView()
+    final child = user?.accountType == AccountType.student
+        ? _StudentView(id: user?.id ?? 0)
         : const _TeacherView();
 
     return Center(
@@ -51,7 +52,7 @@ class _TeacherView extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (mode) {
         PickStudentStage() => [
-            const _UserForm(),
+            _UserForm(),
           ],
         ViewCoinsStage(:final student) => [
             _ViewCoins(student: student),
@@ -63,29 +64,28 @@ class _TeacherView extends ConsumerWidget {
   }
 }
 
-class _StudentView extends ConsumerWidget {
+class _StudentView extends StatelessWidget {
   const _StudentView({
+    required this.id,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final student = ref.watch(
-      pirateAuthProvider.select((value) => value.asData?.value.user?.id),
-    );
+  final int id;
 
+  @override
+  Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _ViewCoins(student: student ?? 0),
+        _ViewCoins(student: id),
       ],
     );
   }
 }
 
-class _MutationBar extends ConsumerStatefulWidget {
+class _MutationBar extends HookConsumerWidget {
   const _MutationBar({
     required this.student,
     // Temporary ignore, see <dart-lang/sdk#49025>.
@@ -96,30 +96,22 @@ class _MutationBar extends ConsumerStatefulWidget {
   final int student;
 
   @override
-  ConsumerState<_MutationBar> createState() => _MutationBarState();
-}
-
-class _MutationBarState extends ConsumerState<_MutationBar> {
-  bool _requestIsInflight = false;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final requestIsInflight = useState(false);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton.icon(
           onPressed: () async {
-            if (!_requestIsInflight) {
-              setState(() => _requestIsInflight = true);
-              await ref
-                  .read(coinsProvider(widget.student).notifier)
-                  .addCoins(1);
-              setState(() => _requestIsInflight = false);
+            if (!requestIsInflight.value) {
+              requestIsInflight.value = true;
+              await ref.read(coinsProvider(student).notifier).addCoins(1);
+              requestIsInflight.value = false;
             }
           },
-          icon: _requestIsInflight
+          icon: requestIsInflight.value
               ? const Icon(Icons.rotate_left)
               : const Icon(Icons.add),
           label: Text(l10n.addCoins),
@@ -127,15 +119,13 @@ class _MutationBarState extends ConsumerState<_MutationBar> {
         const SizedBox(width: 10),
         ElevatedButton.icon(
           onPressed: () async {
-            if (!_requestIsInflight) {
-              setState(() => _requestIsInflight = true);
-              await ref
-                  .read(coinsProvider(widget.student).notifier)
-                  .removeCoins(1);
-              setState(() => _requestIsInflight = false);
+            if (!requestIsInflight.value) {
+              requestIsInflight.value = true;
+              await ref.read(coinsProvider(student).notifier).removeCoins(1);
+              requestIsInflight.value = false;
             }
           },
-          icon: _requestIsInflight
+          icon: requestIsInflight.value
               ? const Icon(Icons.rotate_right)
               : const Icon(Icons.remove),
           label: Text(l10n.removeCoins),
@@ -145,37 +135,23 @@ class _MutationBarState extends ConsumerState<_MutationBar> {
   }
 }
 
-/// Pick a student to modify their coins, teachers.
-class _UserForm extends ConsumerStatefulWidget {
-  const _UserForm({
+/// Teachers, pick a student to modify their coins.
+class _UserForm extends HookConsumerWidget {
+  _UserForm({
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  @override
-  _UserFormState createState() => _UserFormState();
-}
-
-class _UserFormState extends ConsumerState<_UserForm> {
   /// Create a [GlobalKey] that uniquely identifies the Form widget and allows validation of the form.
-  ///
-  /// Note: This is a [GlobalKey]<[FormState]>, not a [GlobalKey]<[_UserFormState]>.
   final _formKey = GlobalKey<FormState>();
 
-  /// Create a text controller and use it to retrieve the current value of the [TextField].
-  final myController = TextEditingController();
-
   @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+
+    // Create a text controller and use it to retrieve the current value of the text field.
+    final myController = useTextEditingController();
 
     return SizedBox(
       width: 300,

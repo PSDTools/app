@@ -2,7 +2,7 @@
 library;
 
 import "package:auto_route/auto_route.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../features/auth/domain/auth_domain.dart";
 import "../features/auth/presentation/auth_page/auth_page.dart";
@@ -55,6 +55,7 @@ class AppRouter extends _$AppRouter {
               title: (context, route) => "Dashboard",
               initial: true,
             ),
+            // TODO(lishaduck): move this to `/pirate-coins/stats`.
             AutoRoute(
               page: StatsRoute.page,
               path: "stats",

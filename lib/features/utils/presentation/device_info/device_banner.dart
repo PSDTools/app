@@ -4,7 +4,7 @@ library;
 import "dart:async";
 
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../utils/constants.dart";
 import "../../domain/banner_domain.dart";

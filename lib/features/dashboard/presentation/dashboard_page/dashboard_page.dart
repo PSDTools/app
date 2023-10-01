@@ -3,7 +3,7 @@ library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../pirate_coins/domain/coins_domain.dart";
 import "../../domain/dashboard_domain.dart";
@@ -11,12 +11,12 @@ import "../../domain/dashboard_model.dart";
 
 /// The page located at `/`.
 @RoutePage()
-class DashboardPage extends ConsumerWidget {
+class DashboardPage extends StatelessWidget {
   /// Create a new instance of [DashboardPage].
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return const Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,7 +47,6 @@ class _Applets extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            // Replace this with your other widgets if needed
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
