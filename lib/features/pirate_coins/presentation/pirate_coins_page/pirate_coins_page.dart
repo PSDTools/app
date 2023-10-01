@@ -79,7 +79,7 @@ class _StudentView extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _ViewCoins(student: student),
+        _ViewCoins(student: student ?? 0),
       ],
     );
   }
@@ -219,19 +219,19 @@ class _UserFormState extends ConsumerState<_UserForm> {
 
 class _ViewCoins extends ConsumerWidget {
   const _ViewCoins({
-    this.student,
+    required this.student,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  final int? student;
+  final int student;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final data = ref.watch(
-      coinsProvider(student ?? 0).select((value) => value),
+      coinsProvider(student).select((value) => value),
     );
 
     return Padding(
