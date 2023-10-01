@@ -57,7 +57,7 @@ class Coins extends _$Coins {
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
   final user = ref.watch(
-    pirateAuthProvider.select((value) => value.asData?.value),
+    pirateAuthProvider.select((value) => value.asData?.value.user),
   );
   final fetchCoins = (user != null)
       ? ref.read(coinsProvider(user.id).notifier).fetchCoins

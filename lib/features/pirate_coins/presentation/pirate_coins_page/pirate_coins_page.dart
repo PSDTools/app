@@ -26,7 +26,7 @@ class PirateCoinsPage extends ConsumerWidget {
       pirateAuthProvider.select((value) => value),
     );
 
-    final child = user.asData?.value.accountType == AccountType.student
+    final child = user.asData?.value.user?.accountType == AccountType.student
         ? const _StudentView()
         : const _TeacherView();
 
@@ -73,7 +73,7 @@ class _StudentView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final student = ref.watch(
-      pirateAuthProvider.select((value) => value.asData?.value.id),
+      pirateAuthProvider.select((value) => value.asData?.value.user?.id),
     );
 
     return Column(

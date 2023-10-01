@@ -12,7 +12,7 @@ part "auth_domain.g.dart";
 @Riverpod(keepAlive: true)
 class PirateAuth extends _$PirateAuth {
   @override
-  FutureOr<PirateUser> build() async {
+  FutureOr<PirateAuthModel> build() async {
     return _createSession(anonymous: true);
   }
 
@@ -21,9 +21,13 @@ class PirateAuth extends _$PirateAuth {
     state = await AsyncValue.guard(_createSession);
   }
 
-  Future<PirateUser> _createSession({bool anonymous = false}) async {
+  Future<PirateAuthModel> _createSession({bool anonymous = false}) async {
     final auth = ref.watch(authProvider);
-    return auth.authenticate(anonymous: anonymous);
+    final account = await auth.authenticate(anonymous: anonymous);
+
+    return PirateAuthModel(
+      user: account,
+    );
   }
 
   /// Create a new anonymous session for the user.

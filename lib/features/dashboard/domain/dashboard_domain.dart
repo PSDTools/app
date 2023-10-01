@@ -10,9 +10,20 @@ import "dashboard_model.dart";
 
 part "dashboard_domain.g.dart";
 
+/// Get the applets list and other such data.
+@riverpod
+class DashboardDomain extends _$DashboardDomain {
+  @override
+  DashboardModel build() {
+    final applets = ref.watch(_appletsProvider);
+
+    return DashboardModel(applets: applets);
+  }
+}
+
 /// Get the list of applets.
 @riverpod
-List<Applet> applets(AppletsRef ref) {
+List<Applet> _applets(_AppletsRef ref) {
   // Add more buttons here
   // Ideas:
   //

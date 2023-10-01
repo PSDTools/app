@@ -80,9 +80,13 @@ class _ExpandedWrapper extends ConsumerWidget {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(account.asData?.value.name ?? "Pirate Coins"),
-              accountEmail: Text(account.asData?.value.email ?? ""),
-              currentAccountPicture: switch (account.asData?.value) {
+              accountName: Text(
+                account.asData?.value.user?.name ?? "Pirate Coins User",
+              ),
+              accountEmail: Text(
+                account.asData?.value.user?.email ?? "redacted@example.com",
+              ),
+              currentAccountPicture: switch (account.asData?.value.user) {
                 PirateUser(:final avatar) => CircleAvatar(
                     backgroundImage: MemoryImage(avatar),
                   ),
