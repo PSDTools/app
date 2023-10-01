@@ -11,6 +11,9 @@ part "device_domain.g.dart";
 /// Get the [currentPlatform]'s information.
 @riverpod
 Future<DeviceData> deviceInfo(DeviceInfoRef ref) async {
-  return await ref
-      .watch(deviceUtilsProvider.select((value) => value.deviceInfo()));
+  final deviceInfo = ref.watch(
+    deviceUtilsProvider.select((value) => value.deviceInfo),
+  );
+
+  return deviceInfo();
 }

@@ -19,8 +19,9 @@ class Coins extends _$Coins {
 
   /// Get the coins of a user.
   Future<CoinsModel> fetchCoins() async {
-    final getCoins =
-        ref.watch(coinsDataProvider.select((value) => value.coinsData));
+    final getCoins = ref.watch(
+      coinsDataProvider.select((value) => value.coinsData),
+    );
     final coins = await getCoins(user);
 
     return CoinsModel(coins: coins);
@@ -28,8 +29,9 @@ class Coins extends _$Coins {
 
   /// Add coins to the database.
   Future<CoinsModel> _updateCoins(int num) async {
-    final updateCoins =
-        ref.watch(coinsDataProvider.select((value) => value.updateCoins));
+    final updateCoins = ref.watch(
+      coinsDataProvider.select((value) => value.updateCoins),
+    );
 
     final currentCoins = await fetchCoins();
     final coins =
@@ -54,8 +56,9 @@ class Coins extends _$Coins {
 /// Get the coins of the current user.
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
-  final user =
-      ref.watch(pirateAuthProvider.select((value) => value.asData?.value));
+  final user = ref.watch(
+    pirateAuthProvider.select((value) => value.asData?.value),
+  );
   final fetchCoins = (user != null)
       ? ref.read(coinsProvider(user.id).notifier).fetchCoins
       : null;

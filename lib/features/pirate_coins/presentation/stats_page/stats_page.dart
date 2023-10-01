@@ -18,8 +18,9 @@ class StatsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user =
-        ref.watch(pirateAuthProvider.select((value) => value.asData?.value));
+    final user = ref.watch(
+      pirateAuthProvider.select((value) => value.asData?.value),
+    );
     final data = (user != null) ? ref.watch(coinsProvider(user.id)) : null;
     final l10n = context.l10n;
 

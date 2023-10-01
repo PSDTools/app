@@ -23,9 +23,7 @@ class PirateCoinsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(
-      pirateAuthProvider.select(
-        (value) => value,
-      ),
+      pirateAuthProvider.select((value) => value),
     );
 
     final child = user.asData?.value.accountType == AccountType.student
@@ -74,8 +72,9 @@ class _StudentView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final student =
-        ref.watch(pirateAuthProvider.select((value) => value.asData?.value.id));
+    final student = ref.watch(
+      pirateAuthProvider.select((value) => value.asData?.value.id),
+    );
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -231,8 +230,9 @@ class _ViewCoins extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final data =
-        ref.watch(coinsProvider(student ?? 0).select((value) => value));
+    final data = ref.watch(
+      coinsProvider(student ?? 0).select((value) => value),
+    );
 
     return Padding(
       padding: const EdgeInsets.all(8),
