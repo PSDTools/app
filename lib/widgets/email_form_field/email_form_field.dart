@@ -19,7 +19,10 @@ class EmailFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       // The validator receives the text that the user has entered.
-      validator: (value) => null,
+      validator: (value) {
+        // TODO(lishaduck): Validate this string is a valid email.
+        return null;
+      },
       controller: _controller,
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,

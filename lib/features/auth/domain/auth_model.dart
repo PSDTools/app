@@ -60,6 +60,7 @@ enum AccountType {
   dev;
 
   /// Convert a [String] into an [AccountType].
+  // TODO(lishaduck): Use Appwrite roles once they're properly hooked up.
   factory AccountType.fromEmail(String email) {
     return email.endsWith("@student.psdr3.org")
         ? AccountType.student
