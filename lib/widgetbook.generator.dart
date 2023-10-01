@@ -10,22 +10,6 @@ import "app/app.dart" show flutterLocale;
 import "l10n/app_localizations.dart";
 import "utils/design.dart" show scheme;
 import "widgetbook.generator.directories.g.dart";
-import "widgets/big_card/big_card.dart";
-
-/// A use-case for a big card.
-@UseCase(name: "name", type: BigCard)
-Widget bigCardUseCase(BuildContext context) {
-  return Column(
-    children: [
-      BigCard(
-        context.knobs.string(
-          label: "What the text says.",
-          initialValue: "This is a big card!",
-        ),
-      ),
-    ],
-  );
-}
 
 void main() {
   runApp(const ProviderScope(child: WidgetbookApp()));
