@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: recursive
@@ -43,14 +43,23 @@ jobs:
         with:
           channel: "stable"
           cache: true
-      - name: 🌐 Disable Telemetry
+      - name: 🌐 Disable telemetry
         run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: ⚙️ Cache `.dart_tool`
+      - name: ⚙️ Cache generated files
         uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
         with:
-          path: ".dart_tool/"
+          path: |
+            .dart_tool/
+            lib/gen/*.gen.dart
+            lib/**/*.g.dart
+            lib/**/*.gr.dart
+            lib/**/*.gm.dart
+            lib/**/*.freezed.dart
+            lib/l10n/app_localizations.dart
+            lib/l10n/app_localizations_*.dart
+            lib/widgetbook.generator.*.dart
           key: ${{ runner.os }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
@@ -107,7 +116,7 @@ jobs:
           #   flutter-flags: --debug --no-tree-shake-icons
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: recursive
@@ -119,7 +128,7 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable Telemetry
+      - name: 🌐 Disable telemetry
         run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
@@ -128,7 +137,7 @@ jobs:
         with:
           name: generated-files
           path: lib
-      - name: 🔌 Generate Dart Defines
+      - name: 🔌 Generate dart-defines
         run: dart run dart_define generate
       - name: 🔧 Build
         run: |
@@ -151,7 +160,7 @@ jobs:
         flutter: ["stable"]
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: recursive
@@ -163,7 +172,7 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable Telemetry
+      - name: 🌐 Disable telemetry
         run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
@@ -172,7 +181,7 @@ jobs:
         with:
           name: generated-files
           path: lib
-      - name: 🔌 Generate Dart Defines
+      - name: 🔌 Generate dart-defines
         run: dart run dart_define generate
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
@@ -190,7 +199,7 @@ jobs:
         flutter: ["stable"]
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: recursive
@@ -202,7 +211,7 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable Telemetry
+      - name: 🌐 Disable telemetry
         run: flutter --disable-telemetry
       - name: 📦 Install dependencies
         run: flutter pub get
@@ -211,11 +220,11 @@ jobs:
         with:
           name: generated-files
           path: lib
-      - name: 🔌 Generate Dart Defines
+      - name: 🔌 Generate dart-defines
         run: dart run dart_define generate
       - name: 🧪 Run tests
         run: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
-      - name: 📊 Check Code Coverage
+      - name: 📊 Check code coverage
         uses: VeryGoodOpenSource/very_good_coverage@e5c91bc7ce9843e87c800b3bcafdfb86fbe28491 # v2.1.0
         with:
           path: coverage/lcov.info
@@ -233,7 +242,7 @@ jobs:
         flutter: ["stable"]
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: recursive
@@ -245,7 +254,7 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable Telemetry
+      - name: 🌐 Disable telemetry
         run: flutter --disable-telemetry
       - name: ✨ Verify formatting
         run: dart format --output=none --set-exit-if-changed .

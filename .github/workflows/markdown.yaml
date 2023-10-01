@@ -24,12 +24,12 @@ on:
 env:
   CI: true
 
-permissions: # added using https://github.com/step-security/secure-repo
+permissions:
   contents: read
 
 jobs:
   spell-check:
-    name: Check Spelling
+    name: Check spelling
     needs: []
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@b7d3a7d287a7ed1f996861a73d69eafdfd7ed60e # v1.14.0
 
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🪄 Link Check
+      - name: 🪄 Link check
         uses: gaurav-nelson/github-action-markdown-link-check@d53a906aa6b22b8979d33bc86170567e619495ec # 1.0.15
         with:
           use-quiet-mode: "yes"
@@ -64,11 +64,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📚 Git Checkout
+      - name: 📚 Git checkout
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
         with:
           submodules: true
-      - name: 🪄 Markdown Linting
+      - name: 🪄 Markdown linting
         uses: DavidAnson/markdownlint-cli2-action@ed4dec634fd2ef689c7061d5647371d8248064f1 # v13.0.0
         id: markdownlint
         with:
@@ -76,7 +76,7 @@ jobs:
           globs: |
             **/*.md
         continue-on-error: true
-      - name: ⚙️ Make PR
+      - name: ⚙️ Create pull request
         uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
         if: ${{ github.event_name == 'pull_request' }}
         with:
