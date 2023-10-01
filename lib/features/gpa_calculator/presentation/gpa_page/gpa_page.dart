@@ -5,9 +5,9 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../../utils/snackbar.dart";
-import "../domain/gpa_domain.dart";
-import "../domain/gpa_model.dart";
+import "../../../../utils/snackbar.dart";
+import "../../domain/gpa_domain.dart";
+import "../../domain/gpa_model.dart";
 
 /// The page located at `/gpa-calculator/`.
 @RoutePage()
