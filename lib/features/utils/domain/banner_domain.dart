@@ -1,4 +1,4 @@
-/// The utils feature's banner domain.
+/// This library contains the utilities feature's development banner's business logic.
 library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";

@@ -1,3 +1,6 @@
+/// This library contains the GPA calculator feature's business logic.
+library;
+
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "gpa_model.dart";

@@ -1,4 +1,4 @@
-/// The pirate_coins feature's data.
+/// This library contains the Pirate Coins feature's data fetchers.
 library;
 
 import "package:appwrite/appwrite.dart";
@@ -77,7 +77,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
   }
 }
 
-/// Get coins data.
+/// Get the coins data.
 @riverpod
 CoinsRepository coinsData(CoinsDataRef ref) {
   final databases = ref.watch(databasesProvider);

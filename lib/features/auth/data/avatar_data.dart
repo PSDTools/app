@@ -1,3 +1,6 @@
+/// This library contains the authentication feature's avatar data fetchers.
+library;
+
 import "dart:typed_data";
 
 import "package:appwrite/appwrite.dart";

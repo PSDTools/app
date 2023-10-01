@@ -1,4 +1,4 @@
-/// The auth feature's domain.
+/// This library contains the authentication feature's business logic.
 library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";

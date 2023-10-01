@@ -1,3 +1,6 @@
+/// This library contains the widget preview.
+library;
+
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:widgetbook/widgetbook.dart";

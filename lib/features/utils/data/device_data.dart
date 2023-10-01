@@ -1,4 +1,4 @@
-/// The utils feature's device data.
+/// This library contains the utilities feature's device data fetchers.
 library;
 
 import "package:device_info_plus/device_info_plus.dart";
@@ -69,7 +69,7 @@ base class _DeviceUtilsRepository implements DeviceRepository {
   }
 }
 
-/// Get information about the [currentPlatform] and build mode.
+/// Get the information about the [currentPlatform] and build mode.
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
   final plugin = ref.watch(_pluginProvider);
@@ -81,7 +81,7 @@ DeviceRepository deviceUtils(DeviceUtilsRef ref) {
 @riverpod
 DeviceInfoPlugin _plugin(_PluginRef _) => DeviceInfoPlugin();
 
-/// Get the current device platform, as an enum.
+/// Get the current device platform as an enum.
 @Riverpod(keepAlive: true)
 Device currentPlatform(CurrentPlatformRef ref) {
   return switch (operatingSystem) {

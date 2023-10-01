@@ -1,4 +1,4 @@
-/// The auth feature.
+/// This library contains the GPA calculator's page.
 library;
 
 import "package:auto_route/auto_route.dart";
@@ -9,7 +9,7 @@ import "../../../utils/snackbar.dart";
 import "../domain/gpa_domain.dart";
 import "../domain/gpa_model.dart";
 
-/// The page located at `/login/`
+/// The page located at `/gpa-calculator/`.
 @RoutePage()
 class GpaPage extends ConsumerStatefulWidget {
   /// Create a new instance of [GpaPage].

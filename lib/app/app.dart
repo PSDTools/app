@@ -1,4 +1,4 @@
-/// The app widget.
+/// This library contains the [App] [Widget].
 ///
 /// Including the app's initiation code.
 library;

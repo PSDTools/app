@@ -1,4 +1,4 @@
-/// The utils feature's device [Model].
+/// This library contains the utilities feature's device [Model].
 library;
 
 import "package:flutter/foundation.dart";
@@ -11,7 +11,7 @@ import "../data/device_data.dart";
 part "device_model.freezed.dart";
 part "device_model.g.dart";
 
-/// Information about the [currentPlatform].
+/// Represent [Model]ed information about the [currentPlatform].
 @freezed
 @immutable
 sealed class DeviceData with _$DeviceData implements Model {
@@ -58,7 +58,7 @@ enum Device {
   /// The iOS platform.
   ios,
 
-  /// Other platforms.
+  /// Other platforms, like Fuchsia.
   other;
 }
 

@@ -1,4 +1,4 @@
-/// The auth feature.
+/// This library contains the authentication feature's login page.
 library;
 
 import "package:auto_route/auto_route.dart";
@@ -9,7 +9,7 @@ import "../../../../app/app_router.dart";
 import "../../../../l10n/l10n.dart";
 import "../../domain/auth_domain.dart";
 
-/// The page located at `/login/`
+/// The page located at `/login/`.
 @RoutePage()
 class AuthPage extends ConsumerWidget {
   /// Create a new instance of [AuthPage].

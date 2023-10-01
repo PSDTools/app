@@ -1,4 +1,4 @@
-/// A library to represent the coins [Model].
+/// This library contains the Pirate Coins feature's representations of coins as [Model]s.
 library;
 
 import "package:flutter/foundation.dart";
@@ -9,7 +9,7 @@ import "../../../utils/models.dart";
 part "coins_model.freezed.dart";
 part "coins_model.g.dart";
 
-/// A model for coins.
+/// Represent the [Model] for coins.
 @freezed
 @immutable
 sealed class CoinsModel with _$CoinsModel implements Model {
@@ -24,7 +24,7 @@ sealed class CoinsModel with _$CoinsModel implements Model {
       _$CoinsModelFromJson(json);
 }
 
-/// A number.
+/// Represent a number.
 @freezed
 @immutable
 sealed class Coin with _$Coin implements Model {
@@ -38,7 +38,7 @@ sealed class Coin with _$Coin implements Model {
   factory Coin.fromJson(Map<String, Object?> json) => _$CoinFromJson(json);
 }
 
-/// An enumeration of the [Stage]s of the coins page.
+/// Represent the [Stage]s of the coins page.
 sealed class Stage {
   /// Create a new [Stage].
   const Stage();

@@ -1,4 +1,4 @@
-/// The auth feature's main presentation.
+/// This library contains the authentication feature's data fetchers.
 library;
 
 import "package:appwrite/appwrite.dart";
@@ -90,7 +90,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
   }
 }
 
-/// Auth data provider
+/// Get the authentication data provider.
 @Riverpod(keepAlive: true)
 AuthRepository auth(AuthRef ref) {
   final account = ref.watch(accountsProvider);

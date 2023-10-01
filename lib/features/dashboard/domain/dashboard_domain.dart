@@ -1,3 +1,6 @@
+/// This library contains the dashboard features's business logic.
+library;
+
 import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -7,7 +10,7 @@ import "dashboard_model.dart";
 
 part "dashboard_domain.g.dart";
 
-/// A list of applets.
+/// Get the list of applets.
 @riverpod
 List<Applet> applets(AppletsRef ref) {
   // Add more buttons here

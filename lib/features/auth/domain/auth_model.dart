@@ -1,4 +1,4 @@
-/// The auth feature's user [Model].
+/// This library contains the authentication feature's user [Model].
 library;
 
 import "package:flutter/foundation.dart";
@@ -10,7 +10,7 @@ import "../../../utils/models.dart";
 part "auth_model.freezed.dart";
 part "auth_model.g.dart";
 
-/// A pirate user.
+/// Represent a pirate user.
 @freezed
 @immutable
 sealed class PirateUser with _$PirateUser implements Model {
@@ -69,7 +69,7 @@ enum AccountType {
   }
 }
 
-/// A model for authentication.
+/// Represent the [Model] for authentication.
 @freezed
 @immutable
 sealed class PirateAuthModel with _$PirateAuthModel implements Model {

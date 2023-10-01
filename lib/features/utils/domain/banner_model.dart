@@ -1,4 +1,4 @@
-/// The dev banner's [Model].
+/// This library contains the utilities feature's development banner's [Model].
 library;
 
 import "package:flutter/foundation.dart";
@@ -11,7 +11,7 @@ import "../../../utils/models.dart";
 part "banner_model.freezed.dart";
 part "banner_model.g.dart";
 
-/// The dev banner's associated configuration.
+/// Represent the development banner's configuration.
 @freezed
 @immutable
 sealed class BannerConfig with _$BannerConfig implements Model {

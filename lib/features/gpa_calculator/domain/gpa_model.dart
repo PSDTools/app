@@ -1,21 +1,24 @@
+/// This library contains the GPA calculator feature's models.
+library;
+
 import "package:freezed_annotation/freezed_annotation.dart";
 
 part "gpa_model.freezed.dart";
 
-/// A course.
+/// Represent a course.
 @freezed
 @immutable
 sealed class Course with _$Course {
   /// Create a new, immutable instance of [Course].
   const factory Course({
-    /// The hour the course takes place.
+    /// The hour that this course takes place.
     required int hour,
-
-    // /// The name of the course.
-    // required String name,
 
     /// The grade of the course.
     required LetterGrade grade,
+
+    /// The name of the course.
+    String? name,
   }) = _Course;
 }
 

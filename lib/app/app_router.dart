@@ -1,4 +1,4 @@
-/// The app's routing.
+/// This library contains the app's routing.
 library;
 
 import "package:auto_route/auto_route.dart";

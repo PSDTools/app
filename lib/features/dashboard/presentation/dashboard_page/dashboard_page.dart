@@ -1,5 +1,5 @@
-/// The auth feature.
-library pirate_code.features.dashboard.page;
+/// This library contains the dashboard feature's main page.
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
@@ -9,7 +9,7 @@ import "../../../pirate_coins/domain/coins_domain.dart";
 import "../../domain/dashboard_domain.dart";
 import "../../domain/dashboard_model.dart";
 
-/// The page located at `/login/`.
+/// The page located at `/`.
 @RoutePage()
 class DashboardPage extends ConsumerWidget {
   /// Create a new instance of [DashboardPage].

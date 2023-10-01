@@ -1,3 +1,6 @@
+/// This library contains utilities for logging.
+library;
+
 import "dart:developer" as developer;
 
 import "package:io/ansi.dart";

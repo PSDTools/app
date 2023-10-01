@@ -1,4 +1,4 @@
-/// The pirate_coins feature's domain.
+/// This library contains the Pirate Coins feature's business logic.
 library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";

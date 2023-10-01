@@ -1,4 +1,4 @@
-/// Extension method for configuring [WidgetTester].
+/// This library contains utilities for configuring a [WidgetTester].
 ///
 /// {@category Testing}
 library;

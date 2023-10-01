@@ -1,4 +1,4 @@
-/// A widget for a...um...big card!
+/// This library contains a widget for a...um...big card!
 library;
 
 import "package:flutter/material.dart";

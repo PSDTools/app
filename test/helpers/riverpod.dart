@@ -1,4 +1,4 @@
-/// Helper functions for testing with Riverpod.
+/// This library contains utilities for testing with Riverpod.
 ///
 /// {@category Testing}
 library;

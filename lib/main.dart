@@ -1,4 +1,5 @@
-/// This is the app.
+/// This library is, well, the app!
+///
 /// {@category Getting Started}
 /// {@category C4Diagram}
 library;

@@ -1,4 +1,4 @@
-/// The utils feature's banner presentation.
+/// This library contains the utilities feature's development banner.
 library;
 
 import "dart:async";

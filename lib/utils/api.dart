@@ -1,4 +1,4 @@
-/// The api utilities.
+/// This library contains utilities for the Appwrite API.
 ///
 /// {@Category Server}
 library;
@@ -13,7 +13,7 @@ import "constants.dart";
 part "api.freezed.dart";
 part "api.g.dart";
 
-/// Get API information via passed in environment variables.
+/// Represent the Appwrite API information.
 @freezed
 @immutable
 sealed class Api with _$Api implements ApiRepository {
@@ -27,7 +27,7 @@ sealed class Api with _$Api implements ApiRepository {
   }) = _Api;
 }
 
-/// The API information.
+/// A repository for API information.
 abstract interface class ApiRepository {
   /// The URL of the Appwrite API.
   String get url;
@@ -45,7 +45,7 @@ abstract interface class ApiRepository {
   bool get isSelfSigned;
 }
 
-/// The Appwrite API information.
+/// The Appwrite API information, gotten via passed in environment variables.
 const ApiRepository apiInfo = Api(
   projectId: DartDefine.projectId,
   url: DartDefine.apiEndpoint,

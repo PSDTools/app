@@ -1,5 +1,7 @@
-/// This file contains the [WrapperPage] widget, which wraps the pages.
-library pirate_code.features.wrapper.presentation.wrapper_page;
+/// This library contains the [WrapperPage] widget, which wraps the pages.
+///
+/// This didn't warrant its own feature, so it gets lumped in here.
+library;
 
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";

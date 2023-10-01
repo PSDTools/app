@@ -1,4 +1,4 @@
-/// The utils feature's device domain.
+/// This library contains the utilities feature's device business logic.
 library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";

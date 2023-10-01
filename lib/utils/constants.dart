@@ -1,4 +1,4 @@
-/// The constants used throughout the app.
+/// This library contains the constants used throughout the app.
 library;
 
 import "package:flutter/foundation.dart";

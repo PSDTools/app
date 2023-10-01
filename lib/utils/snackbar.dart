@@ -1,3 +1,6 @@
+/// This library contains utilities for using snackbars.
+library;
+
 import "package:flutter/material.dart";
 
 /// Extension method for [BuildContext], for showing uniform snackbars.
@@ -8,6 +11,7 @@ extension ShowSnackBar on BuildContext {
   /// context.showSnackBar(
   ///   content: Text("Hello, world!"),
   /// );
+  /// ```
   void showSnackBar({
     required Widget content,
   }) {

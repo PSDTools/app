@@ -1,3 +1,6 @@
+/// This library contains a widget for validating emails in forms.
+library;
+
 import "package:flutter/material.dart";
 
 /// A [TextFormField] that only accepts valid email addresses.

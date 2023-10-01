@@ -1,4 +1,4 @@
-/// The utils feature's dialog presentation.
+/// This library contains the utilities feature's device info dialog.
 library;
 
 import "package:flutter/material.dart";

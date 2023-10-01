@@ -1,3 +1,6 @@
+/// This library contains the design scheme for the application.
+library;
+
 import "package:flutter/material.dart";
 
 /// The app's color scheme.

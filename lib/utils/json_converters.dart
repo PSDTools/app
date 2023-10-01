@@ -1,3 +1,6 @@
+/// This library contains utilities for serializing dart values to JSON [Map]s.
+library;
+
 import "dart:typed_data";
 
 import "package:flutter/material.dart";

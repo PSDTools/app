@@ -1,4 +1,4 @@
-/// The Pirate Coins feature's statistic presentation.
+/// This library contains the Pirate Coins feature's statistics page.
 library;
 
 import "package:auto_route/auto_route.dart";

@@ -1,4 +1,4 @@
-/// The Pirate Coins feature's main presentation.
+/// This library contains the Pirate Coins feature's main page.
 library;
 
 import "package:auto_route/auto_route.dart";
