@@ -23,7 +23,7 @@ class DeviceInfoDialog extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         color: buildMode.color,
         child: Text(
-          "Device Info",
+          "Device Information",
           style: theme.textTheme.titleMedium,
         ),
       ),
@@ -112,7 +112,7 @@ class _View extends StatelessWidget {
     final platformView = switch (value.device) {
       Device.android => androidView(value),
       Device.ios => iosView(value),
-      Device.other => otherView(value),
+      _ => otherView(value),
     };
 
     return ListView(

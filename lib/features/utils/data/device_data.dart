@@ -59,7 +59,7 @@ base class _DeviceUtilsRepository implements DeviceRepository {
 
         return info;
 
-      case Device.other:
+      case _:
         return DeviceData(
           device: _platform,
           isPhysicalDevice: false,
@@ -72,14 +72,11 @@ base class _DeviceUtilsRepository implements DeviceRepository {
 /// Get the information about the [currentPlatform] and build mode.
 @riverpod
 DeviceRepository deviceUtils(DeviceUtilsRef ref) {
-  final plugin = ref.watch(_pluginProvider);
   final device = ref.watch(currentPlatformProvider);
+  final plugin = DeviceInfoPlugin();
 
   return _DeviceUtilsRepository(plugin: plugin, platform: device);
 }
-
-@riverpod
-DeviceInfoPlugin _plugin(_PluginRef _) => DeviceInfoPlugin();
 
 /// Get the current device platform as an enum.
 @Riverpod(keepAlive: true)

@@ -58,6 +58,18 @@ enum Device {
   /// The iOS platform.
   ios,
 
+  /// Browsers.
+  web,
+
+  /// Linux/UNIX/POSIX platforms.
+  linux,
+
+  /// The OS X, etc. platform.
+  macos,
+
+  /// The windows platform.
+  windows,
+
   /// Other platforms, like Fuchsia.
   other;
 }

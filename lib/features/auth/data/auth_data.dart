@@ -63,7 +63,11 @@ base class _AppwriteAuthRepository implements AuthRepository {
               await _account.createOAuth2Session(
                 provider: "google",
               );
-            // TODO(ParkerH27): The web needs different behavior than that of linux/mac/windows.
+            // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows.
+            case Device.web:
+            case Device.linux:
+            case Device.macos:
+            case Device.windows:
             case Device.other:
               await _account.createOAuth2Session(
                 provider: "google",
