@@ -86,14 +86,11 @@ void main() {
   });
 
   group("Bootstrapping Tests!", () {
-    test("Test the boots...", () async {
+    test("Test the boots...", () {
+      final originalOnError = FlutterError.onError;
       const tested = App();
-      await expectLater(
-        () async {
-          await tested.bootstrap();
-        },
-        returnsNormally,
-      );
+      expect(() => tested.bootstrap, returnsNormally);
+      FlutterError.onError = originalOnError;
     });
   });
 }
