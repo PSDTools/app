@@ -88,7 +88,7 @@ class _ExpandedWrapper extends ConsumerWidget {
                 name ?? "Pirate Coins User",
               ),
               accountEmail: Text(
-                email ?? "redacted@example.com",
+                email ?? redactedEmail,
               ),
               currentAccountPicture: switch (avatar) {
                 Uint8List() => CircleAvatar(

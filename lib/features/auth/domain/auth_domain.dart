@@ -43,3 +43,6 @@ class PirateAuth extends _$PirateAuth {
 PirateUser? user(UserRef ref) => ref.watch(
       pirateAuthProvider.select((value) => value.asData?.value.user),
     );
+
+/// The email address used in case things go wrong.
+const redactedEmail = "redacted@example.com";

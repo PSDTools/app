@@ -7,6 +7,7 @@ import "dart:typed_data";
 
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/features/auth/data/auth_data.dart";
+import "package:pirate_code/features/auth/domain/auth_domain.dart";
 import "package:pirate_code/features/auth/domain/auth_model.dart";
 
 final List<Override> defaultOverrides = [
@@ -30,7 +31,7 @@ base class _MockAuthRepository implements AuthRepository {
   Future<PirateUser> authenticate({required bool anonymous}) => Future.value(
         PirateUser(
           name: "Mock User",
-          email: "redacted@example.com",
+          email: redactedEmail,
           accountType: AccountType.student,
           avatar: Uint8List(0),
         ),
