@@ -59,7 +59,7 @@ class App extends StatelessWidget {
     // Don't use hash style routes.
     usePathUrlStrategy();
 
-    // The app's container.
+    // This is the app's container.
     final container = ProviderContainer(
       observers: [
         const ProviderLogger(),
@@ -68,14 +68,14 @@ class App extends StatelessWidget {
 
     setAppRouter(container);
 
-    // Reset notification bar on android
+    // Reset notification bar on Android.
     WidgetsFlutterBinding.ensureInitialized();
     await SystemChrome.setEnabledSystemUIMode(
       SystemUiMode.manual,
       overlays: [SystemUiOverlay.bottom, SystemUiOverlay.top],
     );
 
-    // Run the App, using riverpod
+    // Run the App using Riverpod.
     runApp(
       UncontrolledProviderScope(
         container: container,
