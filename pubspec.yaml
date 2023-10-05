@@ -34,7 +34,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   appwrite: ^11.0.0
-  auto_route: ^7.8.3
+  auto_route: ^7.8.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6 # Only required if you use Cupertino (iOS style) icons
@@ -59,7 +59,7 @@ dependencies:
   widgetbook_annotation: ^3.0.0
 
 dev_dependencies:
-  auto_route_generator: ^7.3.1
+  auto_route_generator: ^7.3.2
   build_runner: ^2.4.6
   build_web_compilers: ^4.0.5
   custom_lint: ^0.5.3
