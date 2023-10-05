@@ -44,6 +44,13 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
               page: PirateCoinsRoute.page,
               path: "pirate-coins",
+              children: [
+                AutoRoute(
+                  page: StatsRoute.page,
+                  path: "stats",
+                  title: (context, route) => "Stats",
+                ),
+              ],
               title: (context, route) => "Pirate Coins",
             ),
             AutoRoute(
@@ -51,12 +58,6 @@ class AppRouter extends _$AppRouter {
               path: "",
               title: (context, route) => "Dashboard",
               initial: true,
-            ),
-            // TODO(lishaduck): move this to `/pirate-coins/stats`.
-            AutoRoute(
-              page: StatsRoute.page,
-              path: "stats",
-              title: (context, route) => "Stats",
             ),
             AutoRoute(
               page: GpaRoute.page,
