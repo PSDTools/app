@@ -115,5 +115,6 @@
         "chore"
       ]
     ]
-  }
+  },
+  "github-actions.workflows.pinned.workflows": [".github/workflows/dart.yaml"]
 }
