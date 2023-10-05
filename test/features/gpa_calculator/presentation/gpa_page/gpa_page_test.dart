@@ -1,33 +1,33 @@
 import "package:flutter_test/flutter_test.dart";
-import "package:pirate_code/features/utils/presentation/device_info/device_info_dialog.dart";
+import "package:pirate_code/features/gpa_calculator/presentation/gpa_page/gpa_page.dart";
 
-import "../../../helpers/pump_app.dart";
+import "../../../../helpers/pump_app.dart";
 
 void main() {
-  group("Device info dialog is accessible...", () {
+  group("GPA Calculator page is accessible...", () {
     testWidgets("On Android.", (tester) async {
-      await tester.pumpApp(const DeviceInfoDialog());
+      await tester.pumpApp(const GpaPage());
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
       handle.dispose();
     });
     testWidgets("On iOS.", (tester) async {
-      await tester.pumpApp(const DeviceInfoDialog());
+      await tester.pumpApp(const GpaPage());
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
       handle.dispose();
     });
     testWidgets("According to the WCAG.", (tester) async {
-      await tester.pumpApp(const DeviceInfoDialog());
+      await tester.pumpApp(const GpaPage());
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
       handle.dispose();
     });
     testWidgets("With regards to labeling buttons.", (tester) async {
-      await tester.pumpApp(const DeviceInfoDialog());
+      await tester.pumpApp(const GpaPage());
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
