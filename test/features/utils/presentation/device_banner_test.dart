@@ -6,28 +6,28 @@ import "../../../helpers/pump_app.dart";
 
 void main() {
   group("Device Banner is accessible...", () {
-    testWidgets("On Android.", (tester) async {
+    testWidgets("on Android.", (tester) async {
       await tester.pumpApp(const DeviceBanner(child: Text("")));
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
       handle.dispose();
     });
-    testWidgets("On iOS.", (tester) async {
+    testWidgets("on iOS.", (tester) async {
       await tester.pumpApp(const DeviceBanner(child: Text("")));
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
       handle.dispose();
     });
-    testWidgets("According to the WCAG.", (tester) async {
+    testWidgets("according to the WCAG.", (tester) async {
       await tester.pumpApp(const DeviceBanner(child: Text("")));
 
       final handle = tester.ensureSemantics();
       await expectLater(tester, meetsGuideline(textContrastGuideline));
       handle.dispose();
     });
-    testWidgets("With regards to labeling buttons.", (tester) async {
+    testWidgets("with regard to labeling buttons.", (tester) async {
       await tester.pumpApp(const DeviceBanner(child: Text("")));
 
       final handle = tester.ensureSemantics();
