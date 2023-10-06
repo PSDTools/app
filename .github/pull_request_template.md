@@ -11,7 +11,7 @@
 This PR...
 
 > Which issue does this close?
-> If none, write up a more detailed issue real quick so any non-development-related discussion can go there.
+> If none, quickly write up a more detailed issue so any non-development-related discussion can go there.
 
 _**Closes:** #issue_
 
