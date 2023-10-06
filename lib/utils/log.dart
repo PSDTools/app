@@ -41,13 +41,11 @@ Future<void> initLogging([Level level = Level.INFO]) async {
 
     developer.log(
       "$prefix: ${record.message}",
-      error: record.error,
+      error: record.error.toString(),
       stackTrace: record.stackTrace,
       level: record.level.value,
       time: record.time,
       name: record.loggerName,
-      sequenceNumber: record.sequenceNumber,
-      zone: record.zone,
     );
   });
   Logger.root.onLevelChanged.listen((level) {
