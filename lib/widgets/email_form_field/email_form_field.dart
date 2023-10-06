@@ -3,6 +3,8 @@ library;
 
 import "package:flutter/material.dart";
 
+import "../../l10n/l10n.dart";
+
 /// A [TextFormField] that only accepts valid email addresses.
 class EmailFormField extends StatelessWidget {
   /// Create a new [EmailFormField].
@@ -15,9 +17,21 @@ class EmailFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return TextFormField(
       // The validator receives the text that the user has entered.
-      validator: validate,
+      validator: (value) => validate(
+        value,
+        emptyText: l10n.empty,
+        missingAtSymbolText: l10n.missingAtSymbol,
+        missingBeforeAtSymbolText: l10n.missingBeforeAtSymbol,
+        missingAfterAtSymbolText: l10n.missingAfterAtSymbol,
+        tooManyAtSymbolsText: l10n.tooManyAtSymbols,
+        containsSpacesText: l10n.containsSpaces,
+        topLevelDomainText: l10n.topLevelDomain,
+        exampleEmailText: l10n.exampleEmail,
+      ),
       controller: _controller,
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
@@ -38,8 +52,17 @@ class EmailFormField extends StatelessWidget {
 /// - If it is invalid, return a string describing the error.
 ///
 /// This is used by the [EmailFormField] widget.
-// TODO(lishaduck): Add tests.
-String? validate(String? value) {
+String? validate(
+  String? value, {
+  String emptyText = "",
+  String missingAtSymbolText = "",
+  String missingBeforeAtSymbolText = "",
+  String missingAfterAtSymbolText = "",
+  String tooManyAtSymbolsText = "",
+  String containsSpacesText = "",
+  String topLevelDomainText = "",
+  String exampleEmailText = "",
+}) {
   /*
     I'll probably need a regex for this.
     If so, would it be best to use the regex for all validation?
@@ -47,22 +70,24 @@ String? validate(String? value) {
     It'd also be more difficult to maintain, but might be faster to run the validations just once.
   */
   if (value == null || value.isEmpty) {
-    return "Please enter your email address.";
+    return emptyText;
   } else if (!value.contains("@")) {
-    return "It looks like your email address is missing an '@' symbol.";
+    return missingAtSymbolText;
   } else if (!(value.substring(0, value.indexOf("@")).length > 1)) {
-    return "It looks like your email address is missing content before the '@' symbol.";
+    return missingBeforeAtSymbolText;
   } else if (!(value.substring(value.indexOf("@")).length > 1)) {
-    return "It looks like your email address is missing content after the '@' symbol.";
+    return missingAfterAtSymbolText;
   } else if (value.contains("@") &&
       value.contains("@", value.indexOf("@") + 1)) {
-    return "It looks like there are too many '@' symbols in your email address.";
+    return tooManyAtSymbolsText;
   } else if (value.contains(" ")) {
-    return "It looks like there are spaces in your email address.";
+    return containsSpacesText;
+  } else if (!value.substring(value.indexOf("@")).contains(".")) {
+    return topLevelDomainText;
   } else if (value.contains("example.com") ||
       value.contains("example@") ||
       value.contains("@example.org")) {
-    return "It looks like you're using an example email address. Please enter your real email address.";
+    return exampleEmailText;
   } else {
     return null;
   }
