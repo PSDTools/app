@@ -86,7 +86,9 @@ String? validate(
     return topLevelDomainText;
   } else if (value.contains("example.com") ||
       value.contains("example@") ||
-      value.contains("@example.org")) {
+      value.contains("@example.org") ||
+      value.contains("name@") ||
+      value.contains("person@")) {
     return exampleEmailText;
   } else {
     return null;

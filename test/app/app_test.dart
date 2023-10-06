@@ -71,21 +71,23 @@ void main() {
     });
   });
 
-  group("Bootstrapping Tests!", () {
-    late final void Function(FlutterErrorDetails)? originalOnError;
+  group("Bootstrapping...", () {
+    group("completes successfully:", () {
+      late void Function(FlutterErrorDetails)? originalOnError;
+      late App tested;
 
-    setUp(() {
-      originalOnError = FlutterError.onError;
-    });
+      setUp(() {
+        originalOnError = FlutterError.onError;
+        tested = const App();
+      });
 
-    test("Test them boots...", () {
-      const tested = App();
+      test("Test them boots...", () {
+        expect(() => tested.bootstrap, returnsNormally);
+      });
 
-      expect(() => tested.bootstrap, returnsNormally);
-    });
-
-    tearDown(() {
-      FlutterError.onError = originalOnError;
+      tearDown(() {
+        FlutterError.onError = originalOnError;
+      });
     });
   });
 }
