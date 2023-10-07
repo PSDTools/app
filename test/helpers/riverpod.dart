@@ -18,14 +18,6 @@ final List<Override> _mockOverrides = [
   authProvider.overrideWithValue(_MockAuthRepository()),
 ];
 
-ProviderContainer createContainer(List<Override> overrides) =>
-    ProviderContainer(
-      overrides: [
-        ...overrides,
-        ...defaultOverrides,
-      ],
-    );
-
 base class _MockAuthRepository implements AuthRepository {
   @override
   Future<PirateUser> authenticate({required bool anonymous}) => Future.value(

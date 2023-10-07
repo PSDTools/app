@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
-import "package:pirate_code/app/app_router.dart";
 
 import "../helpers/riverpod.dart";
 
@@ -10,12 +9,9 @@ void main() {
   group("App...", () {
     group("renders...", () {
       testWidgets("a Material app.", (tester) async {
-        final container = ProviderContainer(overrides: defaultOverrides);
-        setAppRouter(container);
-
         await tester.pumpWidget(
-          UncontrolledProviderScope(
-            container: container,
+          ProviderScope(
+            overrides: defaultOverrides,
             child: const App(),
           ),
         );
@@ -25,12 +21,9 @@ void main() {
 
     group("is accessible...", () {
       testWidgets("on Android.", (tester) async {
-        final container = ProviderContainer(overrides: defaultOverrides);
-        setAppRouter(container);
-
         await tester.pumpWidget(
-          UncontrolledProviderScope(
-            container: container,
+          ProviderScope(
+            overrides: defaultOverrides,
             child: const App(),
           ),
         );
@@ -40,12 +33,9 @@ void main() {
         handle.dispose();
       });
       testWidgets("on iOS.", (tester) async {
-        final container = ProviderContainer(overrides: defaultOverrides);
-        setAppRouter(container);
-
         await tester.pumpWidget(
-          UncontrolledProviderScope(
-            container: container,
+          ProviderScope(
+            overrides: defaultOverrides,
             child: const App(),
           ),
         );
@@ -55,12 +45,9 @@ void main() {
         handle.dispose();
       });
       testWidgets("according to the WCAG.", (tester) async {
-        final container = ProviderContainer(overrides: defaultOverrides);
-        setAppRouter(container);
-
         await tester.pumpWidget(
-          UncontrolledProviderScope(
-            container: container,
+          ProviderScope(
+            overrides: defaultOverrides,
             child: const App(),
           ),
         );
@@ -70,12 +57,9 @@ void main() {
         handle.dispose();
       });
       testWidgets("with regard to labeling buttons.", (tester) async {
-        final container = ProviderContainer(overrides: defaultOverrides);
-        setAppRouter(container);
-
         await tester.pumpWidget(
-          UncontrolledProviderScope(
-            container: container,
+          ProviderScope(
+            overrides: defaultOverrides,
             child: const App(),
           ),
         );
@@ -88,10 +72,19 @@ void main() {
   });
 
   group("Bootstrapping Tests!", () {
+    late final void Function(FlutterErrorDetails)? originalOnError;
+
+    setUp(() {
+      originalOnError = FlutterError.onError;
+    });
+
     test("Test them boots...", () {
-      final originalOnError = FlutterError.onError;
       const tested = App();
+
       expect(() => tested.bootstrap, returnsNormally);
+    });
+
+    tearDown(() {
       FlutterError.onError = originalOnError;
     });
   });
