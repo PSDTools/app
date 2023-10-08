@@ -59,13 +59,6 @@ class App extends ConsumerWidget {
     // Don't use hash style routes.
     usePathUrlStrategy();
 
-    // This is the app's container.
-    final container = ProviderContainer(
-      observers: [
-        const ProviderLogger(),
-      ],
-    );
-
     // Reset notification bar on Android.
     WidgetsFlutterBinding.ensureInitialized();
     await SystemChrome.setEnabledSystemUIMode(
@@ -75,8 +68,10 @@ class App extends ConsumerWidget {
 
     // Run the App using Riverpod.
     runApp(
-      UncontrolledProviderScope(
-        container: container,
+      ProviderScope(
+        observers: const [
+          ProviderLogger(),
+        ],
         child: this,
       ),
     );
