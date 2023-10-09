@@ -24,18 +24,17 @@ class DeviceBanner extends ConsumerWidget {
   final BannerConfig? bannerConfig;
 
   /// The content under the banner.
-  final Widget? child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final defaultBanner = ref.watch(defaultBannerProvider);
-    final defaultChild = child ?? const Text("");
 
-    if (buildMode.isRelease) return defaultChild;
+    if (buildMode.isRelease) return child;
 
     return Stack(
       children: [
-        defaultChild,
+        child,
         _BuildBanner(
           bannerConfig: bannerConfig ?? defaultBanner,
         ),
