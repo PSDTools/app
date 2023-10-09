@@ -24,6 +24,35 @@
     "type": "text",
     "description": "The text which is displayed when there is no report data to show."
   },
+  "empty": "Please enter your email address.",
+  "@empty": {
+    "description": "The text which is displayed when you haven't given a valid email address because it's empty."
+  },
+  "missingAtSymbol": "It looks like your email address is missing an '@' symbol.",
+  "@missingAtSymbol": {
+    "description": "The text which is displayed when you haven't given a valid email because there isn't an '@' symbol."
+  },
+  "missingBeforeAtSymbol": "It looks like your email address is missing content before the '@' symbol.",
+  "@missingBeforeAtSymbol": {
+    "description": "The text which is displayed when you haven't given a valid email because there isn't any content before the '@' symbol."
+  },
+  "missingAfterAtSymbol": "It looks like your email address is missing content after the '@' symbol.",
+  "@missingAfterAtSymbol": {
+    "description": "The text which is displayed when you haven't given a valid email because there isn't any content after the '@' symbol."
+  },
+  "tooManyAtSymbols": "It looks like your email address has too many '@' symbols.",
+  "@tooManyAtSymbols": {
+    "description": "The text which is displayed when you haven't given a valid email because there are too many '@' symbols."
+  },
+  "containsSpaces": "It looks like your email address contains spaces.",
+  "@containsSpaces": {
+    "description": "The text which is displayed when you haven't given a valid email because there are spaces."
+  },
+  "topLevelDomain": "It looks like your email address is missing a top level domain.",
+  "exampleEmail": "It looks like you're using an example email address. Please enter your real email address.",
+  "@exampleEmail": {
+    "description": "The text which is displayed when you haven't given a valid email because it's an example email."
+  },
   "error": "Error: {error}",
   "@error": {
     "type": "text",

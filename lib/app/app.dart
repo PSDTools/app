@@ -13,22 +13,22 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../l10n/l10n.dart";
 import "../../utils/log.dart";
 import "../utils/design.dart";
-import "app_router.dart";
+import "../utils/router.dart";
 
 /// The default locale for the app.
 const flutterLocale = Locale("en", "US");
 
 /// The app widget, with bootstrapping capabilities.
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   /// Create a new instance of [App].
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return _MainArea(
       child: MaterialApp.router(
-        routerConfig: appRouter?.config(),
+        routerConfig: ref.read(routerProvider).config(),
         onGenerateTitle: (context) => context.l10n.appTitle,
         theme: theme,
         locale: flutterLocale,
@@ -59,15 +59,6 @@ class App extends StatelessWidget {
     // Don't use hash style routes.
     usePathUrlStrategy();
 
-    // This is the app's container.
-    final container = ProviderContainer(
-      observers: [
-        const ProviderLogger(),
-      ],
-    );
-
-    setAppRouter(container);
-
     // Reset notification bar on Android.
     WidgetsFlutterBinding.ensureInitialized();
     await SystemChrome.setEnabledSystemUIMode(
@@ -77,8 +68,10 @@ class App extends StatelessWidget {
 
     // Run the App using Riverpod.
     runApp(
-      UncontrolledProviderScope(
-        container: container,
+      ProviderScope(
+        observers: const [
+          ProviderLogger(),
+        ],
         child: this,
       ),
     );

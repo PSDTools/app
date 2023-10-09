@@ -18,10 +18,10 @@ part "app_router.gr.dart";
 @AutoRouterConfig(replaceInRouteName: "Page,Route")
 class AppRouter extends _$AppRouter {
   /// Create a new instance of [AppRouter].
-  AppRouter({required this.container});
+  AppRouter({required this.ref});
 
-  /// Gain access to the providers.
-  ProviderContainer container;
+  /// Gain access to the needed providers.
+  Ref<AppRouter> ref;
 
   @override
   RouteType get defaultRouteType => const RouteType.material();
@@ -34,7 +34,7 @@ class AppRouter extends _$AppRouter {
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
-                final authState = container.read(userProvider);
+                final authState = ref.read(userProvider);
 
                 return (authState != null) ? null : const AuthRoute();
               },
@@ -75,13 +75,3 @@ class AppRouter extends _$AppRouter {
         RedirectRoute(path: "/*", redirectTo: "/"),
       ];
 }
-
-// Make sure you don't initiate your router inside of the build function.
-AppRouter? _appRouter;
-
-/// The app's router.
-AppRouter? get appRouter => _appRouter;
-
-/// Create the app router.
-void setAppRouter(ProviderContainer container) =>
-    _appRouter ??= AppRouter(container: container);
