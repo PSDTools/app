@@ -71,7 +71,7 @@ dev_dependencies:
   flutter_native_splash: ^2.3.3
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
-  freezed: ^2.4.3
+  freezed: ^2.4.4
   # integration_test:
   #   sdk: flutter
   freezed_lint: ^0.0.1-dev+1
