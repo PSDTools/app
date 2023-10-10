@@ -16,9 +16,9 @@ sealed class BannerConfig with _$BannerConfig {
   /// Create a new, immutable instance of [BannerConfig].
   const factory BannerConfig({
     /// The name to display on the banner.
-    required String bannerName,
+    required String name,
 
     /// The color of the banner.
-    required Color bannerColor,
+    required Color color,
   }) = _BannerConfig;
 }

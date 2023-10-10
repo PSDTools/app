@@ -137,18 +137,18 @@ class _AppletButton extends ConsumerWidget {
       location: destination,
     ) = buttonData;
 
-    return GestureDetector(
-      onTap: () async {
-        ref.read(currentStageProvider.notifier).reset();
-        // Handle button tap here to navigate to the specified destination.
-        await context.router.pushNamed(destination);
-      },
-      child: Card(
-        color: backgroundColor,
-        elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(35),
-        ),
+    return Card(
+      color: backgroundColor,
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(35),
+      ),
+      child: InkWell(
+        onTap: () async {
+          ref.read(currentStageProvider.notifier).reset();
+          // Handle button tap here to navigate to the specified destination.
+          await context.router.pushNamed(destination);
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

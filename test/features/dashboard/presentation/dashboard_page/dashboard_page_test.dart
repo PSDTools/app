@@ -26,7 +26,7 @@ void main() {
       await expectLater(tester, meetsGuideline(textContrastGuideline));
       handle.dispose();
     });
-    testWidgets("with regard to labeling buttons.", skip: true, (tester) async {
+    testWidgets("with regard to labeling buttons.", (tester) async {
       await tester.pumpApp(const DashboardPage());
 
       final handle = tester.ensureSemantics();

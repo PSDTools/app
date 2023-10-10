@@ -8,11 +8,11 @@ import "banner_model.dart";
 
 part "banner_domain.g.dart";
 
-/// Get the default fallback banner.
+/// Get the banner's current state.
 @riverpod
-BannerConfig defaultBanner(DefaultBannerRef ref) {
+BannerConfig bannerConfig(BannerConfigRef ref) {
   return BannerConfig(
-    bannerName: buildMode.name,
-    bannerColor: buildMode.color,
+    name: buildMode.name,
+    color: buildMode.color,
   );
 }

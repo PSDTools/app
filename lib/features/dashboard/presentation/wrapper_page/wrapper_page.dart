@@ -78,6 +78,7 @@ class _ExpandedWrapper extends ConsumerWidget {
           onPressed: () async => context.router.push(const DashboardRoute()),
           icon: const Icon(Icons.home),
           color: Colors.black,
+          tooltip: "Going Home!",
         ),
       ),
       drawer: Drawer(
