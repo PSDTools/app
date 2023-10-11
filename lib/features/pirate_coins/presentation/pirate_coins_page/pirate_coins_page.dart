@@ -10,9 +10,10 @@ import "../../../../l10n/l10n.dart";
 import "../../../../utils/snackbar.dart";
 import "../../../../widgets/big_card/big_card.dart";
 import "../../../../widgets/email_form_field/email_form_field.dart";
-import "../../../auth/domain/auth_domain.dart";
-import "../../../auth/domain/auth_model.dart";
-import "../../domain/coins_domain.dart";
+import "../../../auth/application/auth_service.dart";
+import "../../../auth/domain/account_type.dart";
+import "../../../auth/domain/pirate_user.dart";
+import "../../application/coins_service.dart";
 import "../../domain/coins_model.dart";
 
 /// The page located at `/pirate-coins`.

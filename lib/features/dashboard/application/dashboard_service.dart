@@ -5,13 +5,14 @@ import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../gen/assets.gen.dart";
-import "dashboard_model.dart";
+import "../domain/applet.dart";
+import "../domain/dashboard_model.dart";
 
-part "dashboard_domain.g.dart";
+part "dashboard_service.g.dart";
 
 /// Get the applets list and other such data.
 @riverpod
-class DashboardDomain extends _$DashboardDomain {
+class DashboardService extends _$DashboardService {
   @override
   DashboardModel build() {
     final applets = ref.watch(_appletsProvider);

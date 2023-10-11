@@ -4,9 +4,9 @@ library;
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/constants.dart";
-import "banner_model.dart";
+import "../domain/banner_model.dart";
 
-part "banner_domain.g.dart";
+part "banner_service.g.dart";
 
 /// Get the banner's current state.
 @riverpod

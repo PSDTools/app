@@ -3,10 +3,10 @@ library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../data/device_data.dart";
-import "device_model.dart";
+import "../data/device_repository.dart";
+import "../domain/device_model.dart";
 
-part "device_domain.g.dart";
+part "device_service.g.dart";
 
 /// Get the [currentPlatform]'s information.
 @riverpod

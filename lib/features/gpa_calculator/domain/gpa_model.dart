@@ -71,6 +71,15 @@ sealed class LetterGrade with _$LetterGrade implements Comparable<LetterGrade> {
         _F() => 0,
       };
 
+  /// The letter grade's name.
+  String get name => switch (this) {
+        _A() => "A",
+        _B() => "B",
+        _C() => "C",
+        _D() => "D",
+        _F() => "F",
+      };
+
   @override
   int compareTo(LetterGrade other) => value.compareTo(other.value);
 

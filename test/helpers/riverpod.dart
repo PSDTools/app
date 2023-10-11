@@ -5,7 +5,7 @@ library;
 
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:mocktail/mocktail.dart";
-import "package:pirate_code/features/auth/data/auth_data.dart";
+import "package:pirate_code/features/auth/data/auth_repository.dart";
 
 final List<Override> defaultOverrides = [
   ..._mockOverrides,

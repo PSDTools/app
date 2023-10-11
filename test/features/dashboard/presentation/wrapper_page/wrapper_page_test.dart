@@ -5,8 +5,9 @@ import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
-import "package:pirate_code/features/auth/domain/auth_domain.dart";
-import "package:pirate_code/features/auth/domain/auth_model.dart";
+import "package:pirate_code/features/auth/application/auth_service.dart";
+import "package:pirate_code/features/auth/domain/account_type.dart";
+import "package:pirate_code/features/auth/domain/pirate_user.dart";
 import "package:pirate_code/features/dashboard/presentation/wrapper_page/wrapper_page.dart";
 import "package:pirate_code/l10n/l10n.dart";
 import "package:pirate_code/utils/design.dart";
@@ -15,12 +16,9 @@ import "package:pirate_code/utils/router.dart";
 import "../../../../helpers/riverpod.dart";
 
 void main() {
-  group("Wrapper page is accessible...", /*skip: true,*/ () {
-    late ProviderContainer container;
-    late AppRouter router;
-
-    setUp(() {
-      container = ProviderContainer(
+  group("Wrapper page is accessible...", () {
+    testWidgets("on Android.", (tester) async {
+      final container = ProviderContainer(
         overrides: [
           userProvider.overrideWithValue(
             PirateUser(
@@ -33,10 +31,9 @@ void main() {
           ...defaultOverrides,
         ],
       );
-      router = container.read(routerProvider);
-    });
+      addTearDown(container.dispose);
+      final router = container.read(routerProvider);
 
-    testWidgets("on Android.", (tester) async {
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,
@@ -63,6 +60,22 @@ void main() {
       handle.dispose();
     });
     testWidgets("on iOS.", (tester) async {
+      final container = ProviderContainer(
+        overrides: [
+          userProvider.overrideWithValue(
+            PirateUser(
+              name: "",
+              email: "",
+              accountType: AccountType.student,
+              avatar: Uint8List(1),
+            ),
+          ),
+          ...defaultOverrides,
+        ],
+      );
+      addTearDown(container.dispose);
+      final router = container.read(routerProvider);
+
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,
@@ -88,6 +101,22 @@ void main() {
       handle.dispose();
     });
     testWidgets("according to the WCAG.", (tester) async {
+      final container = ProviderContainer(
+        overrides: [
+          userProvider.overrideWithValue(
+            PirateUser(
+              name: "",
+              email: "",
+              accountType: AccountType.student,
+              avatar: Uint8List(1),
+            ),
+          ),
+          ...defaultOverrides,
+        ],
+      );
+      addTearDown(container.dispose);
+      final router = container.read(routerProvider);
+
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,
@@ -113,6 +142,22 @@ void main() {
       handle.dispose();
     });
     testWidgets("with regard to labeling buttons.", (tester) async {
+      final container = ProviderContainer(
+        overrides: [
+          userProvider.overrideWithValue(
+            PirateUser(
+              name: "",
+              email: "",
+              accountType: AccountType.student,
+              avatar: Uint8List(1),
+            ),
+          ),
+          ...defaultOverrides,
+        ],
+      );
+      addTearDown(container.dispose);
+      final router = container.read(routerProvider);
+
       await tester.pumpWidget(
         UncontrolledProviderScope(
           container: container,

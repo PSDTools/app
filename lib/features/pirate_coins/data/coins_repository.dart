@@ -6,9 +6,9 @@ import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
-import "../domain/coins_model.dart";
+import "../domain/coin.dart";
 
-part "coins_data.g.dart";
+part "coins_repository.g.dart";
 
 /// A repository for coin manipulation.
 abstract interface class CoinsRepository {

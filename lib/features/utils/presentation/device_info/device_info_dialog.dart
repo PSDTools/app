@@ -6,7 +6,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../utils/constants.dart";
-import "../../domain/device_domain.dart";
+import "../../application/device_service.dart";
 import "../../domain/device_model.dart";
 
 /// A dialog that displays information about the device.

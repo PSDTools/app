@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../utils/constants.dart";
-import "../../domain/banner_domain.dart";
+import "../../application/banner_service.dart";
 import "device_info_dialog.dart";
 
 /// A widget that displays a banner at the top of the screen.

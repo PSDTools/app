@@ -6,7 +6,7 @@ import "package:flutter/material.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../utils/models.dart";
-import "../data/device_data.dart";
+import "../data/device_repository.dart";
 
 part "device_model.freezed.dart";
 

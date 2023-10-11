@@ -5,9 +5,9 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../../pirate_coins/domain/coins_domain.dart";
-import "../../domain/dashboard_domain.dart";
-import "../../domain/dashboard_model.dart";
+import "../../../pirate_coins/application/coins_service.dart";
+import "../../application/dashboard_service.dart";
+import "../../domain/applet.dart";
 
 /// The page located at `/`.
 @RoutePage()
@@ -39,7 +39,7 @@ class _Applets extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final buttonsData = ref.watch(
-      dashboardDomainProvider.select((value) => value.applets),
+      dashboardServiceProvider.select((value) => value.applets),
     );
 
     return Expanded(

@@ -8,7 +8,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
 
-part "avatar_data.g.dart";
+part "avatar_repository.g.dart";
 
 /// A repository for getting avatars.
 abstract interface class AvatarRepository {

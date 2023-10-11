@@ -7,7 +7,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../domain/device_model.dart";
 
-part "device_data.g.dart";
+part "device_repository.g.dart";
 
 /// A repository for device information.
 abstract interface class DeviceRepository {

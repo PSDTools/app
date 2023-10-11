@@ -27,7 +27,7 @@ targets:
         # configs for the @freezed generator
         generate_for:
           - lib/utils/*.dart
-          - lib/features/*/domain/*_model.dart
+          - lib/features/*/domain/*.dart
         options:
           map: false
           when: false
@@ -35,8 +35,8 @@ targets:
         # configs for the @riverpod generator
         generate_for:
           - lib/utils/*.dart
-          - lib/features/*/data/*_data.dart
-          - lib/features/*/domain/*_domain.dart
+          - lib/features/*/data/*_repository.dart
+          - lib/features/*/application/*_service.dart
       flutter_gen_runner:
         # configs for the flutter.assets generator
         generate_for:
@@ -48,7 +48,7 @@ targets:
       json_serializable:
         # configs for the @JsonSerializable generator
         generate_for:
-          - lib/features/*/domain/*_model.dart
+          - lib/features/*/domain/*.dart
       widgetbook_generator:app_builder:
         # configs for @App() generator...
         generate_for:

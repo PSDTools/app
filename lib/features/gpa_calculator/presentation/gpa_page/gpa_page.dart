@@ -7,8 +7,8 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../utils/snackbar.dart";
-import "../../domain/gpa_domain.dart";
-import "../../domain/gpa_model.dart";
+import "../../../../widgets/letter_grade_dropdown/letter_grade_dropdown.dart";
+import "../../application/gpa_service.dart";
 
 /// The page located at `/gpa-calculator/`.
 @RoutePage()
@@ -32,8 +32,11 @@ class GpaPage extends HookConsumerWidget {
               child: Column(
                 children: [
                   for (var hour = 0; hour < hours.value; hour++)
-                    _Dropdown(
+                    LetterGradeDropdown(
                       hour: hour,
+                      grade: ref.read(gpaProvider(hour)).grade,
+                      updateGrade:
+                          ref.read(gpaProvider(hour).notifier).updateGrade,
                     ),
                 ],
               ),
@@ -59,37 +62,6 @@ class GpaPage extends HookConsumerWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-/// Dropdown widget for picking your letter grade.
-class _Dropdown extends ConsumerWidget {
-  /// Create a new instance of [_Dropdown].
-  const _Dropdown({
-    required this.hour,
-    // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
-    super.key,
-  });
-
-  /// The hour the course is taken.
-  final int hour;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final grade = ref.watch(gpaProvider(hour).select((value) => value.grade));
-
-    return DropdownButtonFormField(
-      value: grade,
-      items: const [
-        DropdownMenuItem(value: LetterGrade.a(), child: Text("A")),
-        DropdownMenuItem(value: LetterGrade.b(), child: Text("B")),
-        DropdownMenuItem(value: LetterGrade.c(), child: Text("C")),
-        DropdownMenuItem(value: LetterGrade.d(), child: Text("D")),
-        DropdownMenuItem(value: LetterGrade.f(), child: Text("F")),
-      ],
-      onChanged: ref.read(gpaProvider(hour).notifier).updateGrade,
     );
   }
 }

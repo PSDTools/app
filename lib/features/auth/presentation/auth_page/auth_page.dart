@@ -7,7 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../../l10n/l10n.dart";
-import "../../domain/auth_domain.dart";
+import "../../application/auth_service.dart";
 
 /// The page located at `/login/`.
 @RoutePage()

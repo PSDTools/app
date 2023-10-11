@@ -3,9 +3,9 @@ library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "gpa_model.dart";
+import "../domain/gpa_model.dart";
 
-part "gpa_domain.g.dart";
+part "gpa_service.g.dart";
 
 /// Get the state for the GPA calculator.
 @riverpod

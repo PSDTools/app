@@ -3,10 +3,11 @@ library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../data/auth_data.dart";
-import "auth_model.dart";
+import "../data/auth_repository.dart";
+import "../domain/pirate_auth_model.dart";
+import "../domain/pirate_user.dart";
 
-part "auth_domain.g.dart";
+part "auth_service.g.dart";
 
 /// Get the current user.
 @Riverpod(keepAlive: true)

@@ -7,12 +7,13 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
 import "../../../utils/log.dart";
-import "../../utils/data/device_data.dart";
+import "../../utils/data/device_repository.dart";
 import "../../utils/domain/device_model.dart";
-import "../domain/auth_model.dart";
-import "avatar_data.dart";
+import "../domain/account_type.dart";
+import "../domain/pirate_user.dart";
+import "avatar_repository.dart";
 
-part "auth_data.g.dart";
+part "auth_repository.g.dart";
 
 /// A repository for authentication.
 abstract interface class AuthRepository {

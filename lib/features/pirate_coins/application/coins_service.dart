@@ -3,11 +3,11 @@ library;
 
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../../auth/domain/auth_domain.dart";
-import "../data/coins_data.dart";
-import "coins_model.dart";
+import "../../auth/application/auth_service.dart";
+import "../data/coins_repository.dart";
+import "../domain/coins_model.dart";
 
-part "coins_domain.g.dart";
+part "coins_service.g.dart";
 
 /// Get coins data from data layer.
 @riverpod

@@ -11,7 +11,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../app/app_router.dart";
-import "../../../auth/domain/auth_domain.dart";
+import "../../../auth/application/auth_service.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.

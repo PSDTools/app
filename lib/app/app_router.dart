@@ -4,7 +4,7 @@ library;
 import "package:auto_route/auto_route.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../features/auth/domain/auth_domain.dart";
+import "../features/auth/application/auth_service.dart";
 import "../features/auth/presentation/auth_page/auth_page.dart";
 import "../features/dashboard/presentation/dashboard_page/dashboard_page.dart";
 import "../features/dashboard/presentation/wrapper_page/wrapper_page.dart";

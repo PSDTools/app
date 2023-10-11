@@ -7,8 +7,8 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../widgets/big_card/big_card.dart";
-import "../../../auth/domain/auth_domain.dart";
-import "../../domain/coins_domain.dart";
+import "../../../auth/application/auth_service.dart";
+import "../../application/coins_service.dart";
 
 /// The page at `/pirate-coins/stats`.
 @RoutePage()
