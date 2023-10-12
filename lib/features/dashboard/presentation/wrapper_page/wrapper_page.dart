@@ -3,8 +3,6 @@
 /// This didn't warrant its own feature, so it gets lumped in here.
 library;
 
-import "dart:typed_data";
-
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
@@ -85,21 +83,11 @@ class _ExpandedWrapper extends ConsumerWidget {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(
-                name ?? "Pirate Coins User",
-              ),
-              accountEmail: Text(
-                email ?? redactedEmail,
-              ),
-              currentAccountPicture: switch (avatar) {
-                Uint8List() => CircleAvatar(
-                    backgroundImage: MemoryImage(avatar),
-                  ),
-                null => const CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Icon(Icons.person),
-                  ),
-              },
+              accountName: name != null ? Text(name) : null,
+              accountEmail: email != null ? Text(email) : null,
+              currentAccountPicture: avatar != null
+                  ? CircleAvatar(backgroundImage: MemoryImage(avatar))
+                  : null,
             ),
             const AboutListTile(),
           ],
