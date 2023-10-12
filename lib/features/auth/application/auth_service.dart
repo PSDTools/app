@@ -14,12 +14,8 @@ part "auth_service.g.dart";
 class PirateAuth extends _$PirateAuth {
   @override
   FutureOr<PirateAuthModel> build() async {
-    _auth = ref.watch(authProvider);
-
     return _createSession(anonymous: true);
   }
-
-  AuthRepository? _auth;
 
   /// Authenticate the current user.
   Future<void> authenticate() async {
@@ -27,7 +23,8 @@ class PirateAuth extends _$PirateAuth {
   }
 
   Future<PirateAuthModel> _createSession({bool anonymous = false}) async {
-    final account = await _auth?.authenticate(anonymous: anonymous);
+    final auth = ref.read(authProvider);
+    final account = await auth.authenticate(anonymous: anonymous);
 
     return PirateAuthModel(
       user: account,

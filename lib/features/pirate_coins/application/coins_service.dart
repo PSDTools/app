@@ -12,27 +12,27 @@ part "coins_service.g.dart";
 
 /// Get coins data from data layer.
 @riverpod
-class Coins extends _$Coins {
+class CoinsService extends _$CoinsService {
   @override
   FutureOr<CoinsModel> build(int userId) async {
-    _coinsRepository = ref.watch(coinsDataProvider);
-
     return fetchCoins();
   }
 
-  CoinsRepository? _coinsRepository;
-
   /// Get the coins of a user.
   Future<CoinsModel> fetchCoins() async {
-    final getCoins = _coinsRepository?.coinsData;
-    final coins = await getCoins?.call(userId) ?? const Coin(coins: 0);
+    final getCoins = ref.read(
+      coinsDataProvider.select((value) => value.coinsData),
+    );
+    final coins = await getCoins(userId);
 
     return CoinsModel(coins: coins);
   }
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
-    final updateCoins = _coinsRepository?.updateCoins;
+    final updateCoins = ref.read(
+      coinsDataProvider.select((value) => value.updateCoins),
+    );
 
     ref.invalidateSelf();
     await future;
@@ -43,7 +43,7 @@ class Coins extends _$Coins {
       final coins = currentCoins.copyWith.coins(
         coins: currentCoins.coins.coins + num,
       );
-      await updateCoins?.call(coins.coins, userId);
+      await updateCoins(coins.coins, userId);
     }
 
     ref.invalidateSelf();
@@ -64,8 +64,9 @@ class Coins extends _$Coins {
 /// Get the coins of the current user.
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
-  final userId = ref.watch(userProvider.select((value) => value?.id ?? 0));
-  final fetchCoins = ref.read(coinsProvider(userId).notifier).fetchCoins;
+  final userId = ref.watch(pirateAuthProvider.future);
+  final fetchCoins =
+      ref.read(coinsServiceProvider(await userId).notifier).fetchCoins;
 
   return fetchCoins();
 }

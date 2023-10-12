@@ -34,9 +34,9 @@ class AppRouter extends _$AppRouter {
           guards: [
             AutoRouteGuard.redirect(
               (resolver) {
-                final authStateSub = ref.listen(userProvider, (_, __) {});
+                final authState = ref.read(userProvider);
 
-                return (authStateSub.read() != null) ? null : const AuthRoute();
+                return (authState != null) ? null : const AuthRoute();
               },
             ),
           ],
