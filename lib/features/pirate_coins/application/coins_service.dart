@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../auth/application/auth_service.dart";
 import "../data/coins_repository.dart";
+import "../domain/coin.dart";
 import "../domain/coins_model.dart";
 
 part "coins_service.g.dart";
@@ -14,24 +15,24 @@ part "coins_service.g.dart";
 class Coins extends _$Coins {
   @override
   FutureOr<CoinsModel> build(int userId) async {
+    _coinsRepository = ref.watch(coinsDataProvider);
+
     return fetchCoins();
   }
 
+  CoinsRepository? _coinsRepository;
+
   /// Get the coins of a user.
   Future<CoinsModel> fetchCoins() async {
-    final getCoins = ref.watch(
-      coinsDataProvider.select((value) => value.coinsData),
-    );
-    final coins = await getCoins(userId);
+    final getCoins = _coinsRepository?.coinsData;
+    final coins = await getCoins?.call(userId) ?? const Coin(coins: 0);
 
     return CoinsModel(coins: coins);
   }
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
-    final updateCoins = ref.watch(
-      coinsDataProvider.select((value) => value.updateCoins),
-    );
+    final updateCoins = _coinsRepository?.updateCoins;
 
     ref.invalidateSelf();
     await future;
@@ -42,7 +43,7 @@ class Coins extends _$Coins {
       final coins = currentCoins.copyWith.coins(
         coins: currentCoins.coins.coins + num,
       );
-      await updateCoins(coins.coins, userId);
+      await updateCoins?.call(coins.coins, userId);
     }
 
     ref.invalidateSelf();

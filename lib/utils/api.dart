@@ -72,7 +72,7 @@ Account accounts(AccountsRef ref) {
 }
 
 /// Get the Appwrite databases.
-@riverpod
+@Riverpod(keepAlive: true)
 Databases databases(DatabasesRef ref) {
   final client = ref.watch(clientProvider);
 

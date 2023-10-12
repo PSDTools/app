@@ -14,8 +14,12 @@ part "auth_service.g.dart";
 class PirateAuth extends _$PirateAuth {
   @override
   FutureOr<PirateAuthModel> build() async {
+    _auth = ref.watch(authProvider);
+
     return _createSession(anonymous: true);
   }
+
+  AuthRepository? _auth;
 
   /// Authenticate the current user.
   Future<void> authenticate() async {
@@ -23,8 +27,7 @@ class PirateAuth extends _$PirateAuth {
   }
 
   Future<PirateAuthModel> _createSession({bool anonymous = false}) async {
-    final auth = ref.watch(authProvider);
-    final account = await auth.authenticate(anonymous: anonymous);
+    final account = await _auth?.authenticate(anonymous: anonymous);
 
     return PirateAuthModel(
       user: account,
@@ -40,7 +43,7 @@ class PirateAuth extends _$PirateAuth {
 /// Get the current user with minimal fuss.
 ///
 /// Use [pirateAuthProvider] for more granular output.
-@riverpod
+@Riverpod(keepAlive: true)
 PirateUser? user(UserRef ref) => ref.watch(
       pirateAuthProvider.select((value) => value.asData?.value.user),
     );
