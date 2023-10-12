@@ -28,7 +28,9 @@ class AuthPage extends ConsumerWidget {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  await ref.read(pirateAuthProvider.notifier).authenticate();
+                  await ref
+                      .read(pirateAuthServiceProvider.notifier)
+                      .authenticate();
 
                   if (context.mounted) {
                     await context.router.push(const DashboardRoute());
@@ -39,7 +41,9 @@ class AuthPage extends ConsumerWidget {
               const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: () async {
-                  await ref.read(pirateAuthProvider.notifier).anonymous();
+                  await ref
+                      .read(pirateAuthServiceProvider.notifier)
+                      .anonymous();
 
                   if (context.mounted) {
                     await context.router.push(const DashboardRoute());

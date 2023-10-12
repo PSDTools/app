@@ -18,8 +18,8 @@ class StatsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userId = ref.watch(userProvider.select((value) => value?.id));
-    final data = userId != null ? ref.watch(coinsProvider(userId)) : null;
+    final id = ref.watch(userProvider.select((value) => value?.id));
+    final data = id != null ? ref.watch(coinsServiceProvider(id)) : null;
     final l10n = context.l10n;
 
     return Center(

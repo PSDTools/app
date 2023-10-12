@@ -108,7 +108,9 @@ class _MutationBar extends HookConsumerWidget {
           onPressed: () async {
             if (!requestIsInflight.value) {
               requestIsInflight.value = true;
-              await ref.read(coinsProvider(student).notifier).addCoins(1);
+              await ref
+                  .read(coinsServiceProvider(student).notifier)
+                  .addCoins(1);
               requestIsInflight.value = false;
             }
           },
@@ -122,7 +124,9 @@ class _MutationBar extends HookConsumerWidget {
           onPressed: () async {
             if (!requestIsInflight.value) {
               requestIsInflight.value = true;
-              await ref.read(coinsProvider(student).notifier).removeCoins(1);
+              await ref
+                  .read(coinsServiceProvider(student).notifier)
+                  .removeCoins(1);
               requestIsInflight.value = false;
             }
           },
@@ -207,7 +211,7 @@ class _ViewCoins extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final data = ref.watch(coinsProvider(student));
+    final data = ref.watch(coinsServiceProvider(student));
 
     return Padding(
       padding: const EdgeInsets.all(8),

@@ -64,9 +64,8 @@ class CoinsService extends _$CoinsService {
 /// Get the coins of the current user.
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
-  final userId = ref.watch(pirateAuthProvider.future);
-  final fetchCoins =
-      ref.read(coinsServiceProvider(await userId).notifier).fetchCoins;
+  final userId = ref.watch(userProvider.select((value) => value?.id ?? 0));
+  final fetchCoins = ref.read(coinsServiceProvider(userId).notifier).fetchCoins;
 
   return fetchCoins();
 }

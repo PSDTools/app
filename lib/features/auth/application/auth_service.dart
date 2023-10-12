@@ -11,7 +11,7 @@ part "auth_service.g.dart";
 
 /// Get the current user.
 @Riverpod(keepAlive: true)
-class PirateAuth extends _$PirateAuth {
+class PirateAuthService extends _$PirateAuthService {
   @override
   FutureOr<PirateAuthModel> build() async {
     return _createSession(anonymous: true);
@@ -39,10 +39,10 @@ class PirateAuth extends _$PirateAuth {
 
 /// Get the current user with minimal fuss.
 ///
-/// Use [pirateAuthProvider] for more granular output.
+/// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
 PirateUser? user(UserRef ref) => ref.watch(
-      pirateAuthProvider.select((value) => value.asData?.value.user),
+      pirateAuthServiceProvider.select((value) => value.asData?.value.user),
     );
 
 /// The email address used in case things go wrong.
