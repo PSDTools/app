@@ -51,8 +51,7 @@
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
-      },
-      "dependsOn": ["Dart: run build_runner"]
+      }
     },
     {
       "type": "flutter",
@@ -70,8 +69,7 @@
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "gear"
-      },
-      "dependsOn": ["Dart: run build_runner"]
+      }
     },
     {
       "type": "flutter",
@@ -102,8 +100,7 @@
       "icon": {
         "color": "terminal.ansiBlue",
         "id": "gear"
-      },
-      "dependsOn": ["Dart: run build_runner"]
+      }
     },
     {
       "type": "dart",
@@ -126,8 +123,7 @@
       "icon": {
         "color": "terminal.ansiWhite",
         "id": "beaker"
-      },
-      "dependsOn": ["Dart: run build_runner"]
+      }
     }
   ],
   "inputs": [
