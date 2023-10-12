@@ -5,7 +5,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../auth/application/auth_service.dart";
 import "../data/coins_repository.dart";
-import "../domain/coin.dart";
 import "../domain/coins_model.dart";
 
 part "coins_service.g.dart";
