@@ -29,6 +29,12 @@ mixin Bootstrap on Widget {
       );
     };
 
+
+    LicenseRegistry.addLicense(() async* {
+      final license = await rootBundle.loadString('google_fonts/mr_dafoe/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['mr_dafoe'], license);
+    });
+
     // Don't use hash style routes.
     usePathUrlStrategy();
 
