@@ -2,6 +2,7 @@
 library;
 
 import "dart:async";
+import "package:flutter/foundation.dart";
 import "package:flutter/services.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
@@ -29,10 +30,12 @@ mixin Bootstrap on Widget {
       );
     };
 
-
     LicenseRegistry.addLicense(() async* {
-      final license = await rootBundle.loadString('google_fonts/mr_dafoe/OFL.txt');
-      yield LicenseEntryWithLineBreaks(['mr_dafoe'], license);
+      final license = await rootBundle.loadString(
+        "google_fonts/mr_dafoe/OFL.txt",
+      );
+
+      yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
     });
 
     // Don't use hash style routes.
