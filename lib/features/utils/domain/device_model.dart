@@ -14,8 +14,8 @@ part "device_model.freezed.dart";
 @freezed
 @immutable
 sealed class DeviceData with _$DeviceData {
-  /// Create a new, immutable instance of [DeviceData].
-  const factory DeviceData({
+  /// Create a new, immutable instance of iOS's [DeviceData].
+  const factory DeviceData.iOs({
     /// The current [Device].
     required Device device,
 
@@ -26,23 +26,47 @@ sealed class DeviceData with _$DeviceData {
     required String model,
 
     /// The current [Device]'s name.
-    String? name,
+    required String name,
 
     /// The current [Device]'s operating system.
-    String? systemName,
+    required String systemName,
 
     /// The current [Device]'s operating system version.
-    String? systemVersion,
+    required String systemVersion,
+  }) = IOsDeviceData;
+
+  /// Create a new, immutable instance of Android's [DeviceData].
+  const factory DeviceData.android({
+    /// The current [Device].
+    required Device device,
+
+    /// If the current [Device] is a physical device.
+    required bool isPhysicalDevice,
+
+    /// The current [Device]'s model.
+    required String model,
 
     /// The current [Device]'s manufacturer.
-    String? manufacturer,
+    required String manufacturer,
 
     /// The current [Device]'s release.
-    String? release,
+    required String release,
 
     /// The current [Device]'s SDK number.
     int? sdkInt,
-  }) = _DeviceData;
+  }) = AndroidDeviceData;
+
+  /// Create a new, immutable instance of all other platforms' [DeviceData].
+  const factory DeviceData.other({
+    /// The current [Device].
+    required Device device,
+
+    /// If the current [Device] is a physical device.
+    required bool isPhysicalDevice,
+
+    /// The current [Device]'s model.
+    required String model,
+  }) = OtherDeviceData;
 }
 
 /// An enum containing the supported devices.

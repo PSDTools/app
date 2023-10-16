@@ -109,10 +109,12 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platformView = switch (value.device) {
-      Device.android => androidView(value),
-      Device.ios => iosView(value),
-      _ => otherView(value),
+    final data = value;
+
+    final platformView = switch (data) {
+      AndroidDeviceData() => androidView(data),
+      IOsDeviceData() => iosView(data),
+      _ => otherView(data),
     };
 
     return ListView(
@@ -125,20 +127,20 @@ class _View extends StatelessWidget {
     );
   }
 
-  List<_BuildTile> iosView(DeviceData value) {
+  List<_BuildTile> iosView(IOsDeviceData value) {
     final iosView = [
-      _BuildTile("Device:", "${value.name}"),
-      _BuildTile("System name:", "${value.systemName}"),
-      _BuildTile("System version:", "${value.systemVersion}"),
+      _BuildTile("Device:", value.name),
+      _BuildTile("System name:", value.systemName),
+      _BuildTile("System version:", value.systemVersion),
     ];
 
     return iosView;
   }
 
-  List<_BuildTile> androidView(DeviceData value) {
+  List<_BuildTile> androidView(AndroidDeviceData value) {
     final androidView = [
-      _BuildTile("Manufacturer:", "${value.manufacturer}"),
-      _BuildTile("Android version:", "${value.release}"),
+      _BuildTile("Manufacturer:", value.manufacturer),
+      _BuildTile("Android version:", value.release),
       _BuildTile("Android SDK:", "${value.sdkInt}"),
     ];
 
