@@ -44,7 +44,7 @@ class _BuildTile extends StatelessWidget {
   });
 
   final String text;
-  final String? value;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class _BuildTile extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          value ?? "",
+          value,
         ),
       ),
     );
@@ -127,9 +127,9 @@ class _View extends StatelessWidget {
 
   List<_BuildTile> iosView(DeviceData value) {
     final iosView = [
-      _BuildTile("Device:", value.name),
-      _BuildTile("System name:", value.systemName),
-      _BuildTile("System version:", value.systemVersion),
+      _BuildTile("Device:", "${value.name}"),
+      _BuildTile("System name:", "${value.systemName}"),
+      _BuildTile("System version:", "${value.systemVersion}"),
     ];
 
     return iosView;
@@ -137,8 +137,8 @@ class _View extends StatelessWidget {
 
   List<_BuildTile> androidView(DeviceData value) {
     final androidView = [
-      _BuildTile("Manufacturer:", value.manufacturer),
-      _BuildTile("Android version:", value.release),
+      _BuildTile("Manufacturer:", "${value.manufacturer}"),
+      _BuildTile("Android version:", "${value.release}"),
       _BuildTile("Android SDK:", "${value.sdkInt}"),
     ];
 

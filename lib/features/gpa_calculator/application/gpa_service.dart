@@ -12,13 +12,14 @@ part "gpa_service.g.dart";
 class GpaService extends _$GpaService {
   @override
   Course build(int hour) {
-    return Course(hour: hour, grade: _defaultGrade);
+    return Course(hour: hour, grade: defaultLetterGrade);
   }
-
-  final _defaultGrade = const LetterGrade.a();
 
   /// Update the course's grade.
-  void updateGrade(LetterGrade? grade) {
-    state = state.copyWith(grade: grade ?? _defaultGrade);
+  void updateGrade(LetterGrade grade) {
+    state = state.copyWith(grade: grade);
   }
 }
+
+/// The default grade for a course.
+const defaultLetterGrade = LetterGrade.a();

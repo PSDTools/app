@@ -45,7 +45,7 @@ class PirateAuthService extends _$PirateAuthService {
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
 PirateUser? user(UserRef ref) => ref.watch(
-      pirateAuthServiceProvider.select((value) => value.asData?.value.user),
+      pirateAuthServiceProvider.select((value) => value.valueOrNull?.user),
     );
 
 /// The email address used in case things go wrong.
@@ -53,30 +53,24 @@ const redactedEmail = "redacted@example.com";
 
 /// Get the current user's name.
 @riverpod
-String? name(NameRef ref) {
-  return ref.watch(userProvider.select((value) => value?.name));
-}
+String? name(NameRef ref) =>
+    ref.watch(userProvider.select((value) => value?.name));
 
 /// Get the current user's email address.
 @riverpod
-String? email(EmailRef ref) {
-  return ref.watch(userProvider.select((value) => value?.email));
-}
+String? email(EmailRef ref) =>
+    ref.watch(userProvider.select((value) => value?.email));
 
 /// Get the current user's avatar.
 @riverpod
-Uint8List? avatar(AvatarRef ref) {
-  return ref.watch(userProvider.select((value) => value?.avatar));
-}
+Uint8List? avatar(AvatarRef ref) =>
+    ref.watch(userProvider.select((value) => value?.avatar));
 
 /// Get the current user's account type.
 @riverpod
-AccountType? accountType(AccountTypeRef ref) {
-  return ref.watch(userProvider.select((value) => value?.accountType));
-}
+AccountType? accountType(AccountTypeRef ref) =>
+    ref.watch(userProvider.select((value) => value?.accountType));
 
 /// Get the current user's ID.
 @riverpod
-int? id(IdRef ref) {
-  return ref.watch(userProvider.select((value) => value?.id));
-}
+int? id(IdRef ref) => ref.watch(userProvider.select((value) => value?.id));

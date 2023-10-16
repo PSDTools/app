@@ -17,7 +17,7 @@ sealed class PirateAuthModel with _$PirateAuthModel implements Model {
   /// Create a new, immutable instance of [PirateAuthModel].
   const factory PirateAuthModel({
     /// The user.
-    PirateUser? user,
+    required PirateUser user,
   }) = _PirateAuthModel;
 
   /// Convert a JSON [Map] into a new, immutable instance of [PirateAuthModel].

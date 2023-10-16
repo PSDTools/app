@@ -47,7 +47,7 @@ class _MainArea extends StatelessWidget {
     super.key,
   });
 
-  final Widget? child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

@@ -19,9 +19,7 @@ class CoinsService extends _$CoinsService {
 
   /// Get the coins of a user.
   Future<CoinsModel> fetchCoins() async {
-    final getCoins = ref.read(
-      coinsDataProvider.select((value) => value.coinsData),
-    );
+    final getCoins = ref.read(coinsDataProvider).coinsData;
     final coins = await getCoins(userId);
 
     return CoinsModel(coins: coins);
@@ -29,14 +27,12 @@ class CoinsService extends _$CoinsService {
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
-    final updateCoins = ref.read(
-      coinsDataProvider.select((value) => value.updateCoins),
-    );
+    final updateCoins = ref.read(coinsDataProvider).updateCoins;
 
     ref.invalidateSelf();
     await future;
 
-    final currentCoins = state.asData?.value;
+    final currentCoins = state.valueOrNull;
 
     if (currentCoins != null) {
       final coins = currentCoins.copyWith.coins(
@@ -63,8 +59,12 @@ class CoinsService extends _$CoinsService {
 /// Get the coins of the current user.
 @riverpod
 Future<CoinsModel?> currentUserCoins(CurrentUserCoinsRef ref) async {
-  final userId = ref.watch(userProvider.select((value) => value?.id ?? 0));
-  final fetchCoins = ref.read(coinsServiceProvider(userId).notifier).fetchCoins;
+  final userId = ref.watch(idProvider);
+  final fetchCoins = ref
+      .read(
+        coinsServiceProvider(userId ?? 0).notifier,
+      )
+      .fetchCoins;
 
   return fetchCoins();
 }
