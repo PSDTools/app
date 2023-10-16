@@ -38,9 +38,7 @@ class _Applets extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final buttonsData = ref.watch(
-      dashboardServiceProvider.select((value) => value.applets),
-    );
+    final buttonsData = ref.watch(appletsProvider);
 
     return Expanded(
       child: Container(

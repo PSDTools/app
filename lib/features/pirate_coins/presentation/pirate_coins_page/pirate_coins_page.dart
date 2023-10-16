@@ -24,9 +24,8 @@ class PirateCoinsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (accountType, id) = ref.watch(
-      userProvider.select((value) => (value?.accountType, value?.id)),
-    );
+    final accountType = ref.watch(accountTypeProvider);
+    final id = ref.watch(idProvider);
 
     final child = accountType == AccountType.student
         ? _StudentView(id: id ?? 0)

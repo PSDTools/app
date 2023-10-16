@@ -15,15 +15,12 @@ part "dashboard_service.g.dart";
 class DashboardService extends _$DashboardService {
   @override
   DashboardModel build() {
-    final applets = ref.watch(_appletsProvider);
-
-    return DashboardModel(applets: applets);
+    return DashboardModel(applets: _applets);
   }
 }
 
 /// Get the list of applets.
-@riverpod
-List<Applet> _applets(_AppletsRef ref) {
+List<Applet> get _applets {
   // Add more buttons here
   // Ideas:
   //
@@ -54,3 +51,9 @@ List<Applet> _applets(_AppletsRef ref) {
     // ),
   ];
 }
+
+/// Get the list of applets.
+@riverpod
+List<Applet> applets(AppletsRef ref) => ref.watch(
+      dashboardServiceProvider.select((value) => value.applets),
+    );

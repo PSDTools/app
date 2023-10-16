@@ -1,9 +1,12 @@
 /// This library contains the authentication feature's business logic.
 library;
 
+import "dart:typed_data";
+
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../data/auth_repository.dart";
+import "../domain/account_type.dart";
 import "../domain/pirate_auth_model.dart";
 import "../domain/pirate_user.dart";
 
@@ -47,3 +50,33 @@ PirateUser? user(UserRef ref) => ref.watch(
 
 /// The email address used in case things go wrong.
 const redactedEmail = "redacted@example.com";
+
+/// Get the current user's name.
+@riverpod
+String? name(NameRef ref) {
+  return ref.watch(userProvider.select((value) => value?.name));
+}
+
+/// Get the current user's email address.
+@riverpod
+String? email(EmailRef ref) {
+  return ref.watch(userProvider.select((value) => value?.email));
+}
+
+/// Get the current user's avatar.
+@riverpod
+Uint8List? avatar(AvatarRef ref) {
+  return ref.watch(userProvider.select((value) => value?.avatar));
+}
+
+/// Get the current user's account type.
+@riverpod
+AccountType? accountType(AccountTypeRef ref) {
+  return ref.watch(userProvider.select((value) => value?.accountType));
+}
+
+/// Get the current user's ID.
+@riverpod
+int? id(IdRef ref) {
+  return ref.watch(userProvider.select((value) => value?.id));
+}

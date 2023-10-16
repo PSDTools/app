@@ -36,7 +36,7 @@ targets:
         generate_for:
           - lib/utils/*.dart
           - lib/features/*/data/*_repository.dart
-          - lib/features/*/application/*_service.dart
+          - lib/features/*/application/*.dart
       flutter_gen_runner:
         # configs for the flutter.assets generator
         generate_for:

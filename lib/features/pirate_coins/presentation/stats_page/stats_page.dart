@@ -7,7 +7,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
 import "../../../../widgets/big_card/big_card.dart";
-import "../../../auth/application/auth_service.dart";
 import "../../application/coins_service.dart";
 
 /// The page at `/pirate-coins/stats`.
@@ -18,8 +17,7 @@ class StatsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final id = ref.watch(userProvider.select((value) => value?.id));
-    final data = id != null ? ref.watch(coinsServiceProvider(id)) : null;
+    final data = ref.watch(currentUserCoinsProvider);
     final l10n = context.l10n;
 
     return Center(
@@ -29,8 +27,8 @@ class StatsPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: switch (data) {
-              AsyncData(:final value) => value.coins.coins > 0
-                  ? BigCard(l10n.howManyCoins(value.coins.coins))
+              AsyncData(:final value) => (value?.coins.coins ?? 0) > 0
+                  ? BigCard(l10n.howManyCoins(value?.coins.coins ?? 0))
                   : BigCard(l10n.emptyReport),
               AsyncError(:final error) => BigCard(l10n.error("$error")),
               AsyncLoading() => Column(

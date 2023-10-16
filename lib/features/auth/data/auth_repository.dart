@@ -100,7 +100,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
 AuthRepository auth(AuthRef ref) {
   final account = ref.watch(accountsProvider);
   final platform = ref.watch(currentPlatformProvider);
-  final avatar = ref.watch(avatarProvider.select((value) => value));
+  final avatar = ref.watch(avatarProvider);
 
   return _AppwriteAuthRepository(account, platform, avatar);
 }
