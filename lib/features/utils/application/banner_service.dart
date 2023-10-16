@@ -10,9 +10,7 @@ part "banner_service.g.dart";
 
 /// Get the banner's current state.
 @riverpod
-BannerConfig bannerConfig(BannerConfigRef ref) {
-  return BannerConfig(
-    name: buildMode.name,
-    color: buildMode.color,
-  );
-}
+BannerConfig bannerConfig(BannerConfigRef ref) => BannerConfig(
+      name: buildMode.name,
+      color: buildMode.color,
+    );

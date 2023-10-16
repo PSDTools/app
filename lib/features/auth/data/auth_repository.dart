@@ -65,11 +65,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
                 provider: "google",
               );
             // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows.
-            case Device.web:
-            case Device.linux:
-            case Device.macos:
-            case Device.windows:
-            case Device.other:
+            case _:
               await _account.createOAuth2Session(
                 provider: "google",
                 success: "${Uri.base.origin}/auth.html",

@@ -75,25 +75,20 @@ class _GetContent extends ConsumerWidget {
     final deviceInfo = ref.watch(deviceInfoProvider);
     final l10n = context.l10n;
 
-    switch (deviceInfo) {
-      case AsyncData(:final value):
-        return _View(value: value);
-      case AsyncLoading():
-        return Center(
+    return switch (deviceInfo) {
+      AsyncData(:final value) => _View(value: value),
+      AsyncLoading() => Center(
           child: Column(
             children: [
               const CircularProgressIndicator(),
               Text(l10n.loading),
             ],
           ),
-        );
-      case AsyncError(:final error, :final stackTrace):
-        final message = l10n.error("$error, $stackTrace.");
-
-        return Text(message);
-      case _:
-        return Text(l10n.error(l10n.unknownState));
-    }
+        ),
+      AsyncError(:final error, :final stackTrace) =>
+        Text(l10n.error("$error, $stackTrace.")),
+      _ => Text(l10n.error(l10n.unknownState))
+    };
   }
 }
 
