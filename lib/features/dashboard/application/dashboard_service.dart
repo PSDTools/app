@@ -12,7 +12,7 @@ part "dashboard_service.g.dart";
 
 /// Get the applets list and other such data.
 @riverpod
-class DashboardService extends _$DashboardService {
+base class DashboardService extends _$DashboardService {
   @override
   DashboardModel build() {
     return DashboardModel(applets: _applets);

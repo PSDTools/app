@@ -11,7 +11,7 @@ part "coins_service.g.dart";
 
 /// Get coins data from data layer.
 @riverpod
-class CoinsService extends _$CoinsService {
+base class CoinsService extends _$CoinsService {
   @override
   FutureOr<CoinsModel> build(int userId) async {
     return fetchCoins();
@@ -69,7 +69,7 @@ Future<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async {
 
 /// Get coins data from data layer.
 @riverpod
-class CurrentStage extends _$CurrentStage {
+base class CurrentStage extends _$CurrentStage {
   @override
   Stage build() => const Stage.pickStudent();
 

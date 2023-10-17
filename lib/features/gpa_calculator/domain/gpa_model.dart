@@ -20,7 +20,7 @@ sealed class Course with _$Course {
     required LetterGrade grade,
 
     /// The name of the course.
-    String? name,
+    @Default("Course") String name,
   }) = _Course;
 
   /// Convert a JSON [Map] into a new, immutable instance of [Course].

@@ -53,7 +53,7 @@ sealed class DeviceData with _$DeviceData {
     required String release,
 
     /// The current [Device]'s SDK number.
-    int? sdkInt,
+    required int sdkInt,
   }) = AndroidDeviceData;
 
   /// Create a new, immutable instance of all other platforms' [DeviceData].

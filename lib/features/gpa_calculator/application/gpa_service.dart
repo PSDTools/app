@@ -9,7 +9,7 @@ part "gpa_service.g.dart";
 
 /// Get the state for the GPA calculator.
 @riverpod
-class GpaService extends _$GpaService {
+base class GpaService extends _$GpaService {
   @override
   Course build(int hour) {
     return Course(hour: hour, grade: defaultLetterGrade);

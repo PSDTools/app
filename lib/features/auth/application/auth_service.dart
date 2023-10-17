@@ -14,7 +14,7 @@ part "auth_service.g.dart";
 
 /// Get the current user.
 @Riverpod(keepAlive: true)
-class PirateAuthService extends _$PirateAuthService {
+base class PirateAuthService extends _$PirateAuthService {
   @override
   FutureOr<PirateAuthModel> build() async {
     return _createSession(anonymous: true);
