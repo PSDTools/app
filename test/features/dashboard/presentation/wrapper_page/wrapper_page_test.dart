@@ -17,8 +17,8 @@ import "../../../../helpers/riverpod.dart";
 
 ProviderContainer createOverriddenContainer() => createContainer(
       overrides: [
-        userProvider.overrideWithValue(
-          PirateUser(
+        userProvider.overrideWith(
+          (_) => PirateUser(
             name: "",
             email: redactedEmail,
             accountType: AccountType.student,

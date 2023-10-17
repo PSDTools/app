@@ -65,9 +65,9 @@ class _ExpandedWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final name = ref.watch(nameProvider);
-    final email = ref.watch(emailProvider);
-    final avatar = ref.watch(avatarProvider);
+    final name = ref.watch(nameProvider).valueOrNull;
+    final email = ref.watch(emailProvider).valueOrNull;
+    final avatar = ref.watch(avatarProvider).valueOrNull;
 
     return Scaffold(
       appBar: AppBar(

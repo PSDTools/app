@@ -44,8 +44,8 @@ class PirateAuthService extends _$PirateAuthService {
 ///
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
-PirateUser? user(UserRef ref) => ref.watch(
-      pirateAuthServiceProvider.select((value) => value.valueOrNull?.user),
+Future<PirateUser> user(UserRef ref) async => await ref.watch(
+      pirateAuthServiceProvider.selectAsync((value) => value.user),
     );
 
 /// The email address used in case things go wrong.
@@ -53,24 +53,25 @@ const redactedEmail = "redacted@example.com";
 
 /// Get the current user's name.
 @riverpod
-String? name(NameRef ref) =>
-    ref.watch(userProvider.select((value) => value?.name));
+Future<String> name(NameRef ref) async =>
+    await ref.watch(userProvider.selectAsync((value) => value.name));
 
 /// Get the current user's email address.
 @riverpod
-String? email(EmailRef ref) =>
-    ref.watch(userProvider.select((value) => value?.email));
+Future<String> email(EmailRef ref) async =>
+    await ref.watch(userProvider.selectAsync((value) => value.email));
 
 /// Get the current user's avatar.
 @riverpod
-Uint8List? avatar(AvatarRef ref) =>
-    ref.watch(userProvider.select((value) => value?.avatar));
+Future<Uint8List> avatar(AvatarRef ref) async =>
+    await ref.watch(userProvider.selectAsync((value) => value.avatar));
 
 /// Get the current user's account type.
 @riverpod
-AccountType? accountType(AccountTypeRef ref) =>
-    ref.watch(userProvider.select((value) => value?.accountType));
+Future<AccountType> accountType(AccountTypeRef ref) async =>
+    await ref.watch(userProvider.selectAsync((value) => value.accountType));
 
 /// Get the current user's ID.
 @riverpod
-int? id(IdRef ref) => ref.watch(userProvider.select((value) => value?.id));
+Future<int> id(IdRef ref) async =>
+    await ref.watch(userProvider.selectAsync((value) => value.id));
