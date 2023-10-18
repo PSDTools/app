@@ -25,14 +25,12 @@ class PirateCoinsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final accountType = ref.watch(accountTypeProvider).valueOrNull;
-    final id = ref.watch(idProvider).valueOrNull;
-
-    final child = accountType == AccountType.student
-        ? _StudentView(id: id ?? 0)
-        : const _TeacherView();
 
     return Center(
-      child: child,
+      child: switch (accountType) {
+        AccountType.student => const _StudentView(),
+        _ => const _TeacherView(),
+      },
     );
   }
 }
@@ -55,7 +53,7 @@ class _TeacherView extends ConsumerWidget {
             _UserForm(),
           ],
         ViewCoinsStage(:final student) => [
-            _ViewCoins(student: student),
+            _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
             const SizedBox(height: 10),
             _MutationBar(student: student),
           ],
@@ -64,22 +62,21 @@ class _TeacherView extends ConsumerWidget {
   }
 }
 
-class _StudentView extends StatelessWidget {
+class _StudentView extends ConsumerWidget {
   const _StudentView({
-    required this.id,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  final int id;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final data = ref.watch(currentUserCoinsProvider);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _ViewCoins(student: id),
+        _ViewCoins(data: data),
       ],
     );
   }
@@ -197,20 +194,19 @@ class _UserForm extends HookConsumerWidget {
   }
 }
 
-class _ViewCoins extends ConsumerWidget {
+class _ViewCoins extends StatelessWidget {
   const _ViewCoins({
-    required this.student,
+    required this.data,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  final int student;
+  final AsyncValue<CoinsModel> data;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final data = ref.watch(coinsServiceProvider(student));
 
     return Padding(
       padding: const EdgeInsets.all(8),
