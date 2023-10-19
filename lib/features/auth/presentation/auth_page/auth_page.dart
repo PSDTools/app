@@ -26,7 +26,7 @@ class AuthPage extends ConsumerWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () async {
                   await ref
                       .read(pirateAuthServiceProvider.notifier)
@@ -36,10 +36,11 @@ class AuthPage extends ConsumerWidget {
                     await context.router.push(const DashboardRoute());
                   }
                 },
-                child: Text(l10n.authenticateText),
+                icon: const Icon(Icons.g_mobiledata),
+                label: Text(l10n.authenticateText),
               ),
               const SizedBox(width: 10),
-              ElevatedButton(
+              ElevatedButton.icon(
                 onPressed: () async {
                   await ref
                       .read(pirateAuthServiceProvider.notifier)
@@ -49,7 +50,8 @@ class AuthPage extends ConsumerWidget {
                     await context.router.push(const DashboardRoute());
                   }
                 },
-                child: Text(l10n.anonymousAuthenticateText),
+                icon: const Icon(Icons.person),
+                label: Text(l10n.anonymousAuthenticateText),
               ),
             ],
           ),

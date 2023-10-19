@@ -43,7 +43,7 @@ class GpaPage extends HookConsumerWidget {
               ),
             ),
           ),
-          ElevatedButton(
+          ElevatedButton.icon(
             onPressed: () {
               if (formKey.value.currentState?.validate.call() ?? false) {
                 var total = 0;
@@ -59,7 +59,8 @@ class GpaPage extends HookConsumerWidget {
                 );
               }
             },
-            child: const Text("Calculate GPA"),
+            icon: const Icon(Icons.calculate),
+            label: const Text("Calculate GPA"),
           ),
         ],
       ),

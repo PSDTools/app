@@ -95,40 +95,36 @@ class _MutationBar extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
-    final requestIsInflight = useState(false);
+    final requestInFlight = useState(false);
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         ElevatedButton.icon(
-          onPressed: () async {
-            if (!requestIsInflight.value) {
-              requestIsInflight.value = true;
-              await ref
-                  .read(coinsServiceProvider(student).notifier)
-                  .addCoins(1);
-              requestIsInflight.value = false;
-            }
-          },
-          icon: requestIsInflight.value
-              ? const Icon(Icons.rotate_left)
-              : const Icon(Icons.add),
+          onPressed: requestInFlight.value
+              ? null
+              : () async {
+                  requestInFlight.value = true;
+                  await ref
+                      .read(coinsServiceProvider(student).notifier)
+                      .addCoins(1);
+                  requestInFlight.value = false;
+                },
+          icon: const Icon(Icons.add),
           label: Text(l10n.addCoins),
         ),
         const SizedBox(width: 10),
         ElevatedButton.icon(
-          onPressed: () async {
-            if (!requestIsInflight.value) {
-              requestIsInflight.value = true;
-              await ref
-                  .read(coinsServiceProvider(student).notifier)
-                  .removeCoins(1);
-              requestIsInflight.value = false;
-            }
-          },
-          icon: requestIsInflight.value
-              ? const Icon(Icons.rotate_right)
-              : const Icon(Icons.remove),
+          onPressed: requestInFlight.value
+              ? null
+              : () async {
+                  requestInFlight.value = true;
+                  await ref
+                      .read(coinsServiceProvider(student).notifier)
+                      .removeCoins(1);
+                  requestInFlight.value = false;
+                },
+          icon: const Icon(Icons.remove),
           label: Text(l10n.removeCoins),
         ),
       ],
@@ -171,7 +167,7 @@ class _UserForm extends HookConsumerWidget {
             ),
             EmailFormField(myController),
             const SizedBox(height: 10),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_formKey.currentState?.validate.call() ?? false) {
@@ -185,7 +181,8 @@ class _UserForm extends HookConsumerWidget {
                       .goToViewCoinsStage(getId(myController.text));
                 }
               },
-              child: const Text("Submit"),
+              icon: const Icon(Icons.check),
+              label: const Text("Submit"),
             ),
           ],
         ),
