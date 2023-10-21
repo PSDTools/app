@@ -22,7 +22,7 @@ body:
       placeholder: A plan goes here!
       value: |
         ```[tasklist]
-        ## Tasks
+        #### Tasks
         - [ ] Step 1...
         ```
     validations:
