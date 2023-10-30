@@ -48,7 +48,7 @@ dependencies:
     sdk: flutter
   freezed_annotation: ^2.2.0
   google_fonts: ^6.1.0
-  hooks_riverpod: ^2.4.4
+  hooks_riverpod: ^2.4.5
   intl: ^0.18.1
   io: ^1.0.4
   json_annotation: ^4.8.1
@@ -77,8 +77,8 @@ dev_dependencies:
   freezed_lint: ^0.0.1-dev+1
   json_serializable: ^6.7.1
   mocktail: ^1.0.1
-  riverpod_generator: ^3.0.0-dev.5
-  riverpod_lint: ^2.3.2
+  riverpod_generator: ^3.0.0-dev.6
+  riverpod_lint: ^2.3.3
   very_good_analysis: ^5.1.0
   very_good_cli: ^0.16.0
   widgetbook_generator: ^3.2.0
