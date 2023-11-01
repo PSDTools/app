@@ -87,7 +87,6 @@ class _GetContent extends ConsumerWidget {
         ),
       AsyncError(:final error, :final stackTrace) =>
         Text(l10n.error("$error, $stackTrace.")),
-      _ => Text(l10n.error(l10n.unknownState))
     };
   }
 }

@@ -37,7 +37,6 @@ class StatsPage extends ConsumerWidget {
                     Text(l10n.loading),
                   ],
                 ),
-              _ => BigCard(l10n.error(l10n.unknownState)),
             },
           ),
         ],

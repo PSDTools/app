@@ -52,8 +52,10 @@ Future<PirateUser> user(UserRef ref) async => await ref.watch(
 const redactedEmail = "redacted@example.com";
 
 /// Get the current user's name.
+///
+/// Named as such to prevent a naming conflict with riverpod.
 @riverpod
-Future<String> name(NameRef ref) async =>
+Future<String> username(UsernameRef ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.name));
 
 /// Get the current user's email address.
