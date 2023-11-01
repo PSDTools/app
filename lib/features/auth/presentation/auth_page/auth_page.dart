@@ -17,43 +17,49 @@ class AuthPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () async {
-                  await ref
-                      .read(pirateAuthServiceProvider.notifier)
-                      .authenticate();
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final l10n = context.l10n;
+              final isSmall = constraints.maxWidth > 200;
 
-                  if (context.mounted) {
-                    await context.router.push(const DashboardRoute());
-                  }
-                },
-                icon: const Icon(Icons.g_mobiledata),
-                label: Text(l10n.authenticateText),
-              ),
-              const SizedBox(width: 10),
-              ElevatedButton.icon(
-                onPressed: () async {
-                  await ref
-                      .read(pirateAuthServiceProvider.notifier)
-                      .anonymous();
+              return Flex(
+                direction: isSmall ? Axis.vertical : Axis.horizontal,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      await ref
+                          .read(pirateAuthServiceProvider.notifier)
+                          .authenticate();
 
-                  if (context.mounted) {
-                    await context.router.push(const DashboardRoute());
-                  }
-                },
-                icon: const Icon(Icons.person),
-                label: Text(l10n.anonymousAuthenticateText),
-              ),
-            ],
+                      if (context.mounted) {
+                        await context.router.push(const DashboardRoute());
+                      }
+                    },
+                    icon: const Icon(Icons.g_mobiledata),
+                    label: Text(l10n.authenticateText),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      await ref
+                          .read(pirateAuthServiceProvider.notifier)
+                          .anonymous();
+
+                      if (context.mounted) {
+                        await context.router.push(const DashboardRoute());
+                      }
+                    },
+                    icon: const Icon(Icons.person),
+                    label: Text(l10n.anonymousAuthenticateText),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

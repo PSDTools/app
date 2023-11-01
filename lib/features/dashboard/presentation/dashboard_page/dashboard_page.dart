@@ -19,7 +19,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _Applets(),
           _NotificationBar(),

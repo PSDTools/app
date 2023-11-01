@@ -31,9 +31,9 @@ class WrapperPage extends StatelessWidget {
       builder: (context, constraints) {
         return AutoRouter(
           builder: (context, child) {
-            final small = constraints.maxWidth < 450;
+            final isSmall = constraints.maxWidth < 450;
 
-            final page = small
+            final page = isSmall
                 ? _MobileWrapper(child: child)
                 : _ExpandedWrapper(constraints: constraints, child: child);
 

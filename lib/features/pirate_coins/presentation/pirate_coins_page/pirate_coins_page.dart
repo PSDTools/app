@@ -94,40 +94,47 @@ class _MutationBar extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
     final requestInFlight = useState(false);
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ElevatedButton.icon(
-          onPressed: requestInFlight.value
-              ? null
-              : () async {
-                  requestInFlight.value = true;
-                  await ref
-                      .read(coinsServiceProvider(student).notifier)
-                      .addCoins(1);
-                  requestInFlight.value = false;
-                },
-          icon: const Icon(Icons.add),
-          label: Text(l10n.addCoins),
-        ),
-        const SizedBox(width: 10),
-        ElevatedButton.icon(
-          onPressed: requestInFlight.value
-              ? null
-              : () async {
-                  requestInFlight.value = true;
-                  await ref
-                      .read(coinsServiceProvider(student).notifier)
-                      .removeCoins(1);
-                  requestInFlight.value = false;
-                },
-          icon: const Icon(Icons.remove),
-          label: Text(l10n.removeCoins),
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final l10n = context.l10n;
+        final isSmall = constraints.maxWidth > 200;
+
+        return Flex(
+          direction: isSmall ? Axis.vertical : Axis.horizontal,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton.icon(
+              onPressed: requestInFlight.value
+                  ? null
+                  : () async {
+                      requestInFlight.value = true;
+                      await ref
+                          .read(coinsServiceProvider(student).notifier)
+                          .addCoins(1);
+                      requestInFlight.value = false;
+                    },
+              icon: const Icon(Icons.add),
+              label: Text(l10n.addCoins),
+            ),
+            const SizedBox(width: 10),
+            ElevatedButton.icon(
+              onPressed: requestInFlight.value
+                  ? null
+                  : () async {
+                      requestInFlight.value = true;
+                      await ref
+                          .read(coinsServiceProvider(student).notifier)
+                          .removeCoins(1);
+                      requestInFlight.value = false;
+                    },
+              icon: const Icon(Icons.remove),
+              label: Text(l10n.removeCoins),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -216,7 +223,6 @@ class _ViewCoins extends StatelessWidget {
               Text(l10n.loading),
             ],
           ),
-        _ => BigCard(l10n.error(l10n.unknownState)),
       },
     );
   }

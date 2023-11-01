@@ -43,7 +43,7 @@ base class PirateAuthService extends _$PirateAuthService {
 /// Get the current user with minimal fuss.
 ///
 /// Use [pirateAuthServiceProvider] for more granular output.
-@Riverpod(keepAlive: true)
+@riverpod
 Future<PirateUser> user(UserRef ref) async => await ref.watch(
       pirateAuthServiceProvider.selectAsync((value) => value.user),
     );
