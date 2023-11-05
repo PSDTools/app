@@ -23,8 +23,8 @@ issue_tracker: https://github.com/PSDTools/app/issues
 repository: https://github.com/PSDTools/app.git
 
 environment:
-  sdk: "^3.1.0"
-  flutter: "^3.13.0"
+  sdk: "3.1.5"
+  flutter: "3.13.9"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -33,55 +33,55 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  appwrite: ^11.0.0
-  auto_route: ^7.8.4
+  appwrite: 11.0.0
+  auto_route: 7.8.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6 # Only required if you use Cupertino (iOS style) icons
-  device_info_plus: ^9.1.0
+  cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
+  device_info_plus: 9.1.0
   flutter:
     sdk: flutter
-  flutter_hooks: ^0.20.3
+  flutter_hooks: 0.20.3
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  freezed_annotation: ^2.2.0
-  google_fonts: ^6.1.0
-  hooks_riverpod: ^3.0.0-dev.0
-  intl: ^0.18.1
-  io: ^1.0.4
-  json_annotation: ^4.8.1
-  logging: ^1.2.0
-  os_detect: ^2.0.1
-  riverpod_annotation: ^3.0.0-dev.0
-  widgetbook: ^3.3.0
-  widgetbook_annotation: ^3.0.0
+  freezed_annotation: 2.4.1
+  google_fonts: 6.1.0
+  hooks_riverpod: 3.0.0-dev.0
+  intl: 0.18.1
+  io: 1.0.4
+  json_annotation: 4.8.1
+  logging: 1.2.0
+  os_detect: 2.0.1
+  riverpod_annotation: 3.0.0-dev.0
+  widgetbook: 3.3.0
+  widgetbook_annotation: 3.0.0
 
 dev_dependencies:
-  auto_route_generator: ^7.3.2
-  build_runner: ^2.4.6
-  build_web_compilers: ^4.0.6
-  custom_lint: ^0.5.6
-  dart_define: ^2.1.1
-  dhttpd: ^4.0.1
-  # flutter_gen_linter: ^1.0.0+2
-  flutter_gen_runner: ^5.3.2
-  flutter_launcher_icons: ^0.13.1
-  flutter_native_splash: ^2.3.5
+  auto_route_generator: 7.3.2
+  build_runner: 2.4.6
+  build_web_compilers: 4.0.6
+  custom_lint: 0.5.6
+  dart_define: 2.1.1
+  dhttpd: 4.0.1
+  # flutter_gen_linter: 1.0.0+2
+  flutter_gen_runner: 5.3.2
+  flutter_launcher_icons: 0.13.1
+  flutter_native_splash: 2.3.5
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
-  freezed: ^2.4.5
+  freezed: 2.4.5
   # integration_test:
   #   sdk: flutter
-  freezed_lint: ^0.0.1-dev+1
-  json_serializable: ^6.7.1
-  mocktail: ^1.0.1
-  riverpod_generator: ^3.0.0-dev.8
-  riverpod_lint: ^3.0.0-dev.1
-  very_good_analysis: ^5.1.0
-  very_good_cli: ^0.16.0
-  widgetbook_generator: ^3.2.0
+  freezed_lint: 0.0.1-dev+1
+  json_serializable: 6.7.1
+  mocktail: 1.0.1
+  riverpod_generator: 3.0.0-dev.8
+  riverpod_lint: 3.0.0-dev.1
+  very_good_analysis: 5.1.0
+  very_good_cli: 0.16.0
+  widgetbook_generator: 3.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
