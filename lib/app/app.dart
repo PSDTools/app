@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../l10n/l10n.dart";
+import "../features/auth/application/auth_service.dart";
 import "../utils/design.dart";
 import "../utils/log.dart";
 import "../utils/router.dart";
@@ -21,7 +22,7 @@ class App extends ConsumerWidget with Bootstrap {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return _MainArea(
+    return _EagerInitialization(
       child: MaterialApp.router(
         routerConfig: ref.read(routerProvider).config(
               navigatorObservers: () => [
@@ -34,6 +35,27 @@ class App extends ConsumerWidget with Bootstrap {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
       ),
+    );
+  }
+}
+
+class _EagerInitialization extends ConsumerWidget {
+  const _EagerInitialization({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Eagerly initialize providers by watching them.
+    // By using "watch", the provider will stay alive and not be disposed.
+    final user = ref.watch(userProvider);
+
+    return _MainArea(
+      child: switch (user) {
+        AsyncData() => child,
+        AsyncError() => child,
+        AsyncLoading() => const CircularProgressIndicator(),
+      },
     );
   }
 }
