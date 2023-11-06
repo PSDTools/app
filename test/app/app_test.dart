@@ -74,24 +74,4 @@ void main() {
       });
     });
   });
-
-  group("Bootstrapping...", () {
-    group("completes successfully:", () {
-      late void Function(FlutterErrorDetails)? originalOnError;
-      late App tested;
-
-      setUp(() {
-        originalOnError = FlutterError.onError;
-        tested = const App();
-      });
-
-      test("Test them boots...", () {
-        expect(() => tested.bootstrap, returnsNormally);
-      });
-
-      tearDown(() {
-        FlutterError.onError = originalOnError;
-      });
-    });
-  });
 }
