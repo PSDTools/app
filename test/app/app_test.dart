@@ -1,7 +1,10 @@
+// ignore_for_file: scoped_providers_should_specify_dependencies
+
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
+import "package:pirate_code/features/auth/application/auth_service.dart";
 
 import "../helpers/riverpod.dart";
 
@@ -11,7 +14,10 @@ void main() {
       testWidgets("a Material app.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
-            overrides: defaultOverrides,
+            overrides: [
+              ...defaultOverrides,
+              userProvider.overrideWith((_) => fakeUser),
+            ],
             child: const App(),
           ),
         );

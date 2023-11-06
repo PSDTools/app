@@ -1,13 +1,9 @@
-import "dart:typed_data";
-
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
-import "package:pirate_code/features/auth/domain/account_type.dart";
-import "package:pirate_code/features/auth/domain/pirate_user.dart";
 import "package:pirate_code/features/dashboard/presentation/wrapper_page/wrapper_page.dart";
 import "package:pirate_code/l10n/l10n.dart";
 import "package:pirate_code/utils/design.dart";
@@ -17,14 +13,7 @@ import "../../../../helpers/riverpod.dart";
 
 ProviderContainer createOverriddenContainer() => createContainer(
       overrides: [
-        userProvider.overrideWith(
-          (_) => PirateUser(
-            name: "",
-            email: redactedEmail,
-            accountType: AccountType.student,
-            avatar: Uint8List(1),
-          ),
-        ),
+        userProvider.overrideWith((_) => fakeUser),
       ],
     );
 
