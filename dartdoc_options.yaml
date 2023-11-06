@@ -9,20 +9,26 @@ dartdoc:
     "Testing":
       markdown: doc/tests.md
       name: Testing, Testing, 1, 2, 3
-    Translations:
+    "Translations":
       markdown: doc/translations.md
       name: Translations
-    Server:
+    "Server":
       markdown: doc/docker.md
       name: Appwrite
+    "Providers":
+      markdown: doc/providers-diagram.md
+      name: Providers Diagram
   categoryOrder:
     - "Getting Started"
     - "Testing"
     - "Translations"
-    - "C4Diagram"
     - "Server"
+    - "C4Diagram"
+    - "Providers"
   showUndocumentedCategories: true
-  includeExternal: ["test/helpers/*.dart"]
+  includeExternal:
+    - test/helpers/pump_app.dart
+    - test/helpers/riverpod.dart
   linkToSource:
     uriTemplate: "https://github.com/psdtools/app/blob/main/%f%#L%l%"
     root: "."

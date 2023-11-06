@@ -47,10 +47,25 @@
       "problemMatcher": [],
       "group": "none",
       "label": "Dart: doc",
-      "detail": "View the documentation.",
+      "detail": "Generate the documentation.",
       "icon": {
         "color": "terminal.ansiGreen",
         "id": "book"
+      }
+    },
+    {
+      "type": "dart",
+      "command": "dart",
+      "cwd": ".",
+      "args": ["run", "dhttpd", "--path", "doc/api"],
+      "problemMatcher": [],
+      "group": "none",
+      "label": "Dart: docs via dhttpd",
+      "detail": "View the generateed documentation.",
+      "isBackground": true,
+      "icon": {
+        "color": "terminal.ansiGreen",
+        "id": "server"
       }
     },
     {
