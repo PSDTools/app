@@ -2,8 +2,10 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:mocktail/mocktail.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
+import "package:pirate_code/features/auth/data/auth_repository.dart";
 
 import "../helpers/riverpod.dart";
 
@@ -14,6 +16,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             overrides: [
+              authProvider.overrideWithValue(_MockAuthRepository()),
               userProvider.overrideWith((_) => fakeUser),
             ],
             child: const App(),
@@ -25,48 +28,80 @@ void main() {
 
     group("is accessible...", () {
       testWidgets("on Android.", (tester) async {
+        final mockAuthRepository = _MockAuthRepository();
+        verifyZeroInteractions(mockAuthRepository);
+
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [],
+            overrides: [
+              authProvider.overrideWithValue(mockAuthRepository),
+            ],
             child: const App(),
           ),
         );
+
+        verify(() => mockAuthRepository.authenticate(anonymous: true))
+            .called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
         handle.dispose();
       });
       testWidgets("on iOS.", (tester) async {
+        final mockAuthRepository = _MockAuthRepository();
+        verifyZeroInteractions(mockAuthRepository);
+
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [],
+            overrides: [
+              authProvider.overrideWithValue(mockAuthRepository),
+            ],
             child: const App(),
           ),
         );
+
+        verify(() => mockAuthRepository.authenticate(anonymous: true))
+            .called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
         handle.dispose();
       });
       testWidgets("according to the WCAG.", (tester) async {
+        final mockAuthRepository = _MockAuthRepository();
+        verifyZeroInteractions(mockAuthRepository);
+
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [],
+            overrides: [
+              authProvider.overrideWithValue(mockAuthRepository),
+            ],
             child: const App(),
           ),
         );
+
+        verify(() => mockAuthRepository.authenticate(anonymous: true))
+            .called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(textContrastGuideline));
         handle.dispose();
       });
       testWidgets("with regard to labeling buttons.", (tester) async {
+        final mockAuthRepository = _MockAuthRepository();
+        verifyZeroInteractions(mockAuthRepository);
+
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [],
+            overrides: [
+              authProvider.overrideWithValue(mockAuthRepository),
+            ],
             child: const App(),
           ),
         );
+
+        verify(() => mockAuthRepository.authenticate(anonymous: true))
+            .called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
@@ -75,3 +110,5 @@ void main() {
     });
   });
 }
+
+class _MockAuthRepository extends Mock implements AuthRepository {}
