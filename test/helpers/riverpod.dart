@@ -11,12 +11,6 @@ import "package:pirate_code/features/auth/application/auth_service.dart";
 import "package:pirate_code/features/auth/domain/account_type.dart";
 import "package:pirate_code/features/auth/domain/pirate_user.dart";
 
-import "mocks.dart";
-
-final Overrides defaultOverrides = [
-  ...mockOverrides,
-];
-
 typedef Overrides = List<Override>;
 
 /// A testing utility which creates a [ProviderContainer] and automatically
@@ -29,7 +23,7 @@ ProviderContainer createContainer({
   // Create a ProviderContainer, and optionally allow specifying parameters.
   final container = ProviderContainer(
     parent: parent,
-    overrides: getOverrides(overrides),
+    overrides: overrides,
     observers: observers,
   );
 
@@ -37,13 +31,6 @@ ProviderContainer createContainer({
   addTearDown(container.dispose);
 
   return container;
-}
-
-Overrides getOverrides(Overrides overrides) {
-  return [
-    ...overrides,
-    ...defaultOverrides,
-  ];
 }
 
 final fakeUser = PirateUser(

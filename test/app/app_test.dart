@@ -1,5 +1,4 @@
-// ignore_for_file: scoped_providers_should_specify_dependencies
-
+// ignore_for_file: scoped_providers_should_specify_dependencies, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -15,7 +14,6 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             overrides: [
-              ...defaultOverrides,
               userProvider.overrideWith((_) => fakeUser),
             ],
             child: const App(),
@@ -29,7 +27,7 @@ void main() {
       testWidgets("on Android.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
-            overrides: defaultOverrides,
+            overrides: [],
             child: const App(),
           ),
         );
@@ -41,7 +39,7 @@ void main() {
       testWidgets("on iOS.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
-            overrides: defaultOverrides,
+            overrides: [],
             child: const App(),
           ),
         );
@@ -53,7 +51,7 @@ void main() {
       testWidgets("according to the WCAG.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
-            overrides: defaultOverrides,
+            overrides: [],
             child: const App(),
           ),
         );
@@ -65,7 +63,7 @@ void main() {
       testWidgets("with regard to labeling buttons.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
-            overrides: defaultOverrides,
+            overrides: [],
             child: const App(),
           ),
         );
