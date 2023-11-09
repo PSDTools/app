@@ -23,7 +23,7 @@ extension PumpApp on WidgetTester {
   }) async {
     return pumpWidget(
       ProviderScope(
-        overrides: getOverrides(overrides),
+        overrides: overrides,
         parent: parent,
         observers: observers,
         child: _Widget(
