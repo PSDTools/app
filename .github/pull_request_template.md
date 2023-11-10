@@ -13,7 +13,7 @@ This PR...
 > Which issue does this close?
 > If none, quickly write up a more detailed issue so any non-development-related discussion can go there.
 
-_**Closes:** #issue_
+_Closes: #issue_
 
 ## Type of Change
 
