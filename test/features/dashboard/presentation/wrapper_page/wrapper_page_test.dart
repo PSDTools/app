@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
+import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
@@ -11,130 +12,65 @@ import "package:pirate_code/utils/router.dart";
 
 import "../../../../helpers/riverpod.dart";
 
-ProviderContainer createOverriddenContainer() => createContainer(
+extension _WidgetTesterX on WidgetTester {
+  Future<void> pumpWidgetPage() async {
+    final container = createContainer(
       overrides: [
         userProvider.overrideWith((_) => fakeUser),
       ],
     );
+    final routerSubscription = container.listen(routerProvider, (_, __) {});
+    final router = routerSubscription.read();
+    GoogleFonts.config.allowRuntimeFetching = false;
+
+    await pumpWidget(
+      UncontrolledProviderScope(
+        container: container,
+        child: MaterialApp.router(
+          routerConfig: router.config(),
+          onGenerateTitle: (context) => context.l10n.appTitle,
+          theme: theme,
+          locale: flutterLocale,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+        ),
+      ),
+    );
+
+    await router.pushAll([
+      const WrapperRoute(children: [DashboardRoute()]),
+    ]);
+    await pumpAndSettle();
+    expect(router.urlState.url, equals("/"));
+    expect(find.byType(WrapperPage), findsOneWidget);
+  }
+
+  Future<void> testAcessabilityGuideline(
+    AccessibilityGuideline guideline,
+  ) async {
+    final handle = ensureSemantics();
+    await expectLater(this, meetsGuideline(guideline));
+    handle.dispose();
+  }
+}
 
 void main() {
   group("Wrapper page is accessible...", () {
     testWidgets("on Android.", (tester) async {
-      final container = createOverriddenContainer();
-      final routerSubscription = container.listen(routerProvider, (_, __) {});
-      final router = routerSubscription.read();
-
-      await tester.pumpWidget(
-        UncontrolledProviderScope(
-          container: container,
-          child: MaterialApp.router(
-            routerConfig: router.config(),
-            onGenerateTitle: (context) => context.l10n.appTitle,
-            theme: theme,
-            locale: flutterLocale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          ),
-        ),
-      );
-
-      await router.pushAll([
-        const WrapperRoute(children: [DashboardRoute()]),
-      ]);
-      await tester.pumpAndSettle();
-      expect(router.urlState.url, equals("/"));
-      expect(find.byType(WrapperPage), findsOneWidget);
-
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
-      handle.dispose();
+      await tester.pumpWidgetPage();
+      await tester.testAcessabilityGuideline(androidTapTargetGuideline);
     });
     testWidgets("on iOS.", (tester) async {
-      final container = createOverriddenContainer();
-      final routerSubscription = container.listen(routerProvider, (_, __) {});
-      final router = routerSubscription.read();
-
-      await tester.pumpWidget(
-        UncontrolledProviderScope(
-          container: container,
-          child: MaterialApp.router(
-            routerConfig: router.config(),
-            onGenerateTitle: (context) => context.l10n.appTitle,
-            theme: theme,
-            locale: flutterLocale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          ),
-        ),
-      );
-      await router.pushAll([
-        const WrapperRoute(children: [DashboardRoute()]),
-      ]);
-      await tester.pumpAndSettle();
-      expect(router.urlState.url, equals("/"));
-      expect(find.byType(WrapperPage), findsOneWidget);
-
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
-      handle.dispose();
+      await tester.pumpWidgetPage();
+      await tester.testAcessabilityGuideline(iOSTapTargetGuideline);
     });
     testWidgets("according to the WCAG.", (tester) async {
-      final container = createOverriddenContainer();
-      final routerSubscription = container.listen(routerProvider, (_, __) {});
-      final router = routerSubscription.read();
-
-      await tester.pumpWidget(
-        UncontrolledProviderScope(
-          container: container,
-          child: MaterialApp.router(
-            routerConfig: router.config(),
-            onGenerateTitle: (context) => context.l10n.appTitle,
-            theme: theme,
-            locale: flutterLocale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          ),
-        ),
-      );
-      await router.pushAll([
-        const WrapperRoute(children: [DashboardRoute()]),
-      ]);
-      await tester.pumpAndSettle();
-      expect(router.urlState.url, equals("/"));
-      expect(find.byType(WrapperPage), findsOneWidget);
-
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(textContrastGuideline));
-      handle.dispose();
+      await tester.pumpWidgetPage();
+      await tester.testAcessabilityGuideline(textContrastGuideline);
     });
     testWidgets("with regard to labeling buttons.", (tester) async {
-      final container = createOverriddenContainer();
-      final routerSubscription = container.listen(routerProvider, (_, __) {});
-      final router = routerSubscription.read();
-
-      await tester.pumpWidget(
-        UncontrolledProviderScope(
-          container: container,
-          child: MaterialApp.router(
-            routerConfig: router.config(),
-            onGenerateTitle: (context) => context.l10n.appTitle,
-            theme: theme,
-            locale: flutterLocale,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-          ),
-        ),
-      );
-      await router.pushAll([
-        const WrapperRoute(children: [DashboardRoute()]),
-      ]);
-      await tester.pumpAndSettle();
-      expect(router.urlState.url, equals("/"));
-      expect(find.byType(WrapperPage), findsOneWidget);
-
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
-      handle.dispose();
+      await tester.pumpWidgetPage();
+      await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
     });
   });
 }
