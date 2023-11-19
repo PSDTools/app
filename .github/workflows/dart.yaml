@@ -49,8 +49,8 @@ jobs:
         with:
           channel: "stable"
           cache: true
-      - name: 🌐 Disable telemetry
-        run: flutter --disable-telemetry
+      - name: 🌐 Disable analytics
+        run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Cache generated files
@@ -134,8 +134,8 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable telemetry
-        run: flutter --disable-telemetry
+      - name: 🌐 Disable analytics
+        run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Download generated code
@@ -179,8 +179,8 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable telemetry
-        run: flutter --disable-telemetry
+      - name: 🌐 Disable analytics
+        run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Download generated code
@@ -218,8 +218,8 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable telemetry
-        run: flutter --disable-telemetry
+      - name: 🌐 Disable analytics
+        run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
       - name: ⚙️ Download generated code
@@ -260,7 +260,7 @@ jobs:
         with:
           channel: ${{ matrix.flutter }}
           cache: true
-      - name: 🌐 Disable telemetry
-        run: flutter --disable-telemetry
+      - name: 🌐 Disable analytics
+        run: flutter --disable-analytics
       - name: ✨ Verify formatting
         run: dart format --output=none --set-exit-if-changed .
