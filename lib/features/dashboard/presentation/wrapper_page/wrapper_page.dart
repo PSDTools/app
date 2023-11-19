@@ -112,7 +112,7 @@ class _ExpandedWrapper extends ConsumerWidget {
                     ),
                   ],
                 ),
-                textScaleFactor: 4,
+                textScaler: const TextScaler.linear(4),
                 textAlign: TextAlign.center,
               ),
             ),
