@@ -1,7 +1,7 @@
 import "package:flutter_test/flutter_test.dart";
 import "package:mocktail/mocktail.dart";
 import "package:pirate_code/features/auth/data/auth_repository.dart";
-import "package:pirate_code/features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
+import "package:pirate_code/features/pirate_coins/presentation/pirate_coins_page/pirate_coins_teacher_page.dart";
 
 import "../../../../helpers/pump_app.dart";
 
@@ -16,7 +16,7 @@ void main() {
           overrides: [
             authProvider.overrideWithValue(mockAuthRepository),
           ],
-          const PirateCoinsPage(),
+          const PirateCoinsTeacherPage(),
         );
 
         verify(() => mockAuthRepository.authenticate(anonymous: true))
@@ -34,7 +34,7 @@ void main() {
           overrides: [
             authProvider.overrideWithValue(mockAuthRepository),
           ],
-          const PirateCoinsPage(),
+          const PirateCoinsTeacherPage(),
         );
 
         verify(() => mockAuthRepository.authenticate(anonymous: true))
@@ -52,7 +52,7 @@ void main() {
           overrides: [
             authProvider.overrideWithValue(mockAuthRepository),
           ],
-          const PirateCoinsPage(),
+          const PirateCoinsTeacherPage(),
         );
 
         verify(() => mockAuthRepository.authenticate(anonymous: true))
@@ -70,7 +70,7 @@ void main() {
           overrides: [
             authProvider.overrideWithValue(mockAuthRepository),
           ],
-          const PirateCoinsPage(),
+          const PirateCoinsTeacherPage(),
         );
 
         verify(() => mockAuthRepository.authenticate(anonymous: true))
