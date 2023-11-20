@@ -19,15 +19,16 @@ import "../../domain/coins_model.dart";
 
 /// The page located at `/pirate-coins`.
 @RoutePage()
-class PirateCoinsPage extends ConsumerWidget {
-  /// Create a new instance of [PirateCoinsPage].
-  const PirateCoinsPage({super.key});
+class PirateCoinsTeacherPage extends ConsumerWidget {
+  /// Create a new instance of [PirateCoinsTeacherPage].
+  const PirateCoinsTeacherPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final accountType = ref.watch(accountTypeProvider).valueOrNull;
 
     return Center(
+      /// If the user is not a teacher, redirect them to the student page.
       child: switch (accountType) {
         AccountType.student => const _StudentView(),
         AccountType.teacher => const _TeacherView(),
