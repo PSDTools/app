@@ -54,7 +54,7 @@ class _EagerInitialization extends ConsumerWidget {
       child: switch (user) {
         AsyncData() => child,
         AsyncError() => child,
-        AsyncLoading() => const CircularProgressIndicator(),
+        AsyncLoading() => const Center(child: CircularProgressIndicator()),
       },
     );
   }
