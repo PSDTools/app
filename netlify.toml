@@ -9,8 +9,8 @@ publish = "build/web"
 # Our Flutter Web build command
 command = """
   if cd flutter; \
-    then git pull && cd ..; \
-    else git clone https://github.com/flutter/flutter.git; \
+    then git checkout stable && git pull && cd ..; \
+    else git clone --branch stable https://github.com/flutter/flutter.git; \
   fi \
   && flutter/bin/flutter config --enable-web \
   && flutter/bin/flutter pub get \
