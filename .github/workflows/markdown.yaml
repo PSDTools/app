@@ -62,8 +62,6 @@ jobs:
     needs: []
     timeout-minutes: 4
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
 
     steps:
       - name: 📚 Git checkout
@@ -78,16 +76,3 @@ jobs:
           globs: |
             **/*.md
         continue-on-error: true
-      - name: ⚙️ Create pull request
-        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
-        if: ${{ github.event_name == 'pull_request' }}
-        with:
-          commit-message: "chore: apply markdownlint fxes"
-          branch: fixes/${{ github.head_ref }}
-          base: ${{ github.head_ref }}
-          title: "Apply markdownlint fixes for ${{ github.event.pull_request.title }}"
-          body: "*This is an automated pull request because markdownlint found problems that could be fixed automatically.*"
-          reviewers: lishaduck
-          assignees: lishaduck
-          signoff: true
-          delete-branch: true
