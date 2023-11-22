@@ -21,10 +21,10 @@ class AppRouter extends _$AppRouter {
   AppRouter({required this.ref});
 
   /// Gain access to the needed providers.
-  Ref<AppRouter> ref;
+  final Ref<AppRouter> ref;
 
   @override
-  RouteType get defaultRouteType => const RouteType.material();
+  final defaultRouteType = const RouteType.material();
 
   @override
   List<AutoRoute> get routes => [
