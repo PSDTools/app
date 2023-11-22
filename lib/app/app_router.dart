@@ -9,8 +9,8 @@ import "../features/auth/presentation/auth_page/auth_page.dart";
 import "../features/dashboard/presentation/dashboard_page/dashboard_page.dart";
 import "../features/dashboard/presentation/wrapper_page/wrapper_page.dart";
 import "../features/gpa_calculator/presentation/gpa_page/gpa_page.dart";
-import '../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_student_page.dart';
-import '../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_teacher_page.dart';
+import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_student_page.dart";
+import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_teacher_page.dart";
 import "../features/pirate_coins/presentation/stats_page/stats_page.dart";
 
 part "app_router.gr.dart";
