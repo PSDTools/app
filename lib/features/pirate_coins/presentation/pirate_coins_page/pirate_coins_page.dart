@@ -29,7 +29,12 @@ class PirateCoinsPage extends ConsumerWidget {
     return Center(
       child: switch (accountType) {
         AccountType.student => const _StudentView(),
-        _ => const _TeacherView(),
+        AccountType.teacher => const _TeacherView(),
+        AccountType.admin ||
+        AccountType.dev ||
+        AccountType.parent ||
+        null =>
+          const _TeacherView(),
       },
     );
   }

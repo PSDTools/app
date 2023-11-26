@@ -108,7 +108,7 @@ class _View extends StatelessWidget {
     final platformView = switch (data) {
       AndroidDeviceData() => androidView(data),
       IOsDeviceData() => iosView(data),
-      _ => otherView(data),
+      OtherDeviceData() => otherView(data),
     };
 
     return ListView(

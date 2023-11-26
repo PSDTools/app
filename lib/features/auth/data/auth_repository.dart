@@ -61,13 +61,17 @@ base class _AppwriteAuthRepository implements AuthRepository {
           // Go to the Google account login page.
           switch (_platform) {
             // Both Android and iOS need the same behavior, so it reuses it.
-            case Device.android:
-            case Device.ios:
+            case Device.android || Device.ios:
               await _account.createOAuth2Session(
                 provider: "google",
               );
-            // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows.
-            case _:
+
+            // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
+            case Device.web ||
+                  Device.linux ||
+                  Device.macos ||
+                  Device.windows ||
+                  Device.other:
               await _account.createOAuth2Session(
                 provider: "google",
                 success: "${Uri.base.origin}/auth.html",

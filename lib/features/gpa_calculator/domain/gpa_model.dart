@@ -37,7 +37,7 @@ sealed class LetterGrade with _$LetterGrade implements Comparable<LetterGrade> {
       >= 80 => LetterGrade.b(isHonors: isHonors),
       >= 70 => LetterGrade.c(isHonors: isHonors),
       >= 60 => LetterGrade.d(isHonors: isHonors),
-      _ => LetterGrade.f(isHonors: isHonors),
+      double() => LetterGrade.f(isHonors: isHonors),
     };
   }
 

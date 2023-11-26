@@ -48,7 +48,7 @@ base class _DeviceUtilsRepository implements DeviceRepository {
 
       case Device.ios:
         final iosInfo = await _plugin.iosInfo;
-        final info = DeviceData.iOs(
+        final info = DeviceData.iOS(
           device: _platform,
           isPhysicalDevice: iosInfo.isPhysicalDevice,
           model: iosInfo.model,
@@ -59,7 +59,11 @@ base class _DeviceUtilsRepository implements DeviceRepository {
 
         return info;
 
-      case _:
+      case Device.web ||
+            Device.linux ||
+            Device.macos ||
+            Device.windows ||
+            Device.other:
         return DeviceData.other(
           device: _platform,
           isPhysicalDevice: false,
@@ -84,6 +88,6 @@ Device currentPlatform(CurrentPlatformRef ref) {
   return switch (operatingSystem) {
     "android" => Device.android,
     "ios" => Device.ios,
-    _ => Device.other,
+    String() => Device.other,
   };
 }

@@ -33,9 +33,9 @@ Future<void> initLogging([Level level = Level.INFO]) async {
       !isBrowser && ansiOutputEnabled,
       () {
         final color = switch (record.level) {
-          < Level.WARNING => cyan,
-          < Level.SEVERE => yellow,
-          _ => red,
+          >= Level.SEVERE => red,
+          >= Level.WARNING => yellow,
+          Level() => cyan,
         };
         return color.wrap(
           "[${record.sequenceNumber}: ${record.level.name}@${record.time}]",
