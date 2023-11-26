@@ -9,6 +9,7 @@ import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../app/app_router.dart";
+import "../../../../utils/fonts.dart";
 import "../../../auth/application/auth_service.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
@@ -68,6 +69,9 @@ class _ExpandedWrapper extends ConsumerWidget {
     final name = ref.watch(usernameProvider).valueOrNull;
     final email = ref.watch(emailProvider).valueOrNull;
     final avatar = ref.watch(avatarProvider).valueOrNull;
+    final mrDafoe = GoogleFonts.mrDafoe();
+    final isMrDafoeLoaded =
+        ref.watch(isFontLoadedProvider(Fonts(families: [mrDafoe])));
 
     return Scaffold(
       appBar: AppBar(
@@ -101,20 +105,23 @@ class _ExpandedWrapper extends ConsumerWidget {
             color: theme.appBarTheme.backgroundColor,
             child: RotatedBox(
               quarterTurns: 1,
-              child: Text(
-                "Pattonville Pirates",
-                style: GoogleFonts.mrDafoe(
-                  color: const Color.fromARGB(255, 9, 56, 19),
-                  shadows: [
-                    Shadow(
-                      color: theme.colorScheme.shadow.withOpacity(0.5),
-                      blurRadius: 1,
+              child: switch (isMrDafoeLoaded) {
+                AsyncData() => Text(
+                    "Pattonville Pirates",
+                    style: GoogleFonts.mrDafoe(
+                      color: const Color.fromARGB(255, 9, 56, 19),
+                      shadows: [
+                        Shadow(
+                          color: theme.colorScheme.shadow.withOpacity(0.5),
+                          blurRadius: 1,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                textScaler: const TextScaler.linear(4),
-                textAlign: TextAlign.center,
-              ),
+                    textScaler: const TextScaler.linear(4),
+                    textAlign: TextAlign.center,
+                  ),
+                AsyncError() || AsyncLoading() => const SizedBox(),
+              },
             ),
           ),
           Expanded(
