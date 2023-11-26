@@ -45,7 +45,7 @@ class GpaPage extends HookConsumerWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              if (formKey.value.currentState?.validate.call() ?? false) {
+              if (formKey.value.currentState?.validate() ?? false) {
                 var total = 0;
                 for (var hour = 0; hour < hours.value; hour++) {
                   final grade = ref.read(gpaServiceProvider(hour)).grade;

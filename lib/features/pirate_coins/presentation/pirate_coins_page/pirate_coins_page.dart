@@ -182,7 +182,7 @@ class _UserForm extends HookConsumerWidget {
             ElevatedButton.icon(
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState?.validate.call() ?? false) {
+                if (_formKey.currentState?.validate() ?? false) {
                   // If the form is valid, display a snackbar.
                   context.showSnackBar(
                     content: const Text("Processing Data"),
