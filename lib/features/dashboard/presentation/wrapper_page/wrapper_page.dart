@@ -7,9 +7,11 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
+import "package:url_launcher/url_launcher.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../../utils/fonts.dart";
+import "../../../../utils/hooks.dart";
 import "../../../auth/application/auth_service.dart";
 import "../../../utils/presentation/device_info/device_banner.dart";
 
@@ -48,7 +50,7 @@ class WrapperPage extends StatelessWidget {
   }
 }
 
-class _ExpandedWrapper extends ConsumerWidget {
+class _ExpandedWrapper extends HookConsumerWidget {
   const _ExpandedWrapper({
     required this.child,
     required this.constraints,
@@ -72,6 +74,9 @@ class _ExpandedWrapper extends ConsumerWidget {
       isFontLoadedProvider(Fonts(families: [mrDafoe])),
     );
     const githubLink = "https://github.com/PSDTools/app";
+    final tapGestureRecognizer = useTapGestureRecognizer(
+      onTap: () async => launchUrl(Uri.parse(githubLink)),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -112,6 +117,7 @@ class _ExpandedWrapper extends ConsumerWidget {
                         color: theme.colorScheme.primary,
                       ),
                       text: githubLink,
+                      recognizer: tapGestureRecognizer,
                     ),
                     TextSpan(style: textStyle, text: "."),
                   ],
