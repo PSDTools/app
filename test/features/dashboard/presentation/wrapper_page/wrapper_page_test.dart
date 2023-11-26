@@ -22,7 +22,6 @@ extension _WidgetTesterX on WidgetTester {
     );
     final routerSubscription = container.listen(routerProvider, (_, __) {});
     final router = routerSubscription.read();
-    GoogleFonts.config.allowRuntimeFetching = false;
 
     await pumpWidget(
       UncontrolledProviderScope(
@@ -57,6 +56,10 @@ extension _WidgetTesterX on WidgetTester {
 
 void main() {
   group("Wrapper page is accessible...", () {
+    setUp(() {
+      GoogleFonts.config.allowRuntimeFetching = false;
+    });
+
     testWidgets("on Android.", (tester) async {
       await tester.pumpWidgetPage();
       await tester.testAcessabilityGuideline(androidTapTargetGuideline);
