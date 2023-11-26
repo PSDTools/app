@@ -64,7 +64,7 @@ void initFlutterErrors() {
 void initGoogleFonts() {
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
-      "google_fonts/mr_dafoe/OFL.txt",
+      "assets/google_fonts/mr_dafoe/OFL.txt",
     );
 
     yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
