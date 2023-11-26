@@ -63,12 +63,15 @@ class _ExpandedWrapper extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final textStyle = theme.textTheme.bodyMedium;
     final name = ref.watch(usernameProvider).valueOrNull;
     final email = ref.watch(emailProvider).valueOrNull;
     final avatar = ref.watch(avatarProvider).valueOrNull;
     final mrDafoe = GoogleFonts.mrDafoe();
-    final isMrDafoeLoaded =
-        ref.watch(isFontLoadedProvider(Fonts(families: [mrDafoe])));
+    final isMrDafoeLoaded = ref.watch(
+      isFontLoadedProvider(Fonts(families: [mrDafoe])),
+    );
+    const githubLink = "https://github.com/PSDTools/app";
 
     return Scaffold(
       appBar: AppBar(
@@ -79,19 +82,44 @@ class _ExpandedWrapper extends ConsumerWidget {
           tooltip: "Going Home!",
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: name != null ? Text(name) : null,
-              accountEmail: email != null ? Text(email) : null,
-              currentAccountPicture: avatar != null
-                  ? CircleAvatar(backgroundImage: MemoryImage(avatar))
-                  : null,
-            ),
-            const AboutListTile(),
-          ],
-        ),
+      drawer: NavigationDrawer(
+        children: [
+          UserAccountsDrawerHeader(
+            accountName: name != null ? Text(name) : null,
+            accountEmail: email != null ? Text(email) : null,
+            currentAccountPicture: avatar != null
+                ? CircleAvatar(backgroundImage: MemoryImage(avatar))
+                : null,
+          ),
+          AboutListTile(
+            icon: const Icon(Icons.info),
+            applicationIcon: const FlutterLogo(),
+            applicationName: "Pattonville Wallet",
+            applicationVersion: "November 2023",
+            applicationLegalese: "© 2023 Eli D. and Parker H.",
+            aboutBoxChildren: [
+              const SizedBox(height: 24),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      style: textStyle,
+                      text:
+                          "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
+                    ),
+                    TextSpan(
+                      style: textStyle?.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
+                      text: githubLink,
+                    ),
+                    TextSpan(style: textStyle, text: "."),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
