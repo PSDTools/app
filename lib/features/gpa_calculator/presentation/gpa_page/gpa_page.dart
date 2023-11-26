@@ -6,6 +6,7 @@ import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../../../../utils/hooks.dart";
 import "../../../../utils/snackbar.dart";
 import "../../../../widgets/letter_grade_dropdown/letter_grade_dropdown.dart";
 import "../../application/gpa_service.dart";
@@ -18,7 +19,7 @@ class GpaPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = useState(GlobalKey<FormState>());
+    final formKey = useGlobalKey<FormState>();
     final hours = useState(7);
 
     return Center(
@@ -28,7 +29,7 @@ class GpaPage extends HookConsumerWidget {
           SizedBox(
             width: 300,
             child: Form(
-              key: formKey.value,
+              key: formKey,
               child: Column(
                 children: [
                   for (var hour = 0; hour < hours.value; hour++)
@@ -45,7 +46,7 @@ class GpaPage extends HookConsumerWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              if (formKey.value.currentState?.validate() ?? false) {
+              if (formKey.currentState?.validate() ?? false) {
                 var total = 0;
                 for (var hour = 0; hour < hours.value; hour++) {
                   final grade = ref.read(gpaServiceProvider(hour)).grade;

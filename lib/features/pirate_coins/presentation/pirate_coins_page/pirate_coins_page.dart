@@ -7,6 +7,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../../l10n/l10n.dart";
+import "../../../../utils/hooks.dart";
 import "../../../../utils/snackbar.dart";
 import "../../../../widgets/big_card/big_card.dart";
 import "../../../../widgets/email_form_field/email_form_field.dart";
@@ -55,7 +56,7 @@ class _TeacherView extends ConsumerWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (mode) {
         PickStudentStage() => [
-            _UserForm(),
+            const _UserForm(),
           ],
         ViewCoinsStage(:final student) => [
             _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
@@ -146,18 +147,18 @@ class _MutationBar extends HookConsumerWidget {
 
 /// Teachers, pick a student to modify their coins.
 class _UserForm extends HookConsumerWidget {
-  _UserForm({
+  const _UserForm({
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
-  /// Create a [GlobalKey] that uniquely identifies the Form widget and allows validation of the form.
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+
+    // Create a key that uniquely identifies the Form widget and allows validation of the form.
+    final formKey = useGlobalKey<FormState>();
 
     // Create a text controller and use it to retrieve the current value of the text field.
     final myController = useTextEditingController();
@@ -165,7 +166,7 @@ class _UserForm extends HookConsumerWidget {
     return SizedBox(
       width: 300,
       child: Form(
-        key: _formKey,
+        key: formKey,
         child: Column(
           children: [
             Text(
@@ -182,7 +183,7 @@ class _UserForm extends HookConsumerWidget {
             ElevatedButton.icon(
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState?.validate() ?? false) {
+                if (formKey.currentState?.validate() ?? false) {
                   // If the form is valid, display a snackbar.
                   context.showSnackBar(
                     content: const Text("Processing Data"),
