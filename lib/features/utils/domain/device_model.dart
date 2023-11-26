@@ -15,7 +15,7 @@ part "device_model.freezed.dart";
 @immutable
 sealed class DeviceData with _$DeviceData {
   /// Create a new, immutable instance of iOS's [DeviceData].
-  const factory DeviceData.iOs({
+  const factory DeviceData.iOS({
     /// The current [Device].
     required Device device,
 
@@ -33,7 +33,7 @@ sealed class DeviceData with _$DeviceData {
 
     /// The current [Device]'s operating system version.
     required String systemVersion,
-  }) = IOsDeviceData;
+  }) = IOSDeviceData;
 
   /// Create a new, immutable instance of Android's [DeviceData].
   const factory DeviceData.android({

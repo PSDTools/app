@@ -107,7 +107,7 @@ class _View extends StatelessWidget {
 
     final platformView = switch (data) {
       AndroidDeviceData() => androidView(data),
-      IOsDeviceData() => iosView(data),
+      IOSDeviceData() => iosView(data),
       OtherDeviceData() => otherView(data),
     };
 
@@ -121,7 +121,7 @@ class _View extends StatelessWidget {
     );
   }
 
-  List<_BuildTile> iosView(IOsDeviceData value) {
+  List<_BuildTile> iosView(IOSDeviceData value) {
     final iosView = [
       _BuildTile("Device:", value.name),
       _BuildTile("System name:", value.systemName),
