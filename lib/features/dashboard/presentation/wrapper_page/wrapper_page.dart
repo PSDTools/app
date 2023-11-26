@@ -39,10 +39,7 @@ class WrapperPage extends StatelessWidget {
                 : _ExpandedWrapper(constraints: constraints, child: child);
 
             return SafeArea(
-              child: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                child: DeviceBanner(child: page),
-              ),
+              child: DeviceBanner(child: page),
             );
           },
         );

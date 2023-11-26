@@ -50,31 +50,12 @@ class _EagerInitialization extends ConsumerWidget {
     // By using "watch", the provider will stay alive and not be disposed.
     final user = ref.watch(userProvider);
 
-    return _MainArea(
+    return ColoredBox(
+      color: theme.colorScheme.surfaceVariant,
       child: switch (user) {
         AsyncData() || AsyncError() => child,
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
       },
-    );
-  }
-}
-
-// The container for the current page, with its background color and subtle switching animation.
-class _MainArea extends StatelessWidget {
-  const _MainArea({
-    required this.child,
-    // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
-    super.key,
-  });
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return ColoredBox(
-      color: theme.colorScheme.surfaceVariant,
-      child: child,
     );
   }
 }
