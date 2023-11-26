@@ -22,21 +22,10 @@ mixin Bootstrap on Widget {
   Future<void> bootstrap() async {
     await initLogging();
 
-    FlutterError.onError = (details) {
-      log.shout(
-        "Uncaught Flutter error:",
-        details.exceptionAsString(),
-        details.stack,
-      );
-    };
+    initFlutterErrors();
 
-    LicenseRegistry.addLicense(() async* {
-      final license = await rootBundle.loadString(
-        "google_fonts/mr_dafoe/OFL.txt",
-      );
-
-      yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
-    });
+    // Set up font fetching and licenses.
+    initGoogleFonts();
 
     // Don't use hash style routes.
     usePathUrlStrategy();
@@ -58,4 +47,26 @@ mixin Bootstrap on Widget {
       ),
     );
   }
+}
+
+/// Tell Flutter's logger to use our own.
+void initFlutterErrors() {
+  FlutterError.onError = (details) {
+    log.shout(
+      "Uncaught Flutter error:",
+      details.exceptionAsString(),
+      details.stack,
+    );
+  };
+}
+
+/// Set up proper font fetching and licensing.
+void initGoogleFonts() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString(
+      "google_fonts/mr_dafoe/OFL.txt",
+    );
+
+    yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
+  });
 }
