@@ -6,17 +6,17 @@ import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
-import "../domain/coin.dart";
+import "../domain/coin_entity.dart";
 
 part "coins_repository.g.dart";
 
 /// A repository for coin manipulation.
 abstract interface class CoinsRepository {
   /// Get coins data from the [databases].
-  Future<Coin> coinsData(int user);
+  Future<CoinEntity> coinsData(int user);
 
   /// Modify the coins in the [databases].
-  Future<void> updateCoins(Coin coin, int user);
+  Future<void> updateCoins(CoinEntity coin, int user);
 }
 
 /// The default implementation of [CoinsRepository].
@@ -28,19 +28,19 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
   final Databases _database;
 
   @override
-  Future<Coin> coinsData(int id) async {
+  Future<CoinEntity> coinsData(int id) async {
     try {
       final json = await _getDocument(id);
 
-      return Coin.fromJson(json.data);
+      return CoinEntity.fromJson(json.data);
     } catch (e) {
-      return _newDocument(id, const Coin(coins: 0));
+      return _newDocument(id, const CoinEntity(coins: 0));
     }
   }
 
   /// Add coins to the _database.
   @override
-  Future<void> updateCoins(Coin coin, int id) async {
+  Future<void> updateCoins(CoinEntity coin, int id) async {
     try {
       await _updateDocument(id, coin);
     } catch (e) {
@@ -48,7 +48,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
     }
   }
 
-  Future<Coin> _newDocument(int id, Coin data) async {
+  Future<CoinEntity> _newDocument(int id, CoinEntity data) async {
     await _database.createDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,
@@ -67,7 +67,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
     );
   }
 
-  Future<void> _updateDocument(int id, Coin coin) async {
+  Future<void> _updateDocument(int id, CoinEntity coin) async {
     await _database.updateDocument(
       databaseId: apiInfo.databaseId,
       collectionId: apiInfo.collectionId,

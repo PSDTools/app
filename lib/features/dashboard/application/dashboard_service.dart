@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../gen/assets.gen.dart";
-import "../domain/applet.dart";
+import "../domain/applet_entity.dart";
 import "../domain/dashboard_model.dart";
 
 part "dashboard_service.g.dart";
@@ -20,7 +20,7 @@ base class DashboardService extends _$DashboardService {
 }
 
 /// Get the list of applets.
-List<Applet> get _applets {
+List<AppletEntity> get _applets {
   // Add more buttons here
   // Ideas:
   //
@@ -30,14 +30,14 @@ List<Applet> get _applets {
 
   const appletsFolder = Assets.applets;
   return [
-    Applet(
+    AppletEntity(
       name: "Pirate Coins",
       image: appletsFolder.pirateCoins.path,
       color: const Color.fromARGB(255, 122, 194, 129),
       // TODO(lishaduck): figure out how to use routes to keep this type-safe.
       location: "/pirate-coins",
     ),
-    Applet(
+    AppletEntity(
       image: appletsFolder.gpaCalculator.path,
       color: const Color.fromARGB(255, 242, 184, 184),
       name: "GPA Calculator",
@@ -54,6 +54,6 @@ List<Applet> get _applets {
 
 /// Get the list of applets.
 @riverpod
-List<Applet> applets(AppletsRef ref) => ref.watch(
+List<AppletEntity> applets(AppletsRef ref) => ref.watch(
       dashboardServiceProvider.select((value) => value.applets),
     );

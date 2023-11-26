@@ -5,15 +5,15 @@ import "../../../utils/json_converters.dart";
 import "../../../utils/models.dart";
 import "account_type.dart";
 
-part "pirate_user.freezed.dart";
-part "pirate_user.g.dart";
+part "pirate_user_entity.freezed.dart";
+part "pirate_user_entity.g.dart";
 
 /// Represent a pirate user.
 @freezed
 @immutable
-sealed class PirateUser with _$PirateUser implements Model {
-  /// Create a new, immutable instance of [PirateUser].
-  const factory PirateUser({
+sealed class PirateUserEntity with _$PirateUserEntity implements Model {
+  /// Create a new, immutable instance of [PirateUserEntity].
+  const factory PirateUserEntity({
     /// The user's name.
     required String name,
 
@@ -27,11 +27,11 @@ sealed class PirateUser with _$PirateUser implements Model {
     @Uint8ListConverter() required Uint8List avatar,
   }) = _PirateUser;
 
-  const PirateUser._();
+  const PirateUserEntity._();
 
-  /// Convert a JSON [Map] into a new, immutable instance of [PirateUser].
-  factory PirateUser.fromJson(Map<String, Object?> json) =>
-      _$PirateUserFromJson(json);
+  /// Convert a JSON [Map] into a new, immutable instance of [PirateUserEntity].
+  factory PirateUserEntity.fromJson(Map<String, Object?> json) =>
+      _$PirateUserEntityFromJson(json);
 
   /// The user's hash.
   int get id => getId(email);

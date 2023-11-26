@@ -5,7 +5,7 @@ import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../utils/models.dart";
-import "pirate_user.dart";
+import "pirate_user_entity.dart";
 
 part "pirate_auth_model.freezed.dart";
 part "pirate_auth_model.g.dart";
@@ -17,7 +17,7 @@ sealed class PirateAuthModel with _$PirateAuthModel implements Model {
   /// Create a new, immutable instance of [PirateAuthModel].
   const factory PirateAuthModel({
     /// The user.
-    required PirateUser user,
+    required PirateUserEntity user,
   }) = _PirateAuthModel;
 
   /// Convert a JSON [Map] into a new, immutable instance of [PirateAuthModel].

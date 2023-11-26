@@ -5,7 +5,7 @@ import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../utils/models.dart";
-import "applet.dart";
+import "applet_entity.dart";
 
 part "dashboard_model.freezed.dart";
 part "dashboard_model.g.dart";
@@ -16,7 +16,7 @@ part "dashboard_model.g.dart";
 sealed class DashboardModel with _$DashboardModel {
   /// Create a new, immutable [DashboardModel].
   const factory DashboardModel({
-    required List<Applet> applets,
+    required List<AppletEntity> applets,
   }) = _DashboardModel;
 
   /// Convert a JSON [Map] into a new, immutable [DashboardModel].

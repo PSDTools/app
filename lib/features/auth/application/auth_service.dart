@@ -8,7 +8,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "../data/auth_repository.dart";
 import "../domain/account_type.dart";
 import "../domain/pirate_auth_model.dart";
-import "../domain/pirate_user.dart";
+import "../domain/pirate_user_entity.dart";
 
 part "auth_service.g.dart";
 
@@ -44,7 +44,7 @@ base class PirateAuthService extends _$PirateAuthService {
 ///
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
-Future<PirateUser> user(UserRef ref) async => await ref.watch(
+Future<PirateUserEntity> user(UserRef ref) async => await ref.watch(
       pirateAuthServiceProvider.selectAsync((value) => value.user),
     );
 

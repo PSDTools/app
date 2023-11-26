@@ -4,15 +4,15 @@ import "package:freezed_annotation/freezed_annotation.dart";
 
 import "../../../utils/json_converters.dart";
 
-part "applet.freezed.dart";
-part "applet.g.dart";
+part "applet_entity.freezed.dart";
+part "applet_entity.g.dart";
 
 /// Represent an applet, which is a widget that can be added to the dashboard.
 @freezed
 @immutable
-sealed class Applet with _$Applet {
-  /// Create a new, immutable [Applet].
-  const factory Applet({
+sealed class AppletEntity with _$AppletEntity {
+  /// Create a new, immutable [AppletEntity].
+  const factory AppletEntity({
     /// The name of the applet.
     required String name,
 
@@ -31,8 +31,9 @@ sealed class Applet with _$Applet {
     // required String status,
     // required String createdAt,
     // required String updatedAt,
-  }) = _Applet;
+  }) = _AppletEntity;
 
-  /// Convert a JSON [Map] into a new, immutable [Applet].
-  factory Applet.fromJson(Map<String, dynamic> json) => _$AppletFromJson(json);
+  /// Convert a JSON [Map] into a new, immutable [AppletEntity].
+  factory AppletEntity.fromJson(Map<String, dynamic> json) =>
+      _$AppletEntityFromJson(json);
 }

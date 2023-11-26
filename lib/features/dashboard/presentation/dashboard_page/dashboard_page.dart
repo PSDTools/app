@@ -7,7 +7,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../../pirate_coins/application/coins_service.dart";
 import "../../application/dashboard_service.dart";
-import "../../domain/applet.dart";
+import "../../domain/applet_entity.dart";
 
 /// The page located at `/`.
 @RoutePage()
@@ -124,11 +124,11 @@ class _AppletButton extends ConsumerWidget {
   });
 
   /// The list of
-  final Applet buttonData;
+  final AppletEntity buttonData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Applet(
+    final AppletEntity(
       image: imagePath,
       color: backgroundColor,
       name: title,

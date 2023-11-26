@@ -12,7 +12,7 @@ import "../../../../widgets/big_card/big_card.dart";
 import "../../../../widgets/email_form_field/email_form_field.dart";
 import "../../../auth/application/auth_service.dart";
 import "../../../auth/domain/account_type.dart";
-import "../../../auth/domain/pirate_user.dart";
+import "../../../auth/domain/pirate_user_entity.dart";
 import "../../application/coins_service.dart";
 import "../../domain/coins_model.dart";
 

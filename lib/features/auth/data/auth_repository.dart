@@ -12,7 +12,7 @@ import "../../../utils/log.dart";
 import "../../utils/data/device_repository.dart";
 import "../../utils/domain/device_model.dart";
 import "../domain/account_type.dart";
-import "../domain/pirate_user.dart";
+import "../domain/pirate_user_entity.dart";
 import "avatar_repository.dart";
 
 part "auth_repository.g.dart";
@@ -20,7 +20,7 @@ part "auth_repository.g.dart";
 /// A repository for authentication.
 abstract interface class AuthRepository {
   /// Authenticate the user.
-  Future<PirateUser> authenticate({required bool anonymous});
+  Future<PirateUserEntity> authenticate({required bool anonymous});
 }
 
 /// The default implementation of [AuthRepository].
@@ -44,7 +44,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
   final AvatarRepository _avatarRepo;
 
   @override
-  Future<PirateUser> authenticate({bool anonymous = false}) async {
+  Future<PirateUserEntity> authenticate({bool anonymous = false}) async {
     User account;
     try {
       account = await _account.get();
@@ -89,7 +89,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
     try {
       final accountType = AccountType.fromEmail(account.email);
       final avatar = await _avatarRepo.getAvatar();
-      return PirateUser(
+      return PirateUserEntity(
         name: account.name,
         email: account.email,
         accountType: accountType,
@@ -113,7 +113,7 @@ const redactedName = "Anonymous";
 final redactedAvatar = Uint8List(1);
 
 /// A fake user, for use when all else fails.
-final fakeUser = PirateUser(
+final fakeUser = PirateUserEntity(
   name: redactedName,
   email: redactedEmail,
   accountType: AccountType.student,
