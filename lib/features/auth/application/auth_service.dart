@@ -48,9 +48,6 @@ Future<PirateUser> user(UserRef ref) async => await ref.watch(
       pirateAuthServiceProvider.selectAsync((value) => value.user),
     );
 
-/// The email address used in case things go wrong.
-const redactedEmail = "redacted@example.com";
-
 /// Get the current user's name.
 ///
 /// Named as such to prevent a naming conflict with riverpod.

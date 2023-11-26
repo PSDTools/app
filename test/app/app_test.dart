@@ -7,8 +7,6 @@ import "package:pirate_code/app/app.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
 import "package:pirate_code/features/auth/data/auth_repository.dart";
 
-import "../helpers/riverpod.dart";
-
 void main() {
   group("App...", () {
     group("renders...", () {

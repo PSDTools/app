@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:pirate_code/features/auth/application/auth_service.dart";
+import "package:pirate_code/features/auth/data/auth_repository.dart";
 import "package:pirate_code/widgets/email_form_field/email_form_field.dart";
 
 import "../../helpers/pump_app.dart";

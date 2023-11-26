@@ -1,6 +1,8 @@
 /// This library contains the authentication feature's data fetchers.
 library;
 
+import "dart:typed_data";
+
 import "package:appwrite/appwrite.dart";
 import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
@@ -79,17 +81,40 @@ base class _AppwriteAuthRepository implements AuthRepository {
 
       account = await _account.get();
     }
-    final accountType = AccountType.fromEmail(account.email);
-    final avatar = await _avatarRepo.getAvatar();
 
-    return PirateUser(
-      name: account.name,
-      email: account.email,
-      accountType: accountType,
-      avatar: avatar,
-    );
+    try {
+      final accountType = AccountType.fromEmail(account.email);
+      final avatar = await _avatarRepo.getAvatar();
+      return PirateUser(
+        name: account.name,
+        email: account.email,
+        accountType: accountType,
+        avatar: avatar,
+      );
+    } catch (e) {
+      log.warning("Failed to fetch user data.", e);
+
+      return fakeUser;
+    }
   }
 }
+
+/// The email address used in case things go wrong.
+const redactedEmail = "redacted@example.com";
+
+/// The name used in case things go wrong.
+const redactedName = "Anonymous";
+
+/// The avatar used in case things go wrong.
+final redactedAvatar = Uint8List(1);
+
+/// A fake user, for use when all else fails.
+final fakeUser = PirateUser(
+  name: redactedName,
+  email: redactedEmail,
+  accountType: AccountType.student,
+  avatar: redactedAvatar,
+);
 
 /// Get the authentication data provider.
 @Riverpod(keepAlive: true)

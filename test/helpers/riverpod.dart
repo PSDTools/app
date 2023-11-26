@@ -3,13 +3,8 @@
 /// {@category Testing}
 library;
 
-import "dart:typed_data";
-
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
-import "package:pirate_code/features/auth/application/auth_service.dart";
-import "package:pirate_code/features/auth/domain/account_type.dart";
-import "package:pirate_code/features/auth/domain/pirate_user.dart";
 
 typedef Overrides = List<Override>;
 
@@ -32,10 +27,3 @@ ProviderContainer createContainer({
 
   return container;
 }
-
-final fakeUser = PirateUser(
-  name: "",
-  email: redactedEmail,
-  accountType: AccountType.student,
-  avatar: Uint8List(1),
-);
