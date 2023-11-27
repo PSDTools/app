@@ -10,6 +10,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../../../../app/app_router.dart";
+import "../../../../gen/assets.gen.dart";
 import "../../../../gen/version.gen.dart";
 import "../../../../utils/fonts.dart";
 import "../../../../utils/hooks.dart";
@@ -99,7 +100,7 @@ class _ExpandedWrapper extends HookConsumerWidget {
           ),
           AboutListTile(
             icon: const Icon(Icons.info),
-            applicationIcon: const FlutterLogo(),
+            applicationIcon: Assets.icon.icon.image(),
             applicationName: "Pattonville Wallet",
             applicationVersion: packageVersion,
             applicationLegalese: "© 2023 Eli D. and Parker H.",

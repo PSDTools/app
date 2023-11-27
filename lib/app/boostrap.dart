@@ -9,6 +9,7 @@ import "package:flutter_web_plugins/url_strategy.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
+import "../gen/assets.gen.dart";
 import "../utils/log.dart";
 
 /// Turn any widget into a flow-blown app.
@@ -66,7 +67,7 @@ void initGoogleFonts() {
   GoogleFonts.config.allowRuntimeFetching = false;
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
-      "assets/google_fonts/mr_dafoe/OFL.txt",
+      Assets.googleFonts.mrDafoe.ofl,
     );
 
     yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
