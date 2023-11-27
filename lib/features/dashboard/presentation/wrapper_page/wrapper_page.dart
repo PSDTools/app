@@ -10,6 +10,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:url_launcher/url_launcher.dart";
 
 import "../../../../app/app_router.dart";
+import "../../../../gen/version.gen.dart";
 import "../../../../utils/fonts.dart";
 import "../../../../utils/hooks.dart";
 import "../../../auth/application/auth_service.dart";
@@ -100,7 +101,7 @@ class _ExpandedWrapper extends HookConsumerWidget {
             icon: const Icon(Icons.info),
             applicationIcon: const FlutterLogo(),
             applicationName: "Pattonville Wallet",
-            applicationVersion: "November 2023",
+            applicationVersion: packageVersion,
             applicationLegalese: "© 2023 Eli D. and Parker H.",
             aboutBoxChildren: [
               const SizedBox(height: 24),

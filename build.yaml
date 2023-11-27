@@ -62,3 +62,7 @@ targets:
       widgetbook_generator:telemetry:
         # disable widgetbook telemetry...
         enabled: false
+      build_version:build_version:
+        # configs for the packageVersion generator...
+        options:
+          output: lib/gen/version.gen.dart
