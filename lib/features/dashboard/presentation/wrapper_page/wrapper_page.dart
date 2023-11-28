@@ -100,7 +100,7 @@ class _ExpandedWrapper extends HookConsumerWidget {
           ),
           AboutListTile(
             icon: const Icon(Icons.info),
-            applicationIcon: Assets.icon.icon.image(),
+            applicationIcon: Assets.icon.icon.image(width: 50),
             applicationName: "Pattonville Wallet",
             applicationVersion: packageVersion,
             applicationLegalese: "© 2023 Eli D. and Parker H.",
