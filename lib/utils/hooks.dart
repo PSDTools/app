@@ -31,13 +31,20 @@ class _TapGestureRecognizerHook extends Hook<TapGestureRecognizer> {
   final void Function()? onTap;
 
   @override
-  HookState<TapGestureRecognizer, Hook<TapGestureRecognizer>> createState() =>
+  _TapGestureRecognizerHookState createState() =>
       _TapGestureRecognizerHookState();
 }
 
 class _TapGestureRecognizerHookState
     extends HookState<TapGestureRecognizer, _TapGestureRecognizerHook> {
-  late final recognizer = TapGestureRecognizer();
+  late final TapGestureRecognizer recognizer;
+
+  @override
+  void initHook() {
+    super.initHook();
+    recognizer = TapGestureRecognizer();
+    recognizer.onTap = hook.onTap;
+  }
 
   @override
   TapGestureRecognizer build(BuildContext context) {
@@ -46,6 +53,9 @@ class _TapGestureRecognizerHookState
 
   @override
   void dispose() => recognizer.dispose();
+
+  @override
+  bool get debugHasShortDescription => false;
 
   @override
   String get debugLabel => "useTapGestureRecognizer";
