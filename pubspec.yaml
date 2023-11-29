@@ -23,8 +23,8 @@ issue_tracker: https://github.com/PSDTools/app/issues
 repository: https://github.com/PSDTools/app.git
 
 environment:
-  sdk: "3.2.0"
-  flutter: "3.16.0"
+  sdk: "3.2.1"
+  flutter: "3.16.1"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -37,6 +37,7 @@ dependencies:
   auto_route: 7.8.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  build_version: ^2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
   device_info_plus: 9.1.1
   flutter:
