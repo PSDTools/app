@@ -12,16 +12,16 @@ enum AccountType {
   /// A staff account.
   admin,
 
-  /// A development account.
+  /// A developer account.
   dev;
 
   /// Convert a [String] into an [AccountType].
   // TODO(lishaduck): Use Appwrite roles once they're properly hooked up.
   factory AccountType.fromEmail(String email) {
-    return email.endsWith("@student.psdr3.org")
-        ? AccountType.student
-        : email.endsWith("@psdr3.org")
-            ? AccountType.teacher
-            : AccountType.dev;
+    return switch (email) {
+      String() when email.endsWith("@student.psdr3.org") => AccountType.student,
+      String() when email.endsWith("@psdr3.org") => AccountType.teacher,
+      String() => AccountType.dev,
+    };
   }
 }
