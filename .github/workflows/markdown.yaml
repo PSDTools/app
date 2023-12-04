@@ -29,19 +29,29 @@ permissions:
 
 jobs:
   spell-check:
-    name: Check spelling
+    name: Check Spelling
     needs: []
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@b7d3a7d287a7ed1f996861a73d69eafdfd7ed60e # v1.14.0
+    runs-on: ubuntu-latest
 
-    with:
-      includes: |
-        **/*.md
-        **/*.dart
-        **/*.yaml
-        **/*.toml
-        **/*.json
-      modified_files_only: false
-      config: cspell.json
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
+
+      - name: 🪄 Spell Check
+        uses: streetsidesoftware/cspell-action@d4c3df16cdd0faebccb1711178a8a490966f61b9 # v5.0.1
+        with:
+          files: |
+            **/*.md
+            **/*.dart
+            **/*.yaml
+            **/*.toml
+            **/*.json
+          incremental_files_only: false
 
   link-check:
     name: Check Links
@@ -64,10 +74,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📚 Git checkout
+      - name: 📚 Git Checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
-          submodules: true
+          submodules: recursive
+          clean: true
+          persist-credentials: false
+          set-safe-directory: true
       - name: 🪄 Markdown linting
         uses: DavidAnson/markdownlint-cli2-action@510b996878fc0d1a46c8a04ec86b06dbfba09de7 # v15.0.0
         id: markdownlint
