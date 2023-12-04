@@ -1,4 +1,5 @@
 // ignore_for_file: scoped_providers_should_specify_dependencies, prefer_const_constructors, prefer_const_literals_to_create_immutables
+import "package:appwrite/appwrite.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -6,6 +7,7 @@ import "package:mocktail/mocktail.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
 import "package:pirate_code/features/auth/data/auth_repository.dart";
+import "package:pirate_code/utils/api.dart";
 
 void main() {
   group("App...", () {
@@ -14,7 +16,7 @@ void main() {
         await tester.pumpWidget(
           ProviderScope(
             overrides: [
-              authProvider.overrideWithValue(_MockAuthRepository()),
+              clientProvider.overrideWithValue(_MockClient()),
               userProvider.overrideWith((_) => fakeUser),
             ],
             child: const App(),
@@ -110,3 +112,5 @@ void main() {
 }
 
 class _MockAuthRepository extends Mock implements AuthRepository {}
+
+class _MockClient extends Mock implements Client {}
