@@ -35,7 +35,8 @@ List<AppletEntity> get _applets {
       image: appletsFolder.pirateCoins.path,
       color: const Color.fromARGB(255, 122, 194, 129),
       // TODO(lishaduck): figure out how to use routes to keep this type-safe.
-      location: "/pirate-coins",
+      location:
+          "/pirate-coins-student", //not sure how to make this dynamic based on account type
     ),
     AppletEntity(
       image: appletsFolder.gpaCalculator.path,
