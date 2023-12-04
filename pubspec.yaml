@@ -49,7 +49,6 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   freezed_annotation: 2.4.1
-  google_fonts: 6.1.0
   hooks_riverpod: 3.0.0-dev.3
   intl: 0.18.1
   io: 1.0.4
@@ -100,7 +99,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets: # Lists assets, such as image files
     - assets/applets/
-    - assets/google_fonts/mr_dafoe/
+    - assets/google_fonts/mr_dafoe/OFL.txt
     - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -112,11 +111,13 @@ flutter:
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # an example, see below:
-  # fonts: # Required if your app uses custom fonts
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+  # list giving the asset and other descriptors for the font
+  fonts: # Required if your app uses custom fonts
+    - family: MrDafoe
+      fonts:
+        - asset: assets/google_fonts/mr_dafoe/MrDafoe-Regular.ttf
+          style: normal
+          weight: 400
 
 dart_define:
   variables:

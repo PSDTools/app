@@ -42,10 +42,6 @@ targets:
         # configs for the flutter.assets generator
         generate_for:
           - $package$
-      source_gen:combining_builder:
-        # configs for the source_gen:combining_builder generator
-        generate_for:
-          - lib/**.dart
       json_serializable:
         # configs for the @JsonSerializable generator
         generate_for:

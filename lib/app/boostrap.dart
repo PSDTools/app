@@ -6,7 +6,6 @@ import "package:flutter/foundation.dart";
 import "package:flutter/services.dart";
 import "package:flutter/widgets.dart";
 import "package:flutter_web_plugins/url_strategy.dart";
-import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../gen/assets.gen.dart";
@@ -64,7 +63,6 @@ void initFlutterErrors() {
 
 /// Set up proper font fetching and licensing.
 void initGoogleFonts() {
-  GoogleFonts.config.allowRuntimeFetching = false;
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString(
       Assets.googleFonts.mrDafoe.ofl,
