@@ -61,7 +61,10 @@ class _TeacherView extends ConsumerWidget {
         ViewCoinsStage(:final student) => [
             _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
             const SizedBox(height: 10),
-            _MutationBar(student: student),
+            _MutationBar(
+              student: student,
+              loaded: true, // TODO: set this to false when loading coins data
+            ),
           ],
       },
     );
@@ -91,12 +94,14 @@ class _StudentView extends ConsumerWidget {
 class _MutationBar extends HookConsumerWidget {
   const _MutationBar({
     required this.student,
+    required this.loaded,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
   });
 
   final int student;
+  final bool loaded;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -112,21 +117,21 @@ class _MutationBar extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton.icon(
-              onPressed: requestInFlight.value
-                  ? null
-                  : () async {
+              onPressed: loaded && !requestInFlight.value
+                  ? () async {
                       requestInFlight.value = true;
                       await ref
                           .read(coinsServiceProvider(student).notifier)
                           .addCoins(1);
                       requestInFlight.value = false;
-                    },
+                    }
+                  : null,
               icon: const Icon(Icons.add),
               label: Text(l10n.addCoins),
             ),
             const SizedBox(width: 10),
             ElevatedButton.icon(
-              onPressed: requestInFlight.value
+              onPressed: requestInFlight.value || !loaded
                   ? null
                   : () async {
                       requestInFlight.value = true;
