@@ -49,8 +49,8 @@ class GpaPage extends HookConsumerWidget {
               if (formKey.currentState?.validate() ?? false) {
                 var total = 0;
                 for (var hour = 0; hour < hours.value; hour++) {
-                  final grade = ref.read(gpaServiceProvider(hour)).grade;
-                  total += grade.value;
+                  final grade = ref.read(gpaServiceProvider(hour)).grade.value;
+                  total += grade;
                 }
 
                 final gpa = total / hours.value;
