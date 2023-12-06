@@ -86,3 +86,11 @@ Avatars avatars(AvatarsRef ref) {
 
   return Avatars(client);
 }
+
+/// Get the Appwrite realtime subscriptions.
+@Riverpod(keepAlive: true)
+Realtime realtime(RealtimeRef ref) {
+  final client = ref.watch(clientProvider);
+
+  return Realtime(client);
+}

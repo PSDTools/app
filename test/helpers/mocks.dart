@@ -6,7 +6,7 @@ import "riverpod.dart";
 
 final Overrides mockOverrides = [
   authProvider.overrideWithValue(MockAuthRepository()),
-  coinsDataProvider.overrideWithValue(MockCoinsRepository()),
+  coinsDataProvider.overrideWith((_) => MockCoinsRepository()),
 ];
 
 class MockAuthRepository extends Mock implements AuthRepository {}

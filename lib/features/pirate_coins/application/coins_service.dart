@@ -5,6 +5,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../auth/application/auth_service.dart";
 import "../data/coins_repository.dart";
+import "../domain/coin_entity.dart";
 import "../domain/coins_model.dart";
 
 part "coins_service.g.dart";
@@ -14,35 +15,26 @@ part "coins_service.g.dart";
 base class CoinsService extends _$CoinsService {
   @override
   FutureOr<CoinsModel> build(int userId) async {
-    return fetchCoins();
+    final coins = fetchCoins();
+    final coin = await coins.last;
+
+    return CoinsModel(coins: coin);
   }
 
   /// Get the coins of a user.
-  Future<CoinsModel> fetchCoins() async {
-    final getCoins = ref.read(coinsDataProvider).coinsData;
-    final coins = await getCoins(userId);
+  Stream<CoinEntity> fetchCoins() async* {
+    final coinsDataRepository = ref.read(coinsDataProvider(userId));
 
-    return CoinsModel(coins: coins);
+    yield* coinsDataRepository.coinsData();
   }
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
-    final updateCoins = ref.read(coinsDataProvider).updateCoins;
-
-    ref.invalidateSelf();
-    await future;
-
-    final currentCoins = state.valueOrNull;
-
-    if (currentCoins != null) {
-      final coins = currentCoins.copyWith.coins(
-        coins: currentCoins.coins.coins + num,
-      );
-      await updateCoins(coins.coins, userId);
+    if (state case AsyncData<CoinsModel>(:final value)) {
+      await ref.read(coinsDataProvider(userId)).updateCoins(
+            value.copyWith.coins(coins: value.coins.coins + num).coins,
+          );
     }
-
-    ref.invalidateSelf();
-    await future;
   }
 
   /// Add coins to the database.
@@ -58,13 +50,12 @@ base class CoinsService extends _$CoinsService {
 
 /// Get the coins of the current user.
 @riverpod
-Future<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async {
+Stream<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async* {
   final userId = await ref.watch(
     pirateAuthServiceProvider.selectAsync((data) => data.user.id),
   );
-  final fetchCoins = ref.read(coinsServiceProvider(userId).notifier).fetchCoins;
 
-  return fetchCoins();
+  yield await ref.read(coinsServiceProvider(userId).future);
 }
 
 /// Get coins data from data layer.
