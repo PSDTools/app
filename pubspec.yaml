@@ -70,7 +70,7 @@ dev_dependencies:
   # flutter_gen_linter: 1.0.0+2
   flutter_gen_runner: 5.3.2
   flutter_launcher_icons: 0.13.1
-  flutter_native_splash: 2.3.6
+  flutter_native_splash: 2.3.7
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
   freezed: 2.4.5
