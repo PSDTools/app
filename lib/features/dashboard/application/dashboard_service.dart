@@ -34,7 +34,7 @@ List<AppletEntity> get _applets {
       name: "Pirate Coins",
       image: appletsFolder.pirateCoins.path,
       color: const Color.fromARGB(255, 122, 194, 129),
-      // TODO(lishaduck): figure out how to use routes to keep this type-safe.
+      // TODO(lishaduck): Figure out how to use routes to keep this type-safe.
       location: "/pirate-coins",
     ),
     AppletEntity(

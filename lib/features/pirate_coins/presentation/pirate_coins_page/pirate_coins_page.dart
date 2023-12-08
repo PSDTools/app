@@ -63,7 +63,7 @@ class _TeacherView extends ConsumerWidget {
             const SizedBox(height: 10),
             _MutationBar(
               student: student,
-              loaded: true, // TODO: set this to false when loading coins data
+              loaded: true, // TODO(ParkerH27): Wire this up.
             ),
           ],
       },
