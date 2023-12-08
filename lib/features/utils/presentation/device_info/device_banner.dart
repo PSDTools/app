@@ -28,7 +28,7 @@ class DeviceBanner extends ConsumerWidget {
 
     return Material(
       child: InkWell(
-        onLongPress: () async => showDialog<void>(
+        onLongPress: () async => showDialog(
           context: context,
           builder: (BuildContext context) => const DeviceInfoDialog(),
         ),

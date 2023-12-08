@@ -30,7 +30,7 @@ base class CoinsService extends _$CoinsService {
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
-    if (state case AsyncData<CoinsModel>(:final value)) {
+    if (state case AsyncData(:final value)) {
       await ref.read(coinsDataProvider(userId)).updateCoins(
             value.copyWith.coins(coins: value.coins.coins + num).coins,
           );
