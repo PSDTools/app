@@ -45,7 +45,7 @@
     // current file when a language service does not provide its own completions.
     // This results in code completion suggesting words when editing comments and
     // strings. This setting will prevent that.
-    "editor.wordBasedSuggestions": false
+    "editor.wordBasedSuggestions": "off"
   },
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
@@ -55,10 +55,10 @@
     "*.dart": "${capture}.*.dart, ${capture}_*.dart",
     "*cspell.json": ".markdownlint*, project_words.txt, mlc_config.json",
     ".flutter-plugins": ".flutter-plugins-dependencies",
-    "dart_define.json": "custom_lint.log, untranslated.json",
-    ".env": ".env.example"
+    "dart_define.json": "*.log, untranslated.json",
+    ".env": ".env.example",
+    "app.iml": "*.iml"
   },
-  "sarif-viewer.connectToGithubCodeScanning": "off",
   "yaml.schemas": {
     "https://json.schemastore.org/github-issue-config.json": [
       ".github/ISSUE_TEMPLATE/config.yml"
