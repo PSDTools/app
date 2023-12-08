@@ -151,10 +151,8 @@
       "options": [
         { "label": "run a build", "value": "build" },
         { "label": "watch the filesystem, run many builds", "value": "watch" },
-        { "label": "run a server to debug perf with", "value": "serve" },
-        { "label": "run our tests", "value": "test" },
-        { "label": "run just one build, not all of them", "value": "run" },
-        { "label": "clean up from old builds", "value": "clean" }
+        { "label": "clean up from old builds", "value": "clean" },
+        { "label": "verify the build.yaml", "value": "doctor" }
       ],
       "type": "pickString",
       "description": "the type of build_runner run",
