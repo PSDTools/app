@@ -15,22 +15,15 @@ part "coins_service.g.dart";
 base class CoinsService extends _$CoinsService {
   @override
   FutureOr<CoinsModel> build(int userId) async {
-    final coins = fetchCoins();
-    final coin = await coins.last;
+    final coin = await ref.watch(coinStreamProvider(userId).future);
 
     return CoinsModel(coins: coin);
-  }
-
-  /// Get the coins of a user.
-  Stream<CoinEntity> fetchCoins() async* {
-    final coinsDataRepository = ref.read(coinsDataProvider(userId));
-
-    yield* coinsDataRepository.coinsData();
   }
 
   /// Modify coins in the database.
   Future<void> _updateCoins(int num) async {
     if (state case AsyncData(:final value)) {
+      state = const AsyncValue.loading();
       await ref.read(coinsDataProvider(userId)).updateCoins(
             value.copyWith.coins(coins: value.coins.coins + num).coins,
           );
@@ -74,4 +67,12 @@ base class CurrentStage extends _$CurrentStage {
   void reset() {
     state = const Stage.pickStudent();
   }
+}
+
+/// Get the coins stream
+@riverpod
+Stream<CoinEntity> coinStream(CoinStreamRef ref, int userId) async* {
+  final coinsDataRepository = ref.read(coinsDataProvider(userId));
+
+  yield* coinsDataRepository.coinsData().asBroadcastStream();
 }

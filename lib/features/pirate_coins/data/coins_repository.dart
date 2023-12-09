@@ -42,13 +42,11 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
       yield await _newDocument(_empty);
     }
 
-    yield* sub.map((event) {
-      final json = event.payload[r"$snapshot"];
-      if (json is Map<String, Object?>) {
-        return CoinEntity.fromJson(json);
-      }
-      return _empty;
-    });
+    await for (final event in sub) {
+      final json = event.payload;
+
+      yield CoinEntity.fromJson(json);
+    }
   }
 
   Future<CoinEntity> _coinsData() async {
