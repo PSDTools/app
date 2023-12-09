@@ -23,8 +23,8 @@ issue_tracker: https://github.com/PSDTools/app/issues
 repository: https://github.com/PSDTools/app.git
 
 environment:
-  sdk: "3.2.1"
-  flutter: "3.16.1"
+  sdk: "^3.2.3"
+  flutter: "^3.16.3"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
