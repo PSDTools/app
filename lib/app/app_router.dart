@@ -24,7 +24,10 @@ class AppRouter extends _$AppRouter {
   final Ref<AppRouter> ref;
 
   @override
-  final defaultRouteType = const RouteType.material();
+  final defaultRouteType = const RouteType.custom(
+    opaque: false,
+    transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+  );
 
   @override
   List<AutoRoute> get routes => [
