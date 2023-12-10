@@ -16,8 +16,7 @@ export "package:logging/logging.dart" show Logger;
 extension LoggingUtils on Logger {
   /// Debug code when a value is still needed.
   T debug<T>(T value, [Object? message, Level level = Level.FINE]) {
-    message ??= value;
-    this.log(level, message);
+    this.log(level, message ?? value);
 
     return value;
   }
