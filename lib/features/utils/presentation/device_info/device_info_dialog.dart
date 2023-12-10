@@ -103,52 +103,40 @@ class _View extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = value;
-
-    final platformView = switch (data) {
-      AndroidDeviceData() => androidView(data),
-      IOSDeviceData() => iosView(data),
-      OtherDeviceData() => otherView(data),
-    };
-
     return ListView(
       children: [
         _BuildTile("Build mode:", buildMode.name),
         _BuildTile("Physical device?:", "${value.isPhysicalDevice}"),
         _BuildTile("Model:", value.model),
-        ...platformView,
+        ...switch (value) {
+          AndroidDeviceData(
+            :final manufacturer,
+            :final release,
+            :final sdkInt,
+          ) =>
+            [
+              _BuildTile("Manufacturer:", manufacturer),
+              _BuildTile("Android version:", release),
+              _BuildTile("Android SDK:", "$sdkInt"),
+            ],
+          IOSDeviceData(
+            :final name,
+            :final systemName,
+            :final systemVersion,
+          ) =>
+            [
+              _BuildTile("Device:", name),
+              _BuildTile("System name:", systemName),
+              _BuildTile("System version:", systemVersion),
+            ],
+          OtherDeviceData() => [
+              const _BuildTile(
+                "Oops.",
+                "Chances are, you're neither on Android nor iOS.",
+              ),
+            ]
+        },
       ],
     );
-  }
-
-  List<_BuildTile> iosView(IOSDeviceData value) {
-    final iosView = [
-      _BuildTile("Device:", value.name),
-      _BuildTile("System name:", value.systemName),
-      _BuildTile("System version:", value.systemVersion),
-    ];
-
-    return iosView;
-  }
-
-  List<_BuildTile> androidView(AndroidDeviceData value) {
-    final androidView = [
-      _BuildTile("Manufacturer:", value.manufacturer),
-      _BuildTile("Android version:", value.release),
-      _BuildTile("Android SDK:", "${value.sdkInt}"),
-    ];
-
-    return androidView;
-  }
-
-  List<_BuildTile> otherView(DeviceData value) {
-    const otherView = [
-      _BuildTile(
-        "Oops.",
-        "Chances are, you're neither on Android nor iOS.",
-      ),
-    ];
-
-    return otherView;
   }
 }
