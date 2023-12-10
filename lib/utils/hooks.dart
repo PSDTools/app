@@ -52,7 +52,10 @@ class _TapGestureRecognizerHookState
   }
 
   @override
-  void dispose() => recognizer.dispose();
+  void dispose() {
+    recognizer.dispose();
+    super.dispose();
+  }
 
   @override
   bool get debugHasShortDescription => false;
