@@ -19,7 +19,7 @@ on:
 
 env:
   CI: true
-  FLUTTER_VERSION: "3.16.1"
+  FLUTTER_VERSION: "3.16.x"
   FLUTTER_CHANNEL: "stable"
 
 permissions:
