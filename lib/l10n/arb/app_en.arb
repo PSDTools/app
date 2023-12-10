@@ -24,34 +24,37 @@
     "type": "text",
     "description": "The text which is displayed when there is no report data to show."
   },
-  "empty": "Please enter your email address.",
-  "@empty": {
+  "email_validate_failed_empty": "Please enter your email address",
+  "@email_validate_failed_empty": {
     "description": "The text which is displayed when you haven't given a valid email address because it's empty."
   },
-  "missingAtSymbol": "It looks like your email address is missing an '@' symbol.",
-  "@missingAtSymbol": {
+  "email_validate_failed_missingAtSymbol": "Missing an '@' symbol",
+  "@email_validate_failed_missingAtSymbol": {
     "description": "The text which is displayed when you haven't given a valid email because there isn't an '@' symbol."
   },
-  "missingBeforeAtSymbol": "It looks like your email address is missing content before the '@' symbol.",
-  "@missingBeforeAtSymbol": {
+  "email_validate_failed_missingBeforeAtSymbol": "Missing content before the '@' symbol",
+  "@email_validate_failed_missingBeforeAtSymbol": {
     "description": "The text which is displayed when you haven't given a valid email because there isn't any content before the '@' symbol."
   },
-  "missingAfterAtSymbol": "It looks like your email address is missing content after the '@' symbol.",
-  "@missingAfterAtSymbol": {
+  "email_validate_failed_missingAfterAtSymbol": "Missing content after the '@' symbol",
+  "@email_validate_failed_missingAfterAtSymbol": {
     "description": "The text which is displayed when you haven't given a valid email because there isn't any content after the '@' symbol."
   },
-  "tooManyAtSymbols": "It looks like your email address has too many '@' symbols.",
-  "@tooManyAtSymbols": {
+  "email_validate_failed_tooManyAtSymbols": "Too many '@' symbols",
+  "@email_validate_failed_tooManyAtSymbols": {
     "description": "The text which is displayed when you haven't given a valid email because there are too many '@' symbols."
   },
-  "containsSpaces": "It looks like your email address contains spaces.",
-  "@containsSpaces": {
+  "email_validate_failed_containsSpaces": "Contains spaces",
+  "@email_validate_failed_containsSpaces": {
     "description": "The text which is displayed when you haven't given a valid email because there are spaces."
   },
-  "topLevelDomain": "It looks like your email address is missing a top level domain.",
-  "exampleEmail": "It looks like you're using an example email address. Please enter your real email address.",
-  "@exampleEmail": {
-    "description": "The text which is displayed when you haven't given a valid email because it's an example email."
+  "email_validate_failed_topLevelDomain": "Missing a top level domain.",
+  "@email_validate_failed_topLevelDomain": {
+    "description": "The text which is displayed when you haven't given a valid email because there isn't a top level domain."
+  },
+  "email_validate_failed_exampleEmail": "Using an example email address",
+  "@email_validate_failed_exampleEmail": {
+    "description": "The text which is displayed when you haven't given a valid email because it's an example email_"
   },
   "error": "Error: {error}",
   "@error": {

@@ -1,12 +1,12 @@
 {
   "es": [
-    "empty",
-    "missingAtSymbol",
-    "missingBeforeAtSymbol",
-    "missingAfterAtSymbol",
-    "tooManyAtSymbols",
-    "containsSpaces",
-    "topLevelDomain",
-    "exampleEmail"
+    "email_validate_failed_empty",
+    "email_validate_failed_missingAtSymbol",
+    "email_validate_failed_missingBeforeAtSymbol",
+    "email_validate_failed_missingAfterAtSymbol",
+    "email_validate_failed_tooManyAtSymbols",
+    "email_validate_failed_containsSpaces",
+    "email_validate_failed_topLevelDomain",
+    "email_validate_failed_exampleEmail"
   ]
 }

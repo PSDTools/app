@@ -21,17 +21,7 @@ class EmailFormField extends StatelessWidget {
 
     return TextFormField(
       // The validator receives the text that the user has entered.
-      validator: (value) => validate(
-        value,
-        emptyText: l10n.empty,
-        missingAtSymbolText: l10n.missingAtSymbol,
-        missingBeforeAtSymbolText: l10n.missingBeforeAtSymbol,
-        missingAfterAtSymbolText: l10n.missingAfterAtSymbol,
-        tooManyAtSymbolsText: l10n.tooManyAtSymbols,
-        containsSpacesText: l10n.containsSpaces,
-        topLevelDomainText: l10n.topLevelDomain,
-        exampleEmailText: l10n.exampleEmail,
-      ),
+      validator: (value) => validate(value, l10n),
       controller: _controller,
       autocorrect: false,
       keyboardType: TextInputType.emailAddress,
@@ -52,44 +42,33 @@ class EmailFormField extends StatelessWidget {
 /// - If it is invalid, return a string describing the error.
 ///
 /// This is used by the [EmailFormField] widget.
+@visibleForTesting
 String? validate(
-  String? value, {
-  String emptyText = "",
-  String missingAtSymbolText = "",
-  String missingBeforeAtSymbolText = "",
-  String missingAfterAtSymbolText = "",
-  String tooManyAtSymbolsText = "",
-  String containsSpacesText = "",
-  String topLevelDomainText = "",
-  String exampleEmailText = "",
-}) {
-  /*
-    I'll probably need a regex for this.
-    If so, would it be best to use the regex for all validation?
-    It'd have less customized error messages, but it'd be more thorough.
-    It'd also be more difficult to maintain, but might be faster to run the validations just once.
-  */
+  String? value,
+  AppLocalizations l10n,
+) {
+  // Do I need a parser library for this?
   if (value == null || value.isEmpty) {
-    return emptyText;
+    return l10n.email_validate_failed_empty;
   } else if (!value.contains("@")) {
-    return missingAtSymbolText;
+    return l10n.email_validate_failed_missingAtSymbol;
   } else if (!(value.substring(0, value.indexOf("@")).length > 1)) {
-    return missingBeforeAtSymbolText;
+    return l10n.email_validate_failed_missingBeforeAtSymbol;
   } else if (!(value.substring(value.indexOf("@")).length > 1)) {
-    return missingAfterAtSymbolText;
+    return l10n.email_validate_failed_missingAfterAtSymbol;
   } else if (value.contains("@") &&
       value.contains("@", value.indexOf("@") + 1)) {
-    return tooManyAtSymbolsText;
+    return l10n.email_validate_failed_tooManyAtSymbols;
   } else if (value.contains(" ")) {
-    return containsSpacesText;
+    return l10n.email_validate_failed_containsSpaces;
   } else if (!value.substring(value.indexOf("@")).contains(".")) {
-    return topLevelDomainText;
+    return l10n.email_validate_failed_topLevelDomain;
   } else if (value.contains("example.com") ||
       value.contains("example@") ||
       value.contains("@example.org") ||
       value.contains("name@") ||
       value.contains("person@")) {
-    return exampleEmailText;
+    return l10n.email_validate_failed_exampleEmail;
   } else {
     return null;
   }
