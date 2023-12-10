@@ -89,6 +89,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
     try {
       final accountType = AccountType.fromEmail(account.email);
       final avatar = await _avatarRepo.getAvatar();
+
       return PirateUserEntity(
         name: account.name,
         email: account.email,
