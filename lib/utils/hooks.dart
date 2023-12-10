@@ -15,7 +15,7 @@ GlobalKey<T> useGlobalKey<T extends State<StatefulWidget>>() {
 /// See also:
 /// - [TapGestureRecognizer]
 TapGestureRecognizer useTapGestureRecognizer({
-  void Function()? onTap,
+  VoidCallback? onTap,
   String? debugLabel,
   List<Object?>? keys,
 }) {
@@ -28,7 +28,7 @@ class _TapGestureRecognizerHook extends Hook<TapGestureRecognizer> {
     super.keys,
   });
 
-  final void Function()? onTap;
+  final VoidCallback? onTap;
 
   @override
   _TapGestureRecognizerHookState createState() =>

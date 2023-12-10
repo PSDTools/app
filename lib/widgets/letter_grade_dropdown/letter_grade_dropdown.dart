@@ -22,7 +22,7 @@ class LetterGradeDropdown extends ConsumerWidget {
   final LetterGrade grade;
 
   /// Update the grade for the course.
-  final void Function(LetterGrade?) updateGrade;
+  final LetterGradeCallback updateGrade;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -45,3 +45,6 @@ class LetterGradeDropdown extends ConsumerWidget {
     );
   }
 }
+
+/// Signature of callbacks that take a lettergrade and return no data.
+typedef LetterGradeCallback = void Function(LetterGrade?);
