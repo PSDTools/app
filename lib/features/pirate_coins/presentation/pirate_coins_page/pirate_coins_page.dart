@@ -168,6 +168,12 @@ class _UserForm extends HookConsumerWidget {
     // Create a text controller and use it to retrieve the current value of the text field.
     final myController = useTextEditingController();
 
+    // Create a scaffold feature controller, and use it to manage the snackbar.
+    final snackBarController =
+        useState<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?>(
+      null,
+    );
+
     return SizedBox(
       width: 300,
       child: Form(
@@ -189,8 +195,9 @@ class _UserForm extends HookConsumerWidget {
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (formKey.currentState?.validate() ?? false) {
+                  snackBarController.value?.close();
                   // If the form is valid, display a snackbar.
-                  context.showSnackBar(
+                  snackBarController.value = context.showSnackBar(
                     content: const Text("Processing Data"),
                   );
 

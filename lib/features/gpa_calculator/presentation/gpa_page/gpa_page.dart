@@ -21,6 +21,10 @@ class GpaPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = useGlobalKey<FormState>();
     final hours = useState(7);
+    final snackBarController =
+        useState<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?>(
+      null,
+    );
 
     return Center(
       child: Column(
@@ -55,7 +59,8 @@ class GpaPage extends HookConsumerWidget {
 
                 final gpa = total / hours.value;
 
-                context.showSnackBar(
+                snackBarController.value?.close();
+                snackBarController.value = context.showSnackBar(
                   content: Text("Calculated GPA: $gpa"),
                 );
               }

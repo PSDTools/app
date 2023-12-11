@@ -12,10 +12,10 @@ extension ShowSnackBar on BuildContext {
   ///   content: Text("Hello, world!"),
   /// );
   /// ```
-  void showSnackBar({
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar({
     required Widget content,
   }) {
-    ScaffoldMessenger.of(this).showSnackBar(
+    return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(
         content: content,
         behavior: SnackBarBehavior.floating,
