@@ -1,3 +1,4 @@
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -35,11 +36,11 @@ class LetterGradeDropdown extends ConsumerWidget {
     return DropdownButtonFormField(
       value: grade,
       items: [
-        DropdownMenuItem(value: a, child: Text(a.name)),
-        DropdownMenuItem(value: b, child: Text(b.name)),
-        DropdownMenuItem(value: c, child: Text(c.name)),
-        DropdownMenuItem(value: d, child: Text(d.name)),
-        DropdownMenuItem(value: f, child: Text(f.name)),
+        DropdownMenuItem(value: a, child: AutoSizeText(a.name)),
+        DropdownMenuItem(value: b, child: AutoSizeText(b.name)),
+        DropdownMenuItem(value: c, child: AutoSizeText(c.name)),
+        DropdownMenuItem(value: d, child: AutoSizeText(d.name)),
+        DropdownMenuItem(value: f, child: AutoSizeText(f.name)),
       ],
       onChanged: updateGrade,
     );

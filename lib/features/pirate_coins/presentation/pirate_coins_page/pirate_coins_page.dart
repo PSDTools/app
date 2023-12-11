@@ -2,6 +2,7 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -130,7 +131,7 @@ class _MutationBar extends HookConsumerWidget {
                     }
                   : null,
               icon: const Icon(Icons.add),
-              label: Text(l10n.addCoins),
+              label: AutoSizeText(l10n.addCoins),
             ),
             const SizedBox(width: 10),
             ElevatedButton.icon(
@@ -144,7 +145,7 @@ class _MutationBar extends HookConsumerWidget {
                     }
                   : null,
               icon: const Icon(Icons.remove),
-              label: Text(l10n.removeCoins),
+              label: AutoSizeText(l10n.removeCoins),
             ),
           ],
         );
@@ -183,12 +184,12 @@ class _UserForm extends HookConsumerWidget {
         key: formKey,
         child: Column(
           children: [
-            Text(
+            AutoSizeText(
               "Enter student's email:",
               style: theme.textTheme.headlineSmall,
             ),
             const SizedBox(height: 10),
-            Text(
+            AutoSizeText(
               "An email consists of the first seven characters of student's last name, their first initial, and possibly 2 numbers, followed by \"@student.psdr3.org\"",
               style: theme.textTheme.labelMedium,
             ),
@@ -201,7 +202,7 @@ class _UserForm extends HookConsumerWidget {
                   snackBarController.value?.close();
                   // If the form is valid, display a snackbar.
                   snackBarController.value = context.showSnackBar(
-                    content: const Text("Processing Data"),
+                    content: const AutoSizeText("Processing Data"),
                   );
 
                   ref
@@ -210,7 +211,7 @@ class _UserForm extends HookConsumerWidget {
                 }
               },
               icon: const Icon(Icons.check),
-              label: const Text("Submit"),
+              label: const AutoSizeText("Submit"),
             ),
           ],
         ),
@@ -241,7 +242,7 @@ class _ViewCoins extends StatelessWidget {
         AsyncLoading() => Column(
             children: [
               const CircularProgressIndicator(),
-              Text(l10n.loading),
+              AutoSizeText(l10n.loading),
             ],
           ),
       },

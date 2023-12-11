@@ -1,6 +1,7 @@
 /// This library contains a widget for a...um...big card!
 library;
 
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:widgetbook/widgetbook.dart";
 import "package:widgetbook_annotation/widgetbook_annotation.dart";
@@ -35,7 +36,7 @@ class BigCard extends StatelessWidget {
           child: MergeSemantics(
             child: Wrap(
               children: [
-                Text(text, style: style),
+                AutoSizeText(text, style: style),
               ],
             ),
           ),

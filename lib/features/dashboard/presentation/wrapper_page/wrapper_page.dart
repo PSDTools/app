@@ -4,10 +4,11 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
-import "package:url_launcher/url_launcher.dart";
+import "package:url_launcher/link.dart";
 
 import "../../../../app/app_router.dart";
 import "../../../../gen/assets.gen.dart";
@@ -76,9 +77,6 @@ class _ExpandedWrapper extends HookConsumerWidget {
       isFontLoadedProvider(Fonts(families: [mrDafoe])),
     );
     const githubLink = "https://github.com/PSDTools/app";
-    final tapGestureRecognizer = useTapGestureRecognizer(
-      onTap: () async => launchUrl(Uri.parse(githubLink)),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -92,8 +90,8 @@ class _ExpandedWrapper extends HookConsumerWidget {
       drawer: NavigationDrawer(
         children: [
           UserAccountsDrawerHeader(
-            accountName: name != null ? Text(name) : null,
-            accountEmail: email != null ? Text(email) : null,
+            accountName: name != null ? AutoSizeText(name) : null,
+            accountEmail: email != null ? AutoSizeText(email) : null,
             currentAccountPicture: avatar != null
                 ? CircleAvatar(backgroundImage: MemoryImage(avatar))
                 : null,
@@ -106,24 +104,33 @@ class _ExpandedWrapper extends HookConsumerWidget {
             applicationLegalese: "© 2023 Eli D. and Parker H.",
             aboutBoxChildren: [
               const SizedBox(height: 24),
-              RichText(
-                text: TextSpan(
-                  children: [
+              Link(
+                uri: Uri.parse(githubLink),
+                builder: (context, followLink) {
+                  final tapGestureRecognizer = useTapGestureRecognizer(
+                    onTap: followLink,
+                  );
+
+                  return AutoSizeText.rich(
                     TextSpan(
-                      style: textStyle,
-                      text:
-                          "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
+                      children: [
+                        TextSpan(
+                          style: textStyle,
+                          text:
+                              "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
+                        ),
+                        TextSpan(
+                          style: textStyle?.copyWith(
+                            color: theme.colorScheme.primary,
+                          ),
+                          text: githubLink,
+                          recognizer: tapGestureRecognizer,
+                        ),
+                        TextSpan(style: textStyle, text: "."),
+                      ],
                     ),
-                    TextSpan(
-                      style: textStyle?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                      text: githubLink,
-                      recognizer: tapGestureRecognizer,
-                    ),
-                    TextSpan(style: textStyle, text: "."),
-                  ],
-                ),
+                  );
+                },
               ),
             ],
           ),
@@ -196,7 +203,7 @@ class _MobileWrapper extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AutoLeadingButton(),
-        title: Text(context.topRoute.title(context)),
+        title: AutoSizeText(context.topRoute.title(context)),
       ),
       body: child,
     );

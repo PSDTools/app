@@ -2,6 +2,7 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -22,7 +23,7 @@ class DashboardPage extends StatelessWidget {
         builder: (BuildContext context, BoxConstraints constraints) {
           return Flex(
             direction:
-                constraints.maxWidth > 200 ? Axis.vertical : Axis.horizontal,
+                constraints.maxWidth < 400 ? Axis.vertical : Axis.horizontal,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: const [
               _Applets(),
@@ -111,7 +112,7 @@ class _NotificationBar extends StatelessWidget {
           decoration: const BoxDecoration(
             color: Color.fromARGB(255, 243, 243, 243),
             borderRadius: BorderRadius.all(
-              Radius.circular(35),
+              Radius.circular(20),
             ),
           ),
           child: ListView.builder(
@@ -161,14 +162,14 @@ class _AppletButton extends ConsumerWidget {
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final isLarge = constraints.maxWidth < 50;
+            final isLarge = constraints.maxWidth > 150;
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (isLarge) ...[
                   const SizedBox(height: 8),
-                  Text(
+                  AutoSizeText(
                     title,
                     style: const TextStyle(
                       color: Color.fromARGB(255, 0, 0, 0),
@@ -215,7 +216,7 @@ class _NotificationBarItem extends StatelessWidget {
         name: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Center(
-            child: Text(
+            child: AutoSizeText(
               name,
               style: TextStyle(fontSize: isTitle ? 24 : 16),
             ),

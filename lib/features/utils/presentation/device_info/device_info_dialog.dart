@@ -1,6 +1,7 @@
 /// This library contains the utilities feature's device info dialog.
 library;
 
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -22,7 +23,7 @@ class DeviceInfoDialog extends StatelessWidget {
       title: Container(
         padding: const EdgeInsets.all(15),
         color: buildMode.color,
-        child: Text(
+        child: AutoSizeText(
           "Device Information",
           style: theme.textTheme.titleMedium,
         ),
@@ -51,11 +52,11 @@ class _BuildTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: ListTile(
-        leading: Text(
+        leading: AutoSizeText(
           text,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        subtitle: Text(
+        subtitle: AutoSizeText(
           value,
         ),
       ),
@@ -81,12 +82,12 @@ class _GetContent extends ConsumerWidget {
           child: Column(
             children: [
               const CircularProgressIndicator(),
-              Text(l10n.loading),
+              AutoSizeText(l10n.loading),
             ],
           ),
         ),
       AsyncError(:final error, :final stackTrace) =>
-        Text(l10n.error("$error, $stackTrace.")),
+        AutoSizeText(l10n.error("$error, $stackTrace.")),
     };
   }
 }

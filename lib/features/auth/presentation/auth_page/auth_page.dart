@@ -2,6 +2,7 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -41,7 +42,7 @@ class AuthPage extends ConsumerWidget {
                       }
                     },
                     icon: const Icon(Icons.g_mobiledata),
-                    label: Text(l10n.authenticateText),
+                    label: AutoSizeText(l10n.authenticateText),
                   ),
                   const SizedBox(width: 10),
                   ElevatedButton.icon(
@@ -55,7 +56,7 @@ class AuthPage extends ConsumerWidget {
                       }
                     },
                     icon: const Icon(Icons.person),
-                    label: Text(l10n.anonymousAuthenticateText),
+                    label: AutoSizeText(l10n.anonymousAuthenticateText),
                   ),
                 ],
               );

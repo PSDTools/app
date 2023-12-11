@@ -2,6 +2,7 @@
 library;
 
 import "package:auto_route/auto_route.dart";
+import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -76,12 +77,12 @@ class GpaPage extends HookConsumerWidget {
 
                 snackBarController.value?.close();
                 snackBarController.value = context.showSnackBar(
-                  content: Text("Calculated GPA: $gpa"),
+                  content: AutoSizeText("Calculated GPA: $gpa"),
                 );
               }
             },
             icon: const Icon(Icons.calculate),
-            label: const Text("Calculate GPA"),
+            label: const AutoSizeText("Calculate GPA"),
           ),
         ],
       ),
