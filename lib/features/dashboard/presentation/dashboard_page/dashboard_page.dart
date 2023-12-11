@@ -17,13 +17,19 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _Applets(),
-          _NotificationBar(),
-        ],
+    return Center(
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Flex(
+            direction:
+                constraints.maxWidth > 200 ? Axis.vertical : Axis.horizontal,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: const [
+              _Applets(),
+              _NotificationBar(),
+            ],
+          );
+        },
       ),
     );
   }
