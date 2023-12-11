@@ -4,34 +4,37 @@ import "package:pirate_code/features/dashboard/presentation/dashboard_page/dashb
 import "../../../../helpers/pump_app.dart";
 
 void main() {
-  group("Dashboard page is accessible...", () {
-    testWidgets("on Android.", (tester) async {
-      await tester.pumpApp(const DashboardPage());
+  group("Dashboard page", () {
+    group("is accessible", () {
+      testWidgets("on Android.", (tester) async {
+        await tester.pumpApp(const DashboardPage());
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
-      handle.dispose();
-    });
-    testWidgets("on iOS.", (tester) async {
-      await tester.pumpApp(const DashboardPage());
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+        handle.dispose();
+      });
+      testWidgets("on iOS.", (tester) async {
+        await tester.pumpApp(const DashboardPage());
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
-      handle.dispose();
-    });
-    testWidgets("according to the WCAG.", (tester) async {
-      await tester.pumpApp(const DashboardPage());
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
+        handle.dispose();
+      });
+      testWidgets("according to the WCAG.", (tester) async {
+        await tester.pumpApp(const DashboardPage());
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(textContrastGuideline));
-      handle.dispose();
-    });
-    testWidgets("with regard to labeling buttons.", skip: true, (tester) async {
-      await tester.pumpApp(const DashboardPage());
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(textContrastGuideline));
+        handle.dispose();
+      });
+      testWidgets("with regard to labeling buttons.", skip: true,
+          (tester) async {
+        await tester.pumpApp(const DashboardPage());
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
-      handle.dispose();
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+        handle.dispose();
+      });
     });
   });
 }

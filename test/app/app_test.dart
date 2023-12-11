@@ -10,8 +10,8 @@ import "package:pirate_code/features/auth/data/auth_repository.dart";
 import "package:pirate_code/utils/api.dart";
 
 void main() {
-  group("App...", () {
-    group("renders...", () {
+  group("App", () {
+    group("renders", () {
       testWidgets("a Material app.", (tester) async {
         await tester.pumpWidget(
           ProviderScope(
@@ -26,7 +26,7 @@ void main() {
       });
     });
 
-    group("is accessible...", () {
+    group("is accessible", () {
       testWidgets("on Android.", (tester) async {
         final mockAuthRepository = _MockAuthRepository();
         verifyZeroInteractions(mockAuthRepository);

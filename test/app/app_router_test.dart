@@ -7,7 +7,7 @@ import "package:pirate_code/utils/router.dart";
 import "../helpers/riverpod.dart";
 
 void main() {
-  group("Router...", () {
+  group("Router", () {
     late AppRouter tested;
 
     setUp(() {
@@ -16,7 +16,7 @@ void main() {
       tested = subscription.read();
     });
 
-    group("config...", () {
+    group("config", () {
       test("defaultRouteType should be custom, for our transitions.", () {
         expect(tested.defaultRouteType, isInstanceOf<CustomRouteType>());
       });
@@ -25,7 +25,7 @@ void main() {
       });
     });
 
-    group("path...", () {
+    group("path", () {
       test("should be correct for WrapperRoute.", () {
         final wrapperRoute = tested.routes[0];
         expect(wrapperRoute.path, equals("/"));

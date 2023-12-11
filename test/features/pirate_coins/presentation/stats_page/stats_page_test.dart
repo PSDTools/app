@@ -6,8 +6,8 @@ import "package:pirate_code/features/pirate_coins/presentation/stats_page/stats_
 import "../../../../helpers/pump_app.dart";
 
 void main() {
-  group("Stats page is accessible...", () {
-    group("is accessible...", () {
+  group("Stats page", () {
+    group("is accessible", () {
       testWidgets("on Android.", (tester) async {
         final mockAuthRepository = _MockAuthRepository();
         verifyZeroInteractions(mockAuthRepository);

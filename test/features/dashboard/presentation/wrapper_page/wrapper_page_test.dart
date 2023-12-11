@@ -55,26 +55,29 @@ extension _WidgetTesterX on WidgetTester {
 }
 
 void main() {
-  group("Wrapper page is accessible...", () {
-    setUp(() {
-      GoogleFonts.config.allowRuntimeFetching = false;
-    });
+  group("Wrapper page", () {
+    group("is accessible", () {
+      setUp(() {
+        GoogleFonts.config.allowRuntimeFetching = false;
+      });
 
-    testWidgets("on Android.", (tester) async {
-      await tester.pumpWidgetPage();
-      await tester.testAcessabilityGuideline(androidTapTargetGuideline);
-    });
-    testWidgets("on iOS.", (tester) async {
-      await tester.pumpWidgetPage();
-      await tester.testAcessabilityGuideline(iOSTapTargetGuideline);
-    });
-    testWidgets("according to the WCAG.", (tester) async {
-      await tester.pumpWidgetPage();
-      await tester.testAcessabilityGuideline(textContrastGuideline);
-    });
-    testWidgets("with regard to labeling buttons.", skip: true, (tester) async {
-      await tester.pumpWidgetPage();
-      await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
+      testWidgets("on Android.", (tester) async {
+        await tester.pumpWidgetPage();
+        await tester.testAcessabilityGuideline(androidTapTargetGuideline);
+      });
+      testWidgets("on iOS.", (tester) async {
+        await tester.pumpWidgetPage();
+        await tester.testAcessabilityGuideline(iOSTapTargetGuideline);
+      });
+      testWidgets("according to the WCAG.", (tester) async {
+        await tester.pumpWidgetPage();
+        await tester.testAcessabilityGuideline(textContrastGuideline);
+      });
+      testWidgets("with regard to labeling buttons.", skip: true,
+          (tester) async {
+        await tester.pumpWidgetPage();
+        await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
+      });
     });
   });
 }

@@ -8,56 +8,58 @@ import "package:pirate_code/widgets/email_form_field/email_form_field.dart";
 import "../../helpers/pump_app.dart";
 
 void main() {
-  group("Email form field is accessible...", () {
-    late TextEditingController controller;
+  group("Email form field", () {
+    group("is accessible", () {
+      late TextEditingController controller;
 
-    setUp(() {
-      controller = TextEditingController();
-    });
+      setUp(() {
+        controller = TextEditingController();
+      });
 
-    testWidgets("on Android.", (tester) async {
-      await tester.pumpApp(EmailFormField(controller));
+      testWidgets("on Android.", (tester) async {
+        await tester.pumpApp(EmailFormField(controller));
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
-      handle.dispose();
-    });
-    testWidgets("on iOS.", (tester) async {
-      final controller = TextEditingController();
-      await tester.pumpApp(EmailFormField(controller));
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
+        handle.dispose();
+      });
+      testWidgets("on iOS.", (tester) async {
+        final controller = TextEditingController();
+        await tester.pumpApp(EmailFormField(controller));
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
-      handle.dispose();
-    });
-    testWidgets("according to the WCAG.", (tester) async {
-      final controller = TextEditingController();
-      await tester.pumpApp(EmailFormField(controller));
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
+        handle.dispose();
+      });
+      testWidgets("according to the WCAG.", (tester) async {
+        final controller = TextEditingController();
+        await tester.pumpApp(EmailFormField(controller));
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(textContrastGuideline));
-      handle.dispose();
-    });
-    testWidgets("with regard to labeling buttons.", (tester) async {
-      final controller = TextEditingController();
-      await tester.pumpApp(EmailFormField(controller));
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(textContrastGuideline));
+        handle.dispose();
+      });
+      testWidgets("with regard to labeling buttons.", (tester) async {
+        final controller = TextEditingController();
+        await tester.pumpApp(EmailFormField(controller));
 
-      final handle = tester.ensureSemantics();
-      await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
-      handle.dispose();
+        final handle = tester.ensureSemantics();
+        await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+        handle.dispose();
+      });
     });
   });
 
-  group("Email validation...", () {
+  group("Email validation", () {
     group("nothing..", () {
-      test("empty...", () {
+      test("empty", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_empty).thenReturn("");
         verifyNever(() => appLocalizations.email_validate_failed_empty);
         expect(validate("", appLocalizations), isNotNull);
         verify(() => appLocalizations.email_validate_failed_empty).called(1);
       });
-      test("null...", () {
+      test("null", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_empty).thenReturn("");
         verifyNever(() => appLocalizations.email_validate_failed_empty);
@@ -66,7 +68,7 @@ void main() {
       });
     });
 
-    group("@ symbol...", () {
+    group("@ symbol", () {
       test("too many '@'s", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_tooManyAtSymbols)
@@ -118,7 +120,7 @@ void main() {
       });
     });
 
-    group("spaces...", () {
+    group("spaces", () {
       test("infixed spaces", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_containsSpaces)
@@ -163,7 +165,7 @@ void main() {
       });
     });
 
-    group("bad domain...", () {
+    group("bad domain", () {
       test("fake domain", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_exampleEmail)
@@ -186,7 +188,7 @@ void main() {
       });
     });
 
-    group("valid emails...", () {
+    group("valid emails", () {
       test("fake email", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_exampleEmail)
