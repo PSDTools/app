@@ -17,8 +17,8 @@ void main() {
     });
 
     group("config...", () {
-      test("defaultRouteType should be material.", () {
-        expect(tested.defaultRouteType, isInstanceOf<MaterialRouteType>());
+      test("defaultRouteType should be custom, for our transitions.", () {
+        expect(tested.defaultRouteType, isInstanceOf<CustomRouteType>());
       });
       test("routes should contain the correct number of routes.", () {
         expect(tested.routes.length, equals(3));

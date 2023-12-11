@@ -25,7 +25,6 @@ class AppRouter extends _$AppRouter {
 
   @override
   final defaultRouteType = const RouteType.custom(
-    opaque: false,
     transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
   );
 
