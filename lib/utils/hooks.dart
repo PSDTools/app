@@ -6,7 +6,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 ///
 /// See also:
 /// - [GlobalKey]
-GlobalKey<T> useGlobalKey<T extends State<StatefulWidget>>() {
+GlobalKey<T> useGlobalKey<T extends State>() {
   return useMemoized(GlobalKey<T>.new);
 }
 

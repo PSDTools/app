@@ -59,7 +59,10 @@ class _TeacherView extends ConsumerWidget {
             const _UserForm(),
           ],
         ViewCoinsStage(:final student) => [
-            _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
+            SizedBox(
+              height: 110,
+              child: _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
+            ),
             const SizedBox(height: 10),
             _MutationBar(
               student: student,
@@ -110,7 +113,7 @@ class _MutationBar extends HookConsumerWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final l10n = context.l10n;
-        final isSmall = constraints.maxWidth > 200;
+        final isSmall = constraints.maxWidth < 400;
 
         return Flex(
           direction: isSmall ? Axis.vertical : Axis.horizontal,
@@ -131,15 +134,15 @@ class _MutationBar extends HookConsumerWidget {
             ),
             const SizedBox(width: 10),
             ElevatedButton.icon(
-              onPressed: requestInFlight.value || !loaded
-                  ? null
-                  : () async {
+              onPressed: loaded && !requestInFlight.value
+                  ? () async {
                       requestInFlight.value = true;
                       await ref
                           .read(coinsServiceProvider(student).notifier)
                           .removeCoins(1);
                       requestInFlight.value = false;
-                    },
+                    }
+                  : null,
               icon: const Icon(Icons.remove),
               label: Text(l10n.removeCoins),
             ),

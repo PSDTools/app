@@ -3,6 +3,8 @@
 /// {@Category Server}
 library;
 
+// cSpell:ignore realtime
+
 import "package:appwrite/appwrite.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
@@ -85,4 +87,12 @@ Avatars avatars(AvatarsRef ref) {
   final client = ref.watch(clientProvider);
 
   return Avatars(client);
+}
+
+/// Get the Appwrite realtime subscriptions.
+@Riverpod(keepAlive: true)
+Realtime realtime(RealtimeRef ref) {
+  final client = ref.watch(clientProvider);
+
+  return Realtime(client);
 }
