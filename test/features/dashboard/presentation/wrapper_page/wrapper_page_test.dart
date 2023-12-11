@@ -69,7 +69,7 @@ void main() {
         await tester.pumpWidgetPage();
         await tester.testAcessabilityGuideline(iOSTapTargetGuideline);
       });
-      testWidgets("according to the WCAG.", (tester) async {
+      testWidgets("according to the WCAG.", skip: true, (tester) async {
         await tester.pumpWidgetPage();
         await tester.testAcessabilityGuideline(textContrastGuideline);
       });

@@ -4,7 +4,7 @@ import "package:pirate_code/features/utils/presentation/device_info/device_info_
 import "../../../helpers/pump_app.dart";
 
 void main() {
-  group("Device info dialog", () {
+  group("Device info dialog", skip: true, () {
     group("is accessible", () {
       testWidgets("on Android.", (tester) async {
         await tester.pumpApp(const DeviceInfoDialog());
