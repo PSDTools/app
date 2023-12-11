@@ -3,6 +3,8 @@
 /// {@Category Server}
 library;
 
+// cSpell:ignore realtime
+
 import "package:appwrite/appwrite.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";

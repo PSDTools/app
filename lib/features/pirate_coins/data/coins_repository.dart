@@ -1,6 +1,8 @@
 /// This library contains the Pirate Coins feature's data fetchers.
 library;
 
+// cSpell:ignore realtime
+
 import "package:appwrite/appwrite.dart";
 import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
