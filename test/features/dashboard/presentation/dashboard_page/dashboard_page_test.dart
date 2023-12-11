@@ -31,10 +31,7 @@ void main() {
         await tester.pumpApp(const DashboardPage());
 
         final handle = tester.ensureSemantics();
-        await expectLater(
-          tester,
-          doesNotMeetGuideline(labeledTapTargetGuideline),
-        );
+        await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
         handle.dispose();
       });
     });
