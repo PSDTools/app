@@ -253,17 +253,17 @@ class _NotificationItem extends StatelessWidget {
   Padding build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Container(
-          width: MediaQuery.of(context).size.width * 1 / 3,
-          height: height,
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(35),
-            ),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 1 / 3,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(35),
           ),
+        ),
+        child: Align(
+          alignment: Alignment.topCenter,
           child: name,
         ),
       ),
