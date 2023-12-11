@@ -31,7 +31,7 @@ enum Device {
   linux,
 
   /// The OS X, etc. platform.
-  macos,
+  macOS,
 
   /// The windows platform.
   windows,

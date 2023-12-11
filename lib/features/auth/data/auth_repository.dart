@@ -68,7 +68,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
             // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
             case Device.web ||
                   Device.linux ||
-                  Device.macos ||
+                  Device.macOS ||
                   Device.windows ||
                   Device.other:
               await _account.createOAuth2Session(
