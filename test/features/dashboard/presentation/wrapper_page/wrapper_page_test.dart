@@ -78,10 +78,7 @@ void main() {
       });
       testWidgets("with regard to labeling buttons.", (tester) async {
         await tester.pumpWidgetPage();
-        await tester.testAcessabilityGuideline(
-          labeledTapTargetGuideline,
-          expectFail: true,
-        );
+        await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
       });
     });
   });

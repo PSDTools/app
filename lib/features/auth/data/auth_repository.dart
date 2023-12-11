@@ -8,9 +8,8 @@ import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
+import "../../../utils/device_repository.dart";
 import "../../../utils/log.dart";
-import "../../utils/data/device_repository.dart";
-import "../../utils/domain/device_model.dart";
 import "../domain/account_type.dart";
 import "../domain/pirate_user_entity.dart";
 import "avatar_repository.dart";

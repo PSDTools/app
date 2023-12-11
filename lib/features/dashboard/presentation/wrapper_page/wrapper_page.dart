@@ -16,7 +16,6 @@ import "../../../../gen/fonts.gen.dart";
 import "../../../../gen/version.gen.dart";
 import "../../../../utils/hooks.dart";
 import "../../../auth/application/auth_service.dart";
-import "../../../utils/presentation/device_info/device_banner.dart";
 
 /// Wrap the app, providing navigation and routing.
 /// It enforces that the app is under `/pirate-coins`.
@@ -44,7 +43,7 @@ class WrapperPage extends StatelessWidget {
                 : _ExpandedWrapper(constraints: constraints, child: child);
 
             return SafeArea(
-              child: DeviceBanner(child: page),
+              child: page,
             );
           },
         );
