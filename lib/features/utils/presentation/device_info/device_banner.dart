@@ -32,9 +32,6 @@ class DeviceBanner extends ConsumerWidget {
           context: context,
           builder: (BuildContext context) => const DeviceInfoDialog(),
         ),
-        // This banner widget is excluded from semantics because it's only meant to be used in development, and,
-        // anyway, it's redundant with the information already exposed in the banner.
-        excludeFromSemantics: true,
         child: Banner(
           message: banner.name,
           location: BannerLocation.topStart,
