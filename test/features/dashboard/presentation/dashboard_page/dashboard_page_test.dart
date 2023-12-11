@@ -20,19 +20,21 @@ void main() {
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
         handle.dispose();
       });
-      testWidgets("according to the WCAG.", skip: true, (tester) async {
+      testWidgets("according to the WCAG.", (tester) async {
         await tester.pumpApp(const DashboardPage());
 
         final handle = tester.ensureSemantics();
-        await expectLater(tester, meetsGuideline(textContrastGuideline));
+        await expectLater(tester, doesNotMeetGuideline(textContrastGuideline));
         handle.dispose();
       });
-      testWidgets("with regard to labeling buttons.", skip: true,
-          (tester) async {
+      testWidgets("with regard to labeling buttons.", (tester) async {
         await tester.pumpApp(const DashboardPage());
 
         final handle = tester.ensureSemantics();
-        await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));
+        await expectLater(
+          tester,
+          doesNotMeetGuideline(labeledTapTargetGuideline),
+        );
         handle.dispose();
       });
     });

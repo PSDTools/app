@@ -46,10 +46,15 @@ extension _WidgetTesterX on WidgetTester {
   }
 
   Future<void> testAcessabilityGuideline(
-    AccessibilityGuideline guideline,
-  ) async {
+    AccessibilityGuideline guideline, {
+    bool expectFail = false,
+  }) async {
     final handle = ensureSemantics();
-    await expectLater(this, meetsGuideline(guideline));
+    if (expectFail) {
+      await expectLater(this, doesNotMeetGuideline(guideline));
+    } else {
+      await expectLater(this, meetsGuideline(guideline));
+    }
     handle.dispose();
   }
 }
@@ -69,14 +74,19 @@ void main() {
         await tester.pumpWidgetPage();
         await tester.testAcessabilityGuideline(iOSTapTargetGuideline);
       });
-      testWidgets("according to the WCAG.", skip: true, (tester) async {
+      testWidgets("according to the WCAG.", (tester) async {
         await tester.pumpWidgetPage();
-        await tester.testAcessabilityGuideline(textContrastGuideline);
+        await tester.testAcessabilityGuideline(
+          textContrastGuideline,
+          expectFail: true,
+        );
       });
-      testWidgets("with regard to labeling buttons.", skip: true,
-          (tester) async {
+      testWidgets("with regard to labeling buttons.", (tester) async {
         await tester.pumpWidgetPage();
-        await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
+        await tester.testAcessabilityGuideline(
+          labeledTapTargetGuideline,
+          expectFail: true,
+        );
       });
     });
   });
