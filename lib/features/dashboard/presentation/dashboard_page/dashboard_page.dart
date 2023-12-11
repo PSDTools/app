@@ -79,6 +79,31 @@ class _NotificationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const list = [
+      // TODO(ParkerH27): Make this dynamic.
+      _NotificationBarItem(
+        name: "Pirate Life At a Glance",
+        color: Color.fromARGB(255, 252, 154, 255),
+        isTitle: true,
+      ),
+      _NotificationBarItem(
+        name: "Gmail",
+        color: Color.fromARGB(255, 255, 115, 115),
+      ),
+      _NotificationBarItem(
+        name: "Canvas",
+        color: Color.fromARGB(255, 208, 26, 25),
+      ),
+      _NotificationBarItem(
+        name: "Announcements",
+        color: Color.fromARGB(255, 115, 169, 255),
+      ),
+      _NotificationBarItem(
+        name: "Calendar",
+        color: Color.fromARGB(255, 115, 255, 117),
+      ),
+    ];
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -89,29 +114,10 @@ class _NotificationBar extends StatelessWidget {
               Radius.circular(35),
             ),
           ),
-          child: ListView(
-            children: const [
-              _NotificationBarTitle(
-                title: "Pirate Life At a Glance",
-                color: Color.fromARGB(255, 252, 154, 255),
-              ),
-              _NotificationBarItem(
-                name: "Gmail",
-                color: Color.fromARGB(255, 255, 115, 115),
-              ),
-              _NotificationBarItem(
-                name: "Canvas",
-                color: Color.fromARGB(255, 208, 26, 25),
-              ),
-              _NotificationBarItem(
-                name: "Announcements",
-                color: Color.fromARGB(255, 115, 169, 255),
-              ),
-              _NotificationBarItem(
-                name: "Calendar",
-                color: Color.fromARGB(255, 115, 255, 117),
-              ),
-            ],
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return list.elementAtOrNull(index);
+            },
           ),
         ),
       ),
@@ -153,56 +159,37 @@ class _AppletButton extends ConsumerWidget {
           // Handle button tap here to navigate to the specified destination.
           await context.router.pushNamed(destination);
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontSize: 16,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.contain,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final isLarge = constraints.maxWidth < 50;
+
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (isLarge) ...[
+                  const SizedBox(height: 8),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
-    );
-  }
-}
-
-class _NotificationBarTitle extends StatelessWidget {
-  const _NotificationBarTitle({
-    required this.title,
-    required this.color,
-    // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
-    super.key,
-  });
-
-  final String title;
-  final Color color;
-
-  @override
-  _NotificationItem build(BuildContext context) {
-    return _NotificationItem(
-      name: Center(
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 24),
-        ),
-      ),
-      color: color,
-      height: 40,
     );
   }
 }
@@ -211,6 +198,7 @@ class _NotificationBarItem extends StatelessWidget {
   const _NotificationBarItem({
     required this.name,
     required this.color,
+    this.isTitle = false,
     // Temporary ignore, see <dart-lang/sdk#49025>.
     // ignore: unused_element
     super.key,
@@ -218,19 +206,24 @@ class _NotificationBarItem extends StatelessWidget {
 
   final String name;
   final Color color;
+  final bool isTitle;
 
   @override
-  _NotificationItem build(BuildContext context) {
-    return _NotificationItem(
-      name: Padding(
-        padding: const EdgeInsets.only(left: 20, top: 10),
-        child: Text(
-          name,
-          style: const TextStyle(fontSize: 16),
+  ListTile build(BuildContext context) {
+    return ListTile(
+      title: _NotificationItem(
+        name: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          child: Center(
+            child: Text(
+              name,
+              style: TextStyle(fontSize: isTitle ? 24 : 16),
+            ),
+          ),
         ),
+        color: color,
+        height: isTitle ? 60 : 80,
       ),
-      color: color,
-      height: 80,
     );
   }
 }
