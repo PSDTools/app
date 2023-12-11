@@ -12,7 +12,6 @@
       "path": "./project_words.txt",
       "description": "Words used in this project.",
       "addWords": true
-
     },
     {
       "name": "vgv_allowed",

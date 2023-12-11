@@ -200,10 +200,12 @@ void main() {
       });
       test("Parker", () {
         final appLocalizations = _MockAppLocalizations();
+        // cspell:disable-next-line
         const parkerH27 = "91337218+ParkerH27@users.noreply.github.com";
 
         expect(
           validate(
+            // cspell:disable-next-line
             parkerH27,
             appLocalizations,
           ),
