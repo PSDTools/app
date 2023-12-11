@@ -40,7 +40,6 @@ dependencies:
   auto_size_text: ^3.0.0
   build_version: ^2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
-  device_info_plus: 9.1.1
   flutter:
     sdk: flutter
   flutter_hooks: 0.20.3
@@ -51,9 +50,7 @@ dependencies:
   freezed_annotation: 2.4.1
   hooks_riverpod: 3.0.0-dev.3
   intl: 0.18.1
-  io: 1.0.4
   json_annotation: 4.8.1
-  logging: 1.2.0
   os_detect: 2.0.1
   riverpod_annotation: 3.0.0-dev.3
   url_launcher: ^6.2.4
@@ -65,7 +62,6 @@ dev_dependencies:
   custom_lint: 0.5.8
   dart_define: 2.1.1
   dhttpd: 4.1.0
-  # flutter_gen_linter: 1.0.0+2
   flutter_gen_runner: 5.4.0
   flutter_launcher_icons: 0.13.1
   flutter_native_splash: 2.3.8
