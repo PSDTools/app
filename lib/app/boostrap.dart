@@ -9,7 +9,6 @@ import "package:flutter_web_plugins/url_strategy.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../gen/assets.gen.dart";
-import "../utils/log.dart";
 
 /// Turn any widget into a flow-blown app.
 mixin Bootstrap on Widget {
@@ -21,10 +20,6 @@ mixin Bootstrap on Widget {
   /// - [runApp] will be called to run the app.
   /// - [ProviderScope] will be used to wrap the app.
   Future<void> bootstrap() async {
-    await initLogging();
-
-    initFlutterErrors();
-
     // Set up font fetching and licenses.
     initGoogleFonts();
 
@@ -40,25 +35,9 @@ mixin Bootstrap on Widget {
 
     // Run the App using Riverpod.
     runApp(
-      ProviderScope(
-        observers: const [
-          ProviderLogger(),
-        ],
-        child: this,
-      ),
+      ProviderScope(child: this),
     );
   }
-}
-
-/// Tell Flutter's logger to use our own.
-void initFlutterErrors() {
-  FlutterError.onError = (details) {
-    log.shout(
-      "Uncaught Flutter error:",
-      details.exceptionAsString(),
-      details.stack,
-    );
-  };
 }
 
 /// Set up proper font fetching and licensing.

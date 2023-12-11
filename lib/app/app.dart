@@ -7,7 +7,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "../../l10n/l10n.dart";
 import "../features/auth/application/auth_service.dart";
 import "../utils/design.dart";
-import "../utils/log.dart";
 import "../utils/router.dart";
 import "boostrap.dart";
 
@@ -24,11 +23,7 @@ class App extends ConsumerWidget with Bootstrap {
   Widget build(BuildContext context, WidgetRef ref) {
     return _EagerInitialization(
       child: MaterialApp.router(
-        routerConfig: ref.read(routerProvider).config(
-              navigatorObservers: () => [
-                RouterLogger(),
-              ],
-            ),
+        routerConfig: ref.read(routerProvider).config(),
         onGenerateTitle: (context) => context.l10n.appTitle,
         theme: theme,
         locale: flutterLocale,
