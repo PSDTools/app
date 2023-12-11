@@ -20,24 +20,7 @@
         "color": "terminal.ansiCyan",
         "id": "gear"
       },
-      "dependsOn": ["Dart: run dart_define", "Flutter: gen-l10n"]
-    },
-    {
-      "type": "dart",
-      "command": "dart",
-      "cwd": ".",
-      "args": ["run", "dart_define", "generate"],
-      "problemMatcher": [],
-      "group": "build",
-      "label": "Dart: run dart_define",
-      "detail": "Generate dart-defines.",
-      "runOptions": {
-        "runOn": "folderOpen"
-      },
-      "icon": {
-        "color": "terminal.ansiMagenta",
-        "id": "gear"
-      }
+      "dependsOn": ["Flutter: gen-l10n"]
     },
     {
       "type": "dart",
@@ -60,7 +43,6 @@
         "build",
         "${input:target}",
         "--release",
-        "--dart-define-from-file=dart_define.json"
       ],
       "problemMatcher": [],
       "group": "build",
@@ -91,7 +73,6 @@
         "build",
         "${input:target}",
         "--release",
-        "--dart-define-from-file=dart_define.json"
       ],
       "problemMatcher": [],
       "group": "build",

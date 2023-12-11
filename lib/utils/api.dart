@@ -10,7 +10,7 @@ import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
-import "../dart_define.gen.dart";
+import "../env/env.dart";
 
 part "api.freezed.dart";
 part "api.g.dart";
@@ -49,11 +49,11 @@ abstract interface class ApiRepository {
 
 /// The Appwrite API information, gotten via passed in environment variables.
 const ApiRepository apiInfo = Api(
-  projectId: DartDefine.projectId,
-  url: DartDefine.apiEndpoint,
-  databaseId: DartDefine.databaseId,
-  collectionId: DartDefine.collectionId,
-  isSelfSigned: DartDefine.selfSigned,
+  projectId: Env.projectId,
+  url: Env.apiEndpoint,
+  databaseId: Env.databaseId,
+  collectionId: Env.collectionId,
+  isSelfSigned: Env.selfSigned,
 );
 
 /// Get the Appwrite client.

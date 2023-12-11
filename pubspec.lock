@@ -257,14 +257,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  cmd_plus:
-    dependency: transitive
-    description:
-      name: cmd_plus
-      sha256: "270ff868ef27cbb50fea7c43e782a68cf77de47a6d3516ac71654dde0e372f0a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.3"
   code_builder:
     dependency: transitive
     description:
@@ -353,14 +345,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.8"
-  dart_define:
-    dependency: "direct dev"
-    description:
-      name: dart_define
-      sha256: d8f7e28c252d625d4de4e3bbc7ba13cb974959561a1da384e65088d1b9a13d55
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   dart_style:
     dependency: transitive
     description:
@@ -401,6 +385,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  envied:
+    dependency: "direct main"
+    description:
+      name: envied
+      sha256: c4af8bb99203d7f216cea41f2ec70874f9dd826b2a5782cdc5bd25389c5adcc1
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
+  envied_generator:
+    dependency: "direct dev"
+    description:
+      name: envied_generator
+      sha256: "637901d274db3974afb3919ca9ba2e1a97f110fd57350ac13a3adcd20ad7d530"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.2"
   equatable:
     dependency: transitive
     description:
@@ -677,14 +677,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.2"
-  logger:
-    dependency: transitive
-    description:
-      name: logger
-      sha256: "7ad7215c15420a102ec687bb320a7312afd449bac63bfb1c60d9787c27b9767f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.0"
   logging:
     dependency: transitive
     description:
@@ -693,14 +685,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  mankeli_core:
-    dependency: transitive
-    description:
-      name: mankeli_core
-      sha256: ac834e86c7d2c66686f1af95cea7d61d516fb56daa8eaec83e4ce31f8df3cbe3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.5"
   mason:
     dependency: transitive
     description:
@@ -933,6 +917,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  recase:
+    dependency: transitive
+    description:
+      name: recase
+      sha256: e4eb4ec2dcdee52dcf99cb4ceabaffc631d7424ee55e56f280bc039737f89213
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   riverpod:
     dependency: transitive
     description:

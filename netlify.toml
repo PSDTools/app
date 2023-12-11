@@ -1,7 +1,6 @@
 collections = [] # only needed for DecapCMS
 media_folder = "" # unneeded, but required by the schema
 
-
 [build]
 # The relative path to the directory to be published
 publish = "build/web"
@@ -16,10 +15,8 @@ command = """
   && flutter/bin/flutter pub get \
   && flutter/bin/flutter gen-l10n \
   && flutter/bin/cache/dart-sdk/bin/dart run build_runner build \
-  && flutter/bin/cache/dart-sdk/bin/dart run dart_define generate \
-  && flutter/bin/flutter build web --release --dart-define-from-file=dart_define.json
+  && flutter/bin/flutter build web --release
   """
-
 
 # The following redirect is intended for use with most SPAs
 # that handle routing internally.
@@ -27,6 +24,5 @@ command = """
 from = "/*"
 status = 200
 to = "/index.html"
-
 
 [backend]

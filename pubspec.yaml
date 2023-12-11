@@ -37,9 +37,10 @@ dependencies:
   auto_route: 7.8.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  auto_size_text: ^3.0.0
-  build_version: ^2.1.1
+  auto_size_text: 3.0.0
+  build_version: 2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
+  envied: ^0.5.2
   flutter:
     sdk: flutter
   flutter_hooks: 0.20.3
@@ -53,15 +54,15 @@ dependencies:
   json_annotation: 4.8.1
   os_detect: 2.0.1
   riverpod_annotation: 3.0.0-dev.3
-  url_launcher: ^6.2.4
+  url_launcher: 6.2.4
 
 dev_dependencies:
   auto_route_generator: 7.3.2
   build_runner: 2.4.8
   build_web_compilers: 4.0.9
   custom_lint: 0.5.8
-  dart_define: 2.1.1
   dhttpd: 4.1.0
+  envied_generator: 0.5.2
   flutter_gen_runner: 5.4.0
   flutter_launcher_icons: 0.13.1
   flutter_native_splash: 2.3.8
@@ -114,29 +115,6 @@ flutter:
         - asset: assets/google_fonts/mr_dafoe/MrDafoe-Regular.ttf
           style: normal
           weight: 400
-
-dart_define:
-  variables:
-    - name: PROJECT_ID
-      description: Appwrite project ID
-      default: pirate-code
-      required: false
-    - name: API_ENDPOINT
-      description: Appwrite API endpoint
-      default: http://localhost:80/v1
-      required: false
-    - name: DATABASE_ID
-      description: Appwrite database ID
-      default: pirate-coins
-      required: false
-    - name: COLLECTION_ID
-      description: Appwrite collection ID
-      default: coins
-      required: false
-    - name: SELF_SIGNED
-      description: If the Appwrite Server uses self-signed certificates.
-      default: true
-      required: false
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:
