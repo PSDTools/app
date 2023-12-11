@@ -72,9 +72,12 @@ void main() {
         when(() => appLocalizations.email_validate_failed_tooManyAtSymbols)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_tooManyAtSymbols);
-        expect(validate("person@subdomain@example.com", appLocalizations),
-            isNotNull);
+          () => appLocalizations.email_validate_failed_tooManyAtSymbols,
+        );
+        expect(
+          validate("person@subdomain@example.com", appLocalizations),
+          isNotNull,
+        );
         verify(() => appLocalizations.email_validate_failed_tooManyAtSymbols)
             .called(1);
       });
@@ -83,7 +86,8 @@ void main() {
         when(() => appLocalizations.email_validate_failed_missingAtSymbol)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_missingAtSymbol);
+          () => appLocalizations.email_validate_failed_missingAtSymbol,
+        );
         expect(validate("person.com", appLocalizations), isNotNull);
         verify(() => appLocalizations.email_validate_failed_missingAtSymbol)
             .called(1);
@@ -93,22 +97,24 @@ void main() {
         when(() => appLocalizations.email_validate_failed_missingBeforeAtSymbol)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_missingBeforeAtSymbol);
+          () => appLocalizations.email_validate_failed_missingBeforeAtSymbol,
+        );
         expect(validate("@example.com", appLocalizations), isNotNull);
-        verify(() =>
-                appLocalizations.email_validate_failed_missingBeforeAtSymbol)
-            .called(1);
+        verify(
+          () => appLocalizations.email_validate_failed_missingBeforeAtSymbol,
+        ).called(1);
       });
       test("missing content after '@' symbol", () {
         final appLocalizations = _MockAppLocalizations();
         when(() => appLocalizations.email_validate_failed_missingAfterAtSymbol)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_missingAfterAtSymbol);
+          () => appLocalizations.email_validate_failed_missingAfterAtSymbol,
+        );
         expect(validate("person@", appLocalizations), isNotNull);
-        verify(() =>
-                appLocalizations.email_validate_failed_missingAfterAtSymbol)
-            .called(1);
+        verify(
+          () => appLocalizations.email_validate_failed_missingAfterAtSymbol,
+        ).called(1);
       });
     });
 
@@ -118,10 +124,12 @@ void main() {
         when(() => appLocalizations.email_validate_failed_containsSpaces)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_containsSpaces);
+          () => appLocalizations.email_validate_failed_containsSpaces,
+        );
         expect(
-            validate("s p a c e s @ e x a m p l e . c o m", appLocalizations),
-            isNotNull);
+          validate("s p a c e s @ e x a m p l e . c o m", appLocalizations),
+          isNotNull,
+        );
         verify(() => appLocalizations.email_validate_failed_containsSpaces)
             .called(1);
       });
@@ -130,9 +138,12 @@ void main() {
         when(() => appLocalizations.email_validate_failed_containsSpaces)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_containsSpaces);
-        expect(validate(" spaces+leading@example.com", appLocalizations),
-            isNotNull);
+          () => appLocalizations.email_validate_failed_containsSpaces,
+        );
+        expect(
+          validate(" spaces+leading@example.com", appLocalizations),
+          isNotNull,
+        );
         verify(() => appLocalizations.email_validate_failed_containsSpaces)
             .called(1);
       });
@@ -141,9 +152,12 @@ void main() {
         when(() => appLocalizations.email_validate_failed_containsSpaces)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_containsSpaces);
-        expect(validate("spaces+trailing@example.com ", appLocalizations),
-            isNotNull);
+          () => appLocalizations.email_validate_failed_containsSpaces,
+        );
+        expect(
+          validate("spaces+trailing@example.com ", appLocalizations),
+          isNotNull,
+        );
         verify(() => appLocalizations.email_validate_failed_containsSpaces)
             .called(1);
       });
@@ -164,7 +178,8 @@ void main() {
         when(() => appLocalizations.email_validate_failed_topLevelDomain)
             .thenReturn("");
         verifyNever(
-            () => appLocalizations.email_validate_failed_topLevelDomain);
+          () => appLocalizations.email_validate_failed_topLevelDomain,
+        );
         expect(validate("me@com", appLocalizations), isNotNull);
         verify(() => appLocalizations.email_validate_failed_topLevelDomain)
             .called(1);
