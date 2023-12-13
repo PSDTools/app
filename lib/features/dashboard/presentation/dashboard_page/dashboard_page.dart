@@ -21,13 +21,20 @@ class DashboardPage extends StatelessWidget {
     return Center(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
+          final isLarge = constraints.maxWidth > 500;
+
           return Flex(
-            direction:
-                constraints.maxWidth < 400 ? Axis.vertical : Axis.horizontal,
+            direction: isLarge ? Axis.horizontal : Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              _Applets(),
-              _NotificationBar(),
+            children: [
+              Expanded(
+                flex: isLarge ? 3 : 2,
+                child: const _Applets(),
+              ),
+              Flexible(
+                flex: isLarge ? 2 : 3,
+                child: const _NotificationBar(),
+              ),
             ],
           );
         },
@@ -47,25 +54,23 @@ class _Applets extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final buttonsData = ref.watch(appletsProvider);
 
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
-                itemCount: buttonsData.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    _AppletButton(buttonData: buttonsData[index]),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
               ),
+              itemCount: buttonsData.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  _AppletButton(buttonData: buttonsData[index]),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -105,21 +110,19 @@ class _NotificationBar extends StatelessWidget {
       ),
     ];
 
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 243, 243, 243),
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 243, 243, 243),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
           ),
-          child: ListView.builder(
-            itemBuilder: (context, index) {
-              return list.elementAtOrNull(index);
-            },
-          ),
+        ),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return list.elementAtOrNull(index);
+          },
         ),
       ),
     );
