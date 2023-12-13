@@ -5,7 +5,6 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../auth/application/auth_service.dart";
 import "../data/coins_repository.dart";
-import "../domain/coin_entity.dart";
 import "../domain/coins_model.dart";
 
 part "coins_service.g.dart";
@@ -15,9 +14,9 @@ part "coins_service.g.dart";
 base class CoinsService extends _$CoinsService {
   @override
   FutureOr<CoinsModel> build(int userId) async {
-    final coin = await ref.watch(coinStreamProvider(userId).future);
+    final coins = await ref.watch(coinStreamProvider(userId).future);
 
-    return CoinsModel(coins: coin);
+    return CoinsModel(coins: coins);
   }
 
   /// Modify coins in the database.
@@ -43,12 +42,10 @@ base class CoinsService extends _$CoinsService {
 
 /// Get the coins of the current user.
 @riverpod
-Stream<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async* {
-  final userId = await ref.watch(
-    pirateAuthServiceProvider.selectAsync((data) => data.user.id),
-  );
+Future<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async {
+  final userId = await ref.watch(idProvider.future);
 
-  yield await ref.read(coinsServiceProvider(userId).future);
+  return ref.read(coinsServiceProvider(userId).future);
 }
 
 /// Get coins data from data layer.
@@ -67,12 +64,4 @@ base class CurrentStage extends _$CurrentStage {
   void reset() {
     state = const Stage.pickStudent();
   }
-}
-
-/// Get the coins stream
-@riverpod
-Stream<CoinEntity> coinStream(CoinStreamRef ref, int userId) async* {
-  final coinsDataRepository = ref.read(coinsDataProvider(userId));
-
-  yield* coinsDataRepository.coinsData().asBroadcastStream();
 }

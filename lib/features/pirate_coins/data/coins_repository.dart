@@ -123,3 +123,12 @@ class _Channel extends _$Channel {
     return sub.stream;
   }
 }
+
+/// Get the coins stream.
+/// Used to coerce the stream into a [AsyncValue].
+@riverpod
+Stream<CoinEntity> coinStream(CoinStreamRef ref, int userId) async* {
+  final coinsDataRepository = ref.read(coinsDataProvider(userId));
+
+  yield* coinsDataRepository.coinsData();
+}
