@@ -6,6 +6,7 @@ library;
 import "package:auto_route/auto_route.dart";
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
+import "package:flutter_hooks/flutter_hooks.dart";
 import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:url_launcher/link.dart";
@@ -68,7 +69,6 @@ class _ExpandedWrapper extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final textStyle = theme.textTheme.bodyMedium;
     final name = ref.watch(usernameProvider).valueOrNull;
     final email = ref.watch(emailProvider).valueOrNull;
     final avatar = ref.watch(avatarProvider).valueOrNull;
@@ -76,7 +76,6 @@ class _ExpandedWrapper extends HookConsumerWidget {
     final isMrDafoeLoaded = ref.watch(
       isFontLoadedProvider(Fonts(families: [mrDafoe])),
     );
-    const githubLink = "https://github.com/PSDTools/app";
 
     return Scaffold(
       appBar: AppBar(
@@ -105,31 +104,10 @@ class _ExpandedWrapper extends HookConsumerWidget {
             aboutBoxChildren: [
               const SizedBox(height: 24),
               Link(
-                uri: Uri.parse(githubLink),
+                uri: Uri.https("github.com", "PSDTools/app"),
+                target: LinkTarget.blank,
                 builder: (context, followLink) {
-                  final tapGestureRecognizer = useTapGestureRecognizer(
-                    onTap: followLink,
-                  );
-
-                  return AutoSizeText.rich(
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          style: textStyle,
-                          text:
-                              "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
-                        ),
-                        TextSpan(
-                          style: textStyle?.copyWith(
-                            color: theme.colorScheme.primary,
-                          ),
-                          text: githubLink,
-                          recognizer: tapGestureRecognizer,
-                        ),
-                        TextSpan(style: textStyle, text: "."),
-                      ],
-                    ),
-                  );
+                  return _AppDescription(followLink: followLink);
                 },
               ),
             ],
@@ -182,6 +160,48 @@ class _ExpandedWrapper extends HookConsumerWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AppDescription extends HookWidget {
+  const _AppDescription({
+    this.followLink,
+    // Temporary ignore, see <dart-lang/sdk#49025>.
+    // ignore: unused_element
+    super.key,
+  });
+
+  final GestureTapCallback? followLink;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    final textStyle = theme.textTheme.bodyMedium;
+
+    final tapGestureRecognizer = useTapGestureRecognizer(
+      onTap: followLink,
+    );
+
+    return Text.rich(
+      TextSpan(
+        style: textStyle,
+        children: [
+          const TextSpan(
+            text:
+                "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
+          ),
+          TextSpan(
+            style: textStyle?.copyWith(
+              color: theme.colorScheme.primary,
+            ),
+            text: "github:PSDTools/app",
+            recognizer: tapGestureRecognizer,
+          ),
+          const TextSpan(text: "."),
         ],
       ),
     );
