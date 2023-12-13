@@ -72,21 +72,6 @@ jobs:
         run: |
           flutter gen-l10n
           dart run build_runner build -d
-      - name: ⚙️ Upload generated files
-        uses: actions/upload-artifact@694cdabd8bdb0f10b2cea11669e1bf5453eed0a6 # v4.2.0
-        with:
-          name: generated-files
-          path: |
-            lib/gen/*.gen.dart
-            lib/features/**/*.g.dart
-            lib/features/**/*.freezed.dart
-            lib/utils/*.g.dart
-            lib/utils/*.freezed.dart
-            lib/app/*.gr.dart
-            lib/app/*.gm.dart
-            lib/l10n/app_localizations.dart
-            lib/l10n/app_localizations_*.dart
-          if-no-files-found: error
 
   build:
     name: Build
@@ -138,11 +123,25 @@ jobs:
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: ⚙️ Download generated code
-        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
+      - name: ⚙️ Cache generated files
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
-          name: generated-files
-          path: lib
+          path: |
+            .dart_tool/
+            lib/gen/*.gen.dart
+            lib/features/**/*.g.dart
+            lib/features/**/*.freezed.dart
+            lib/utils/*.g.dart
+            lib/utils/*.freezed.dart
+            lib/app/*.gr.dart
+            lib/app/*.gm.dart
+            lib/l10n/app_localizations.dart
+            lib/l10n/app_localizations_*.dart
+          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+      - name: 🔌 Generate files
+        run: |
+          flutter gen-l10n
+          dart run build_runner build -d
       - name: 🔧 Build
         run: |
           flutter build ${{ matrix.target }} ${{ matrix.flutter-flags }}
@@ -178,15 +177,29 @@ jobs:
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: ⚙️ Download generated code
-        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
+      - name: ⚙️ Cache generated files
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
-          name: generated-files
-          path: lib
+          path: |
+            .dart_tool/
+            lib/gen/*.gen.dart
+            lib/features/**/*.g.dart
+            lib/features/**/*.freezed.dart
+            lib/utils/*.g.dart
+            lib/utils/*.freezed.dart
+            lib/app/*.gr.dart
+            lib/app/*.gm.dart
+            lib/l10n/app_localizations.dart
+            lib/l10n/app_localizations_*.dart
+          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+      - name: 🔌 Generate files
+        run: |
+          flutter gen-l10n
+          dart run build_runner build -d
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
-      - name: 🕵️ Lint Riverpod
-        run: dart run custom_lint
+      - name: 🕵️ Run Custom Lint Rules
+        run: dart run custom_lint --fatal-infos
 
   test:
     name: Testing
@@ -212,11 +225,25 @@ jobs:
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
         run: flutter pub get
-      - name: ⚙️ Download generated code
-        uses: actions/download-artifact@6b208ae046db98c579e8a3aa621ab581ff575935 # v4.1.1
+      - name: ⚙️ Cache generated files
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4.0.0
         with:
-          name: generated-files
-          path: lib
+          path: |
+            .dart_tool/
+            lib/gen/*.gen.dart
+            lib/features/**/*.g.dart
+            lib/features/**/*.freezed.dart
+            lib/utils/*.g.dart
+            lib/utils/*.freezed.dart
+            lib/app/*.gr.dart
+            lib/app/*.gm.dart
+            lib/l10n/app_localizations.dart
+            lib/l10n/app_localizations_*.dart
+          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+      - name: 🔌 Generate files
+        run: |
+          flutter gen-l10n
+          dart run build_runner build -d
       - name: 🧪 Run tests
         run: dart run very_good_cli:very_good test --coverage --test-randomize-ordering-seed random
       - name: 📊 Check code coverage
