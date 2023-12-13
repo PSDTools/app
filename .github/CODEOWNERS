@@ -6,8 +6,8 @@
 # review when someone opens a pull request.
 *             @PSDTools/builders
 
-*/.dart       @PSDTools/builders
+*.dart        @PSDTools/builders
 /.github/     @lishaduck
 /assets/      @PSDTools/app
 /tests/       @PSDTools/builders
-pubspec.*  @lishaduck
+pubspec.*     @lishaduck
