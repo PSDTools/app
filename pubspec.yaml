@@ -79,7 +79,7 @@ dev_dependencies:
   #   sdk: flutter
   freezed_lint: 0.0.1-dev+1
   json_serializable: 6.7.1
-  mocktail: 1.0.1
+  mocktail: 1.0.2
   riverpod_generator: 3.0.0-dev.11
   riverpod_lint: 3.0.0-dev.4
   very_good_analysis: 5.1.0
