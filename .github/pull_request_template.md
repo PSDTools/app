@@ -33,9 +33,3 @@ _Closes: #issue_
 - 🛠️ Build configuration change
 - ⏪️ Revert
 - 🗑️ Chore
-
-<!-- ## Poem
-
-> Because, well, why not?
-
-copilot:poem -->
