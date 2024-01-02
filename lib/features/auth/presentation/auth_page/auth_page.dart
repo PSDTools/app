@@ -11,7 +11,7 @@ import "../../../../l10n/l10n.dart";
 import "../../application/auth_service.dart";
 
 /// The page located at `/login/`.
-@RoutePage()
+@RoutePage<bool>()
 class AuthPage extends ConsumerWidget {
   /// Create a new instance of [AuthPage].
   const AuthPage({super.key});
@@ -38,7 +38,7 @@ class AuthPage extends ConsumerWidget {
                           .authenticate();
 
                       if (context.mounted) {
-                        await context.router.push(const DashboardRoute());
+                        await context.go();
                       }
                     },
                     icon: const Icon(Icons.g_mobiledata),
@@ -52,7 +52,7 @@ class AuthPage extends ConsumerWidget {
                           .anonymous();
 
                       if (context.mounted) {
-                        await context.router.push(const DashboardRoute());
+                        await context.go();
                       }
                     },
                     icon: const Icon(Icons.person),
@@ -65,5 +65,16 @@ class AuthPage extends ConsumerWidget {
         ],
       ),
     );
+  }
+}
+
+extension _Go on BuildContext {
+  Future<void> go() async {
+    // if we were redirected here, go back to the right page.
+    await router.pop<bool>(true);
+    if (mounted) {
+      // otherwise, go to the dashboard.
+      await router.push(const DashboardRoute());
+    }
   }
 }
