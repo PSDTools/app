@@ -40,10 +40,10 @@ dependencies:
   auto_size_text: 3.0.0
   build_version: 2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
-  envied: ^0.5.2
+  envied: 0.5.3
   flutter:
     sdk: flutter
-  flutter_hooks: 0.20.3
+  flutter_hooks: 0.20.4
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_web_plugins:
@@ -60,12 +60,12 @@ dev_dependencies:
   auto_route_generator: 7.3.2
   build_runner: 2.4.8
   build_web_compilers: 4.0.9
-  custom_lint: 0.5.8
+  custom_lint: 0.5.11
   dhttpd: 4.1.0
-  envied_generator: 0.5.2
+  envied_generator: 0.5.3
   flutter_gen_runner: 5.4.0
   flutter_launcher_icons: 0.13.1
-  flutter_native_splash: 2.3.8
+  flutter_native_splash: 2.3.10
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
   freezed: 2.4.6
@@ -77,7 +77,7 @@ dev_dependencies:
   riverpod_generator: 3.0.0-dev.11
   riverpod_lint: 3.0.0-dev.4
   very_good_analysis: 5.1.0
-  very_good_cli: 0.16.0
+  very_good_cli: 0.19.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
