@@ -57,7 +57,7 @@ dependencies:
   logging: 1.2.0
   os_detect: 2.0.1
   riverpod_annotation: 3.0.0-dev.3
-  url_launcher: ^6.2.2
+  url_launcher: ^6.2.3
   widgetbook: 3.4.1
   widgetbook_annotation: 3.1.0
 
