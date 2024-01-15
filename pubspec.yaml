@@ -63,8 +63,8 @@ dependencies:
 
 dev_dependencies:
   auto_route_generator: 7.3.2
-  build_runner: 2.4.7
-  build_web_compilers: 4.0.7
+  build_runner: 2.4.8
+  build_web_compilers: 4.0.9
   custom_lint: 0.5.7
   dart_define: 2.1.1
   dhttpd: 4.1.0
