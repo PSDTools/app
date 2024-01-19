@@ -65,7 +65,7 @@ dev_dependencies:
   auto_route_generator: 7.3.2
   build_runner: 2.4.8
   build_web_compilers: 4.0.9
-  custom_lint: 0.5.7
+  custom_lint: 0.5.8
   dart_define: 2.1.1
   dhttpd: 4.1.0
   # flutter_gen_linter: 1.0.0+2
