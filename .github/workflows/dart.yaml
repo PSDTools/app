@@ -73,7 +73,7 @@ jobs:
           dart run dart_define generate
           dart run build_runner build -d
       - name: ⚙️ Upload generated files
-        uses: actions/upload-artifact@1eb3cb2b3e0f29609092a73eb033bb759a334595 # v4.1.0
+        uses: actions/upload-artifact@694cdabd8bdb0f10b2cea11669e1bf5453eed0a6 # v4.2.0
         with:
           name: generated-files
           path: |
@@ -149,7 +149,7 @@ jobs:
           flutter build ${{ matrix.target }} ${{ matrix.flutter-flags }} --dart-define-from-file=dart_define.json
       # - name: ⚙️ Upload build
       #   if: matrix.target == 'web'
-      #   uses: actions/upload-artifact@1eb3cb2b3e0f29609092a73eb033bb759a334595 # v4.1.0
+      #   uses: actions/upload-artifact@694cdabd8bdb0f10b2cea11669e1bf5453eed0a6 # v4.2.0
       #   with:
       #     name: build-directory-${{ matrix.target }}-${{ env.FLUTTER_CHANNEL }}
       #     path: ./build
