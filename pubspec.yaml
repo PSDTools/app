@@ -40,7 +40,7 @@ dependencies:
   auto_size_text: ^3.0.0
   build_version: ^2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
-  device_info_plus: 9.1.1
+  device_info_plus: 9.1.2
   flutter:
     sdk: flutter
   flutter_hooks: 0.20.3
