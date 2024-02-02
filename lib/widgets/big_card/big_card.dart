@@ -3,8 +3,6 @@ library;
 
 import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
-import "package:widgetbook/widgetbook.dart";
-import "package:widgetbook_annotation/widgetbook_annotation.dart";
 
 /// A, well, big card!
 class BigCard extends StatelessWidget {
@@ -44,19 +42,4 @@ class BigCard extends StatelessWidget {
       ),
     );
   }
-}
-
-/// A [UseCase] for a [BigCard].
-@UseCase(name: "name", type: BigCard)
-Widget bigCardUseCase(BuildContext context) {
-  return Column(
-    children: [
-      BigCard(
-        context.knobs.string(
-          label: "What the text says.",
-          initialValue: "This is a big card!",
-        ),
-      ),
-    ],
-  );
 }

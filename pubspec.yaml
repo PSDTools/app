@@ -37,41 +37,35 @@ dependencies:
   auto_route: 7.8.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  auto_size_text: ^3.0.0
-  build_version: ^2.1.1
+  auto_size_text: 3.0.0
+  build_version: 2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
-  device_info_plus: 9.1.1
+  envied: 0.5.3
   flutter:
     sdk: flutter
-  flutter_hooks: 0.20.3
+  flutter_hooks: 0.20.4
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
   freezed_annotation: 2.4.1
-  google_fonts: 6.1.0
   hooks_riverpod: 3.0.0-dev.3
   intl: 0.18.1
-  io: 1.0.4
   json_annotation: 4.8.1
-  logging: 1.2.0
   os_detect: 2.0.1
   riverpod_annotation: 3.0.0-dev.3
-  url_launcher: ^6.2.4
-  widgetbook: 3.4.1
-  widgetbook_annotation: 3.1.0
+  url_launcher: 6.2.4
 
 dev_dependencies:
   auto_route_generator: 7.3.2
   build_runner: 2.4.8
   build_web_compilers: 4.0.9
-  custom_lint: 0.5.8
-  dart_define: 2.1.1
+  custom_lint: 0.5.11
   dhttpd: 4.1.0
-  # flutter_gen_linter: 1.0.0+2
+  envied_generator: 0.5.3
   flutter_gen_runner: 5.4.0
   flutter_launcher_icons: 0.13.1
-  flutter_native_splash: 2.3.8
+  flutter_native_splash: 2.3.10
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
   freezed: 2.4.6
@@ -83,8 +77,7 @@ dev_dependencies:
   riverpod_generator: 3.0.0-dev.11
   riverpod_lint: 3.0.0-dev.4
   very_good_analysis: 5.1.0
-  very_good_cli: 0.16.0
-  widgetbook_generator: 3.3.0
+  very_good_cli: 0.19.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -103,7 +96,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets: # Lists assets, such as image files
     - assets/applets/
-    - assets/google_fonts/mr_dafoe/
+    - assets/google_fonts/mr_dafoe/OFL.txt
     - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -115,34 +108,13 @@ flutter:
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # an example, see below:
-  # fonts: # Required if your app uses custom fonts
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
-
-dart_define:
-  variables:
-    - name: PROJECT_ID
-      description: Appwrite project ID
-      default: pirate-code
-      required: false
-    - name: API_ENDPOINT
-      description: Appwrite API endpoint
-      default: http://localhost:80/v1
-      required: false
-    - name: DATABASE_ID
-      description: Appwrite database ID
-      default: pirate-coins
-      required: false
-    - name: COLLECTION_ID
-      description: Appwrite collection ID
-      default: coins
-      required: false
-    - name: SELF_SIGNED
-      description: If the Appwrite Server uses self-signed certificates.
-      default: true
-      required: false
+  # list giving the asset and other descriptors for the font
+  fonts: # Required if your app uses custom fonts
+    - family: MrDafoe
+      fonts:
+        - asset: assets/google_fonts/mr_dafoe/MrDafoe-Regular.ttf
+          style: normal
+          weight: 400
 
 # dart run flutter_launcher_icons
 flutter_launcher_icons:

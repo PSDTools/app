@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
-import "package:google_fonts/google_fonts.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
@@ -62,10 +61,6 @@ extension _WidgetTesterX on WidgetTester {
 void main() {
   group("Wrapper page", () {
     group("is accessible", () {
-      setUp(() {
-        GoogleFonts.config.allowRuntimeFetching = false;
-      });
-
       testWidgets("on Android.", (tester) async {
         await tester.pumpWidgetPage();
         await tester.testAcessabilityGuideline(androidTapTargetGuideline);
@@ -83,10 +78,7 @@ void main() {
       });
       testWidgets("with regard to labeling buttons.", (tester) async {
         await tester.pumpWidgetPage();
-        await tester.testAcessabilityGuideline(
-          labeledTapTargetGuideline,
-          expectFail: true,
-        );
+        await tester.testAcessabilityGuideline(labeledTapTargetGuideline);
       });
     });
   });

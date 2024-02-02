@@ -1,6 +1,7 @@
 /// This library contains the authentication feature's data fetchers.
 library;
 
+import "dart:developer";
 import "dart:typed_data";
 
 import "package:appwrite/appwrite.dart";
@@ -8,9 +9,7 @@ import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
-import "../../../utils/log.dart";
-import "../../utils/data/device_repository.dart";
-import "../../utils/domain/device_model.dart";
+import "../../../utils/device_repository.dart";
 import "../domain/account_type.dart";
 import "../domain/pirate_user_entity.dart";
 import "avatar_repository.dart";
@@ -49,12 +48,12 @@ base class _AppwriteAuthRepository implements AuthRepository {
     try {
       account = await _account.get();
     } catch (e, s) {
-      log.warning("Failed to fetch session.", e, s);
+      log("Failed to fetch session.", error: e, stackTrace: s);
       if (anonymous) {
         try {
           await _account.createAnonymousSession();
         } catch (e, s) {
-          log.warning("Failed to create anonymous session.", e, s);
+          log("Failed to create anonymous session.", error: e, stackTrace: s);
         }
       } else {
         try {
@@ -69,7 +68,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
             // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
             case Device.web ||
                   Device.linux ||
-                  Device.macos ||
+                  Device.macOS ||
                   Device.windows ||
                   Device.other:
               await _account.createOAuth2Session(
@@ -79,7 +78,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
               );
           }
         } catch (e, s) {
-          log.warning("Failed to create OAuth2 session.", e, s);
+          log("Failed to create OAuth2 session.", error: e, stackTrace: s);
         }
       }
 
@@ -96,8 +95,8 @@ base class _AppwriteAuthRepository implements AuthRepository {
         accountType: accountType,
         avatar: avatar,
       );
-    } catch (e) {
-      log.warning("Failed to fetch user data.", e);
+    } catch (e, s) {
+      log("Failed to fetch user data.", error: e, stackTrace: s);
 
       return fakeUser;
     }

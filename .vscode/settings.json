@@ -55,7 +55,7 @@
     "*.dart": "${capture}.*.dart, ${capture}_*.dart",
     "*cspell.json": ".markdownlint*, project_words.txt, mlc_config.json",
     ".flutter-plugins": ".flutter-plugins-dependencies",
-    "dart_define.json": "*.log, untranslated.json",
+    "untranslated.json": "*.log",
     ".env": ".env.example",
     "app.iml": "*.iml"
   },

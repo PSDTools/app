@@ -9,16 +9,7 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "args": ["--dart-define-from-file=dart_define.json"],
       "flutterMode": "debug"
-    },
-    {
-      "name": "Launch widgetbook",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/widgetbook.generator.dart",
-      "args": ["--dart-define-from-file=dart_define.json"],
-      "flutterMode": "release"
     }
   ]
 }

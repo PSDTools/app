@@ -42,27 +42,18 @@ targets:
         # configs for the flutter.assets generator
         generate_for:
           - $package$
-      source_gen:combining_builder:
-        # configs for the source_gen:combining_builder generator
-        generate_for:
-          - lib/**.dart
       json_serializable:
         # configs for the @JsonSerializable generator
         generate_for:
           - lib/features/*/domain/*_model.dart
           - lib/features/*/domain/*_entity.dart
-      widgetbook_generator:app_builder:
-        # configs for @App() generator...
-        generate_for:
-          - lib/widgetbook.generator.dart
-      widgetbook_generator:use_case_builder:
-        # configs for @UseCase() generator...
-        generate_for:
-          - lib/widgets/*/*.dart
-      widgetbook_generator:telemetry:
-        # disable widgetbook telemetry...
-        enabled: false
       build_version:build_version:
         # configs for the packageVersion generator...
         options:
           output: lib/gen/version.gen.dart
+      envied_generator:envied:
+        # configs for the @Envied generator
+        generate_for:
+          - lib/env/env.dart
+        options:
+          output: lib/gen/env.g.dart

@@ -39,7 +39,7 @@ docker run -it --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume 
       | ---- | ------ | ---- | ----- | ------ |
       | All  | ✅     | ✅   | ✅    | ❌     |
 
-1. Verify that `.env.example` was renamed to `.env`, and that `direnv` works.
+1. Verify that `.env.example` was renamed to `.env`.
 1. Run the "Dart: run build_runner" VS Code task.
 1. Launch the app using the VS Code Run and Debug launcher.
    1. See if the app works.
