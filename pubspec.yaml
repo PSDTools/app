@@ -43,7 +43,7 @@ dependencies:
   envied: 0.5.3
   flutter:
     sdk: flutter
-  flutter_hooks: 0.20.4
+  flutter_hooks: 0.20.5
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_web_plugins:
