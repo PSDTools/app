@@ -54,7 +54,7 @@ dependencies:
   json_annotation: 4.8.1
   os_detect: 2.0.1
   riverpod_annotation: 3.0.0-dev.3
-  url_launcher: 6.2.4
+  url_launcher: 6.2.5
 
 dev_dependencies:
   auto_route_generator: 7.3.2
