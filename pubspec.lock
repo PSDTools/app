@@ -237,10 +237,10 @@ packages:
     dependency: transitive
     description:
       name: cli_completion
-      sha256: "1e87700c029c77041d836e57f9016b5c90d353151c43c2ca0c36deaadc05aa3a"
+      sha256: "158deec74a75cdc69bce061645fea08f94190dd6833f988f517c2dfcb45e9117"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.0"
+    version: "0.5.0"
   cli_util:
     dependency: transitive
     description:
@@ -713,10 +713,10 @@ packages:
     dependency: transitive
     description:
       name: mason
-      sha256: c036d801a53bba2eb70deb5ed0cce8adc6cd11bed597aaffa8d4f011d7037976
+      sha256: f4ea713a0f4142e20abb3a5b1352c0475c04cb880a1e33e2028793d60c83fd5c
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.51"
+    version: "0.1.0-dev.52"
   mason_logger:
     dependency: transitive
     description:
@@ -817,10 +817,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: "3fc3fe8e7a9fd4827fa4d625a423eec95d305b2bc3538a3adf7fd6c49217af97"
+      sha256: ffe9ff001c2c05c972510410e810d55961190ccdadfc25bbb9660d72b090e07b
       url: "https://pub.dev"
     source: hosted
-    version: "0.21.45"
+    version: "0.22.1"
   path:
     dependency: transitive
     description:
@@ -1334,18 +1334,18 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: d8f5d77228009254930a7ff17998b5424071bd057f2716bef87d9caeaba565e5
+      sha256: adb853e671e5a7916eaa1ec1983d92e30dee693fdbec06bfe78bc868f12be651
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.1"
+    version: "0.20.0"
   very_good_test_runner:
     dependency: transitive
     description:
       name: very_good_test_runner
-      sha256: "4d41e5d7677d259b9a1599c78645ac2d36bc2bd6ff7773507bcb0bab41417fe2"
+      sha256: "3e1e3519f5a790abaafa94442edaae7a9af817f6241b8b787c01a465f3332059"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0"
   vm_service:
     dependency: transitive
     description:
