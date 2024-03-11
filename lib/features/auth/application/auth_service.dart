@@ -17,7 +17,7 @@ part "auth_service.g.dart";
 base class PirateAuthService extends _$PirateAuthService {
   @override
   FutureOr<PirateAuthModel> build() async {
-    return _createSession(anonymous: true);
+    return _fetchSession();
   }
 
   /// Authenticate the current user.
@@ -27,11 +27,23 @@ base class PirateAuthService extends _$PirateAuthService {
 
   Future<PirateAuthModel> _createSession({bool anonymous = false}) async {
     final auth = ref.read(authProvider);
-    final account = await auth.authenticate(anonymous: anonymous);
+    await auth.authenticate(anonymous: anonymous);
+    final account = await auth.getData();
 
     return PirateAuthModel(
       user: account,
     );
+  }
+
+  Future<PirateAuthModel> _fetchSession() async {
+    final auth = ref.read(authProvider);
+    try {
+      final account = await auth.getData();
+
+      return PirateAuthModel(user: account);
+    } catch (e) {
+      return const PirateAuthModel(user: null);
+    }
   }
 
   /// Create a new anonymous session for the user.
@@ -45,8 +57,19 @@ base class PirateAuthService extends _$PirateAuthService {
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
 Future<PirateUserEntity> user(UserRef ref) async => await ref.watch(
-      pirateAuthServiceProvider.selectAsync((value) => value.user),
+      pirateAuthServiceProvider.selectAsync((value) {
+        return value.user ?? fakeUser;
+      }),
     );
+
+/// A fake user, for use when all else fails.
+final fakeUser = PirateUserEntity(
+  name: redactedName,
+  email: redactedEmail,
+  accountType: AccountType.student,
+  avatar: redactedAvatar,
+  isLoggedIn: false,
+);
 
 /// Get the current user's name.
 ///

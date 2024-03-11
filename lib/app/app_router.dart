@@ -33,9 +33,9 @@ class AppRouter extends _$AppRouter implements AutoRouteGuard {
     NavigationResolver resolver,
     StackRouter router,
   ) async {
-    final authState = ref.read(userProvider).valueOrNull;
+    final authState = ref.read(userProvider).valueOrNull?.isLoggedIn;
 
-    if (authState != null || resolver.route.name == AuthRoute.name) {
+    if ((authState ?? false) || (resolver.route.name == AuthRoute.name)) {
       resolver.next(); // continue navigation
     } else {
       // else we navigate to the Login page so we get authenticated

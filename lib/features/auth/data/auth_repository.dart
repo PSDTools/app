@@ -20,86 +20,93 @@ part "auth_repository.g.dart";
 /// A repository for authentication.
 abstract interface class AuthRepository {
   /// Authenticate the user.
-  Future<PirateUserEntity> authenticate({required bool anonymous});
+  Future<void> authenticate({required bool anonymous});
+
+  /// Get data about the current user.
+  Future<PirateUserEntity> getData();
 }
 
 /// The default implementation of [AuthRepository].
 base class _AppwriteAuthRepository implements AuthRepository {
   /// Create a new instance of [_AppwriteAuthRepository].
-  const _AppwriteAuthRepository(
-    Account account,
-    Device platform,
-    AvatarRepository avatar,
-  )   : _account = account,
-        _platform = platform,
-        _avatarRepo = avatar;
+  const _AppwriteAuthRepository(this.account, this.platform, this.avatarRepo);
 
   /// The Appwrite [Account].
-  final Account _account;
+  final Account account;
 
   /// The [currentPlatform].
-  final Device _platform;
+  final Device platform;
 
   /// The current user's avatar.
-  final AvatarRepository _avatarRepo;
+  final AvatarRepository avatarRepo;
+
+  /// Get a user from Appwrite.
+  Future<User> getUser() => account.get();
 
   @override
-  Future<PirateUserEntity> authenticate({bool anonymous = false}) async {
-    User account;
+  Future<PirateUserEntity> getData() async {
+    final user = await getUser();
+
+    return getUserData(user);
+  }
+
+  Future<PirateUserEntity> getUserData(User user) async {
+    final accountType = AccountType.fromEmail(user.email);
+    final avatar = await avatarRepo.getAvatar();
+
+    return PirateUserEntity(
+      name: user.name,
+      email: user.email,
+      accountType: accountType,
+      avatar: avatar,
+      isLoggedIn: true,
+    );
+  }
+
+  @override
+  Future<void> authenticate({bool anonymous = false}) async {
     try {
-      account = await _account.get();
+      await getUser();
     } catch (e, s) {
       log.warning("Failed to fetch session.", e, s);
-      if (anonymous) {
-        try {
-          await _account.createAnonymousSession();
-        } catch (e, s) {
-          log.warning("Failed to create anonymous session.", e, s);
-        }
-      } else {
-        try {
-          // Go to the Google account login page.
-          switch (_platform) {
-            // Both Android and iOS need the same behavior, so it reuses it.
-            case Device.android || Device.ios:
-              await _account.createOAuth2Session(
-                provider: "google",
-              );
+      await _createAccount(anonymous);
 
-            // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
-            case Device.web ||
-                  Device.linux ||
-                  Device.macos ||
-                  Device.windows ||
-                  Device.other:
-              await _account.createOAuth2Session(
-                provider: "google",
-                success: "${Uri.base.origin}/auth.html",
-                failure: "${Uri.base}",
-              );
-          }
-        } catch (e, s) {
-          log.warning("Failed to create OAuth2 session.", e, s);
-        }
-      }
-
-      account = await _account.get();
+      await getUser();
     }
+  }
 
-    try {
-      final accountType = AccountType.fromEmail(account.email);
-      final avatar = await _avatarRepo.getAvatar();
+  Future<void> _createAccount(bool anonymous) async {
+    if (anonymous) {
+      try {
+        await account.createAnonymousSession();
+      } catch (e, s) {
+        log.warning("Failed to create anonymous session.", e, s);
+      }
+    } else {
+      try {
+        // Go to the Google account login page.
+        switch (platform) {
+          // Both Android and iOS need the same behavior, so it reuses it.
+          case Device.android || Device.ios:
+            await account.createOAuth2Session(
+              provider: "google",
+            );
 
-      return PirateUserEntity(
-        name: account.name,
-        email: account.email,
-        accountType: accountType,
-        avatar: avatar,
-      );
-    } catch (e) {
-      log.warning("Failed to fetch user data.", e);
-
-      return fakeUser;
+          // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
+          case Device.web ||
+                Device.linux ||
+                Device.macos ||
+                Device.windows ||
+                Device.other:
+            await account.createOAuth2Session(
+              provider: "google",
+              success: "${Uri.base.origin}/auth.html",
+              failure: "${Uri.base}",
+            );
+        }
+      } catch (e, s) {
+        log.warning("Failed to create OAuth2 session.", e, s);
+      }
     }
   }
 }
@@ -112,14 +119,6 @@ const redactedName = "Anonymous";
 
 /// The avatar used in case things go wrong.
 final redactedAvatar = Uint8List(1);
-
-/// A fake user, for use when all else fails.
-final fakeUser = PirateUserEntity(
-  name: redactedName,
-  email: redactedEmail,
-  accountType: AccountType.student,
-  avatar: redactedAvatar,
-);
 
 /// Get the authentication data provider.
 @Riverpod(keepAlive: true)

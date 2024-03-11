@@ -5,7 +5,6 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
 import "package:pirate_code/app/app_router.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
-import "package:pirate_code/features/auth/data/auth_repository.dart";
 import "package:pirate_code/features/dashboard/presentation/wrapper_page/wrapper_page.dart";
 import "package:pirate_code/l10n/l10n.dart";
 import "package:pirate_code/utils/design.dart";

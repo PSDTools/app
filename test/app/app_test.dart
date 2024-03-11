@@ -1,4 +1,3 @@
-// ignore_for_file: scoped_providers_should_specify_dependencies, prefer_const_constructors, prefer_const_literals_to_create_immutables
 import "package:appwrite/appwrite.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";

@@ -25,6 +25,9 @@ sealed class PirateUserEntity with _$PirateUserEntity implements Model {
 
     /// The user's avatar.
     @Uint8ListConverter() required Uint8List avatar,
+
+    /// If the user has logged in through Appwrite.
+    required bool isLoggedIn,
   }) = _PirateUser;
 
   const PirateUserEntity._();
