@@ -1,6 +1,6 @@
 /// This library contains utilities for the Appwrite API.
 ///
-/// {@Category Server}
+/// {@category Server}
 library;
 
 // cSpell:ignore realtime
