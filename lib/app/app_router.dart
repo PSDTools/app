@@ -16,7 +16,7 @@ part "app_router.gr.dart";
 
 /// The router for the application.
 @AutoRouterConfig(replaceInRouteName: "Page,Route")
-class AppRouter extends _$AppRouter {
+class AppRouter extends _$AppRouter implements AutoRouteGuard {
   /// Create a new instance of [AppRouter].
   AppRouter({required this.ref});
 
@@ -29,19 +29,30 @@ class AppRouter extends _$AppRouter {
   );
 
   @override
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
+    final authState = ref.read(userProvider).valueOrNull;
+
+    if (authState != null || resolver.route.name == AuthRoute.name) {
+      resolver.next(); // continue navigation
+    } else {
+      // else we navigate to the Login page so we get authenticated
+
+      // tip: use resolver.redirect to have the redirected route
+      // automatically removed from the stack when the resolver is completed
+      await resolver.redirect(const AuthRoute()).then(
+            (didLogin) => resolver.next((didLogin ?? false) as bool),
+          );
+    }
+  }
+
+  @override
   List<AutoRoute> get routes => [
         AutoRoute(
           page: WrapperRoute.page,
           path: "/",
-          guards: [
-            AutoRouteGuard.redirect(
-              (resolver) {
-                final authState = ref.read(userProvider).valueOrNull;
-
-                return (authState != null) ? null : const AuthRoute();
-              },
-            ),
-          ],
           children: [
             AutoRoute(
               page: PirateCoinsRoute.page,
