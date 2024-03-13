@@ -5,6 +5,7 @@ import "dart:developer";
 import "dart:typed_data";
 
 import "package:appwrite/appwrite.dart";
+import "package:appwrite/enums.dart";
 import "package:appwrite/models.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
@@ -62,7 +63,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
             // Both Android and iOS need the same behavior, so it reuses it.
             case Device.android || Device.ios:
               await _account.createOAuth2Session(
-                provider: "google",
+                provider: OAuthProvider.google,
               );
 
             // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
@@ -72,7 +73,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
                   Device.windows ||
                   Device.other:
               await _account.createOAuth2Session(
-                provider: "google",
+                provider: OAuthProvider.google,
                 success: "${Uri.base.origin}/auth.html",
                 failure: "${Uri.base}",
               );
