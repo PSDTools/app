@@ -44,7 +44,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@62f096cacda5168a3bd7b95793373be14fa4fbaf # v2.13.0
+        uses: subosito/flutter-action@1c5eb12d812966ca84680edc38353a0851c8fd56 # v2.14.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
@@ -114,7 +114,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@62f096cacda5168a3bd7b95793373be14fa4fbaf # v2.13.0
+        uses: subosito/flutter-action@1c5eb12d812966ca84680edc38353a0851c8fd56 # v2.14.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
@@ -168,7 +168,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@62f096cacda5168a3bd7b95793373be14fa4fbaf # v2.13.0
+        uses: subosito/flutter-action@1c5eb12d812966ca84680edc38353a0851c8fd56 # v2.14.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
@@ -216,7 +216,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@62f096cacda5168a3bd7b95793373be14fa4fbaf # v2.13.0
+        uses: subosito/flutter-action@1c5eb12d812966ca84680edc38353a0851c8fd56 # v2.14.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
@@ -267,7 +267,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: 🐦 Set up Flutter
-        uses: subosito/flutter-action@62f096cacda5168a3bd7b95793373be14fa4fbaf # v2.13.0
+        uses: subosito/flutter-action@1c5eb12d812966ca84680edc38353a0851c8fd56 # v2.14.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: ${{ env.FLUTTER_CHANNEL }}
