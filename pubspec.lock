@@ -397,10 +397,10 @@ packages:
     dependency: "direct main"
     description:
       name: envied
-      sha256: dab29e21452c3d57ec10889d96b06b4a006b01375d4df10b33c9704800c208c4
+      sha256: "1bfa3c4d78fe937f281f2f6cb026fddcef4f4397e8227f8056b9ed0937ef0ab1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.3"
+    version: "0.5.4"
   envied_generator:
     dependency: "direct dev"
     description:

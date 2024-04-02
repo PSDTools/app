@@ -40,7 +40,7 @@ dependencies:
   auto_size_text: 3.0.0
   build_version: 2.1.1
   cupertino_icons: 1.0.6 # Only required if you use Cupertino (iOS style) icons
-  envied: 0.5.3
+  envied: 0.5.4
   flutter:
     sdk: flutter
   flutter_hooks: 0.20.5
