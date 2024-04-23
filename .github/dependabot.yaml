@@ -39,3 +39,6 @@ updates:
        build:
           patterns:
             - "build*"
+      envied:
+          patterns:
+            - "envied*"
