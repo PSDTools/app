@@ -23,22 +23,19 @@ updates:
     assignees:
       - "lishaduck"
     groups:
-       riverpod:
-          patterns:
-            - "*riverpod*"
-       auto_route:
-          patterns:
-            - "auto_route*"
-       freezed:
-          patterns:
-            - "freezed*"
-            - "json_*"
-       widgetbook:
-          patterns:
-            - "widgetbook*"
-       build:
-          patterns:
-            - "build*"
+      riverpod:
+        patterns:
+          - "*riverpod*"
+      auto_route:
+        patterns:
+          - "auto_route*"
+      freezed:
+        patterns:
+          - "freezed*"
+          - "json_*"
+      build:
+        patterns:
+          - "build*"
       envied:
-          patterns:
-            - "envied*"
+        patterns:
+          - "envied*"
