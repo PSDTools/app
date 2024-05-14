@@ -737,18 +737,18 @@ packages:
     dependency: transitive
     description:
       name: mason
-      sha256: f4ea713a0f4142e20abb3a5b1352c0475c04cb880a1e33e2028793d60c83fd5c
+      sha256: cec3dba68efbc6d0dbae0fded712d8837e4e521479f879839a8e7416291168ea
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.52"
+    version: "0.1.0-dev.53"
   mason_logger:
     dependency: transitive
     description:
       name: mason_logger
-      sha256: "0e90e637dcfcb7fb6c30b38e71cd41fa0e4e3df6f1da177f8251ac3f15147e9f"
+      sha256: "56c44e588e908ef0d1dbb593e1b4473b8ee5fb48fcc8d645c925ab6c8041ebdf"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.12"
+    version: "0.2.15"
   matcher:
     dependency: transitive
     description:
@@ -841,10 +841,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: ffe9ff001c2c05c972510410e810d55961190ccdadfc25bbb9660d72b090e07b
+      sha256: "33c97fabab800d972ad8582598edb66f96c4fe77f9af286a15a6aed3c10fe78a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.1"
+    version: "0.22.3"
   path:
     dependency: transitive
     description:
@@ -1358,10 +1358,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: adb853e671e5a7916eaa1ec1983d92e30dee693fdbec06bfe78bc868f12be651
+      sha256: "38e7ef96c779ccd8a74f944f68037be7f019cbf569abc34b9afaa8c8cc2e40eb"
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.0"
+    version: "0.21.0"
   very_good_test_runner:
     dependency: transitive
     description:
@@ -1414,10 +1414,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: "8cb58b45c47dcb42ab3651533626161d6b67a2921917d8d429791f76972b3480"
+      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
       url: "https://pub.dev"
     source: hosted
-    version: "5.3.0"
+    version: "5.5.0"
   win32_registry:
     dependency: transitive
     description:
