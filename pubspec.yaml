@@ -63,7 +63,7 @@ dev_dependencies:
   custom_lint: 0.5.11
   dhttpd: 4.1.0
   envied_generator: 0.5.4+1
-  flutter_gen_runner: 5.4.0
+  flutter_gen_runner: 5.5.0+1
   flutter_launcher_icons: 0.13.1
   flutter_native_splash: 2.4.0
   flutter_test: # Required for a Flutter project that includes tests
