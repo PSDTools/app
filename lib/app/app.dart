@@ -46,7 +46,7 @@ class _EagerInitialization extends ConsumerWidget {
     final user = ref.watch(userProvider);
 
     return ColoredBox(
-      color: theme.colorScheme.surfaceVariant,
+      color: theme.colorScheme.surfaceContainerHighest,
       child: switch (user) {
         AsyncData() || AsyncError() => child,
         AsyncLoading() => const Center(child: CircularProgressIndicator()),
