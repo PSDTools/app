@@ -48,5 +48,12 @@ linter:
     lines_longer_than_80_chars: false
     avoid_classes_with_only_static_members: true
     one_member_abstracts: false
+    no_wildcard_variable_uses: true
+    no_self_assignments: true
+    annotate_redeclares: true
+    missing_code_block_language_in_doc_comment: true
+    unnecessary_library_name: true
+    library_names: false
+    package_prefixed_library_names: false
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
