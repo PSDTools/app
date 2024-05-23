@@ -140,7 +140,8 @@ class _ExpandedWrapper extends HookConsumerWidget {
                   const Color.fromARGB(255, 43, 188, 75),
               child: Container(
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHighest, // background color
+                  color: theme
+                      .colorScheme.surfaceContainerHighest, // background color
                   border: Border.all(
                     color: Colors.transparent, // border color
                   ),
