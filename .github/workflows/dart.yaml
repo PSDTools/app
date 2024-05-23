@@ -19,8 +19,6 @@ on:
 
 env:
   CI: true
-  FLUTTER_VERSION: "3.19.x"
-  FLUTTER_CHANNEL: "stable"
 
 permissions:
   contents: read
@@ -45,6 +43,7 @@ jobs:
           set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        id: flutter
         with:
           flutter-version-file: pubspec.yaml
           cache: true
@@ -66,7 +65,7 @@ jobs:
             lib/app/*.gm.dart
             lib/l10n/app_localizations.dart
             lib/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+          key: ${{ runner.os }}-${{ steps.flutter.outputs.VERSION }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
@@ -114,6 +113,7 @@ jobs:
           set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        id: flutter
         with:
           flutter-version-file: pubspec.yaml
           cache: true
@@ -140,7 +140,7 @@ jobs:
             lib/app/*.gm.dart
             lib/l10n/app_localizations.dart
             lib/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+          key: ${{ runner.os }}-${{ steps.flutter.outputs.VERSION }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
@@ -152,7 +152,7 @@ jobs:
       #   if: matrix.target == 'web'
       #   uses: actions/upload-artifact@694cdabd8bdb0f10b2cea11669e1bf5453eed0a6 # v4.2.0
       #   with:
-      #     name: build-directory-${{ matrix.target }}-${{ env.FLUTTER_CHANNEL }}
+      #     name: build-directory-${{ matrix.target }}-${{ steps.flutter.outputs.VERSION }}
       #     path: ./build
       #     if-no-files-found: error
 
@@ -172,6 +172,7 @@ jobs:
           set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        id: flutter
         with:
           flutter-version-file: pubspec.yaml
           cache: true
@@ -193,7 +194,7 @@ jobs:
             lib/app/*.gm.dart
             lib/l10n/app_localizations.dart
             lib/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+          key: ${{ runner.os }}-${{ steps.flutter.outputs.VERSION }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
@@ -219,6 +220,7 @@ jobs:
           set-safe-directory: true
       - name: 🐦 Set up Flutter
         uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
+        id: flutter
         with:
           flutter-version-file: pubspec.yaml
           cache: true
@@ -240,7 +242,7 @@ jobs:
             lib/app/*.gm.dart
             lib/l10n/app_localizations.dart
             lib/l10n/app_localizations_*.dart
-          key: ${{ runner.os }}-${{ env.FLUTTER_CHANNEL }}-dart-${{ hashFiles('**/build.yaml') }}
+          key: ${{ runner.os }}-${{ steps.flutter.outputs.VERSION }}-dart-${{ hashFiles('**/build.yaml') }}
       - name: 🔌 Generate files
         run: |
           flutter gen-l10n
