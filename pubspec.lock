@@ -729,10 +729,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
+      sha256: "976c774dd944a42e83e2467f4cc670daef7eed6295b10b36ae8c85bcbf828235"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "4.0.0"
   logging:
     dependency: transitive
     description:
@@ -753,10 +753,10 @@ packages:
     dependency: transitive
     description:
       name: mason
-      sha256: cec3dba68efbc6d0dbae0fded712d8837e4e521479f879839a8e7416291168ea
+      sha256: "212557f2273892aea96f377d45eb8f39930e8bd205c59fa24f5ddabe3b0c1dc5"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.53"
+    version: "0.1.0-dev.56"
   mason_logger:
     dependency: transitive
     description:
@@ -857,10 +857,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: "33c97fabab800d972ad8582598edb66f96c4fe77f9af286a15a6aed3c10fe78a"
+      sha256: c2ba0e4d129080c575acb1d643664715d1a4daaa2c72869f070f3321b7b9005d
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.3"
+    version: "0.22.5"
   path:
     dependency: transitive
     description:
@@ -1390,10 +1390,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: "38e7ef96c779ccd8a74f944f68037be7f019cbf569abc34b9afaa8c8cc2e40eb"
+      sha256: fd66d80f9f778fdb6bc5564025c6306cd263ba0a7ee171f459cad468456ad61a
       url: "https://pub.dev"
     source: hosted
-    version: "0.21.0"
+    version: "0.22.0"
   very_good_test_runner:
     dependency: transitive
     description:
