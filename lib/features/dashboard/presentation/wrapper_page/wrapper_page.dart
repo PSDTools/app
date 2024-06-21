@@ -185,7 +185,7 @@ class _AppDescription extends HookWidget {
         children: [
           const TextSpan(
             text:
-                "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reenforcing positive behavior. View the source at ",
+                "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reinforcing positive behavior. View the source at ",
           ),
           TextSpan(
             style: textStyle?.copyWith(
