@@ -753,10 +753,10 @@ packages:
     dependency: transitive
     description:
       name: mason
-      sha256: "212557f2273892aea96f377d45eb8f39930e8bd205c59fa24f5ddabe3b0c1dc5"
+      sha256: "2508bb0bf51028fe6a433d694bd4d586d1ad99abb7699ee24d7ed3bfda0ea39e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0-dev.56"
+    version: "0.1.0-dev.57"
   mason_logger:
     dependency: transitive
     description:
@@ -857,10 +857,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: c2ba0e4d129080c575acb1d643664715d1a4daaa2c72869f070f3321b7b9005d
+      sha256: "0b9a31cc6112ba64d291ce0daaf14ed4a92c910c021c5f0a31bf6aceb357663a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.5"
+    version: "0.22.8"
   path:
     dependency: transitive
     description:
@@ -1206,10 +1206,10 @@ packages:
     dependency: transitive
     description:
       name: tar
-      sha256: "22f67e2d77b51050436620b2a5de521c58ca6f0b75af1d9ab3c8cae2eae58fcd"
+      sha256: "8e67ab1baa07d3ef2c5d52cfb84e7ed4742799141e9e2ac3d0801a1a7ccb7575"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "2.0.0"
   term_glyph:
     dependency: transitive
     description:
@@ -1390,10 +1390,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: fd66d80f9f778fdb6bc5564025c6306cd263ba0a7ee171f459cad468456ad61a
+      sha256: e0f5d8e2e012ce5bb687085f7adaa101bd98fce4b6122f59498a2d86418b3dfd
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.0"
+    version: "0.22.1"
   very_good_test_runner:
     dependency: transitive
     description:
