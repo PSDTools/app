@@ -857,10 +857,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: "0b9a31cc6112ba64d291ce0daaf14ed4a92c910c021c5f0a31bf6aceb357663a"
+      sha256: "5c29b8087b1ee29ab430393803e084a9e1d851b18c3bd276a76faf3b2171b8c0"
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.8"
+    version: "0.22.9"
   path:
     dependency: transitive
     description:
@@ -1390,10 +1390,10 @@ packages:
     dependency: "direct dev"
     description:
       name: very_good_cli
-      sha256: e0f5d8e2e012ce5bb687085f7adaa101bd98fce4b6122f59498a2d86418b3dfd
+      sha256: f6904c3530018d9127406c5d83c939b36b027bf48913674169f6e7f56eb09223
       url: "https://pub.dev"
     source: hosted
-    version: "0.22.1"
+    version: "0.22.2"
   very_good_test_runner:
     dependency: transitive
     description:
