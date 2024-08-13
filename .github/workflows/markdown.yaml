@@ -43,7 +43,7 @@ jobs:
           set-safe-directory: true
 
       - name: 🪄 Spell Check
-        uses: streetsidesoftware/cspell-action@2db9e5fb6d08776bed383767ef4e5dd84650546c # v6.7.1
+        uses: streetsidesoftware/cspell-action@934c74da3775ac844ec89503f666f67efb427fed # v6.8.1
         with:
           files: |
             **/*.md
