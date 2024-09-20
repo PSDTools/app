@@ -33,8 +33,5 @@ sealed class Stage with _$Stage {
   const factory Stage.pickStudent() = PickStudentStage;
 
   /// Represent the stage of the coins page where the teacher can view and add to a student's [CoinEntity]s.
-
-  const factory Stage.viewCoins({
-    required int student,
-  }) = ViewCoinsStage;
+  const factory Stage.viewCoins({required int student}) = ViewCoinsStage;
 }

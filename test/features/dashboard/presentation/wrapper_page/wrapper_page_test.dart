@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:pirate_code/app/app.dart";
-import "package:pirate_code/app/app_router.dart";
+import "package:pirate_code/app/app_router.gr.dart";
 import "package:pirate_code/features/auth/application/auth_service.dart";
 import "package:pirate_code/features/auth/data/auth_repository.dart";
 import "package:pirate_code/features/dashboard/presentation/wrapper_page/wrapper_page.dart";

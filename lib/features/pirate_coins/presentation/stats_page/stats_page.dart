@@ -32,7 +32,7 @@ class StatsPage extends ConsumerWidget {
                   ? BigCard(l10n.howManyCoins(value.coins.coins))
                   : BigCard(l10n.emptyReport),
               AsyncError(:final error) => BigCard(l10n.error("$error")),
-              AsyncLoading() => Column(
+              _ => Column(
                   children: [
                     const CircularProgressIndicator(),
                     AutoSizeText(l10n.loading),

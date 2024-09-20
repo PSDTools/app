@@ -5,18 +5,11 @@ import "package:auto_route/auto_route.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../features/auth/application/auth_service.dart";
-import "../features/auth/presentation/auth_page/auth_page.dart";
-import "../features/dashboard/presentation/dashboard_page/dashboard_page.dart";
-import "../features/dashboard/presentation/wrapper_page/wrapper_page.dart";
-import "../features/gpa_calculator/presentation/gpa_page/gpa_page.dart";
-import "../features/pirate_coins/presentation/pirate_coins_page/pirate_coins_page.dart";
-import "../features/pirate_coins/presentation/stats_page/stats_page.dart";
-
-part "app_router.gr.dart";
+import "app_router.gr.dart";
 
 /// The router for the application.
-@AutoRouterConfig(replaceInRouteName: "Page,Route")
-class AppRouter extends _$AppRouter {
+@AutoRouterConfig(replaceInRouteName: "Page,Route", deferredLoading: true)
+class AppRouter extends RootStackRouter {
   /// Create a new instance of [AppRouter].
   AppRouter({required this.ref});
 

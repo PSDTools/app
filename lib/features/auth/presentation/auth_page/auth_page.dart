@@ -6,7 +6,7 @@ import "package:auto_size_text/auto_size_text.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
-import "../../../../app/app_router.dart";
+import "../../../../app/app_router.gr.dart";
 import "../../../../l10n/l10n.dart";
 import "../../application/auth_service.dart";
 

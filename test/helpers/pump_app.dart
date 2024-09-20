@@ -17,14 +17,12 @@ extension PumpApp on WidgetTester {
   /// Pump a [Widget] in a [ProviderScope].
   Future<void> pumpApp(
     Widget widget, {
-    ProviderContainer? parent,
     Overrides overrides = const [],
     List<ProviderObserver>? observers,
   }) async {
     return pumpWidget(
       ProviderScope(
         overrides: overrides,
-        parent: parent,
         observers: observers,
         child: _Widget(
           child: widget,

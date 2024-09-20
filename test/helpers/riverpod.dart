@@ -11,13 +11,11 @@ typedef Overrides = List<Override>;
 /// A testing utility which creates a [ProviderContainer] and automatically
 /// disposes it at the end of the test.
 ProviderContainer createContainer({
-  ProviderContainer? parent,
   Overrides overrides = const [],
   List<ProviderObserver>? observers,
 }) {
   // Create a ProviderContainer, and optionally allow specifying parameters.
   final container = ProviderContainer(
-    parent: parent,
     overrides: overrides,
     observers: observers,
   );

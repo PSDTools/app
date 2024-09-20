@@ -6,6 +6,7 @@ import "package:hooks_riverpod/hooks_riverpod.dart";
 
 import "../../l10n/l10n.dart";
 import "../features/auth/application/auth_service.dart";
+import "../features/auth/domain/pirate_user_entity.dart";
 import "../utils/design.dart";
 import "../utils/router.dart";
 import "boostrap.dart";
@@ -47,10 +48,13 @@ class _EagerInitialization extends ConsumerWidget {
 
     return ColoredBox(
       color: theme.colorScheme.surfaceContainerHighest,
-      child: switch (user) {
-        AsyncData() || AsyncError() => child,
-        AsyncLoading() => const Center(child: CircularProgressIndicator()),
-      },
+      child: Center(
+        child: switch (user) {
+          AsyncData<PirateUserEntity> _ => child,
+          AsyncError<PirateUserEntity>(:final error) => Text("Error: $error"),
+          _ => const CircularProgressIndicator(),
+        },
+      ),
     );
   }
 }

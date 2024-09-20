@@ -239,7 +239,7 @@ class _ViewCoins extends StatelessWidget {
       child: switch (data) {
         AsyncData(:final value) => BigCard("${value.coins.coins}"),
         AsyncError(:final error) => BigCard(l10n.error("$error")),
-        AsyncLoading() => Column(
+        _ => Column(
             children: [
               const CircularProgressIndicator(),
               AutoSizeText(l10n.loading),

@@ -10,7 +10,7 @@ import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:url_launcher/link.dart";
 
-import "../../../../app/app_router.dart";
+import "../../../../app/app_router.gr.dart";
 import "../../../../gen/assets.gen.dart";
 import "../../../../gen/fonts.gen.dart";
 import "../../../../gen/version.gen.dart";

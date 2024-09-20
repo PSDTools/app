@@ -33,29 +33,15 @@
     <link rel="icon" type="image/png" href="favicon.png" />
 
     <link rel="manifest" href="manifest.json" />
+
     <style type="text/css">
-      body.loading-mode {
+      body {
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-      div.progress-bar {
-        border: 1px solid blue;
-        width: 250px;
-        height: 50px;
-      }
-      div.progress-indicator {
-        background-color: blue;
-        height: 100%;
-        width: 0%;
+        height: 100vh;
       }
     </style>
-
-    <script>
-      // The value below is injected by flutter build, do not touch.
-      var serviceWorkerVersion = null;
-    </script>
-
     <style id="splash-screen-style">
       html {
         height: 100%;
@@ -136,9 +122,12 @@
         document.body.style.background = "transparent";
       }
     </script>
+    <meta
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+    />
   </head>
-
-  <body class="loading-mode">
+  <body>
     <picture id="splash">
       <source
         srcset="
@@ -165,125 +154,24 @@
         alt=""
       />
     </picture>
-
-    <div id="progress-bar">
-      <div id="progress-indicator"></div>
+    <div>
+      <div
+        id="progress-bar"
+        style="border: 1px solid blue; width: 250px; height: 50px"
+      >
+        <div
+          id="progress-indicator"
+          style="background-color: blue; height: 100%; width: 0%"
+        ></div>
+      </div>
+      <div
+        id="progress-text"
+        width="100%"
+        style="padding-top: 0.5rem; text-align: center"
+      >
+        Initializing
+      </div>
     </div>
-    <!--
-      This script installs service_worker.js to provide PWA functionality to
-      application. For more information, see:
-      https://developers.google.com/web/fundamentals/primers/service-workers
-    -->
-    <script>
-      function run() {
-        const progressBar = document.querySelector("#progress-bar");
-        const progressIndicator = document.querySelector("#progress-indicator");
-
-        const additionalScripts = [
-          // Add additional scripts here.
-        ];
-
-        function injectScript(url) {
-          return new Promise(function (resolve) {
-            let scriptTag = document.createElement("script");
-            scriptTag.src = url;
-            scriptTag.type = "application/javascript";
-            scriptTag.onload = function () {
-              resolve();
-            };
-
-            document.body.append(scriptTag);
-          });
-        }
-
-        function beginPreloading(manifestAssets) {
-          var assets = [
-            "flutter.js",
-            "main.dart.js",
-            "canvaskit/canvaskit.wasm",
-            "canvaskit/canvaskit.js",
-            ...additionalScripts,
-            ...manifestAssets,
-          ];
-          let totalAssets = assets.length + 1;
-          let loaded = 0;
-
-          const batchSize = 20;
-
-          async function reportProgress() {
-            loaded++;
-            const value = Math.floor((loaded / totalAssets) * 100) + "%";
-            progressIndicator.style.width = value;
-
-            if (assets.length == 0) {
-              dispatchAppLoad();
-            } else {
-              load(assets.shift());
-            }
-          }
-
-          function load(url) {
-            const req = new XMLHttpRequest();
-            req.onload = reportProgress;
-            req.open("get", url);
-            req.send();
-          }
-
-          function startBatch() {
-            const end = Math.min(batchSize, assets.length);
-            for (let i = 0; i < end; i++) {
-              load(assets.shift());
-            }
-          }
-
-          var scriptLoaded = false;
-          async function dispatchAppLoad() {
-            if (scriptLoaded) {
-              return;
-            }
-            scriptLoaded = true;
-
-            for (let i = 0; i < additionalScripts.length; i++) {
-              await injectScript(additionalScripts[i]);
-            }
-
-            await injectScript("flutter.js");
-
-            // Download main.dart.js
-            _flutter.loader.loadEntrypoint({
-              serviceWorker: {
-                serviceWorkerVersion: serviceWorkerVersion,
-              },
-              onEntrypointLoaded: function (engineInitializer) {
-                engineInitializer
-                  .initializeEngine()
-                  .then(async function (appRunner) {
-                    window.addEventListener("flutter-first-frame", function () {
-                      progressBar.remove();
-                      document.body.classList.remove("loading-mode");
-                    });
-
-                    appRunner.runApp();
-                  });
-              },
-            });
-          }
-
-          startBatch();
-        }
-
-        window.addEventListener("load", async function (ev) {
-          const response = await fetch("assets/AssetManifest.json");
-          const manifest = await response.json();
-          const assets = Object.values(manifest)
-            .map((list) => list.map((url) => "assets/" + url))
-            .reduce((arr, curr) => [...arr, ...curr]);
-
-          beginPreloading(assets);
-        });
-      }
-
-      run();
-    </script>
+    <script src="flutter_bootstrap.js" async></script>
   </body>
 </html>
