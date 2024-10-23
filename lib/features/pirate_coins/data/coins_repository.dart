@@ -5,6 +5,7 @@ library;
 
 import "package:appwrite/appwrite.dart";
 import "package:appwrite/models.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
@@ -100,7 +101,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
 
 /// Get the coins data.
 @riverpod
-CoinsRepository coinsData(CoinsDataRef ref, int id) {
+CoinsRepository coinsData(Ref ref, int id) {
   final databases = ref.watch(databasesProvider);
   final channel = ref.watch(_channelProvider(id));
 
@@ -127,7 +128,7 @@ class _Channel extends _$Channel {
 /// Get the coins stream.
 /// Used to coerce the stream into a [AsyncValue].
 @riverpod
-Stream<CoinEntity> coinStream(CoinStreamRef ref, int userId) async* {
+Stream<CoinEntity> coinStream(Ref ref, int userId) async* {
   final coinsDataRepository = ref.read(coinsDataProvider(userId));
 
   yield* coinsDataRepository.coinsData();

@@ -14,7 +14,7 @@ class AppRouter extends RootStackRouter {
   AppRouter({required this.ref});
 
   /// Gain access to the needed providers.
-  final Ref<AppRouter> ref;
+  final Ref ref;
 
   @override
   final defaultRouteType = const RouteType.custom(

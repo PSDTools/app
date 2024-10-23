@@ -3,6 +3,7 @@ library;
 
 import "dart:typed_data";
 
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../data/auth_repository.dart";
@@ -44,7 +45,7 @@ base class PirateAuthService extends _$PirateAuthService {
 ///
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
-Future<PirateUserEntity> user(UserRef ref) async => await ref.watch(
+Future<PirateUserEntity> user(Ref ref) async => await ref.watch(
       pirateAuthServiceProvider.selectAsync((value) => value.user),
     );
 
@@ -52,25 +53,25 @@ Future<PirateUserEntity> user(UserRef ref) async => await ref.watch(
 ///
 /// Named as such to prevent a naming conflict with riverpod.
 @riverpod
-Future<String> username(UsernameRef ref) async =>
+Future<String> username(Ref ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.name));
 
 /// Get the current user's email address.
 @riverpod
-Future<String> email(EmailRef ref) async =>
+Future<String> email(Ref ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.email));
 
 /// Get the current user's avatar.
 @riverpod
-Future<Uint8List> avatar(AvatarRef ref) async =>
+Future<Uint8List> avatar(Ref ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.avatar));
 
 /// Get the current user's account type.
 @riverpod
-Future<AccountType> accountType(AccountTypeRef ref) async =>
+Future<AccountType> accountType(Ref ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.accountType));
 
 /// Get the current user's ID.
 @riverpod
-Future<int> id(IdRef ref) async =>
+Future<int> id(Ref ref) async =>
     await ref.watch(userProvider.selectAsync((value) => value.id));

@@ -7,6 +7,7 @@ import "dart:typed_data";
 import "package:appwrite/appwrite.dart";
 import "package:appwrite/enums.dart";
 import "package:appwrite/models.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../utils/api.dart";
@@ -123,7 +124,7 @@ final fakeUser = PirateUserEntity(
 
 /// Get the authentication data provider.
 @Riverpod(keepAlive: true)
-AuthRepository auth(AuthRef ref) {
+AuthRepository auth(Ref ref) {
   final account = ref.watch(accountsProvider);
   final platform = ref.watch(currentPlatformProvider);
   final avatar = ref.watch(avatarProvider);

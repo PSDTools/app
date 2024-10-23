@@ -8,6 +8,7 @@ library;
 import "package:appwrite/appwrite.dart";
 import "package:flutter/foundation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../env/env.dart";
@@ -58,7 +59,7 @@ const ApiRepository apiInfo = Api(
 
 /// Get the Appwrite client.
 @Riverpod(keepAlive: true)
-Client client(ClientRef ref) {
+Client client(Ref ref) {
   return Client()
       .setEndpoint(apiInfo.url)
       .setProject(apiInfo.projectId)
@@ -67,7 +68,7 @@ Client client(ClientRef ref) {
 
 /// Get the Appwrite session for the current account.
 @Riverpod(keepAlive: true)
-Account accounts(AccountsRef ref) {
+Account accounts(Ref ref) {
   final client = ref.watch(clientProvider);
 
   return Account(client);
@@ -75,7 +76,7 @@ Account accounts(AccountsRef ref) {
 
 /// Get the Appwrite databases.
 @Riverpod(keepAlive: true)
-Databases databases(DatabasesRef ref) {
+Databases databases(Ref ref) {
   final client = ref.watch(clientProvider);
 
   return Databases(client);
@@ -83,7 +84,7 @@ Databases databases(DatabasesRef ref) {
 
 /// Get the Appwrite avatars.
 @Riverpod(keepAlive: true)
-Avatars avatars(AvatarsRef ref) {
+Avatars avatars(Ref ref) {
   final client = ref.watch(clientProvider);
 
   return Avatars(client);
@@ -91,7 +92,7 @@ Avatars avatars(AvatarsRef ref) {
 
 /// Get the Appwrite realtime subscriptions.
 @Riverpod(keepAlive: true)
-Realtime realtime(RealtimeRef ref) {
+Realtime realtime(Ref ref) {
   final client = ref.watch(clientProvider);
 
   return Realtime(client);

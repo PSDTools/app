@@ -1,6 +1,7 @@
 /// This library contains the Pirate Coins feature's business logic.
 library;
 
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../auth/application/auth_service.dart";
@@ -42,7 +43,7 @@ base class CoinsService extends _$CoinsService {
 
 /// Get the coins of the current user.
 @riverpod
-Future<CoinsModel> currentUserCoins(CurrentUserCoinsRef ref) async {
+Future<CoinsModel> currentUserCoins(Ref ref) async {
   final userId = await ref.watch(idProvider.future);
 
   return ref.read(coinsServiceProvider(userId).future);

@@ -2,6 +2,7 @@
 library;
 
 import "package:flutter/material.dart";
+import "package:hooks_riverpod/hooks_riverpod.dart";
 import "package:riverpod_annotation/riverpod_annotation.dart";
 
 import "../../../gen/assets.gen.dart";
@@ -54,6 +55,6 @@ List<AppletEntity> get _applets {
 
 /// Get the list of applets.
 @riverpod
-List<AppletEntity> applets(AppletsRef ref) => ref.watch(
+List<AppletEntity> applets(Ref ref) => ref.watch(
       dashboardServiceProvider.select((value) => value.applets),
     );
