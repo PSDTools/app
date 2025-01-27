@@ -64,7 +64,7 @@ dev_dependencies:
   dhttpd: ^4.1.0
   envied_generator: ^1.0.0
   flutter_gen_runner: ^5.8.0
-  flutter_launcher_icons: ^0.14.2
+  flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.4.4
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
