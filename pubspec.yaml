@@ -76,7 +76,7 @@ dev_dependencies:
   mocktail: ^1.0.4
   riverpod_generator: ^2.6.1
   riverpod_lint: ^2.6.1
-  very_good_analysis: ^6.0.0
+  very_good_analysis: ^7.0.0
   very_good_cli: ^0.22.2
 
 dependency_overrides:
