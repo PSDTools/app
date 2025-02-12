@@ -89,7 +89,7 @@ jobs:
         include:
           - target: web
             os: ubuntu-latest
-            flutter-flags: --release
+            flutter-flags: --release --wasm
           - target: appbundle
             os: ubuntu-latest
             flutter-flags: --debug --no-tree-shake-icons --no-shrink
@@ -201,9 +201,6 @@ jobs:
           dart run build_runner build -d
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
-      - name: Clean Flutter generated files
-        # Works around invertase/dart_custom_lint#271
-        run: flutter clean
       - name: 🕵️ Run Custom Lint Rules
         run: dart run custom_lint --fatal-infos
 

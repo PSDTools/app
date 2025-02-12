@@ -23,50 +23,48 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: WrapperRoute.page,
-          path: "/",
-          guards: [
-            AutoRouteGuard.redirect(
-              (resolver) {
-                final authState = ref.read(userProvider).valueOrNull;
+    AutoRoute(
+      page: WrapperRoute.page,
+      path: "/",
+      guards: [
+        AutoRouteGuard.redirect((resolver) {
+          final authState = ref.read(userProvider).valueOrNull;
 
-                return (authState != null) ? null : const AuthRoute();
-              },
-            ),
-          ],
+          return (authState != null) ? null : const AuthRoute();
+        }),
+      ],
+      children: [
+        AutoRoute(
+          page: PirateCoinsRoute.page,
+          path: "pirate-coins",
           children: [
             AutoRoute(
-              page: PirateCoinsRoute.page,
-              path: "pirate-coins",
-              children: [
-                AutoRoute(
-                  page: StatsRoute.page,
-                  path: "stats",
-                  title: (context, route) => "Stats",
-                ),
-              ],
-              title: (context, route) => "Pirate Coins",
-            ),
-            AutoRoute(
-              page: DashboardRoute.page,
-              path: "",
-              title: (context, route) => "Dashboard",
-              initial: true,
-            ),
-            AutoRoute(
-              page: GpaRoute.page,
-              path: "gpa-calculator",
-              title: (context, route) => "GPA Calculator",
+              page: StatsRoute.page,
+              path: "stats",
+              title: (context, route) => "Stats",
             ),
           ],
-          title: (context, data) => "Pirate Code",
+          title: (context, route) => "Pirate Coins",
         ),
         AutoRoute(
-          page: AuthRoute.page,
-          path: "/login",
-          title: (context, data) => "Login",
+          page: DashboardRoute.page,
+          path: "",
+          title: (context, route) => "Dashboard",
+          initial: true,
         ),
-        RedirectRoute(path: "/*", redirectTo: "/"),
-      ];
+        AutoRoute(
+          page: GpaRoute.page,
+          path: "gpa-calculator",
+          title: (context, route) => "GPA Calculator",
+        ),
+      ],
+      title: (context, data) => "Pirate Code",
+    ),
+    AutoRoute(
+      page: AuthRoute.page,
+      path: "/login",
+      title: (context, data) => "Login",
+    ),
+    RedirectRoute(path: "/*", redirectTo: "/"),
+  ];
 }

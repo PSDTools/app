@@ -34,18 +34,14 @@ mixin Bootstrap on Widget {
     );
 
     // Run the App using Riverpod.
-    runApp(
-      ProviderScope(child: this),
-    );
+    runApp(ProviderScope(child: this));
   }
 }
 
 /// Set up proper font fetching and licensing.
 void initGoogleFonts() {
   LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString(
-      Assets.googleFonts.mrDafoe.ofl,
-    );
+    final license = await rootBundle.loadString(Assets.googleFonts.mrDafoe.ofl);
 
     yield LicenseEntryWithLineBreaks(["mr_dafoe"], license);
   });

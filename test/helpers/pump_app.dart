@@ -24,9 +24,7 @@ extension PumpApp on WidgetTester {
       ProviderScope(
         overrides: overrides,
         observers: observers,
-        child: _Widget(
-          child: widget,
-        ),
+        child: _Widget(child: widget),
       ),
     );
   }
@@ -36,7 +34,7 @@ class _Widget extends StatelessWidget {
   const _Widget({
     required this.child,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -45,9 +43,7 @@ class _Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Material(
-        child: child,
-      ),
+      home: Material(child: child),
       onGenerateTitle: (context) => context.l10n.appTitle,
       theme: theme,
       locale: flutterLocale,

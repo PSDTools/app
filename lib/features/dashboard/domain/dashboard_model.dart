@@ -15,9 +15,8 @@ part "dashboard_model.g.dart";
 @immutable
 sealed class DashboardModel with _$DashboardModel {
   /// Create a new, immutable [DashboardModel].
-  const factory DashboardModel({
-    required List<AppletEntity> applets,
-  }) = _DashboardModel;
+  const factory DashboardModel({required List<AppletEntity> applets}) =
+      _DashboardModel;
 
   /// Convert a JSON [Map] into a new, immutable [DashboardModel].
   factory DashboardModel.fromJson(Map<String, dynamic> json) =>

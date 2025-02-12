@@ -1,4 +1,5 @@
-// ignore_for_file: scoped_providers_should_specify_dependencies, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// False positive.
+// ignore_for_file: scoped_providers_should_specify_dependencies
 import "package:appwrite/appwrite.dart";
 import "package:flutter/material.dart";
 import "package:flutter_test/flutter_test.dart";
@@ -33,15 +34,14 @@ void main() {
 
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [
-              authProvider.overrideWithValue(mockAuthRepository),
-            ],
+            overrides: [authProvider.overrideWithValue(mockAuthRepository)],
             child: const App(),
           ),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
@@ -53,15 +53,14 @@ void main() {
 
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [
-              authProvider.overrideWithValue(mockAuthRepository),
-            ],
+            overrides: [authProvider.overrideWithValue(mockAuthRepository)],
             child: const App(),
           ),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
@@ -73,15 +72,14 @@ void main() {
 
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [
-              authProvider.overrideWithValue(mockAuthRepository),
-            ],
+            overrides: [authProvider.overrideWithValue(mockAuthRepository)],
             child: const App(),
           ),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(textContrastGuideline));
@@ -93,15 +91,14 @@ void main() {
 
         await tester.pumpWidget(
           ProviderScope(
-            overrides: [
-              authProvider.overrideWithValue(mockAuthRepository),
-            ],
+            overrides: [authProvider.overrideWithValue(mockAuthRepository)],
             child: const App(),
           ),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));

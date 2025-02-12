@@ -38,13 +38,12 @@ class WrapperPage extends StatelessWidget {
           builder: (context, child) {
             final isSmall = constraints.maxWidth < 450;
 
-            final page = isSmall
-                ? _MobileWrapper(child: child)
-                : _ExpandedWrapper(constraints: constraints, child: child);
+            final page =
+                isSmall
+                    ? _MobileWrapper(child: child)
+                    : _ExpandedWrapper(constraints: constraints, child: child);
 
-            return SafeArea(
-              child: page,
-            );
+            return SafeArea(child: page);
           },
         );
       },
@@ -57,7 +56,7 @@ class _ExpandedWrapper extends HookConsumerWidget {
     required this.child,
     required this.constraints,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -85,9 +84,10 @@ class _ExpandedWrapper extends HookConsumerWidget {
           UserAccountsDrawerHeader(
             accountName: name != null ? AutoSizeText(name) : null,
             accountEmail: email != null ? AutoSizeText(email) : null,
-            currentAccountPicture: avatar != null
-                ? CircleAvatar(backgroundImage: MemoryImage(avatar))
-                : null,
+            currentAccountPicture:
+                avatar != null
+                    ? CircleAvatar(backgroundImage: MemoryImage(avatar))
+                    : null,
           ),
           AboutListTile(
             icon: const Icon(Icons.info),
@@ -124,7 +124,7 @@ class _ExpandedWrapper extends HookConsumerWidget {
                   color: const Color.fromARGB(255, 9, 56, 19),
                   shadows: [
                     Shadow(
-                      color: theme.colorScheme.shadow.withOpacity(0.5),
+                      color: theme.colorScheme.shadow.withValues(alpha: 0.5),
                       blurRadius: 1,
                     ),
                   ],
@@ -136,12 +136,15 @@ class _ExpandedWrapper extends HookConsumerWidget {
           ),
           Expanded(
             child: ColoredBox(
-              color: theme.appBarTheme.backgroundColor ??
+              color:
+                  theme.appBarTheme.backgroundColor ??
                   const Color.fromARGB(255, 43, 188, 75),
               child: Container(
                 decoration: BoxDecoration(
-                  color: theme
-                      .colorScheme.surfaceContainerHighest, // background color
+                  color:
+                      theme
+                          .colorScheme
+                          .surfaceContainerHighest, // background color
                   border: Border.all(
                     color: Colors.transparent, // border color
                   ),
@@ -163,7 +166,7 @@ class _AppDescription extends HookWidget {
   const _AppDescription({
     this.followLink,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -175,9 +178,7 @@ class _AppDescription extends HookWidget {
 
     final textStyle = theme.textTheme.bodyMedium;
 
-    final tapGestureRecognizer = useTapGestureRecognizer(
-      onTap: followLink,
-    );
+    final tapGestureRecognizer = useTapGestureRecognizer(onTap: followLink);
 
     return Text.rich(
       TextSpan(
@@ -188,9 +189,7 @@ class _AppDescription extends HookWidget {
                 "Pattonville Wallet is hopefully going to become Pattonville School District's new app for reinforcing positive behavior. View the source at ",
           ),
           TextSpan(
-            style: textStyle?.copyWith(
-              color: theme.colorScheme.primary,
-            ),
+            style: textStyle?.copyWith(color: theme.colorScheme.primary),
             text: "github:PSDTools/app",
             recognizer: tapGestureRecognizer,
           ),
@@ -205,7 +204,7 @@ class _MobileWrapper extends StatelessWidget {
   const _MobileWrapper({
     required this.child,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 

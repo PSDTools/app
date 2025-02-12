@@ -64,21 +64,21 @@ sealed class LetterGrade with _$LetterGrade implements Comparable<LetterGrade> {
 
   /// The GPA value for the letter grade.
   int get value => switch (this) {
-        _A(:final isHonors) => isHonors ? 5 : 4,
-        _B(:final isHonors) => isHonors ? 4 : 3,
-        _C(:final isHonors) => isHonors ? 3 : 2,
-        _D() => 1,
-        _F() => 0,
-      };
+    _A(:final isHonors) => isHonors ? 5 : 4,
+    _B(:final isHonors) => isHonors ? 4 : 3,
+    _C(:final isHonors) => isHonors ? 3 : 2,
+    _D() => 1,
+    _F() => 0,
+  };
 
   /// The letter grade's name.
   String get name => switch (this) {
-        _A() => "A",
-        _B() => "B",
-        _C() => "C",
-        _D() => "D",
-        _F() => "F",
-      };
+    _A() => "A",
+    _B() => "B",
+    _C() => "C",
+    _D() => "D",
+    _F() => "F",
+  };
 
   @override
   int compareTo(LetterGrade other) => value.compareTo(other.value);

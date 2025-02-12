@@ -38,5 +38,5 @@ enum Device {
   windows,
 
   /// Other platforms, like Fuchsia.
-  other;
+  other,
 }

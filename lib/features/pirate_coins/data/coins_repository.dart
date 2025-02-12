@@ -41,7 +41,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
   Stream<CoinEntity> coinsData() async* {
     try {
       yield await _coinsData();
-    } catch (e) {
+    } on Exception {
       yield await _newDocument(_empty);
     }
 
@@ -63,7 +63,7 @@ base class _AppwriteCoinsRepository implements CoinsRepository {
   Future<void> updateCoins(CoinEntity coin) async {
     try {
       await _updateDocument(coin);
-    } catch (e) {
+    } on Exception {
       await _newDocument(coin);
     }
   }
@@ -114,11 +114,9 @@ class _Channel extends _$Channel {
   Raw<Stream<RealtimeMessage>> build(int user) {
     final realtime = ref.watch(realtimeProvider);
 
-    final sub = realtime.subscribe(
-      [
-        "databases.${apiInfo.databaseId}.collections.${apiInfo.collectionId}.documents.$user",
-      ],
-    );
+    final sub = realtime.subscribe([
+      "databases.${apiInfo.databaseId}.collections.${apiInfo.collectionId}.documents.$user",
+    ]);
     ref.onDispose(sub.close);
 
     return sub.stream;

@@ -35,11 +35,12 @@ void main() {
         expect(pirateCoinsRoute?.path, equals("pirate-coins"));
       });
       test("should be correct for StatsRoute.", () {
-        final statsRoute = tested.routes[0].children?.routes
-            .toList()[0]
-            .children
-            ?.routes
-            .toList()[0];
+        final statsRoute =
+            tested.routes[0].children?.routes
+                .toList()[0]
+                .children
+                ?.routes
+                .toList()[0];
         expect(statsRoute?.path, equals("stats"));
       });
       test("should be correct for DashboardRoute.", () {
