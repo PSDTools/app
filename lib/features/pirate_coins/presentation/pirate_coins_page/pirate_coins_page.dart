@@ -55,7 +55,7 @@ class _TeacherView extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (mode) {
-        PickStudentStage() => [const _UserForm()],
+        PickStudentStage() => const [_UserForm()],
         ViewCoinsStage(:final student) => [
           SizedBox(
             height: 110,
