@@ -30,9 +30,7 @@ base class PirateAuthService extends _$PirateAuthService {
     final auth = ref.read(authProvider);
     final account = await auth.authenticate(anonymous: anonymous);
 
-    return PirateAuthModel(
-      user: account,
-    );
+    return PirateAuthModel(user: account);
   }
 
   /// Create a new anonymous session for the user.
@@ -46,8 +44,8 @@ base class PirateAuthService extends _$PirateAuthService {
 /// Use [pirateAuthServiceProvider] for more granular output.
 @Riverpod(keepAlive: true)
 Future<PirateUserEntity> user(Ref ref) async => await ref.watch(
-      pirateAuthServiceProvider.selectAsync((value) => value.user),
-    );
+  pirateAuthServiceProvider.selectAsync((value) => value.user),
+);
 
 /// Get the current user's name.
 ///

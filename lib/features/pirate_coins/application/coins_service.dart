@@ -24,7 +24,9 @@ base class CoinsService extends _$CoinsService {
   Future<void> _updateCoins(int num) async {
     if (state case AsyncData(:final value)) {
       state = const AsyncValue.loading();
-      await ref.read(coinsDataProvider(userId)).updateCoins(
+      await ref
+          .read(coinsDataProvider(userId))
+          .updateCoins(
             value.copyWith.coins(coins: value.coins.coins + num).coins,
           );
     }

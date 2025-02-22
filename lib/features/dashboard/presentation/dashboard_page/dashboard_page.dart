@@ -27,14 +27,8 @@ class DashboardPage extends StatelessWidget {
             direction: isLarge ? Axis.horizontal : Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Expanded(
-                flex: isLarge ? 3 : 2,
-                child: const _Applets(),
-              ),
-              Flexible(
-                flex: isLarge ? 2 : 3,
-                child: const _NotificationBar(),
-              ),
+              Expanded(flex: isLarge ? 3 : 2, child: const _Applets()),
+              Flexible(flex: isLarge ? 2 : 3, child: const _NotificationBar()),
             ],
           );
         },
@@ -46,7 +40,7 @@ class DashboardPage extends StatelessWidget {
 class _Applets extends ConsumerWidget {
   const _Applets({
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -66,8 +60,9 @@ class _Applets extends ConsumerWidget {
                 mainAxisSpacing: 16,
               ),
               itemCount: buttonsData.length,
-              itemBuilder: (BuildContext context, int index) =>
-                  _AppletButton(buttonData: buttonsData[index]),
+              itemBuilder:
+                  (BuildContext context, int index) =>
+                      _AppletButton(buttonData: buttonsData[index]),
             ),
           ),
         ],
@@ -79,7 +74,7 @@ class _Applets extends ConsumerWidget {
 class _NotificationBar extends StatelessWidget {
   const _NotificationBar({
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -115,9 +110,7 @@ class _NotificationBar extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(255, 243, 243, 243),
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         child: ListView.builder(
           itemBuilder: (context, index) {
@@ -135,7 +128,7 @@ class _AppletButton extends ConsumerWidget {
   const _AppletButton({
     required this.buttonData,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -154,9 +147,7 @@ class _AppletButton extends ConsumerWidget {
     return Card(
       color: backgroundColor,
       elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(35),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
       child: InkWell(
         onTap: () async {
           ref.read(currentStageProvider.notifier).reset();
@@ -183,10 +174,7 @@ class _AppletButton extends ConsumerWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(16),
-                    child: Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain,
-                    ),
+                    child: Image.asset(imagePath, fit: BoxFit.contain),
                   ),
                 ),
               ],
@@ -204,7 +192,7 @@ class _NotificationBarItem extends StatelessWidget {
     required this.color,
     this.isTitle = false,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -238,7 +226,7 @@ class _NotificationItem extends StatelessWidget {
     required this.color,
     required this.height,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -255,14 +243,9 @@ class _NotificationItem extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           color: color,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(35),
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(35)),
         ),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: name,
-        ),
+        child: Align(alignment: Alignment.topCenter, child: name),
       ),
     );
   }

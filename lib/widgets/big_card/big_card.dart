@@ -7,10 +7,7 @@ import "package:flutter/material.dart";
 /// A, well, big card!
 class BigCard extends StatelessWidget {
   /// Create a new instance of [BigCard].
-  const BigCard(
-    this.text, {
-    super.key,
-  });
+  const BigCard(this.text, {super.key});
 
   /// The text to display on the [BigCard].
   final String text;
@@ -32,11 +29,7 @@ class BigCard extends StatelessWidget {
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
           child: MergeSemantics(
-            child: Wrap(
-              children: [
-                AutoSizeText(text, style: style),
-              ],
-            ),
+            child: Wrap(children: [AutoSizeText(text, style: style)]),
           ),
         ),
       ),

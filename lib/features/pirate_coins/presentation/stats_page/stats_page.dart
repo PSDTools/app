@@ -28,16 +28,17 @@ class StatsPage extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(8),
             child: switch (data) {
-              AsyncData(:final value) => (value.coins.coins) > 0
-                  ? BigCard(l10n.howManyCoins(value.coins.coins))
-                  : BigCard(l10n.emptyReport),
+              AsyncData(:final value) =>
+                (value.coins.coins) > 0
+                    ? BigCard(l10n.howManyCoins(value.coins.coins))
+                    : BigCard(l10n.emptyReport),
               AsyncError(:final error) => BigCard(l10n.error("$error")),
               _ => Column(
-                  children: [
-                    const CircularProgressIndicator(),
-                    AutoSizeText(l10n.loading),
-                  ],
-                ),
+                children: [
+                  const CircularProgressIndicator(),
+                  AutoSizeText(l10n.loading),
+                ],
+              ),
             },
           ),
         ],

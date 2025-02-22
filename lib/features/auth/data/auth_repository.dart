@@ -31,9 +31,9 @@ base class _AppwriteAuthRepository implements AuthRepository {
     Account account,
     Device platform,
     AvatarRepository avatar,
-  )   : _account = account,
-        _platform = platform,
-        _avatarRepo = avatar;
+  ) : _account = account,
+      _platform = platform,
+      _avatarRepo = avatar;
 
   /// The Appwrite [Account].
   final Account _account;
@@ -49,12 +49,12 @@ base class _AppwriteAuthRepository implements AuthRepository {
     User account;
     try {
       account = await _account.get();
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       log("Failed to fetch session.", error: e, stackTrace: s);
       if (anonymous) {
         try {
           await _account.createAnonymousSession();
-        } catch (e, s) {
+        } on Exception catch (e, s) {
           log("Failed to create anonymous session.", error: e, stackTrace: s);
         }
       } else {
@@ -69,17 +69,17 @@ base class _AppwriteAuthRepository implements AuthRepository {
 
             // TODO(lishaduck): The web needs different behavior than that of linux/mac/windows/fuchsia.
             case Device.web ||
-                  Device.linux ||
-                  Device.macOS ||
-                  Device.windows ||
-                  Device.other:
+                Device.linux ||
+                Device.macOS ||
+                Device.windows ||
+                Device.other:
               await _account.createOAuth2Session(
                 provider: OAuthProvider.google,
                 success: "${Uri.base.origin}/auth.html",
                 failure: "${Uri.base}",
               );
           }
-        } catch (e, s) {
+        } on Exception catch (e, s) {
           log("Failed to create OAuth2 session.", error: e, stackTrace: s);
         }
       }
@@ -97,7 +97,7 @@ base class _AppwriteAuthRepository implements AuthRepository {
         accountType: accountType,
         avatar: avatar,
       );
-    } catch (e, s) {
+    } on Exception catch (e, s) {
       log("Failed to fetch user data.", error: e, stackTrace: s);
 
       return fakeUser;

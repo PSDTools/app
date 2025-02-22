@@ -23,10 +23,7 @@ TapGestureRecognizer useTapGestureRecognizer({
 }
 
 class _TapGestureRecognizerHook extends Hook<TapGestureRecognizer> {
-  const _TapGestureRecognizerHook({
-    this.onTap,
-    super.keys,
-  });
+  const _TapGestureRecognizerHook({this.onTap, super.keys});
 
   final VoidCallback? onTap;
 

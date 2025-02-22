@@ -13,14 +13,13 @@ void main() {
         verifyZeroInteractions(mockAuthRepository);
 
         await tester.pumpApp(
-          overrides: [
-            authProvider.overrideWithValue(mockAuthRepository),
-          ],
+          overrides: [authProvider.overrideWithValue(mockAuthRepository)],
           const PirateCoinsPage(),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(androidTapTargetGuideline));
@@ -31,14 +30,13 @@ void main() {
         verifyZeroInteractions(mockAuthRepository);
 
         await tester.pumpApp(
-          overrides: [
-            authProvider.overrideWithValue(mockAuthRepository),
-          ],
+          overrides: [authProvider.overrideWithValue(mockAuthRepository)],
           const PirateCoinsPage(),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
@@ -49,14 +47,13 @@ void main() {
         verifyZeroInteractions(mockAuthRepository);
 
         await tester.pumpApp(
-          overrides: [
-            authProvider.overrideWithValue(mockAuthRepository),
-          ],
+          overrides: [authProvider.overrideWithValue(mockAuthRepository)],
           const PirateCoinsPage(),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(textContrastGuideline));
@@ -67,14 +64,13 @@ void main() {
         verifyZeroInteractions(mockAuthRepository);
 
         await tester.pumpApp(
-          overrides: [
-            authProvider.overrideWithValue(mockAuthRepository),
-          ],
+          overrides: [authProvider.overrideWithValue(mockAuthRepository)],
           const PirateCoinsPage(),
         );
 
-        verify(() => mockAuthRepository.authenticate(anonymous: true))
-            .called(1);
+        verify(
+          () => mockAuthRepository.authenticate(anonymous: true),
+        ).called(1);
 
         final handle = tester.ensureSemantics();
         await expectLater(tester, meetsGuideline(labeledTapTargetGuideline));

@@ -23,8 +23,8 @@ issue_tracker: https://github.com/PSDTools/app/issues
 repository: https://github.com/PSDTools/app.git
 
 environment:
-  sdk: ">=3.5.0 <4.0.0"
-  flutter: "3.24.3"
+  sdk: ">=3.7.0 <4.0.0"
+  flutter: "3.29.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -33,17 +33,17 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  appwrite: ^13.1.1
-  auto_route: ^9.2.2
+  appwrite: ^14.0.0
+  auto_route: ^9.3.0+1
   auto_size_text: ^3.0.0
   build_version: ^2.1.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8 # Only required if you use Cupertino (iOS style) icons
-  envied: ^1.0.0
+  envied: ^1.1.1
   flutter:
     sdk: flutter
-  flutter_hooks: ^0.20.5
+  flutter_hooks: ^0.21.0-pre.4
   flutter_localizations: # Required to enable localization
     sdk: flutter
   flutter_web_plugins:
@@ -57,35 +57,31 @@ dependencies:
   url_launcher: ^6.3.1
 
 dev_dependencies:
-  auto_route_generator: ^9.0.0
-  build_runner: ^2.4.13
-  build_web_compilers: ^4.0.11
-  custom_lint: ^0.6.8
+  auto_route_generator: ^9.3.1
+  build_runner: ^2.4.15
+  build_web_compilers: ^4.1.1
+  custom_lint: ^0.7.3
   dhttpd: ^4.1.0
-  envied_generator: ^1.0.0
-  flutter_gen_runner: ^5.8.0
-  flutter_launcher_icons: ^0.14.2
+  envied_generator: ^1.1.1
+  flutter_gen_runner: ^5.9.0
+  flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.4.4
   flutter_test: # Required for a Flutter project that includes tests
     sdk: flutter
-  freezed: ^2.5.7
+  freezed: ^2.5.8
   # integration_test:
   #   sdk: flutter
-  freezed_lint: ^0.0.5
-  json_serializable: ^6.9.0
+  freezed_lint: ^0.0.7
+  json_serializable: ^6.9.3
   mocktail: ^1.0.4
-  riverpod_generator: ^2.6.1
-  riverpod_lint: ^2.6.1
-  very_good_analysis: ^6.0.0
-  very_good_cli: ^0.22.2
+  riverpod_generator: ^2.6.4
+  riverpod_lint: ^2.6.4
+  very_good_analysis: ^7.0.0
+  very_good_cli: ^0.25.0
 
 dependency_overrides:
-  collection: 1.19.1
-  freezed_lint:
-    git:
-      path: packages/freezed_lint
-      ref: master
-      url: https://github.com/rrousselGit/freezed.git
+  flutter_web_auth_2: 4.1.0
+  pana: 0.22.18
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

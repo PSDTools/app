@@ -8,10 +8,7 @@ import "../../l10n/l10n.dart";
 /// A [TextFormField] that only accepts valid email addresses.
 class EmailFormField extends StatelessWidget {
   /// Create a new [EmailFormField].
-  const EmailFormField(
-    this._controller, {
-    super.key,
-  });
+  const EmailFormField(this._controller, {super.key});
 
   final TextEditingController _controller;
 
@@ -43,10 +40,7 @@ class EmailFormField extends StatelessWidget {
 ///
 /// This is used by the [EmailFormField] widget.
 @visibleForTesting
-String? validate(
-  String? value,
-  AppLocalizations l10n,
-) {
+String? validate(String? value, AppLocalizations l10n) {
   // Do I need a parser library for this?
   if (value == null || value.isEmpty) {
     return l10n.email_validate_failed_empty;

@@ -35,8 +35,7 @@ class PirateCoinsPage extends ConsumerWidget {
         AccountType.admin ||
         AccountType.dev ||
         AccountType.parent ||
-        null =>
-          const _TeacherView(),
+        null => const _TeacherView(),
       },
     );
   }
@@ -45,7 +44,7 @@ class PirateCoinsPage extends ConsumerWidget {
 class _TeacherView extends ConsumerWidget {
   const _TeacherView({
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -56,20 +55,18 @@ class _TeacherView extends ConsumerWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: switch (mode) {
-        PickStudentStage() => [
-            const _UserForm(),
-          ],
+        PickStudentStage() => const [_UserForm()],
         ViewCoinsStage(:final student) => [
-            SizedBox(
-              height: 110,
-              child: _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
-            ),
-            const SizedBox(height: 10),
-            _MutationBar(
-              student: student,
-              loaded: true, // TODO(ParkerH27): Wire this up.
-            ),
-          ],
+          SizedBox(
+            height: 110,
+            child: _ViewCoins(data: ref.watch(coinsServiceProvider(student))),
+          ),
+          const SizedBox(height: 10),
+          _MutationBar(
+            student: student,
+            loaded: true, // TODO(ParkerH27): Wire this up.
+          ),
+        ],
       },
     );
   }
@@ -78,7 +75,7 @@ class _TeacherView extends ConsumerWidget {
 class _StudentView extends ConsumerWidget {
   const _StudentView({
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -88,9 +85,7 @@ class _StudentView extends ConsumerWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _ViewCoins(data: data),
-      ],
+      children: [_ViewCoins(data: data)],
     );
   }
 }
@@ -100,7 +95,7 @@ class _MutationBar extends HookConsumerWidget {
     required this.student,
     required this.loaded,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -121,29 +116,31 @@ class _MutationBar extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton.icon(
-              onPressed: loaded && !requestInFlight.value
-                  ? () async {
-                      requestInFlight.value = true;
-                      await ref
-                          .read(coinsServiceProvider(student).notifier)
-                          .addCoins(1);
-                      requestInFlight.value = false;
-                    }
-                  : null,
+              onPressed:
+                  loaded && !requestInFlight.value
+                      ? () async {
+                        requestInFlight.value = true;
+                        await ref
+                            .read(coinsServiceProvider(student).notifier)
+                            .addCoins(1);
+                        requestInFlight.value = false;
+                      }
+                      : null,
               icon: const Icon(Icons.add),
               label: AutoSizeText(l10n.addCoins),
             ),
             const SizedBox(width: 10),
             ElevatedButton.icon(
-              onPressed: loaded && !requestInFlight.value
-                  ? () async {
-                      requestInFlight.value = true;
-                      await ref
-                          .read(coinsServiceProvider(student).notifier)
-                          .removeCoins(1);
-                      requestInFlight.value = false;
-                    }
-                  : null,
+              onPressed:
+                  loaded && !requestInFlight.value
+                      ? () async {
+                        requestInFlight.value = true;
+                        await ref
+                            .read(coinsServiceProvider(student).notifier)
+                            .removeCoins(1);
+                        requestInFlight.value = false;
+                      }
+                      : null,
               icon: const Icon(Icons.remove),
               label: AutoSizeText(l10n.removeCoins),
             ),
@@ -158,7 +155,7 @@ class _MutationBar extends HookConsumerWidget {
 class _UserForm extends HookConsumerWidget {
   const _UserForm({
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -175,8 +172,8 @@ class _UserForm extends HookConsumerWidget {
     // Create a scaffold feature controller, and use it to manage the snackbar.
     final snackBarController =
         useState<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?>(
-      null,
-    );
+          null,
+        );
 
     return SizedBox(
       width: 300,
@@ -224,7 +221,7 @@ class _ViewCoins extends StatelessWidget {
   const _ViewCoins({
     required this.data,
     // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element
+    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -240,11 +237,11 @@ class _ViewCoins extends StatelessWidget {
         AsyncData(:final value) => BigCard("${value.coins.coins}"),
         AsyncError(:final error) => BigCard(l10n.error("$error")),
         _ => Column(
-            children: [
-              const CircularProgressIndicator(),
-              AutoSizeText(l10n.loading),
-            ],
-          ),
+          children: [
+            const CircularProgressIndicator(),
+            AutoSizeText(l10n.loading),
+          ],
+        ),
       },
     );
   }

@@ -89,10 +89,10 @@ jobs:
         include:
           - target: web
             os: ubuntu-latest
-            flutter-flags: --release
+            flutter-flags: --release --wasm
           - target: appbundle
             os: ubuntu-latest
-            flutter-flags: --debug --no-tree-shake-icons --no-shrink
+            flutter-flags: --debug --no-tree-shake-icons
           # - target: ios
           #   os: macos-latest
           #   flutter-flags: --debug --no-tree-shake-icons
@@ -118,10 +118,14 @@ jobs:
           flutter-version-file: pubspec.yaml
           cache: true
       - name: ☕ Setup Java
+        if: ${{ matrix.target == 'appbundle' }}
         uses: actions/setup-java@7a6d8a8234af8eb26422e24e3006232cccaa061b # v4.6.0
         with:
-          distribution: "adopt"
+          distribution: "jetbrains"
           java-version: "17"
+          cache: "gradle"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: 📦 Install dependencies
@@ -201,9 +205,6 @@ jobs:
           dart run build_runner build -d
       - name: 🕵️ Analyze project source
         run: flutter analyze --fatal-infos
-      - name: Clean Flutter generated files
-        # Works around invertase/dart_custom_lint#271
-        run: flutter clean
       - name: 🕵️ Run Custom Lint Rules
         run: dart run custom_lint --fatal-infos
 

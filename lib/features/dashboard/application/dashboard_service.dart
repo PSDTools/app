@@ -55,6 +55,5 @@ List<AppletEntity> get _applets {
 
 /// Get the list of applets.
 @riverpod
-List<AppletEntity> applets(Ref ref) => ref.watch(
-      dashboardServiceProvider.select((value) => value.applets),
-    );
+List<AppletEntity> applets(Ref ref) =>
+    ref.watch(dashboardServiceProvider.select((value) => value.applets));

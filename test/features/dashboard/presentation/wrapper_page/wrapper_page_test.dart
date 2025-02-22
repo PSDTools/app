@@ -15,9 +15,7 @@ import "../../../../helpers/riverpod.dart";
 extension _WidgetTesterX on WidgetTester {
   Future<void> pumpWidgetPage() async {
     final container = createContainer(
-      overrides: [
-        userProvider.overrideWith((_) => fakeUser),
-      ],
+      overrides: [userProvider.overrideWith((_) => fakeUser)],
     );
     final routerSubscription = container.listen(routerProvider, (_, __) {});
     final router = routerSubscription.read();
