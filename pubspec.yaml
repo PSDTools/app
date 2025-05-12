@@ -34,7 +34,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   appwrite: ^15.0.0
-  auto_route: ^9.3.0+1
+  auto_route: ^10.0.0
   auto_size_text: ^3.0.0
   build_version: ^2.1.1
   # The following adds the Cupertino Icons font to your application.
