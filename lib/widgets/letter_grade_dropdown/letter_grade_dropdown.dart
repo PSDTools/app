@@ -1,4 +1,5 @@
 import "package:auto_size_text/auto_size_text.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -11,8 +12,6 @@ class LetterGradeDropdown extends ConsumerWidget {
     required this.hour,
     required this.grade,
     required this.updateGrade,
-    // Temporary ignore, see <dart-lang/sdk#49025>.
-    // ignore: unused_element_parameter
     super.key,
   });
 
@@ -44,6 +43,17 @@ class LetterGradeDropdown extends ConsumerWidget {
       ],
       onChanged: updateGrade,
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(IntProperty("hour", hour))
+      ..add(DiagnosticsProperty<LetterGrade>("grade", grade))
+      ..add(
+        ObjectFlagProperty<LetterGradeCallback>.has("updateGrade", updateGrade),
+      );
   }
 }
 

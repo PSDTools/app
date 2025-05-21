@@ -35,6 +35,12 @@ sealed class PirateUserEntity with _$PirateUserEntity implements Model {
 
   /// The user's hash.
   int get id => getId(email);
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IntProperty("id", id));
+  }
 }
 
 /// Get an id from an email.

@@ -3,6 +3,7 @@ library;
 
 import "package:auto_route/auto_route.dart";
 import "package:auto_size_text/auto_size_text.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -116,31 +117,29 @@ class _MutationBar extends HookConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton.icon(
-              onPressed:
-                  loaded && !requestInFlight.value
-                      ? () async {
-                        requestInFlight.value = true;
-                        await ref
-                            .read(coinsServiceProvider(student).notifier)
-                            .addCoins(1);
-                        requestInFlight.value = false;
-                      }
-                      : null,
+              onPressed: loaded && !requestInFlight.value
+                  ? () async {
+                      requestInFlight.value = true;
+                      await ref
+                          .read(coinsServiceProvider(student).notifier)
+                          .addCoins(1);
+                      requestInFlight.value = false;
+                    }
+                  : null,
               icon: const Icon(Icons.add),
               label: AutoSizeText(l10n.addCoins),
             ),
             const SizedBox(width: 10),
             ElevatedButton.icon(
-              onPressed:
-                  loaded && !requestInFlight.value
-                      ? () async {
-                        requestInFlight.value = true;
-                        await ref
-                            .read(coinsServiceProvider(student).notifier)
-                            .removeCoins(1);
-                        requestInFlight.value = false;
-                      }
-                      : null,
+              onPressed: loaded && !requestInFlight.value
+                  ? () async {
+                      requestInFlight.value = true;
+                      await ref
+                          .read(coinsServiceProvider(student).notifier)
+                          .removeCoins(1);
+                      requestInFlight.value = false;
+                    }
+                  : null,
               icon: const Icon(Icons.remove),
               label: AutoSizeText(l10n.removeCoins),
             ),
@@ -148,6 +147,14 @@ class _MutationBar extends HookConsumerWidget {
         );
       },
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(IntProperty("student", student))
+      ..add(DiagnosticsProperty<bool>("loaded", loaded));
   }
 }
 
@@ -244,5 +251,11 @@ class _ViewCoins extends StatelessWidget {
         ),
       },
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<AsyncValue<CoinsModel>>("data", data));
   }
 }

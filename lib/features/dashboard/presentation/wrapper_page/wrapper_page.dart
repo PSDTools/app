@@ -5,6 +5,7 @@ library;
 
 import "package:auto_route/auto_route.dart";
 import "package:auto_size_text/auto_size_text.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
@@ -38,10 +39,9 @@ class WrapperPage extends StatelessWidget {
           builder: (context, child) {
             final isSmall = constraints.maxWidth < 450;
 
-            final page =
-                isSmall
-                    ? _MobileWrapper(child: child)
-                    : _ExpandedWrapper(constraints: constraints, child: child);
+            final page = isSmall
+                ? _MobileWrapper(child: child)
+                : _ExpandedWrapper(constraints: constraints, child: child);
 
             return SafeArea(child: page);
           },
@@ -84,10 +84,9 @@ class _ExpandedWrapper extends HookConsumerWidget {
           UserAccountsDrawerHeader(
             accountName: name != null ? AutoSizeText(name) : null,
             accountEmail: email != null ? AutoSizeText(email) : null,
-            currentAccountPicture:
-                avatar != null
-                    ? CircleAvatar(backgroundImage: MemoryImage(avatar))
-                    : null,
+            currentAccountPicture: avatar != null
+                ? CircleAvatar(backgroundImage: MemoryImage(avatar))
+                : null,
           ),
           AboutListTile(
             icon: const Icon(Icons.info),
@@ -141,10 +140,9 @@ class _ExpandedWrapper extends HookConsumerWidget {
                   const Color.fromARGB(255, 43, 188, 75),
               child: Container(
                 decoration: BoxDecoration(
-                  color:
-                      theme
-                          .colorScheme
-                          .surfaceContainerHighest, // background color
+                  color: theme
+                      .colorScheme
+                      .surfaceContainerHighest, // background color
                   border: Border.all(
                     color: Colors.transparent, // border color
                   ),
@@ -158,6 +156,14 @@ class _ExpandedWrapper extends HookConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<BoxConstraints>("constraints", constraints),
     );
   }
 }
@@ -196,6 +202,14 @@ class _AppDescription extends HookWidget {
           const TextSpan(text: "."),
         ],
       ),
+    );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      ObjectFlagProperty<GestureTapCallback?>.has("followLink", followLink),
     );
   }
 }

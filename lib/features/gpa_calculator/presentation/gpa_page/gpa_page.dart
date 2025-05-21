@@ -48,10 +48,9 @@ class GpaPage extends HookConsumerWidget {
                       return LetterGradeDropdown(
                         hour: index,
                         grade: ref.watch(gpaServiceProvider(index)).grade,
-                        updateGrade:
-                            (grade) => ref
-                                .read(gpaServiceProvider(index).notifier)
-                                .updateGrade(grade ?? defaultLetterGrade),
+                        updateGrade: (grade) => ref
+                            .read(gpaServiceProvider(index).notifier)
+                            .updateGrade(grade ?? defaultLetterGrade),
                       );
                     },
                     itemCount: hours.value,

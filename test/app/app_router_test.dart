@@ -12,7 +12,7 @@ void main() {
 
     setUp(() {
       final container = createContainer();
-      final subscription = container.listen(routerProvider, (_, __) {});
+      final subscription = container.listen(routerProvider, (_, _) {});
       tested = subscription.read();
     });
 
@@ -31,24 +31,22 @@ void main() {
         expect(wrapperRoute.path, equals("/"));
       });
       test("should be correct for PirateCoinsRoute.", () {
-        final pirateCoinsRoute = tested.routes[0].children?.routes.toList()[0];
+        final pirateCoinsRoute = tested.routes[0].children?.toList()[0];
         expect(pirateCoinsRoute?.path, equals("pirate-coins"));
       });
       test("should be correct for StatsRoute.", () {
-        final statsRoute =
-            tested.routes[0].children?.routes
-                .toList()[0]
-                .children
-                ?.routes
-                .toList()[0];
+        final statsRoute = tested.routes[0].children
+            ?.toList()[0]
+            .children
+            ?.toList()[0];
         expect(statsRoute?.path, equals("stats"));
       });
       test("should be correct for DashboardRoute.", () {
-        final dashboardRoute = tested.routes[0].children?.routes.toList()[1];
+        final dashboardRoute = tested.routes[0].children?.toList()[1];
         expect(dashboardRoute?.path, equals(""));
       });
       test("should be correct for GpaRoute.", () {
-        final gpaRoute = tested.routes[0].children?.routes.toList()[2];
+        final gpaRoute = tested.routes[0].children?.toList()[2];
         expect(gpaRoute?.path, equals("gpa-calculator"));
       });
       test("should be correct for AuthRoute.", () {

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "ignoreDeps": ["dev.flutter.flutter-plugin-loader"],
+  "assigneesFromCodeOwners": true,
+  "labels": ["dependencies"],
+  "prHourlyLimit": 0
+}

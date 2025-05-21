@@ -3,6 +3,7 @@ library;
 
 import "package:auto_route/auto_route.dart";
 import "package:auto_size_text/auto_size_text.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:hooks_riverpod/hooks_riverpod.dart";
 
@@ -20,7 +21,7 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
+        builder: (context, constraints) {
           final isLarge = constraints.maxWidth > 500;
 
           return Flex(
@@ -60,9 +61,8 @@ class _Applets extends ConsumerWidget {
                 mainAxisSpacing: 16,
               ),
               itemCount: buttonsData.length,
-              itemBuilder:
-                  (BuildContext context, int index) =>
-                      _AppletButton(buttonData: buttonsData[index]),
+              itemBuilder: (context, index) =>
+                  _AppletButton(buttonData: buttonsData[index]),
             ),
           ),
         ],
@@ -152,7 +152,7 @@ class _AppletButton extends ConsumerWidget {
         onTap: () async {
           ref.read(currentStageProvider.notifier).reset();
           // Handle button tap here to navigate to the specified destination.
-          await context.router.pushNamed(destination);
+          await context.router.pushPath(destination);
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -183,6 +183,12 @@ class _AppletButton extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty<AppletEntity>("buttonData", buttonData));
   }
 }
 
@@ -218,6 +224,15 @@ class _NotificationBarItem extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(StringProperty("name", name))
+      ..add(ColorProperty("color", color))
+      ..add(DiagnosticsProperty<bool>("isTitle", isTitle));
+  }
 }
 
 class _NotificationItem extends StatelessWidget {
@@ -248,5 +263,13 @@ class _NotificationItem extends StatelessWidget {
         child: Align(alignment: Alignment.topCenter, child: name),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(ColorProperty("color", color))
+      ..add(DoubleProperty("height", height));
   }
 }
