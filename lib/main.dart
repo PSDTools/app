@@ -2,6 +2,7 @@
 ///
 /// {@category Getting Started}
 /// {@category C4Diagram}
+/// {@category Providers}
 library;
 
 import "app/app.dart";

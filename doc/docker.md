@@ -10,10 +10,10 @@ You **must** use the default settings in order to allow binding to `localhost:80
 ## Install Appwrite Server
 
 To install Appwrite using Docker, run the following command,
-substituting `1.4.1` with the newest Appwrite Server version supported by the Appwrite SDK currently in use:
+substituting `1.4.9` with the newest Appwrite Server version supported by the Appwrite SDK currently in use:
 
 ```sh
-docker run -it --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw --entrypoint="install" appwrite/appwrite:1.4.1
+docker run -it --rm --volume /var/run/docker.sock:/var/run/docker.sock --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw --entrypoint="install" appwrite/appwrite:1.4.9
 ```
 
 ## Create a new Appwrite Project
