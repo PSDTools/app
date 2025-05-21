@@ -9,7 +9,20 @@
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "toolArgs": ["--dart-define=FLUTTER_WEB_DEBUG_SHOW_SEMANTICS=true"]
+    },
+    {
+      "name": "Launch app (web)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "toolArgs": [
+        "--wasm",
+        "--dart-define=FLUTTER_WEB_DEBUG_SHOW_SEMANTICS=true",
+        "--web-experimental-hot-reload"
+      ]
     }
   ]
 }

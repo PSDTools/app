@@ -94,4 +94,12 @@ sealed class LetterGrade with _$LetterGrade implements Comparable<LetterGrade> {
 
   /// Whether this letter grade's [value] is numerically less than or equal to [other].
   bool operator <=(LetterGrade other) => compareTo(other) <= 0;
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(IntProperty("value", value))
+      ..add(StringProperty("name", name));
+  }
 }

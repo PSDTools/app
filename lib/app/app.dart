@@ -9,7 +9,7 @@ import "../features/auth/application/auth_service.dart";
 import "../features/auth/domain/pirate_user_entity.dart";
 import "../utils/design.dart";
 import "../utils/router.dart";
-import "boostrap.dart";
+import "bootstrap.dart";
 
 /// The default locale for the app.
 const flutterLocale = Locale("en", "US");

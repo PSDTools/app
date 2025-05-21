@@ -7,7 +7,7 @@
   },
   "anonymousAuthenticateText": "Sign in as Anonymous",
   "@anonymousAuthenticateText": {
-    "description": "The text dispayed on the button to log in as an anonymous user."
+    "description": "The text displayed on the button to log in as an anonymous user."
   },
   "appTitle": "PSD Wallet",
   "@appTitle": {

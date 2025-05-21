@@ -8,7 +8,11 @@ import "../features/auth/application/auth_service.dart";
 import "app_router.gr.dart";
 
 /// The router for the application.
-@AutoRouterConfig(replaceInRouteName: "Page,Route", deferredLoading: true)
+@AutoRouterConfig(
+  replaceInRouteName: "Page,Route",
+  deferredLoading: true,
+  argsEquality: true,
+)
 class AppRouter extends RootStackRouter {
   /// Create a new instance of [AppRouter].
   AppRouter({required this.ref});
@@ -17,7 +21,7 @@ class AppRouter extends RootStackRouter {
   final Ref ref;
 
   @override
-  final defaultRouteType = const RouteType.custom(
+  final defaultRouteType = RouteType.custom(
     transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
   );
 

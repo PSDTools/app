@@ -2,6 +2,7 @@
 library;
 
 import "package:auto_size_text/auto_size_text.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 
 /// A, well, big card!
@@ -34,5 +35,11 @@ class BigCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(StringProperty("text", text));
   }
 }

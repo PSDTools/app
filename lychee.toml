@@ -1,0 +1,1 @@
+exclude = ["\\$FLUTTER_BASE_HREF", '^http://localhost/']

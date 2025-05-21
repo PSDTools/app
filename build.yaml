@@ -27,11 +27,15 @@ targets:
         # configs for the @freezed generator
         generate_for:
           - lib/utils/*.dart
-          - lib/features/*/domain/*_model.dart
           - lib/features/*/domain/*_entity.dart
+          - lib/features/*/domain/*_model.dart
+      json_serializable:
+        # configs for the @JsonSerializable generator
+        generate_for:
+          - lib/features/*/domain/*_entity.dart
+          - lib/features/*/domain/*_model.dart
         options:
-          map: false
-          when: false
+          checked: true
       riverpod_generator:
         # configs for the @riverpod generator
         generate_for:
@@ -40,14 +44,11 @@ targets:
           - lib/features/*/application/*_service.dart
       flutter_gen_runner:
         # configs for the flutter.assets generator
+        options:
+          output: lib/gen/
         generate_for:
           - $package$
-      json_serializable:
-        # configs for the @JsonSerializable generator
-        generate_for:
-          - lib/features/*/domain/*_model.dart
-          - lib/features/*/domain/*_entity.dart
-      build_version:build_version:
+      build_version:
         # configs for the packageVersion generator...
         options:
           output: lib/gen/version.gen.dart

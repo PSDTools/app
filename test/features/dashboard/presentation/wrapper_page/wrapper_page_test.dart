@@ -17,7 +17,7 @@ extension _WidgetTesterX on WidgetTester {
     final container = createContainer(
       overrides: [userProvider.overrideWith((_) => fakeUser)],
     );
-    final routerSubscription = container.listen(routerProvider, (_, __) {});
+    final routerSubscription = container.listen(routerProvider, (_, _) {});
     final router = routerSubscription.read();
 
     await pumpWidget(

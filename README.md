@@ -1,7 +1,7 @@
 <!-- markdownlint-disable -->
 <h1 align="center">
   <a target="_self" href="https://github.com/PSDTools/app">
-    <img style="width: 60px" src="https://psdr3.org/images/logos/psdr3-450.png" />
+    <img style="width: 60px" src=".github/images/logo.svg" />
   </a>
 </h1>
 <div align="center">

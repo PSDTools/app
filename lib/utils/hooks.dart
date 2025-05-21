@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/gestures.dart";
 import "package:flutter/material.dart";
 import "package:flutter_hooks/flutter_hooks.dart";
@@ -30,6 +31,12 @@ class _TapGestureRecognizerHook extends Hook<TapGestureRecognizer> {
   @override
   _TapGestureRecognizerHookState createState() =>
       _TapGestureRecognizerHookState();
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(ObjectFlagProperty<VoidCallback?>.has("onTap", onTap));
+  }
 }
 
 class _TapGestureRecognizerHookState
@@ -59,4 +66,12 @@ class _TapGestureRecognizerHookState
 
   @override
   String get debugLabel => "useTapGestureRecognizer";
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+      DiagnosticsProperty<TapGestureRecognizer>("recognizer", recognizer),
+    );
+  }
 }

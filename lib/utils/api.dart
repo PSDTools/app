@@ -44,7 +44,7 @@ abstract interface class ApiRepository {
   /// The collection ID for the Appwrite API.
   String get collectionId;
 
-  /// Wether or not the Appwrite Server uses self-signed certificates.
+  /// Whether or not the Appwrite Server uses self-signed certificates.
   bool get isSelfSigned;
 }
 

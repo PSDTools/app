@@ -9,4 +9,4 @@ untranslated-messages-file: untranslated.json
 header: |
   /// All localized files.
   ///
-  /// {@Category Translations}
+  /// {@category Translations}
