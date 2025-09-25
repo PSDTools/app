@@ -33,7 +33,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  appwrite: ^16.0.0
+  appwrite: ^19.0.0
   auto_route: ^10.0.1
   auto_size_text: ^3.0.0
   build_version: ^2.1.1
