@@ -49,7 +49,7 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   freezed_annotation: ^3.0.0
-  hooks_riverpod: ^2.6.1
+  hooks_riverpod: 3.1.0
   intl: ^0.20.2
   json_annotation: ^4.9.0
   os_detect: ^2.0.3
