@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -115,7 +115,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -178,7 +178,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -227,7 +227,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -281,7 +281,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -311,7 +311,7 @@ jobs:
 
     steps:
       - name: 📚 Git Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -331,7 +331,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -360,7 +360,7 @@ jobs:
 
     steps:
       - name: 📚 Git checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
@@ -388,7 +388,7 @@ jobs:
 
     steps:
       - name: 📚 Git Checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
         with:
           submodules: recursive
           clean: true
