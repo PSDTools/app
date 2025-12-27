@@ -71,7 +71,7 @@ dev_dependencies:
   freezed: ^3.0.6
   # integration_test:
   #   sdk: flutter
-  freezed_lint: ^0.0.9
+  freezed_lint: 0.0.12
   json_serializable: ^6.9.5
   mocktail: ^1.0.4
   riverpod_generator: ^2.6.5
