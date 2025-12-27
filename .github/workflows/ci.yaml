@@ -48,7 +48,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: ⚙️ Cache generated files
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: |
             .dart_tool/
@@ -141,7 +141,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: ⚙️ Cache generated files
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: |
             .dart_tool/
@@ -195,7 +195,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: ⚙️ Cache generated files
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: |
             .dart_tool/
@@ -244,7 +244,7 @@ jobs:
       - name: 🌐 Disable analytics
         run: flutter --disable-analytics
       - name: ⚙️ Cache generated files
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: |
             .dart_tool/
@@ -338,7 +338,7 @@ jobs:
           persist-credentials: false
           set-safe-directory: true
       - name: ⚙️ Restore lychee cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: .lycheecache
           key: cache-lychee-${{ github.sha }}
