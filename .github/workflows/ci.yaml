@@ -319,7 +319,7 @@ jobs:
           set-safe-directory: true
 
       - name: 🪄 Spell Check Repo
-        uses: crate-ci/typos@83157de2df0fa7c7ae20f73f9dbed44c41f2bb64 # v1.38.0
+        uses: crate-ci/typos@2d0ce569feab1f8752f1dde43cc2f2aa53236e06 # v1.40.0
 
   link-check:
     name: Check Links
